@@ -1,0 +1,993 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Appendix: Mathematics and Machine Learning &#8212; Statistical Machine Learning</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'App-Mathematics-and-Machine-Learning';</script>
+    <link rel="icon" href="_static/fum-logo.ico"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Appendix: Bayes Decision Theory — Discrete Features" href="Appendix-BDT-Discrete-Features.html" />
+    <link rel="prev" title="Principal Component Analysis, Part 2" href="15-Principal-Component-Analysis-part2.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/fum-cs-logo.png" class="logo__image only-light" alt="Statistical Machine Learning - Home"/>
+    <script>document.write(`<img src="_static/fum-cs-logo.png" class="logo__image only-dark" alt="Statistical Machine Learning - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Welcome to Statistical Machine Learning Course
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01-What-Is-Machine-Learning.html">What Is Machine Learning?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02-Covariance-Matrix.html">Understanding the Covariance Matrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03-MLE-intro.html">Maximum Likelihood Estimation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04-Mahalanobis-Distance.html">Mahalanobis Distance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05-Naive-Bayes.html">Naive Bayes Classification</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="06-Bayesian-Decision-Theory.html">Bayesian Decision Theory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07-Linear-Models.html">Linear models</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="09-Kernel-Trick.html">The Kernel Method (Kernel Trick)</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="10-Kernel-Regression.html">Kernel Regression: From Linear to Nonlinear Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11-Gaussian-Mixtures-part1.html">Gaussian Mixture Models, Part 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12-Gaussian-Mixtures-part2.html">Gaussian Mixture Model, Part 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14-Principal-Component-Analysis-part1.html">Principal Component Analysis, Part 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15-Principal-Component-Analysis-part2.html">Principal Component Analysis, Part 2</a></li>
+
+
+
+
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Appendix: Mathematics and Machine Learning</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="Appendix-BDT-Discrete-Features.html">Appendix: Bayes Decision Theory — Discrete Features</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/fum-cs/SML/blob/main/docs/App-Mathematics-and-Machine-Learning.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Colab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Colab logo" src="_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/fum-cs/SML" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/fum-cs/SML/issues/new?title=Issue%20on%20page%20%2FApp-Mathematics-and-Machine-Learning.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/App-Mathematics-and-Machine-Learning.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Appendix: Mathematics and Machine Learning</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Appendix: Mathematics and Machine Learning</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#sparse-optimization-theory-and-applications">Sparse Optimization: Theory and Applications</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#connection-between-sparse-learning-and-functional-analysis">Connection Between Sparse Learning and Functional Analysis</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hilbert-spaces-and-orthogonal-projections">Hilbert Spaces and Orthogonal Projections</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#banach-spaces-and-ell-1-regularization">Banach Spaces and <span class="math notranslate nohighlight">\( \ell_1 \)</span>-Regularization</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fourier-wavelet-and-other-representations">Fourier, Wavelet, and Other Representations</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#from-fixed-bases-to-learned-representations">From Fixed Bases to Learned Representations</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-evolving-role-of-sparse-methods">The Evolving Role of Sparse Methods</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mri-reconstruction">MRI reconstruction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pytomography">PyTomography</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-features"><strong>Key Features</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-use-pytomography"><strong>Why Use PyTomography?</strong></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pysap">PySAP</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fourier-series-expansion-of-a-square-wave">Fourier series expansion of a square wave</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fourier-series-for-signal-compression">Fourier Series for Signal Compression</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fourier-series">Fourier Series</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#coefficients">Coefficients</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-implementation">Python Implementation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-equations-in-compression">Key Equations in Compression</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-calculation">Example Calculation</a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="appendix-mathematics-and-machine-learning">
+<h1>Appendix: Mathematics and Machine Learning<a class="headerlink" href="#appendix-mathematics-and-machine-learning" title="Link to this heading">#</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="sparse-optimization-theory-and-applications">
+<h1>Sparse Optimization: Theory and Applications<a class="headerlink" href="#sparse-optimization-theory-and-applications" title="Link to this heading">#</a></h1>
+<p>Sparse optimization is a fundamental paradigm in mathematical modeling that seeks solutions with few non-zero elements, often formalized through ℓ₁-norm regularization or non-convex penalties. This framework is grounded in the <strong>Compressed Sensing (CS)</strong> theory <span id="id1">[<a class="reference internal" href="intro.html#id2" title="David L. Donoho. Compressed sensing. IEEE Transactions on Information Theory, 52(4):1289–1306, 2006. doi:10.1109/TIT.2006.871582.">Don06</a>]</span>, which guarantees exact signal recovery from sub-Nyquist measurements if the signal is sparse in some basis. Key applications include:</p>
+<ol class="arabic simple">
+<li><p><strong>Medical Imaging</strong>: CS enables faster MRI scans by reconstructing images from limited k-space samples (Lustig et al., 2007), as highlighted in the <a class="reference external" href="http://dsp.ee.cuhk.edu.hk/eleg5481/Lecture%20notes/13-%20compressive%20sensing/cs.pdf">CUHK lecture notes on CS</a> (p. 13).</p></li>
+<li><p><strong>Signal Processing</strong>: Sparse methods underpin denoising (e.g., wavelet shrinkage) and inpainting, where total variation minimization preserves edges while removing noise (Figueiredo, 2021, <a class="reference external" href="https://indico.math.cnrs.fr/event/6637/contributions/5334/attachments/3055/3951/Figueiredo_CIMI-ANITI_Toulouse_2021.pdf">slides p. 8</a>).</p></li>
+<li><p><strong>Machine Learning</strong>: Sparse regression (e.g., LASSO; Tibshirani, 1996) and robust PCA (Candès et al., 2011) are critical for feature selection and anomaly detection. The <a class="reference external" href="https://telin.ugent.be/~sanja/Presentation/Tutorial_IMREC_Part1.pdf">Ghent tutorial</a> (p. 5) further links sparsity to deep network pruning.</p></li>
+<li><p><strong>Statistics</strong>: High-dimensional inference (e.g., genomics) benefits from sparsity-induced interpretability (Bühlmann &amp; Van de Geer, 2011).</p></li>
+</ol>
+<p>The field continues to evolve with <strong>non-convex penalties</strong> (e.g., SCAD) and <strong>greedy algorithms</strong> (OMP), balancing computational efficiency and statistical guarantees. For a unified perspective, see the cited references and tutorials.</p>
+<hr class="docutils" />
+<section id="connection-between-sparse-learning-and-functional-analysis">
+<h2>Connection Between Sparse Learning and Functional Analysis<a class="headerlink" href="#connection-between-sparse-learning-and-functional-analysis" title="Link to this heading">#</a></h2>
+<p>Sparse recovery techniques like <strong>OMP</strong> and <strong>LASSO</strong> are deeply rooted in <strong>functional analysis</strong>, which explains why terms like <strong>Hilbert spaces</strong> and <strong>Banach spaces</strong> frequently appear in machine learning research. These mathematical frameworks provide the theoretical foundation for understanding sparsity-inducing methods.</p>
+<section id="hilbert-spaces-and-orthogonal-projections">
+<h3>Hilbert Spaces and Orthogonal Projections<a class="headerlink" href="#hilbert-spaces-and-orthogonal-projections" title="Link to this heading">#</a></h3>
+<p>Hilbert spaces (complete inner product spaces) are essential for analyzing <strong>orthogonal projections</strong> and <strong>basis expansions</strong>. For example:</p>
+<ul class="simple">
+<li><p><strong>OMP</strong> iteratively projects the residual onto the span of selected basis vectors, leveraging the <strong>orthogonality principle</strong> to minimize error at each step.</p></li>
+<li><p>The <strong>inner product structure</strong> of Hilbert spaces enables efficient computation of correlations between residuals and dictionary atoms (columns of <span class="math notranslate nohighlight">\( X \)</span>).</p></li>
+</ul>
+</section>
+<section id="banach-spaces-and-ell-1-regularization">
+<h3>Banach Spaces and <span class="math notranslate nohighlight">\( \ell_1 \)</span>-Regularization<a class="headerlink" href="#banach-spaces-and-ell-1-regularization" title="Link to this heading">#</a></h3>
+<p><strong>LASSO</strong> operates in the context of Banach spaces (complete normed vector spaces) due to its reliance on the <span class="math notranslate nohighlight">\( \ell_1 \)</span>-norm:</p>
+<ul class="simple">
+<li><p>The <span class="math notranslate nohighlight">\( \ell_1 \)</span>-norm’s <strong>non-smoothness</strong> at the origin induces sparsity, a property studied in Banach space geometry.</p></li>
+<li><p>Unlike Hilbert spaces, Banach spaces generalize optimization techniques to <strong>non-Euclidean settings</strong>, crucial for sparse regularization.</p></li>
+</ul>
+</section>
+<section id="fourier-wavelet-and-other-representations">
+<h3>Fourier, Wavelet, and Other Representations<a class="headerlink" href="#fourier-wavelet-and-other-representations" title="Link to this heading">#</a></h3>
+<p>Sparse learning often exploits <strong>transform domains</strong> (e.g., Fourier, wavelet, or learned dictionaries) where signals admit <strong>concise representations</strong>: - These domains provide <strong>structured bases</strong> where only a few coefficients are significant. - The <strong>connection to functional analysis</strong> arises because such bases typically form <strong>frames</strong> or <strong>Riesz bases</strong> in Hilbert spaces, ensuring stable sparse approximations.</p>
+</section>
+</section>
+<section id="from-fixed-bases-to-learned-representations">
+<h2>From Fixed Bases to Learned Representations<a class="headerlink" href="#from-fixed-bases-to-learned-representations" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><strong>Classical Sparse Coding</strong>:</p>
+<ul class="simple">
+<li><p>Relies on <strong>predefined bases</strong> (e.g., Fourier, wavelets) where signals admit sparse representations.</p></li>
+<li><p>These bases often form <strong>frames</strong> or <strong>Riesz bases</strong> in Hilbert spaces, ensuring stable approximations.</p></li>
+</ul>
+</li>
+<li><p><strong>Convolutional Neural Networks (CNNs)</strong>:</p>
+<ul class="simple">
+<li><p>Learn <strong>adaptive bases/filters</strong> from data, implicitly constructing sparse-like representations through:</p>
+<ul>
+<li><p><strong>Local connectivity</strong>: Filters act as localized basis functions.</p></li>
+<li><p><strong>Activation sparsity</strong>: ReLU promotes de facto sparsity in feature maps.</p></li>
+</ul>
+</li>
+<li><p>While CNNs lack explicit <span class="math notranslate nohighlight">\( \ell_0 \)</span>/<span class="math notranslate nohighlight">\( \ell_1 \)</span> constraints, their hierarchical structure approximates <strong>multi-scale sparse decompositions</strong>, akin to wavelet analysis but data-driven.</p></li>
+</ul>
+</li>
+</ol>
+<section id="the-evolving-role-of-sparse-methods">
+<h3>The Evolving Role of Sparse Methods<a class="headerlink" href="#the-evolving-role-of-sparse-methods" title="Link to this heading">#</a></h3>
+<p>While deep learning has reduced reliance on <em>handcrafted</em> sparse models in some domains, sparse methods remain relevant because:</p>
+<ol class="arabic simple">
+<li><p><strong>Interpretability</strong>:</p>
+<ul class="simple">
+<li><p>OMP/LASSO yield <strong>explicit basis selections</strong>, whereas CNNs operate as black boxes.</p></li>
+<li><p>Critical in fields like medicine or physics where model transparency is required.</p></li>
+</ul>
+</li>
+<li><p><strong>Data-Efficiency</strong>:</p>
+<ul class="simple">
+<li><p>Sparse methods often outperform DL in <strong>low-data regimes</strong> (e.g., medical imaging with small datasets).</p></li>
+</ul>
+</li>
+<li><p><strong>Theoretical Guarantees</strong>:</p>
+<ul class="simple">
+<li><p>Compressed sensing (<strong>OMP</strong>) and convex optimization (<strong>LASSO</strong>) provide <strong>recovery guarantees</strong> under precise conditions, unlike empirical DL results.</p></li>
+</ul>
+</li>
+<li><p><strong>Hybrid Approaches</strong>:</p>
+<ul class="simple">
+<li><p>Modern architectures (e.g., <strong>ISTA-Net</strong>, <strong>Learned Iterative Shrinkage</strong>) blend sparse priors with deep learning, showing that sparsity remains a useful <em>inductive bias</em>.</p></li>
+</ul>
+</li>
+</ol>
+<p>Sparse learning and deep learning are complementary:</p>
+<ul class="simple">
+<li><p><strong>CNNs</strong> dominate when data is abundant and interpretability is secondary.</p></li>
+<li><p><strong>OMP/LASSO</strong> persist in scenarios requiring rigor, efficiency, or transparency.</p></li>
+<li><p><strong>Functional analysis</strong> bridges these paradigms, providing tools to analyze both fixed and learned representations.</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="mri-reconstruction">
+<h2>MRI reconstruction<a class="headerlink" href="#mri-reconstruction" title="Link to this heading">#</a></h2>
+<p>MRI reconstruction can be formulated as an inverse problem where the goal is to recover the original image <span class="math notranslate nohighlight">\( \mathbf{m} \)</span> from under-sampled k-space measurements <span class="math notranslate nohighlight">\( \mathbf{y} \)</span>. This is achieved using sparse optimization techniques.</p>
+<p>A common formulation for MRI reconstruction is:</p>
+<div class="math notranslate nohighlight">
+\[
+\min_{\mathbf{m}} \|\mathbf{F}_u \mathbf{m} - \mathbf{y}\|_2^2 + \lambda \|\Psi \mathbf{m}\|_p
+\]</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\( \mathbf{m} \)</span> represents the MRI image to be reconstructed.</p></li>
+<li><p><span class="math notranslate nohighlight">\( \mathbf{F}_u \)</span> is the <strong>under-sampled Fourier operator</strong>, mapping the image to k-space.</p></li>
+<li><p><span class="math notranslate nohighlight">\( \mathbf{y} \)</span> is the <strong>acquired k-space data</strong> (limited measurements).</p></li>
+<li><p><span class="math notranslate nohighlight">\( \Psi \)</span> is the <strong>sparsifying transform</strong> (e.g., wavelet or total variation).</p></li>
+<li><p><span class="math notranslate nohighlight">\( \|\Psi \mathbf{m}\|_p \)</span> represents the <strong>sparsity constraint</strong>, often chosen as <span class="math notranslate nohighlight">\( \ell_1 \)</span> (similar to LASSO) or <span class="math notranslate nohighlight">\( \ell_0 \)</span> (similar to OMP).</p></li>
+<li><p><span class="math notranslate nohighlight">\( \lambda \)</span> controls the balance between data fidelity and sparsity enforcement.</p></li>
+</ul>
+<p>By leveraging sparsity, MRI reconstruction enables faster scans with fewer measurements while preserving essential anatomical details.</p>
+</section>
+<section id="pytomography">
+<h2>PyTomography<a class="headerlink" href="#pytomography" title="Link to this heading">#</a></h2>
+<p><strong>PyTomography</strong> is an open-source Python library designed for <strong>medical image reconstruction</strong>, particularly in <strong>SPECT (Single-Photon Emission Computed Tomography)</strong> and <strong>PET (Positron Emission Tomography)</strong> imaging. Developed to address the challenges of <strong>quantitative tomographic reconstruction</strong>, PyTomography provides a <strong>flexible, modular framework</strong> for implementing advanced reconstruction algorithms, including <strong>attenuation correction, scatter correction, and resolution modeling</strong>.</p>
+<section id="key-features">
+<h3><strong>Key Features</strong><a class="headerlink" href="#key-features" title="Link to this heading">#</a></h3>
+<p>✅ <strong>Open-source &amp; community-driven</strong> (<a class="reference external" href="https://github.com/PyTomography/PyTomography">GitHub</a>)<br />
+✅ <strong>Supports multiple reconstruction techniques</strong> (OSEM, MLEM, deep learning-based methods)<br />
+✅ <strong>Integrates with GPU acceleration</strong> for faster computations<br />
+✅ <strong>Well-documented</strong> with tutorials and API references (<a class="reference external" href="https://pytomography.readthedocs.io/en/latest/">ReadTheDocs</a>)<br />
+✅ <strong>Validated in peer-reviewed research</strong> (<a class="reference external" href="https://www.sciencedirect.com/science/article/pii/S235271102400390X">Scientific Reports, 2024</a>)</p>
+</section>
+<section id="why-use-pytomography">
+<h3><strong>Why Use PyTomography?</strong><a class="headerlink" href="#why-use-pytomography" title="Link to this heading">#</a></h3>
+<p>PyTomography bridges the gap between <strong>research and clinical applications</strong> by offering:</p>
+<ul class="simple">
+<li><p><strong>Reproducible</strong> reconstruction workflows</p></li>
+<li><p><strong>Customizable</strong> forward and backward projection models</p></li>
+<li><p><strong>Seamless integration</strong> with Python’s scientific computing stack (NumPy, PyTorch)</p></li>
+</ul>
+<p>Whether for <strong>academic research, algorithm development, or clinical prototyping</strong>, PyTomography provides a <strong>powerful, accessible toolkit</strong> for next-generation medical imaging reconstruction.</p>
+</section>
+</section>
+<section id="pysap">
+<h2>PySAP<a class="headerlink" href="#pysap" title="Link to this heading">#</a></h2>
+<p>The <strong>Python Sparse data Analysis Package (PySAP)</strong> was developed as part of COSMIC, a multi-disciplinary collaboration between <strong>NeuroSpin</strong>, experts in biomedical imaging, and <strong>CosmoStat</strong>, experts in astrophysical image processing. PySAP is designed to provide state-of-the-art signal processing tools for various imaging domains, including:</p>
+<ul class="simple">
+<li><p><strong>Astronomy</strong></p></li>
+<li><p><strong>Electron Tomography</strong></p></li>
+<li><p><strong>Magnetic Resonance Imaging (MRI)</strong></p></li>
+</ul>
+<p>One of PySAP’s core contributions lies in <strong>sparse optimization</strong>, a powerful technique widely used for reconstructing images from incomplete or noisy data. The package implements advanced <strong>compressed sensing algorithms</strong><span id="id2">[<a class="reference internal" href="intro.html#id4" title="S. Theodoridis. Machine Learning: A Bayesian and Optimization Perspective. Academic Press, 2020. ISBN 9780128188040. URL: https://books.google.com/books?id=l-nEDwAAQBAJ.">The20</a>]</span>, allowing efficient image restoration while preserving essential features.</p>
+<p>In medical imaging, PySAP plays a crucial role in MRI reconstruction by leveraging <strong>sparsity-based approaches</strong> to improve scan efficiency. It enables:</p>
+<ul class="simple">
+<li><p>Reduced scanning time while maintaining image quality</p></li>
+<li><p>Improved reconstruction of under-sampled k-space data</p></li>
+<li><p>Integration of machine learning techniques for further enhancement</p></li>
+</ul>
+<p>The first release of PySAP was presented in Farrens et al. <span id="id3">[<a class="reference internal" href="intro.html#id3" title="Loubna El Gueddari, Chaithya Giliyar Radhakrishna, Zaccharie Ramzi, Samuel Farrens, Sophie Starck, Antoine Grigis, Jean-Luc Starck, and Philippe Ciuciu. PySAP-MRI: a Python Package for MR Image Reconstruction. In ISMRM workshop on Data Sampling and Image Reconstruction. Sedona, AZ, United States, January 2020. URL: https://inria.hal.science/hal-02399267.">GGRR+20</a>]</span> and continues to evolve as a robust tool for sparse signal processing.</p>
+<p>For further exploration, visit the <a class="reference external" href="https://github.com/CEA-COSMIC/pysap">PySAP GitHub repository</a>.</p>
+<p>In <a class="reference external" href="http://fum-cs.github.io/dl">deep learning course</a>, we will encounter additional examples of minimizing <span class="math notranslate nohighlight">\( ||Ax - b|| \)</span>, including applications like image deblurring and super-resolution.</p>
+<p><img alt="" src="_images/Rank-Based-Methods.jpg" /></p>
+<p>For valuable references on Ridge and Shrinkage methods, consider consulting Prof. Arashi’s books <span id="id4">[<a class="reference internal" href="intro.html#id6" title="A.K.M.E. Saleh, M. Arashi, and B.M.G. Kibria. Theory of Ridge Regression Estimation with Applications. Wiley Series in Probability and Statistics. Wiley, 2019. ISBN 9781118644614. URL: https://books.google.com/books?id=v0KCDwAAQBAJ.">SAK19</a>, <a class="reference internal" href="intro.html#id5" title="A.K.M.E. Saleh, M. Arashi, R.A. Saleh, and M. Norouzirad. Rank-Based Methods for Shrinkage and Selection: With Application to Machine Learning. Wiley, 2022. ISBN 9781119625391. URL: https://books.google.com/books?id=f8p6EAAAQBAJ.">SASN22</a>]</span>.</p>
+</section>
+<hr class="docutils" />
+<section id="fourier-series-expansion-of-a-square-wave">
+<h2>Fourier series expansion of a square wave<a class="headerlink" href="#fourier-series-expansion-of-a-square-wave" title="Link to this heading">#</a></h2>
+<div class="math notranslate nohighlight">
+\[
+\boxed{
+f(t) = \frac{4}{\pi} \sum_{n=1}^{\infty} \frac{\sin\big((2n-1) \cdot 2\pi ft\big)}{2n-1}
+}
+\]</div>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Component</p></th>
+<th class="head"><p>Formula</p></th>
+<th class="head"><p>Code Implementation</p></th>
+<th class="head"><p>Purpose</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Odd Harmonics</strong></p></td>
+<td><p>((2n-1))</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">frequency</span> <span class="pre">=</span> <span class="pre">2</span> <span class="pre">*</span> <span class="pre">n</span> <span class="pre">-</span> <span class="pre">1</span></code></p></td>
+<td><p>Square waves require only odd harmonics (1f, 3f, 5f, …).</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Amplitude</strong></p></td>
+<td><p>(\frac{4}{\pi (2n-1)})</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">4</span> <span class="pre">/</span> <span class="pre">(np.pi</span> <span class="pre">*</span> <span class="pre">frequency)</span></code></p></td>
+<td><p>Ensures higher harmonics contribute less (weighted by (1/n)).</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Sine Wave</strong></p></td>
+<td><p>(\sin(2\pi (2n-1) t))</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">np.sin(2</span> <span class="pre">*</span> <span class="pre">np.pi</span> <span class="pre">*</span> <span class="pre">frequency</span> <span class="pre">*</span> <span class="pre">x)</span></code></p></td>
+<td><p>Generates the sine wave at the harmonic frequency.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># Define the square wave function</span>
+<span class="k">def</span> <span class="nf">square_wave</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">harmonics</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Generate a square wave using Fourier series (sum of sine waves).</span>
+<span class="sd">    Parameters:</span>
+<span class="sd">        x: Time points</span>
+<span class="sd">        harmonics: Number of sine waves to sum</span>
+<span class="sd">    Returns:</span>
+<span class="sd">        Square wave approximation</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">harmonics</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="c1"># Fourier series for square wave: (4/π) * Σ [sin(2π(2n-1)*ωt)/(2n-1)]</span>
+        <span class="n">frequency</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span>  <span class="c1"># Odd harmonics only</span>
+        <span class="n">amplitude</span> <span class="o">=</span> <span class="mi">4</span> <span class="o">/</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">frequency</span><span class="p">)</span>
+        <span class="n">y</span> <span class="o">+=</span> <span class="n">amplitude</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">frequency</span> <span class="o">*</span> <span class="n">x</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">y</span>
+
+<span class="c1"># Time points (0 to 1 second, 1000 samples)</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="c1"># Create square wave approximations with different numbers of harmonics</span>
+<span class="n">square_1</span> <span class="o">=</span> <span class="n">square_wave</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">harmonics</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># Only 1 sine wave</span>
+<span class="n">square_5</span> <span class="o">=</span> <span class="n">square_wave</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">harmonics</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>  <span class="c1"># 5 sine waves</span>
+<span class="n">square_50</span> <span class="o">=</span> <span class="n">square_wave</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">harmonics</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>  <span class="c1"># 50 sine waves</span>
+
+<span class="c1"># Plot the results</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">square_1</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;1 Harmonic (Fundamental)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">square_5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;5 Harmonics&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">square_50</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;50 Harmonics&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Fourier Series Approximation of a Square Wave&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Time (s)&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Amplitude&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/1f0a376d91874f0e745c28dd7d41d45173e9e2ed3e080b52a2e8e0a34bcced73.png" src="_images/1f0a376d91874f0e745c28dd7d41d45173e9e2ed3e080b52a2e8e0a34bcced73.png" />
+</div>
+</div>
+</section>
+<section id="fourier-series-for-signal-compression">
+<h2>Fourier Series for Signal Compression<a class="headerlink" href="#fourier-series-for-signal-compression" title="Link to this heading">#</a></h2>
+<p>A signal sampled at 1000 points in the interval <span class="math notranslate nohighlight">\([0, 2\pi]\)</span> can be approximated using a truncated Fourier series:</p>
+<div class="math notranslate nohighlight">
+\[
+f(t) \approx \frac{a_0}{2} + \sum_{n=1}^{N} \left[a_n \cos(n\omega_0 t) + b_n \sin(n\omega_0 t)\right]
+\]</div>
+<p>where just 6 coefficients (<span class="math notranslate nohighlight">\(a_0, a_1, b_1, a_2, b_2, a_3\)</span>) can capture essential features.</p>
+<section id="fourier-series">
+<h3>Fourier Series<a class="headerlink" href="#fourier-series" title="Link to this heading">#</a></h3>
+<p>For a periodic function <span class="math notranslate nohighlight">\(f(t)\)</span> with period <span class="math notranslate nohighlight">\(T\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+f(t) = \frac{a_0}{2} + \sum_{n=1}^{\infty} \left[a_n \cos\left(\frac{2\pi n t}{T}\right) + b_n \sin\left(\frac{2\pi n t}{T}\right)\right]
+\]</div>
+</section>
+<section id="coefficients">
+<h3>Coefficients<a class="headerlink" href="#coefficients" title="Link to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+a_n &amp;= \frac{2}{T}\int_{0}^{T} f(t)\cos\left(\frac{2\pi n t}{T}\right) dt \\
+b_n &amp;= \frac{2}{T}\int_{0}^{T} f(t)\sin\left(\frac{2\pi n t}{T}\right) dt
+\end{aligned}
+\end{split}\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">scipy.fft</span> <span class="kn">import</span> <span class="n">fft</span>
+
+<span class="c1"># Generate original signal (1000 samples)</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">1000</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">signal</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="n">t</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.3</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">5</span><span class="o">*</span><span class="n">t</span><span class="p">)</span>  <span class="c1"># Example signal</span>
+
+<span class="c1"># Compute Fourier coefficients</span>
+<span class="n">fft_coeffs</span> <span class="o">=</span> <span class="n">fft</span><span class="p">(</span><span class="n">signal</span><span class="p">)</span>
+<span class="n">num_coeffs</span> <span class="o">=</span> <span class="mi">10</span>  <span class="c1"># Keep only 10 coefficients (DC + 5 harmonics)</span>
+
+<span class="c1"># Zero out high-frequency components</span>
+<span class="n">compressed_fft</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">fft_coeffs</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">complex</span><span class="p">)</span>
+<span class="n">compressed_fft</span><span class="p">[:</span><span class="n">num_coeffs</span><span class="o">//</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">fft_coeffs</span><span class="p">[:</span><span class="n">num_coeffs</span><span class="o">//</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">compressed_fft</span><span class="p">[</span><span class="o">-</span><span class="n">num_coeffs</span><span class="o">//</span><span class="mi">2</span><span class="p">:]</span> <span class="o">=</span> <span class="n">fft_coeffs</span><span class="p">[</span><span class="o">-</span><span class="n">num_coeffs</span><span class="o">//</span><span class="mi">2</span><span class="p">:]</span>
+
+<span class="c1"># Reconstruct signal from compressed coefficients</span>
+<span class="n">compressed_signal</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">ifft</span><span class="p">(</span><span class="n">compressed_fft</span><span class="p">)</span><span class="o">.</span><span class="n">real</span>
+
+<span class="c1"># Plot comparison</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">signal</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Original Signal (1000D)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">compressed_signal</span><span class="p">,</span> <span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Compressed (</span><span class="si">{</span><span class="n">num_coeffs</span><span class="si">}</span><span class="s2"> Fourier coeffs)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Signal Compression via Fourier Series&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Time [0, 2π]&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Amplitude&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Original dimension:&quot;</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Compressed representation dimension:&quot;</span><span class="p">,</span> <span class="n">num_coeffs</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/08cca5565151dbf66f5e3a510672c2fe34c44db40f1a86afd38e7788a33c171a.png" src="_images/08cca5565151dbf66f5e3a510672c2fe34c44db40f1a86afd38e7788a33c171a.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Original dimension: 1000
+Compressed representation dimension: 10
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="python-implementation">
+<h2>Python Implementation<a class="headerlink" href="#python-implementation" title="Link to this heading">#</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy.fft</span> <span class="kn">import</span> <span class="n">fft</span><span class="p">,</span> <span class="n">ifft</span>
+
+<span class="k">def</span> <span class="nf">fourier_compress</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">num_coeffs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Compress signal using Fourier coefficients&quot;&quot;&quot;</span>
+    <span class="n">fft_coeffs</span> <span class="o">=</span> <span class="n">fft</span><span class="p">(</span><span class="n">signal</span><span class="p">)</span>
+    <span class="n">compressed</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">fft_coeffs</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">complex</span><span class="p">)</span>
+    <span class="n">compressed</span><span class="p">[:</span><span class="n">num_coeffs</span><span class="o">//</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">fft_coeffs</span><span class="p">[:</span><span class="n">num_coeffs</span><span class="o">//</span><span class="mi">2</span><span class="p">]</span>
+    <span class="n">compressed</span><span class="p">[</span><span class="o">-</span><span class="n">num_coeffs</span><span class="o">//</span><span class="mi">2</span><span class="p">:]</span> <span class="o">=</span> <span class="n">fft_coeffs</span><span class="p">[</span><span class="o">-</span><span class="n">num_coeffs</span><span class="o">//</span><span class="mi">2</span><span class="p">:]</span>
+    <span class="k">return</span> <span class="n">ifft</span><span class="p">(</span><span class="n">compressed</span><span class="p">)</span><span class="o">.</span><span class="n">real</span>
+</pre></div>
+</div>
+</section>
+<section id="key-equations-in-compression">
+<h2>Key Equations in Compression<a class="headerlink" href="#key-equations-in-compression" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><strong>Nyquist-Shannon Sampling</strong>:
+$<span class="math notranslate nohighlight">\(
+f_s \geq 2f_{\text{max}}
+\)</span>$</p></li>
+<li><p><strong>Compression Ratio</strong>:
+$<span class="math notranslate nohighlight">\(
+R = \frac{N_{\text{original}}}{N_{\text{coeffs}}}
+\)</span>$</p></li>
+<li><p><strong>Reconstruction Error</strong>:
+$<span class="math notranslate nohighlight">\(
+\epsilon = \|f - \hat{f}\|_2
+\)</span>$</p></li>
+</ol>
+</section>
+<section id="example-calculation">
+<h2>Example Calculation<a class="headerlink" href="#example-calculation" title="Link to this heading">#</a></h2>
+<p>For a signal with 1000 points (<span class="math notranslate nohighlight">\(N=1000\)</span>) compressed to 6 coefficients:</p>
+<div class="math notranslate nohighlight">
+\[
+R = \frac{1000}{6} \approx 166.67
+\]</div>
+<p>The relative error is bounded by:
+$<span class="math notranslate nohighlight">\(
+\frac{\epsilon}{\|f\|_2} \leq \sum_{n=N+1}^{\infty} (|a_n| + |b_n|)
+\)</span>$</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="15-Principal-Component-Analysis-part2.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Principal Component Analysis, Part 2</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Appendix-BDT-Discrete-Features.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Appendix: Bayes Decision Theory — Discrete Features</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Appendix: Mathematics and Machine Learning</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#sparse-optimization-theory-and-applications">Sparse Optimization: Theory and Applications</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#connection-between-sparse-learning-and-functional-analysis">Connection Between Sparse Learning and Functional Analysis</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hilbert-spaces-and-orthogonal-projections">Hilbert Spaces and Orthogonal Projections</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#banach-spaces-and-ell-1-regularization">Banach Spaces and <span class="math notranslate nohighlight">\( \ell_1 \)</span>-Regularization</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fourier-wavelet-and-other-representations">Fourier, Wavelet, and Other Representations</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#from-fixed-bases-to-learned-representations">From Fixed Bases to Learned Representations</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-evolving-role-of-sparse-methods">The Evolving Role of Sparse Methods</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mri-reconstruction">MRI reconstruction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pytomography">PyTomography</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-features"><strong>Key Features</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-use-pytomography"><strong>Why Use PyTomography?</strong></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pysap">PySAP</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fourier-series-expansion-of-a-square-wave">Fourier series expansion of a square wave</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fourier-series-for-signal-compression">Fourier Series for Signal Compression</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fourier-series">Fourier Series</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#coefficients">Coefficients</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-implementation">Python Implementation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-equations-in-compression">Key Equations in Compression</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-calculation">Example Calculation</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Mahmood Amintoosi
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026. CC0 Licensed - Computer Science Dept., Ferdowsi University of Mashhad.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

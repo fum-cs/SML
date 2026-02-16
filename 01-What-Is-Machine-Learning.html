@@ -1,0 +1,811 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>What Is Machine Learning? &#8212; Statistical Machine Learning</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '01-What-Is-Machine-Learning';</script>
+    <link rel="icon" href="_static/fum-logo.ico"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Understanding the Covariance Matrix" href="02-Covariance-Matrix.html" />
+    <link rel="prev" title="Welcome to Statistical Machine Learning Course" href="intro.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/fum-cs-logo.png" class="logo__image only-light" alt="Statistical Machine Learning - Home"/>
+    <script>document.write(`<img src="_static/fum-cs-logo.png" class="logo__image only-dark" alt="Statistical Machine Learning - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Welcome to Statistical Machine Learning Course
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">What Is Machine Learning?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02-Covariance-Matrix.html">Understanding the Covariance Matrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03-MLE-intro.html">Maximum Likelihood Estimation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04-Mahalanobis-Distance.html">Mahalanobis Distance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05-Naive-Bayes.html">Naive Bayes Classification</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="06-Bayesian-Decision-Theory.html">Bayesian Decision Theory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07-Linear-Models.html">Linear models</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="09-Kernel-Trick.html">The Kernel Method (Kernel Trick)</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="10-Kernel-Regression.html">Kernel Regression: From Linear to Nonlinear Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11-Gaussian-Mixtures-part1.html">Gaussian Mixture Models, Part 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12-Gaussian-Mixtures-part2.html">Gaussian Mixture Model, Part 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14-Principal-Component-Analysis-part1.html">Principal Component Analysis, Part 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15-Principal-Component-Analysis-part2.html">Principal Component Analysis, Part 2</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="App-Mathematics-and-Machine-Learning.html">Appendix: Mathematics and Machine Learning</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="Appendix-BDT-Discrete-Features.html">Appendix: Bayes Decision Theory — Discrete Features</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/fum-cs/SML/blob/main/docs/01-What-Is-Machine-Learning.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Colab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Colab logo" src="_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/fum-cs/SML" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/fum-cs/SML/issues/new?title=Issue%20on%20page%20%2F01-What-Is-Machine-Learning.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/01-What-Is-Machine-Learning.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>What Is Machine Learning?</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#categories-of-machine-learning">Categories of Machine Learning</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#qualitative-examples-of-machine-learning-applications">Qualitative Examples of Machine Learning Applications</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#classification-predicting-discrete-labels">Classification: Predicting Discrete Labels</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regression-predicting-continuous-labels">Regression: Predicting Continuous Labels</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#some-of-my-previous-papers-about-supervised-learning">Some of my previous papers about supervised learning:</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#clustering-inferring-labels-on-unlabeled-data">Clustering: Inferring Labels on Unlabeled Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dimensionality-reduction-inferring-structure-of-unlabeled-data">Dimensionality Reduction: Inferring Structure of Unlabeled Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#some-of-my-previous-papers-about-un-supervised-learning">Some of my previous papers about un-supervised learning:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="what-is-machine-learning">
+<h1>What Is Machine Learning?<a class="headerlink" href="#what-is-machine-learning" title="Link to this heading">#</a></h1>
+<p>Before we take a look at the details of several machine learning methods, let’s start by looking at what machine learning is, and what it isn’t.
+Machine learning is often categorized as a subfield of artificial intelligence, but I find that categorization can be misleading.
+The study of machine learning certainly arose from research in this context, but in the data science application of machine learning methods, it’s more helpful to think of machine learning as a means of <em>building models of data</em>.</p>
+<p>In this context, “learning” enters the fray when we give these models <em>tunable parameters</em> that can be adapted to observed data; in this way the program can be considered to be “learning” from the data.
+Once these models have been fit to previously seen data, they can be used to predict and understand aspects of newly observed data.
+I’ll leave to the reader the more philosophical digression regarding the extent to which this type of mathematical, model-based “learning” is similar to the “learning” exhibited by the human brain.</p>
+<p>Understanding the problem setting in machine learning is essential to using these tools effectively, and so we will start with some broad categorizations of the types of approaches we’ll discuss here.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>Note for Advanced Learners</strong>: The foundational concepts covered in this Data Mining course are essential for understanding more advanced topics in data science and machine learning. If you are interested in diving deeper, many of these advanced topics are discussed in detail in the MSc courses at <strong>FUM University</strong>.</p></li>
+</ul>
+</div></blockquote>
+<blockquote>
+<div><ul class="simple">
+<li><p>Current students of <strong>MDS</strong> at <strong>FUM University</strong> are familiar with the concepts covered in the <a class="reference external" href="https://fum-cs.github.io/fds/"><strong>FDS</strong></a> and <a class="reference external" href="https://fum-cs.github.io/mfds/"><strong>MFDS</strong></a> courses. These courses build on the fundamentals taught here and explore advanced techniques, algorithms, and applications in data science and machine learning.</p></li>
+</ul>
+</div></blockquote>
+<section id="categories-of-machine-learning">
+<h2>Categories of Machine Learning<a class="headerlink" href="#categories-of-machine-learning" title="Link to this heading">#</a></h2>
+<p>Machine learning can be categorized into two main types: supervised learning and unsupervised learning.</p>
+<p><em>Supervised learning</em> involves somehow modeling the relationship between measured features of data and some labels associated with the data; once this model is determined, it can be used to apply labels to new, unknown data.
+This is sometimes further subdivided into classification tasks and regression tasks: in <em>classification</em>, the labels are discrete categories, while in <em>regression</em>, the labels are continuous quantities.
+You will see examples of both types of supervised learning in the following section.</p>
+<p><em>Unsupervised learning</em> involves modeling the features of a dataset without reference to any label.
+These models include tasks such as <em>clustering</em> and <em>dimensionality reduction.</em>
+Clustering algorithms identify distinct groups of data, while dimensionality reduction algorithms search for more succinct representations of the data.
+You will also see examples of both types of unsupervised learning in the following section.</p>
+<p>In addition, there are so-called <em>semi-supervised learning</em> methods, which fall somewhere between supervised learning and unsupervised learning.
+Semi-supervised learning methods are often useful when only incomplete labels are available.</p>
+</section>
+<section id="qualitative-examples-of-machine-learning-applications">
+<h2>Qualitative Examples of Machine Learning Applications<a class="headerlink" href="#qualitative-examples-of-machine-learning-applications" title="Link to this heading">#</a></h2>
+<p>To make these ideas more concrete, let’s take a look at a few very simple examples of a machine learning task.
+These examples are meant to give an intuitive, non-quantitative overview of the types of machine learning tasks we will be looking at in this part of the book.
+In later chapters, we will go into more depth regarding the particular models and how they are used.</p>
+<section id="classification-predicting-discrete-labels">
+<h3>Classification: Predicting Discrete Labels<a class="headerlink" href="#classification-predicting-discrete-labels" title="Link to this heading">#</a></h3>
+<p>We will first take a look at a simple classification task, in which we are given a set of labeled points and want to use these to classify some unlabeled points.</p>
+<p>Imagine that we have the data shown in this figure:</p>
+<p><img alt="" src="_images/05.01-classification-1.png" /></p>
+<p>This data is two-dimensional: that is, we have two <em>features</em> for each point, represented by the (x,y) positions of the points on the plane.
+In addition, we have one of two <em>class labels</em> for each point, here represented by the colors of the points.
+From these features and labels, we would like to create a model that will let us decide whether a new point should be labeled “blue” or “red.”</p>
+<p>There are a number of possible models for such a classification task, but we will start with a very simple one. We will make the assumption that the two groups can be separated by drawing a straight line through the plane between them, such that points on each side of the line all fall in the same group.
+Here the <em>model</em> is a quantitative version of the statement “a straight line separates the classes,” while the <em>model parameters</em> are the particular numbers describing the location and orientation of that line for our data.
+The optimal values for these model parameters are learned from the data (this is the “learning” in machine learning), which is often called <em>training the model</em>.</p>
+<p>See the following figure shows a visual representation of what the trained model looks like for this data.</p>
+<p><img alt="" src="_images/05.01-classification-2.png" /></p>
+<p>Now that this model has been trained, it can be generalized to new, unlabeled data.
+In other words, we can take a new set of data, draw this line through it, and assign labels to the new points based on this model (see the following figure).
+This stage is usually called <em>prediction</em>.</p>
+<p><img alt="" src="_images/05.01-classification-3.png" /></p>
+<p>This is the basic idea of a classification task in machine learning, where “classification” indicates that the data has discrete class labels.
+At first glance this may seem trivial: it’s easy to look at our data and draw such a discriminatory line to accomplish this classification.
+A benefit of the machine learning approach, however, is that it can generalize to much larger datasets in many more dimensions.</p>
+<p>For example, this is similar to the task of automated spam detection for email. In this case, we might use the following features and labels:</p>
+<ul class="simple">
+<li><p><em>feature 1</em>, <em>feature 2</em>, etc. <span class="math notranslate nohighlight">\(\to\)</span> normalized counts of important words or phrases (“Viagra”, “Extended warranty”, etc.)</p></li>
+<li><p><em>label</em> <span class="math notranslate nohighlight">\(\to\)</span> “spam” or “not spam”</p></li>
+</ul>
+<p>For the training set, these labels might be determined by individual inspection of a small representative sample of emails; for the remaining emails, the label would be determined using the model.
+For a suitably trained classification algorithm with enough well-constructed features (typically thousands or millions of words or phrases), this type of approach can be very effective.
+We will see an example of such text-based classification in <a class="reference internal" href="#05.05-Naive-Bayes.ipynb"><span class="xref myst">Naive Bayes Classification</span></a>.</p>
+<p>Some important classification algorithms that we will discuss in more detail are Gaussian naive Bayes (see <a class="reference internal" href="#05.05-Naive-Bayes.ipynb"><span class="xref myst">Naive Bayes Classification</span></a>), support vector machines (see <a class="reference internal" href="#05.07-Support-Vector-Machines.ipynb"><span class="xref myst"> Support Vector Machines</span></a>), and random forest classification (see <a class="reference internal" href="#05.08-Random-Forests.ipynb"><span class="xref myst"> Decision Trees and Random Forests</span></a>).</p>
+</section>
+<section id="regression-predicting-continuous-labels">
+<h3>Regression: Predicting Continuous Labels<a class="headerlink" href="#regression-predicting-continuous-labels" title="Link to this heading">#</a></h3>
+<p>In contrast with the discrete labels of a classification algorithm, we will next look at a simple regression task in which the labels are continuous quantities.</p>
+<p>Consider the data shown in the following figure, which consists of a set of points each with a continuous label.</p>
+<p><img alt="" src="_images/05.01-regression-1.png" /></p>
+<p>As with the classification example, we have two-dimensional data: that is, there are two features describing each data point.
+The color of each point represents the continuous label for that point.</p>
+<p>There are a number of possible regression models we might use for this type of data, but here we will use a simple linear regression model to predict the points.
+This simple model assumes that if we treat the label as a third spatial dimension, we can fit a plane to the data.
+This is a higher-level generalization of the well-known problem of fitting a line to data with two coordinates.</p>
+<p>We can visualize this setup as shown in the following figure:</p>
+<p><img alt="" src="_images/05.01-regression-2.png" /></p>
+<p>Notice that the <em>feature 1–feature 2</em> plane here is the same as in the two-dimensional plot in Figure 37-4; in this case, however, we have represented the labels by both color and three-dimensional axis position.
+From this view, it seems reasonable that fitting a plane through this three-dimensional data would allow us to predict the expected label for any set of input parameters.
+Returning to the two-dimensional projection, when we fit such a plane we get the result shown in the following figure:</p>
+<p><img alt="" src="_images/05.01-regression-3.png" /></p>
+<p>This plane of fit gives us what we need to predict labels for new points.
+Visually, we find the results shown in the following figure:</p>
+<p><img alt="" src="_images/05.01-regression-4.png" /></p>
+<p>As with the classification example, this task may seem trivial in a low number of dimensions.
+But the power of these methods is that they can be straightforwardly applied and evaluated in the case of data with many, many features.</p>
+<p>For example, this is similar to the task of computing the distance to galaxies observed through a telescope—in this case, we might use the following features and labels:</p>
+<ul class="simple">
+<li><p><em>feature 1</em>, <em>feature 2</em>, etc. <span class="math notranslate nohighlight">\(\to\)</span> brightness of each galaxy at one of several wavelengths or colors</p></li>
+<li><p><em>label</em> <span class="math notranslate nohighlight">\(\to\)</span> distance or redshift of the galaxy</p></li>
+</ul>
+<p>The distances for a small number of these galaxies might be determined through an independent set of (typically more expensive or complex) observations.
+Distances to remaining galaxies could then be estimated using a suitable regression model, without the need to employ the more expensive observation across the entire set.
+In astronomy circles, this is known as the “photometric redshift” problem.</p>
+<p>Some important regression algorithms that we will discuss are linear regression (see <a class="reference internal" href="#05.06-Linear-Regression-part1.ipynb"><span class="xref myst">Linear Regression</span></a>), support vector machines (see <a class="reference internal" href="#05.07-Support-Vector-Machines.ipynb"><span class="xref myst"> Support Vector Machines</span></a>), and random forest regression (see <a class="reference internal" href="#05.08-Random-Forests.ipynb"><span class="xref myst"> Decision Trees and Random Forests</span></a>).</p>
+<section id="some-of-my-previous-papers-about-supervised-learning">
+<h4>Some of my previous papers about supervised learning:<a class="headerlink" href="#some-of-my-previous-papers-about-supervised-learning" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Classification:</p>
+<ul>
+<li><p>Click Rate Prediction <span id="id1">[<a class="reference internal" href="intro.html#id27" title="Mohammadreza Fatehinia, Mahmood Amintoosi, and Seyed Masih Sajadi. Click rate prediction in online advertising industry with real data and its challenges. In 3rd Specialized Seminar on Data Science and Its Applications, 26. Ferdowsi University of Mashhad, 2024. پیش‌بینی نرخ کلیک در صنعت تبلیغات آنلاین با داده‌های واقعی و چالش‌های آن.">FAS24</a>]</span></p></li>
+<li><p>Anti-Cancer Plant Recommendation <span id="id2">[<a class="reference internal" href="intro.html#id33" title="Mahmood Amintoosi and Eisa Kohan-Baghkheirati. Graph feature selection for anti-cancer plant recommendation. Control and Optimization in Applied Mathematics, 8(2):1-15, 2023.">AKB23</a>]</span></p></li>
+<li><p>Fully Connected to Fully Convolutional <span id="id3">[<a class="reference internal" href="intro.html#id36" title="Mahmood Amintoosi. Fully connected to fully convolutional: road to yesterday. Soft Computing and Information Technology, 11(1):60-72, 2022. تمام متصل به تمام پیچشی: پلی به گذشته.">Ami22a</a>]</span></p></li>
+<li><p>Eigenbackground <span id="id4">[<a class="reference internal" href="intro.html#id37" title="Mahmood Amintoosi and Farzam Farbiz. Eigenbackground revisited: can we model the background with eigenvectors? Journal of Mathematical Imaging and Vision, 64(5):463-477, 2022.">AF22</a>]</span></p></li>
+<li><p>Facial Recognition <span id="id5">[<a class="reference internal" href="intro.html#id105" title="H. Sadoghi Yazdi, M. Amintoosi, and M. Fathy. Facial expression recognition in video using QIM and ITMI. In 4th Conference on Machine Vision and Image Processing. Mashhad, Iran, February 2006. Ferdowsi University of Mashhad. شناسایی حالت چهره با استفاده از پایگاه دادهٔ مكانی- زمانی QIM و ITMI.">YAF06</a>]</span></p></li>
+<li><p>COVID 19 <span id="id6">[<a class="reference internal" href="intro.html#id41" title="Mahmood Amintoosi. Combining regularization and optimal brain damage methods for reducing a deep learning model size. Machine Vision and Image Processing, 9(1):31–45, 2021. ترکیب روش منظم‌سازی تُنُک و آسیب مغزی بهینه‌ در کوچک‌سازی یک مدل یادگیری عمیق.">Ami21a</a>]</span></p></li>
+<li><p>Social Networks <span id="id7">[<a class="reference internal" href="intro.html#id42" title="Mahmood Amintoosi. Overlapping clusters in cluster graph convolutional networks. Journal of Algorithms and Computation, 53(2):33–45, 2021.">Ami21b</a>]</span></p></li>
+<li><p>Classification of Paintings <span id="id8">[<a class="reference internal" href="intro.html#id43" title="Mahmood Amintoosi. The application of taylor expansion in reducing the size of convolutional neural networks for classifying impressionism and miniature style paintings. Mathematics and Society, 5(1):1–16, 2020. کاربرد بسط تیلور در کاهش حجم شبکه های عصبی پیچشی برای طبقه بندی نقاشی های سبک امپرسیونیسم و مینیاتور.">Ami20</a>]</span></p></li>
+</ul>
+</li>
+<li><p>Regression:</p>
+<ul>
+<li><p>Modeling dust particles <span id="id9">[<a class="reference internal" href="intro.html#id24" title="Ghasem Zolfaghari, Sara Nezamparvar, and Mahmood Amintoosi. Modeling dust particles from stack with artificial neural network and studying electrofilter performance: a case study of zaveh cement factory. Journal of Natural Environment, ():-, 2025. مدلسازی ذرات غبار خروجی از دود کش با شبکه عصبی مصنوعی و مطالعه عملکرد الکتروفیلتر: مطالعه موردی کارخانه سیمان زاوه. URL: https://jne.ut.ac.ir/article_100076.html, doi:10.22059/jne.2025.380898.2713.">ZNA25</a>]</span></p></li>
+<li><p>Housing Price Prediction <span id="id10">[<a class="reference internal" href="intro.html#id25" title="Mahmood Amintoosi. Improving housing price prediction with spatial information representation based on random walk. In 3rd Specialized Seminar on Data Science and Its Applications, 20. Ferdowsi University of Mashhad, 2024. بهبود پیش‌بینی قیمت مسکن با بازنمایی اطلاعات مکانی مبتنی بر قدم‌زنی تصادفی.">Ami24a</a>]</span></p></li>
+<li><p>Traffic prediction <span id="id11">[<a class="reference internal" href="intro.html#id31" title="Mahmood Amintoosi. Traffic prediction using graph convolutional networks based on learning. In 55th Annual Iranian Mathematics Conference, 145-148. Ferdowsi University of Mashhad, 2024. پیش‌بینی ترافیک با شبکه‌های پیچشی گراف مبتنی بر یادگیری.">Ami24b</a>, <a class="reference internal" href="intro.html#id28" title="Hoda Mehrabagherpour, Mahmood Amintoosi, and Mohammad Arashi. Urban traffic prediction using graph convolutional networks. In 3rd Specialized Seminar on Data Science and Its Applications, 25. Ferdowsi University of Mashhad, 2024. پیش‌بینی ترافیک شهری با بهره‌گیری از شبکه‌های پیچشی گراف.">MAA24</a>]</span></p></li>
+<li><p>Sparse Super Resolution <span id="id12">[<a class="reference internal" href="intro.html#id38" title="Mina Mortazavi, Morteza Gachpazan, Mahmood Amintoosi, and Soheil Salashour. Fractional derivative approach to sparse super resolution. The Visual Computer, 39(7):3011-3028, Jul 2023.">MGAS23</a>]</span></p></li>
+<li><p>Prediction of CO and PM10 <span id="id13">[<a class="reference internal" href="intro.html#id40" title="R. Farhadi, M. Hadavifar, M. Moeinaddini, and M. Amintoosi. Prediction of co and pm10 in cold and warm seasons and survey of the effect of instability indices on contaminants using artificial neural network: a case study in tehran city. Iranian (Iranica) Journal of Energy &amp; Environment, 13(1):71-78, 2022. doi:10.5829/ijee.2022.13.01.08.">FHMA22</a>]</span></p></li>
+<li><p>Prediction of the Air Quality <span id="id14">[<a class="reference internal" href="intro.html#id46" title="Razieh Farhadi, Mojtaba Hadavifar, Mazaher Moeinaddini, and Mahmood Amintoosi. Prediction of the air quality by artificial neural network using instability indices in the city of tehran-iran. AUT Journal of Civil Engineering, 4(4):-, 2020. doi:10.22060/ajce.2019.17018.5609.">FHMA20</a>]</span></p></li>
+</ul>
+</li>
+<li><p>Classification &amp; Regression:</p>
+<ul>
+<li><p>Fire detection <span id="id15">[<a class="reference internal" href="intro.html#id39" title="Mahmood Amintoosi. Style transfer for data augmentation in convolutional neural networks applied to fire detection. Computational Intelligence in Electrical Engineering, 13(4):97-114, 2022. انتقال سبک برای افزایش داده‌های آموزشی شبکه‌های کانولوشنی در شناسایی شعلۀ آتش. doi:10.22108/isee.2021.124044.1490.">Ami22b</a>]</span></p></li>
+<li><p>Predicting Molecular Properties <span id="id16">[<a class="reference internal" href="intro.html#id29" title="Amir Jologir Baghestan, Mahmood Amintoosi, and Mohammad Arashi. Graph neural networks for predicting molecular properties. In 3rd Specialized Seminar on Data Science and Its Applications, 37. Ferdowsi University of Mashhad, 2024. شبکه‌های عصبی گراف در پیش‌گویی خواص مولکولی.">BAA24</a>]</span></p></li>
+</ul>
+</li>
+<li><p>Semi-supervised learning:</p>
+<ul>
+<li><p>Text extraction <span id="id17">[<a class="reference internal" href="intro.html#id26" title="Mehdi Nemati and Mahmood Amintoosi. Enhancing text extraction from scanned medical documents using large language models. In Third Seminar on Data Science and its Applications, 58. Ferdowsi University of Mashhad, 2024.">NA24</a>]</span></p></li>
+<li><p>Vessel Segmentation <span id="id18">[<a class="reference internal" href="intro.html#id67" title="Mahmood Amintoosi and Farzaneh Rashidabadi. Enhancement of heart coronary vessel segmentation using semi-supervised learning. In 8th International Conference of the Iranian Operations Research Society. Ferdowsi University of Mashhad, 2015. آشکارسازی بهتر شریان‌های کرونری قلب با یاد‌گیری نیمه‌نظارتی‌خودکار.">AR15</a>]</span></p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="clustering-inferring-labels-on-unlabeled-data">
+<h3>Clustering: Inferring Labels on Unlabeled Data<a class="headerlink" href="#clustering-inferring-labels-on-unlabeled-data" title="Link to this heading">#</a></h3>
+<p>The classification and regression illustrations we just saw are examples of supervised learning algorithms, in which we are trying to build a model that will predict labels for new data.
+Unsupervised learning involves models that describe data without reference to any known labels.</p>
+<p>One common case of unsupervised learning is “clustering,” in which data is automatically assigned to some number of discrete groups.
+For example, we might have some two-dimensional data like that shown in the following figure:</p>
+<p><img alt="" src="_images/05.01-clustering-1.png" /></p>
+<p>By eye, it is clear that each of these points is part of a distinct group.
+Given this input, a clustering model will use the intrinsic structure of the data to determine which points are related.
+Using the very fast and intuitive <em>k</em>-means algorithm (see <a class="reference internal" href="#05.11-Clustering.ipynb"><span class="xref myst">Clustering</span></a>), we find the clusters shown in the following figure:</p>
+<p><img alt="" src="_images/05.01-clustering-2.png" /></p>
+<p><em>k</em>-means fits a model consisting of <em>k</em> cluster centers; the optimal centers are assumed to be those that minimize the distance of each point from its assigned center.
+Again, this might seem like a trivial exercise in two dimensions, but as our data becomes larger and more complex such clustering algorithms can continue to be employed to extract useful information from the dataset.</p>
+<p>We will discuss the <em>k</em>-means algorithm in more depth in <a class="reference internal" href="#05.11-Clustering.ipynb"><span class="xref myst">Clustering</span></a>.
+Other important clustering algorithms include Gaussian mixture models (see <a class="reference internal" href="#05.12-Gaussian-Mixtures-part1.ipynb"><span class="xref myst">Gaussian Mixture Models</span></a>) and spectral clustering (see <a class="reference external" href="http://scikit-learn.org/stable/modules/clustering.html">Scikit-Learn’s clustering documentation</a>).</p>
+</section>
+<section id="dimensionality-reduction-inferring-structure-of-unlabeled-data">
+<h3>Dimensionality Reduction: Inferring Structure of Unlabeled Data<a class="headerlink" href="#dimensionality-reduction-inferring-structure-of-unlabeled-data" title="Link to this heading">#</a></h3>
+<p>Dimensionality reduction is another example of an unsupervised algorithm, in which labels or other information are inferred from the structure of the dataset itself.
+Dimensionality reduction is a bit more abstract than the examples we looked at before, but generally it seeks to pull out some low-dimensional representation of data that in some way preserves relevant qualities of the full dataset.
+Different dimensionality reduction routines measure these relevant qualities in different ways, as we will see in <a class="reference internal" href="#05.10-Manifold-Learning.ipynb"><span class="xref myst"> Manifold Learning</span></a>.</p>
+<p>As an example of this, consider the data shown in the following figure:</p>
+<p><img alt="" src="_images/05.01-dimesionality-1.png" /></p>
+<p>Visually, it is clear that there is some structure in this data: it is drawn from a one-dimensional line that is arranged in a spiral within this two-dimensional space.
+In a sense, you could say that this data is “intrinsically” only one-dimensional, though this one-dimensional data is embedded in two-dimensional space.
+A suitable dimensionality reduction model in this case would be sensitive to this nonlinear embedded structure and be able to detect this lower-dimensionality representation.</p>
+<p>The following figure shows a visualization of the results of the Isomap algorithm, a manifold learning algorithm that does exactly this.</p>
+<p><img alt="" src="_images/05.01-dimesionality-2.png" /></p>
+<p>Notice that the colors (which represent the extracted one-dimensional latent variable) change uniformly along the spiral, which indicates that the algorithm did in fact detect the structure we saw by eye.
+As with the previous examples, the power of dimensionality reduction algorithms becomes clearer in higher-dimensional cases.
+For example, we might wish to visualize important relationships within a dataset that has 100 or 1,000 features.
+Visualizing 1,000-dimensional data is a challenge, and one way we can make this more manageable is to use a dimensionality reduction technique to reduce the data to 2 or 3 dimensions.</p>
+<p>Some important dimensionality reduction algorithms that we will discuss are principal component analysis (see <a class="reference internal" href="#05.09-Principal-Component-Analysis-part1.ipynb"><span class="xref myst">Principal Component Analysis</span></a>) and various manifold learning algorithms, including Isomap and locally linear embedding (see <a class="reference internal" href="#05.10-Manifold-Learning.ipynb"><span class="xref myst"> Manifold Learning</span></a>).</p>
+<section id="some-of-my-previous-papers-about-un-supervised-learning">
+<h4>Some of my previous papers about un-supervised learning:<a class="headerlink" href="#some-of-my-previous-papers-about-un-supervised-learning" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>DeepWalk for Student Sectioning <span id="id19">[<a class="reference internal" href="intro.html#id23" title="Mahmood Amintoosi. Deepwalk for student sectioning. Data &amp; Knowledge Engineering, xx(yy):-, 202x.">Ami2x</a>]</span></p></li>
+<li><p>Overlapping Clusters <span id="id20">[<a class="reference internal" href="intro.html#id42" title="Mahmood Amintoosi. Overlapping clusters in cluster graph convolutional networks. Journal of Algorithms and Computation, 53(2):33–45, 2021.">Ami21b</a>]</span></p></li>
+<li><p>Min-Cut of Weighted Graphs <span id="id21">[<a class="reference internal" href="intro.html#id49" title="Fatemeh Sadat Hosseini and Mahmood Amintoosi. Inefficiency of the karger's algorithm in min-cut of weighted graphs. In 3rd Seminar on Control and Optimization, 21-24. Hakim Sabzevari University, 2019. بررسی نا کارآمدی الگوریتم کارگر در برش کمینه گرافهای وزن دار.">HA19</a>]</span></p></li>
+<li><p>Spectral Clustering <span id="id22">[<a class="reference internal" href="intro.html#id57" title="Mehdi Nemati, Mahmood Amintoosi, and Mehdi Zaferanieh. Conjugate gradient initialization using genetic algorithm in spectral clustering. In 6th Seminar on Harmonic Analysis and Applications. Hakim Sabzevari University, 2018. مقدار دهی اولیه گرادیان مزدوج در خوشه بندی طیفی با الگوریتم ژنتیک.">NAZ18</a>]</span></p></li>
+<li><p>Retina Vessel Segmentation <span id="id23">[<a class="reference internal" href="intro.html#id62" title="Mahmood Amintoosi. Retina vessel segmentation using knn matting. In 3rd International Conference on Pattern Recognition and Image Analysis of Iran. Shahrekord University, 2017. دقیق‌تر کردن استخراج رگ‌های خونی شبکیه چشم با روش درهم‌تنیدگی تصویر‌ مبتنی بر نزدیک‌ترین همسایگی. URL: https://www.dropbox.com/s/klkoagz3m3dc98t/1396-IPRIA2017-Matting.pdf?dl=0.">Ami17</a>]</span></p></li>
+<li><p>Extreme Learning Machine <span id="id24">[<a class="reference internal" href="intro.html#id64" title="Mahmood Amintoosi, Sakineh Khorsandi, and Mehdi Zaferanieh. Elm evaluation for image segmentation. In 3rd International Conference on Pattern Recognition and Image Analysis of Iran. Shahrekord University, 2017. ارزیابی عملکرد ماشین یادگیر نهایی در قطعه‌بندی تصاویر.">AKZ17</a>]</span></p></li>
+<li><p>MRI Images Segmentation <span id="id25">[<a class="reference internal" href="intro.html#id65" title="Mahmood Amintoosi and Tayyebe Fayyaz. Genetic algorithms for spectral clustering parameter estimation in mri images. In 8th International Conference of the Iranian Operations Research Society. Ferdowsi University of Mashhad, 2015. محاسبه پارامترهای خوشه‌بندی طیفی در تصاویر MRI با الگوریتم ژنتیک.">AF15</a>]</span></p></li>
+<li><p>Graph Minimum Cut Using SA &amp; TS <span id="id26">[<a class="reference internal" href="intro.html#id70" title="Fatemeh Sadat Hosseini and Mahmood Amintoosi. Graph minimum cut using simulated annealing. In 7th International Conference of the Iranian Operations Research Society. Semnan, 2014. برش کمینه‌ی گراف با شبیه‌سازی تبریدی.">HA14a</a>, <a class="reference internal" href="intro.html#id71" title="Fatemeh Sadat Hosseini and Mahmood Amintoosi. Graph minimum cut using tabu search. In 7th International Conference of the Iranian Operations Research Society. Semnan, 2014. برش کمینه‌ی گراف باجستجوی ممنوعه.">HA14b</a>]</span></p></li>
+<li><p>Pulse-Coupled Neural Networks <span id="id27">[<a class="reference internal" href="intro.html#id73" title="Mehdi Moghimi and Mahmood Amintoosi. Mri image segmentation using pulse-coupled neural networks. In 5th National Conference on Electrical and Electronics Engineering. Gonabad, 2013. تشخیص ناحیه چربی در تصاویر MRI با استفاده از شبكه عصبی با كوپلاژ پالسی.">MA13</a>]</span></p></li>
+<li><p>Segmentation of Medical Images <span id="id28">[<a class="reference internal" href="intro.html#id77" title="Mehdi Sheida, Hessam Ekhtiyar, and Mahmood Amintoosi. A unified algorithm for segmentation of various medical images. In 2nd National Conference on Soft Computing and Information Technology. Mahshahr, 2012. الگوریتمی واحد برای ناحیه بندی انواع تصاویر پزشکی.">SEA12</a>]</span></p></li>
+<li><p>Fish School Clustering <span id="id29">[<a class="reference internal" href="intro.html#id92" title="M. Amintoosi, M. Fathy, N. Mozayani, and A.T. Rahmani. A fish school clustering algorithm: applied to student sectioning problem. Dynamics of Continuous Discrete &amp; Impulse Systems, series B: Applications and Algorithms, 2:696-699, December 2007. Post Proceeding of LSMS2007, Life System Modeling and Simulation 2007, China.">AFMR07</a>]</span></p></li>
+<li><p>Fuzzy Student Sectioning <span id="id30">[<a class="reference internal" href="intro.html#id97" title="M. Amintoosi and J. Haddadnnia. Feature selection in a fuzzy student sectioning algorithm. Lecture Notes in Computer Science, 3616:147–160, 2005. Indexed by DBLP.">AH05</a>, <a class="reference internal" href="intro.html#id99" title="M. Amintoosi, H. Sadoghi Yazdi, and J. Haddadnnia. Fuzzy student sectioning. In PATAT04: Practice and Theory of Automated Timetabling, 421-424. USA, Aug 2004.">AYH04</a>]</span></p></li>
+</ul>
+</section>
+</section>
+</section>
+<section id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Link to this heading">#</a></h2>
+<p>Here we have seen a few simple examples of some of the basic types of machine learning approaches.
+Needless to say, there are a number of important practical details that we have glossed over, but this chapter was designed to give you a basic idea of what types of problems machine learning approaches can solve.</p>
+<p>In short, we saw the following:</p>
+<ul class="simple">
+<li><p><em>Supervised learning</em>: Models that can predict labels based on labeled training data</p>
+<ul>
+<li><p><em>Classification</em>: Models that predict labels as two or more discrete categories</p></li>
+<li><p><em>Regression</em>: Models that predict continuous labels</p></li>
+</ul>
+</li>
+<li><p><em>Unsupervised learning</em>: Models that identify structure in unlabeled data</p>
+<ul>
+<li><p><em>Clustering</em>: Models that detect and identify distinct groups in the data</p></li>
+<li><p><em>Dimensionality reduction</em>: Models that detect and identify lower-dimensional structure in higher-dimensional data</p></li>
+</ul>
+</li>
+</ul>
+<p>In the following sections we will go into much greater depth within these categories, and see some more interesting examples of where these concepts can be useful.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="intro.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Welcome to Statistical Machine Learning Course</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="02-Covariance-Matrix.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Understanding the Covariance Matrix</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#categories-of-machine-learning">Categories of Machine Learning</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#qualitative-examples-of-machine-learning-applications">Qualitative Examples of Machine Learning Applications</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#classification-predicting-discrete-labels">Classification: Predicting Discrete Labels</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regression-predicting-continuous-labels">Regression: Predicting Continuous Labels</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#some-of-my-previous-papers-about-supervised-learning">Some of my previous papers about supervised learning:</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#clustering-inferring-labels-on-unlabeled-data">Clustering: Inferring Labels on Unlabeled Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dimensionality-reduction-inferring-structure-of-unlabeled-data">Dimensionality Reduction: Inferring Structure of Unlabeled Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#some-of-my-previous-papers-about-un-supervised-learning">Some of my previous papers about un-supervised learning:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Mahmood Amintoosi
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026. CC0 Licensed - Computer Science Dept., Ferdowsi University of Mashhad.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

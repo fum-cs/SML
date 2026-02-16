@@ -1,0 +1,864 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Welcome to Statistical Machine Learning Course &#8212; Statistical Machine Learning</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'intro';</script>
+    <link rel="icon" href="_static/fum-logo.ico"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="What Is Machine Learning?" href="01-What-Is-Machine-Learning.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="#">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/fum-cs-logo.png" class="logo__image only-light" alt="Statistical Machine Learning - Home"/>
+    <script>document.write(`<img src="_static/fum-cs-logo.png" class="logo__image only-dark" alt="Statistical Machine Learning - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1 current active">
+                <a class="reference internal" href="#">
+                    Welcome to Statistical Machine Learning Course
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01-What-Is-Machine-Learning.html">What Is Machine Learning?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02-Covariance-Matrix.html">Understanding the Covariance Matrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03-MLE-intro.html">Maximum Likelihood Estimation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04-Mahalanobis-Distance.html">Mahalanobis Distance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05-Naive-Bayes.html">Naive Bayes Classification</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="06-Bayesian-Decision-Theory.html">Bayesian Decision Theory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07-Linear-Models.html">Linear models</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="09-Kernel-Trick.html">The Kernel Method (Kernel Trick)</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="10-Kernel-Regression.html">Kernel Regression: From Linear to Nonlinear Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11-Gaussian-Mixtures-part1.html">Gaussian Mixture Models, Part 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12-Gaussian-Mixtures-part2.html">Gaussian Mixture Model, Part 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14-Principal-Component-Analysis-part1.html">Principal Component Analysis, Part 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15-Principal-Component-Analysis-part2.html">Principal Component Analysis, Part 2</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="App-Mathematics-and-Machine-Learning.html">Appendix: Mathematics and Machine Learning</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="Appendix-BDT-Discrete-Features.html">Appendix: Bayes Decision Theory — Discrete Features</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/fum-cs/SML" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/fum-cs/SML/issues/new?title=Issue%20on%20page%20%2Fintro.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/intro.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Welcome to Statistical Machine Learning Course</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Welcome to Statistical Machine Learning Course</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#table-of-contents">Table of Contents</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#course-resources-for-statistical-machine-learning">Course Resources for Statistical Machine Learning</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#course-staff">Course Staff</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#instructors">Instructors</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#teaching-assistants">Teaching Assistants</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="welcome-to-statistical-machine-learning-course">
+<h1>Welcome to Statistical Machine Learning Course<a class="headerlink" href="#welcome-to-statistical-machine-learning-course" title="Link to this heading">#</a></h1>
+<p><strong>Mahmood Amintoosi, Spring 2026</strong></p>
+<p>Computer Science Dept, Ferdowsi University of Mashhad</p>
+<!-- ### 🎧 Course Podcast
+
+A short podcast (about 5 minutes) has been prepared with **NotebookLM**, introducing the content of the course.  
+You can listen to it here (In Persian):
+
+<audio controls>
+  <source src="Welcome to Statistical Machine Learning Course - Persian.wav" type="audio/wav">
+</audio> -->
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="table-of-contents">
+<h1>Table of Contents<a class="headerlink" href="#table-of-contents" title="Link to this heading">#</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="01-What-Is-Machine-Learning.html">What Is Machine Learning?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02-Covariance-Matrix.html">Understanding the Covariance Matrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03-MLE-intro.html">Maximum Likelihood Estimation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04-Mahalanobis-Distance.html">Mahalanobis Distance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05-Naive-Bayes.html">Naive Bayes Classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05-Naive-Bayes.html#naive-bayes-classifier">Naive Bayes Classifier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05-Naive-Bayes.html#naive-bayes-classification-with-multiple-features-fruit-example">Naive Bayes Classification with multiple features: Fruit Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05-Naive-Bayes.html#bayesian-classification">Bayesian Classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06-Bayesian-Decision-Theory.html">Bayesian Decision Theory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07-Linear-Models.html">Linear models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07-Linear-Models.html#id1">Linear models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07-Linear-Models.html#orthogonal-matching-pursuit-omp-for-sparse-recovery">Orthogonal Matching Pursuit (OMP) for Sparse Recovery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07-Linear-Models.html#mri-reconstruction-further-reading">MRI reconstruction (Further Reading)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07-Linear-Models.html#linear-models-for-classification">Linear models for Classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09-Kernel-Trick.html">The Kernel Method (Kernel Trick)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09-Kernel-Trick.html#kernel-k-means-clustering">Kernel K-means Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10-Kernel-Regression.html">Kernel Regression: From Linear to Nonlinear Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11-Gaussian-Mixtures-part1.html">Gaussian Mixture Models, Part 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12-Gaussian-Mixtures-part2.html">Gaussian Mixture Model, Part 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14-Principal-Component-Analysis-part1.html">Principal Component Analysis, Part 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15-Principal-Component-Analysis-part2.html">Principal Component Analysis, Part 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15-Principal-Component-Analysis-part2.html#pca-workflow-from-single-sample-to-full-matrix">PCA Workflow: From Single Sample to Full Matrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15-Principal-Component-Analysis-part2.html#equivalence-of-pca-s-two-optimization-perspectives-and-error-analysis-further-reading">Equivalence of PCA’s Two Optimization Perspectives and Error Analysis (Further Reading)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15-Principal-Component-Analysis-part2.html#examples-and-applications">Examples and Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15-Principal-Component-Analysis-part2.html#summary">Summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="App-Mathematics-and-Machine-Learning.html">Appendix: Mathematics and Machine Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="App-Mathematics-and-Machine-Learning.html#sparse-optimization-theory-and-applications">Sparse Optimization: Theory and Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Appendix-BDT-Discrete-Features.html">Appendix: Bayes Decision Theory — Discrete Features</a></li>
+</ul>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="course-resources-for-statistical-machine-learning">
+<h1>Course Resources for Statistical Machine Learning<a class="headerlink" href="#course-resources-for-statistical-machine-learning" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p><a class="reference external" href="https://jakevdp.github.io/PythonDataScienceHandbook/">Python Data Science Handbook by Jake VanderPlas</a>: This website contains the full text of the Python Data Science Handbook by Jake VanderPlas; the content is available on GitHub in the form of Jupyter notebooks, which is the main source of this course materials.</p></li>
+<li><p><a class="reference external" href="http://www.wiley.com/WileyCDA/WileyTitle/productCd-0471056693.html">Pattern Classification by Richard O. Duda, Peter E. Hart, David G. Stork</a></p></li>
+<li><p><a class="reference external" href="https://hastie.su.domains/ElemStatLearn/">The Elements of Statistical Learning: Data Mining, Inference, and Prediction by Trevor Hastie, Robert Tibshirani, and Jerome Friedman</a></p></li>
+<li><p><a class="reference external" href="https://www.rasa-ai.com/pattern-recognition-and-machine-learning-bishop/">Pattern Recognition and Machine Learning by Christopher M. Bishop</a></p></li>
+</ul>
+<!-- - [FUM Drive for DM course](https://fumdrive.um.ac.ir/index.php/s/pkD6FsZ5nyJiHY7) -->
+<!-- ## Further Machine Learning Resources
+
+- [The Scikit-Learn website](http://scikit-learn.org): The Scikit-Learn website has an impressive breadth of documentation and examples covering some of the models discussed here, and much, much more. If you want a brief survey of the most important and often-used machine learning algorithms, this is a good place to start.
+
+- [_Introduction to Machine Learning with Python_](http://shop.oreilly.com/product/0636920030515.do), by Andreas C. Müller and Sarah Guido (O'Reilly). This book covers many of the machine learning fundamentals discussed in these chapters, but is particularly relevant for its coverage of more advanced features of Scikit-Learn, including additional estimators, model validation approaches, and pipelining.
+
+- [_Machine Learning with PyTorch and Scikit-Learn_](https://www.packtpub.com/product/machine-learning-with-pytorch-and-scikit-learn/9781801819312), by Sebastian Raschka (Packt). Sebastian Raschka's most recent book starts with some of the fundamental topics covered in these chapters, but goes deeper and shows how those concepts apply to more sophisticated and computationally intensive deep learning and reinforcement learning models using the well-known [PyTorch library](https://pytorch.org/). -->
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="course-staff">
+<h1>Course Staff<a class="headerlink" href="#course-staff" title="Link to this heading">#</a></h1>
+<section id="instructors">
+<h2>Instructors<a class="headerlink" href="#instructors" title="Link to this heading">#</a></h2>
+<table style="width:100%;">  
+  <tr>  
+    <td style="width:20%;">  
+      <img src="_images/M-Amintoosi.jpg" alt="Mahmood Amintoosi" style="width:100px;height:auto;">  
+    </td>  
+    <td>  
+      <strong><a href="https://mamintoosi.github.io/">Mahmood Amintoosi</a></strong><br>  
+      Email: m.amintoosi AT um.ac.ir
+    </td>  
+  </tr>  
+</table>
+</section>
+<hr class="docutils" />
+<section id="teaching-assistants">
+<h2>Teaching Assistants<a class="headerlink" href="#teaching-assistants" title="Link to this heading">#</a></h2>
+<table style="width:50%;">
+  <tr>
+    <td style="width:120px; text-align:center; vertical-align:middle;">
+      <img src="_images/H-Mehr.jpg" alt="Hoda MehrBagherpour" style="width:100px;height:auto;">  
+      <br>
+      <strong><a href="https://github.com/HodaMehr2000">Hoda MehrBagherpour</a></strong><br>  
+      Email: mehrbagherpour AT mail.um.ac.ir  
+    </td>
+    <td style="width:120px; text-align:center; vertical-align:middle;">
+      (TA Head)
+    </td>
+  </tr>
+  <!-- <tr>
+  <td> <br> </td>
+  </tr>
+  <tr>
+      <td style="width:120px; text-align:center; vertical-align:middle;">
+      <img src="_images/Mr-Dashtban.jpg" alt="Mr. Dashtban" style="width:100px;height:auto;"> <br>
+      Mr. Dashtban
+    </td>
+    <td style="width:120px; text-align:center; vertical-align:middle;">
+      <img src="_images/Miss-Kiani.jpg" alt="Miss. Kiani" style="width:100px;height:auto;"> <br>
+      Miss. Kiani
+    </td>
+  </tr> -->
+</table>
+<hr class="docutils" />
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>These lectures were built using the new Sphinx-based <a class="reference external" href="https://jupyterbook.org/">Jupyter Book
+2.0</a> tool set, as part of the
+<a class="reference external" href="https://ebp.jupyterbook.org/en/latest/">ExecutableBookProject</a>.  They are
+intended mainly as a demonstration of these tools.
+Instructions for how to build them from source can be found in the Jupyter
+Book documentation.</p>
+</div>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h2>
+<div class="docutils container" id="id1">
+<div role="list" class="citation-list">
+<div class="citation" id="id90" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>AFF07<span class="fn-bracket">]</span></span>
+<p>M. Amintoosi, F. Farbiz, and M. Fathy. A QR Decomposition based mixture model algorithm for background modeling. In <em>ICICS2007, Sixth International Conference on Information, Communication and Signal Processing</em>, 1–5. Singapore, December 2007. Indexed by IEEE and SCOPUS.</p>
+</div>
+<div class="citation" id="id92" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>AFMR07<span class="fn-bracket">]</span></span>
+<p>M. Amintoosi, M. Fathy, N. Mozayani, and A.T. Rahmani. A fish school clustering algorithm: applied to student sectioning problem. <em>Dynamics of Continuous Discrete &amp; Impulse Systems, series B: Applications and Algorithms</em>, 2:696–699, December 2007. Post Proceeding of LSMS2007, Life System Modeling and Simulation 2007, China.</p>
+</div>
+<div class="citation" id="id97" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>AH05<span class="fn-bracket">]</span></span>
+<p>M. Amintoosi and J. Haddadnnia. Feature selection in a fuzzy student sectioning algorithm. <em>Lecture Notes in Computer Science</em>, 3616:147–160, 2005. Indexed by DBLP.</p>
+</div>
+<div class="citation" id="id99" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>AYH04<span class="fn-bracket">]</span></span>
+<p>M. Amintoosi, H. Sadoghi Yazdi, and J. Haddadnnia. Fuzzy student sectioning. In <em>PATAT04: Practice and Theory of Automated Timetabling</em>, 421–424. USA, Aug 2004.</p>
+</div>
+<div class="citation" id="id62" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>Ami17<span class="fn-bracket">]</span></span>
+<p>Mahmood Amintoosi. Retina vessel segmentation using knn matting. In <em>3rd International Conference on Pattern Recognition and Image Analysis of Iran</em>. Shahrekord University, 2017. دقیق‌تر کردن استخراج رگ‌های خونی شبکیه چشم با روش درهم‌تنیدگی تصویر‌ مبتنی بر نزدیک‌ترین همسایگی. URL: <a class="reference external" href="https://www.dropbox.com/s/klkoagz3m3dc98t/1396-IPRIA2017-Matting.pdf?dl=0">https://www.dropbox.com/s/klkoagz3m3dc98t/1396-IPRIA2017-Matting.pdf?dl=0</a>.</p>
+</div>
+<div class="citation" id="id43" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>Ami20<span class="fn-bracket">]</span></span>
+<p>Mahmood Amintoosi. The application of taylor expansion in reducing the size of convolutional neural networks for classifying impressionism and miniature style paintings. <em>Mathematics and Society</em>, 5(1):1–16, 2020. کاربرد بسط تیلور در کاهش حجم شبکه های عصبی پیچشی برای طبقه بندی نقاشی های سبک امپرسیونیسم و مینیاتور.</p>
+</div>
+<div class="citation" id="id41" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>Ami21a<span class="fn-bracket">]</span></span>
+<p>Mahmood Amintoosi. Combining regularization and optimal brain damage methods for reducing a deep learning model size. <em>Machine Vision and Image Processing</em>, 9(1):31–45, 2021. ترکیب روش منظم‌سازی تُنُک و آسیب مغزی بهینه‌ در کوچک‌سازی یک مدل یادگیری عمیق.</p>
+</div>
+<div class="citation" id="id42" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>Ami21b<span class="fn-bracket">]</span></span>
+<p>Mahmood Amintoosi. Overlapping clusters in cluster graph convolutional networks. <em>Journal of Algorithms and Computation</em>, 53(2):33–45, 2021.</p>
+</div>
+<div class="citation" id="id36" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>Ami22a<span class="fn-bracket">]</span></span>
+<p>Mahmood Amintoosi. Fully connected to fully convolutional: road to yesterday. <em>Soft Computing and Information Technology</em>, 11(1):60–72, 2022. تمام متصل به تمام پیچشی: پلی به گذشته.</p>
+</div>
+<div class="citation" id="id39" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>Ami22b<span class="fn-bracket">]</span></span>
+<p>Mahmood Amintoosi. Style transfer for data augmentation in convolutional neural networks applied to fire detection. <em>Computational Intelligence in Electrical Engineering</em>, 13(4):97–114, 2022. انتقال سبک برای افزایش داده‌های آموزشی شبکه‌های کانولوشنی در شناسایی شعلۀ آتش. <a class="reference external" href="https://doi.org/10.22108/isee.2021.124044.1490">doi:10.22108/isee.2021.124044.1490</a>.</p>
+</div>
+<div class="citation" id="id25" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>Ami24a<span class="fn-bracket">]</span></span>
+<p>Mahmood Amintoosi. Improving housing price prediction with spatial information representation based on random walk. In <em>3rd Specialized Seminar on Data Science and Its Applications</em>, 20. Ferdowsi University of Mashhad, 2024. بهبود پیش‌بینی قیمت مسکن با بازنمایی اطلاعات مکانی مبتنی بر قدم‌زنی تصادفی.</p>
+</div>
+<div class="citation" id="id31" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>Ami24b<span class="fn-bracket">]</span></span>
+<p>Mahmood Amintoosi. Traffic prediction using graph convolutional networks based on learning. In <em>55th Annual Iranian Mathematics Conference</em>, 145–148. Ferdowsi University of Mashhad, 2024. پیش‌بینی ترافیک با شبکه‌های پیچشی گراف مبتنی بر یادگیری.</p>
+</div>
+<div class="citation" id="id23" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>Ami2x<span class="fn-bracket">]</span></span>
+<p>Mahmood Amintoosi. Deepwalk for student sectioning. <em>Data &amp; Knowledge Engineering</em>, xx(yy):–, 202x.</p>
+</div>
+<div class="citation" id="id37" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>AF22<span class="fn-bracket">]</span></span>
+<p>Mahmood Amintoosi and Farzam Farbiz. Eigenbackground revisited: can we model the background with eigenvectors? <em>Journal of Mathematical Imaging and Vision</em>, 64(5):463–477, 2022.</p>
+</div>
+<div class="citation" id="id65" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>AF15<span class="fn-bracket">]</span></span>
+<p>Mahmood Amintoosi and Tayyebe Fayyaz. Genetic algorithms for spectral clustering parameter estimation in mri images. In <em>8th International Conference of the Iranian Operations Research Society</em>. Ferdowsi University of Mashhad, 2015. محاسبه پارامترهای خوشه‌بندی طیفی در تصاویر MRI با الگوریتم ژنتیک.</p>
+</div>
+<div class="citation" id="id64" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>AKZ17<span class="fn-bracket">]</span></span>
+<p>Mahmood Amintoosi, Sakineh Khorsandi, and Mehdi Zaferanieh. Elm evaluation for image segmentation. In <em>3rd International Conference on Pattern Recognition and Image Analysis of Iran</em>. Shahrekord University, 2017. ارزیابی عملکرد ماشین یادگیر نهایی در قطعه‌بندی تصاویر.</p>
+</div>
+<div class="citation" id="id33" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>AKB23<span class="fn-bracket">]</span></span>
+<p>Mahmood Amintoosi and Eisa Kohan-Baghkheirati. Graph feature selection for anti-cancer plant recommendation. <em>Control and Optimization in Applied Mathematics</em>, 8(2):1–15, 2023.</p>
+</div>
+<div class="citation" id="id68" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>AP15<span class="fn-bracket">]</span></span>
+<p>Mahmood Amintoosi and Somayeh Poursediq. افزایش سرعت شناسایی زمینه ویديو با محاسبه مرحله‌ای تجزیه QR. In <em>هشتمین سمینار جبرخطی و کابردهای آن</em>. دانشگاه کردستان, 2015. Increasing the speed of video background Subtraction by incremental QR decomposition, (2015).</p>
+</div>
+<div class="citation" id="id67" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>AR15<span class="fn-bracket">]</span></span>
+<p>Mahmood Amintoosi and Farzaneh Rashidabadi. Enhancement of heart coronary vessel segmentation using semi-supervised learning. In <em>8th International Conference of the Iranian Operations Research Society</em>. Ferdowsi University of Mashhad, 2015. آشکارسازی بهتر شریان‌های کرونری قلب با یاد‌گیری نیمه‌نظارتی‌خودکار.</p>
+</div>
+<div class="citation" id="id16" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>Asa16<span class="fn-bracket">]</span></span>
+<p>Alale Asaran. Super resolution via sparse representation. Master's thesis, Hakim Sabzevari University, Faculty of Mathematics and Computer Science, Winter 2016. فراتفکیک پذیری با نمایش تنک. URL: <a class="reference external" href="http://hcloud.hsu.ac.ir/index.php/s/W9ImIzeV6C1mqZo">http://hcloud.hsu.ac.ir/index.php/s/W9ImIzeV6C1mqZo</a>.</p>
+</div>
+<div class="citation" id="id29" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>BAA24<span class="fn-bracket">]</span></span>
+<p>Amir Jologir Baghestan, Mahmood Amintoosi, and Mohammad Arashi. Graph neural networks for predicting molecular properties. In <em>3rd Specialized Seminar on Data Science and Its Applications</em>, 37. Ferdowsi University of Mashhad, 2024. شبکه‌های عصبی گراف در پیش‌گویی خواص مولکولی.</p>
+</div>
+<div class="citation" id="id18" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>Bak18<span class="fn-bracket">]</span></span>
+<p>Mahboube Bakhshali. The subspace pursuit method in sparseoptimization. Master's thesis, Hakim Sabzevari University, Faculty of Mathematics and Computer Science, September 2018. روش جستجوی زیرفضا در بهینه سازی تنک. URL: <a class="reference external" href="http://hcloud.hsu.ac.ir/index.php/s/jacmnZiPfNFpYfk">http://hcloud.hsu.ac.ir/index.php/s/jacmnZiPfNFpYfk</a>.</p>
+</div>
+<div class="citation" id="id2" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>Don06<span class="fn-bracket">]</span></span>
+<p>David L. Donoho. Compressed sensing. <em>IEEE Transactions on Information Theory</em>, 52(4):1289–1306, 2006. <a class="reference external" href="https://doi.org/10.1109/TIT.2006.871582">doi:10.1109/TIT.2006.871582</a>.</p>
+</div>
+<div class="citation" id="id9" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>DHS00<span class="fn-bracket">]</span></span>
+<p>Richard O. Duda, Peter E. Hart, and David G. Stork. <em>Pattern Classification (2nd Edition)</em>. Wiley-Interscience, 2 edition, November 2000. ISBN 0471056693. URL: <a class="reference external" href="https://file.fouladi.ir/courses/pr/books/%5BDuda%5D_PatternClassification.pdf">https://file.fouladi.ir/courses/pr/books/%5BDuda%5D_PatternClassification.pdf</a>.</p>
+</div>
+<div class="citation" id="id40" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>FHMA22<span class="fn-bracket">]</span></span>
+<p>R. Farhadi, M. Hadavifar, M. Moeinaddini, and M. Amintoosi. Prediction of co and pm10 in cold and warm seasons and survey of the effect of instability indices on contaminants using artificial neural network: a case study in tehran city. <em>Iranian (Iranica) Journal of Energy &amp; Environment</em>, 13(1):71–78, 2022. <a class="reference external" href="https://doi.org/10.5829/ijee.2022.13.01.08">doi:10.5829/ijee.2022.13.01.08</a>.</p>
+</div>
+<div class="citation" id="id46" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>FHMA20<span class="fn-bracket">]</span></span>
+<p>Razieh Farhadi, Mojtaba Hadavifar, Mazaher Moeinaddini, and Mahmood Amintoosi. Prediction of the air quality by artificial neural network using instability indices in the city of tehran-iran. <em>AUT Journal of Civil Engineering</em>, 4(4):–, 2020. <a class="reference external" href="https://doi.org/10.22060/ajce.2019.17018.5609">doi:10.22060/ajce.2019.17018.5609</a>.</p>
+</div>
+<div class="citation" id="id27" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>FAS24<span class="fn-bracket">]</span></span>
+<p>Mohammadreza Fatehinia, Mahmood Amintoosi, and Seyed Masih Sajadi. Click rate prediction in online advertising industry with real data and its challenges. In <em>3rd Specialized Seminar on Data Science and Its Applications</em>, 26. Ferdowsi University of Mashhad, 2024. پیش‌بینی نرخ کلیک در صنعت تبلیغات آنلاین با داده‌های واقعی و چالش‌های آن.</p>
+</div>
+<div class="citation" id="id89" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>FMA08<span class="fn-bracket">]</span></span>
+<p>M. Fathy, N. Mozayani, and M. Amintoosi. Outlier removal for super-resolution problem using QR-Decomposition. In <em>Proceedings of the International Conference on Image Processing, Computer Vision, and Pattern Recognition</em>, 271–277. USA, July 14-17 2008. Indexed by DBLP. URL: <a class="reference external" href="http://webpages.iust.ac.ir/mamintoosi/papers/IPCV08.pdf">http://webpages.iust.ac.ir/mamintoosi/papers/IPCV08.pdf</a>.</p>
+</div>
+<div class="citation" id="id3" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>GGRR+20<span class="fn-bracket">]</span></span>
+<p>Loubna El Gueddari, Chaithya Giliyar Radhakrishna, Zaccharie Ramzi, Samuel Farrens, Sophie Starck, Antoine Grigis, Jean-Luc Starck, and Philippe Ciuciu. PySAP-MRI: a Python Package for MR Image Reconstruction. In <em>ISMRM workshop on Data Sampling and Image Reconstruction</em>. Sedona, AZ, United States, January 2020. URL: <a class="reference external" href="https://inria.hal.science/hal-02399267">https://inria.hal.science/hal-02399267</a>.</p>
+</div>
+<div class="citation" id="id70" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>HA14a<span class="fn-bracket">]</span></span>
+<p>Fatemeh Sadat Hosseini and Mahmood Amintoosi. Graph minimum cut using simulated annealing. In <em>7th International Conference of the Iranian Operations Research Society</em>. Semnan, 2014. برش کمینه‌ی گراف با شبیه‌سازی تبریدی.</p>
+</div>
+<div class="citation" id="id71" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>HA14b<span class="fn-bracket">]</span></span>
+<p>Fatemeh Sadat Hosseini and Mahmood Amintoosi. Graph minimum cut using tabu search. In <em>7th International Conference of the Iranian Operations Research Society</em>. Semnan, 2014. برش کمینه‌ی گراف باجستجوی ممنوعه.</p>
+</div>
+<div class="citation" id="id49" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>HA19<span class="fn-bracket">]</span></span>
+<p>Fatemeh Sadat Hosseini and Mahmood Amintoosi. Inefficiency of the karger's algorithm in min-cut of weighted graphs. In <em>3rd Seminar on Control and Optimization</em>, 21–24. Hakim Sabzevari University, 2019. بررسی نا کارآمدی الگوریتم کارگر در برش کمینه گرافهای وزن دار.</p>
+</div>
+<div class="citation" id="id28" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>MAA24<span class="fn-bracket">]</span></span>
+<p>Hoda Mehrabagherpour, Mahmood Amintoosi, and Mohammad Arashi. Urban traffic prediction using graph convolutional networks. In <em>3rd Specialized Seminar on Data Science and Its Applications</em>, 25. Ferdowsi University of Mashhad, 2024. پیش‌بینی ترافیک شهری با بهره‌گیری از شبکه‌های پیچشی گراف.</p>
+</div>
+<div class="citation" id="id73" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>MA13<span class="fn-bracket">]</span></span>
+<p>Mehdi Moghimi and Mahmood Amintoosi. Mri image segmentation using pulse-coupled neural networks. In <em>5th National Conference on Electrical and Electronics Engineering</em>. Gonabad, 2013. تشخیص ناحیه چربی در تصاویر MRI با استفاده از شبكه عصبی با كوپلاژ پالسی.</p>
+</div>
+<div class="citation" id="id38" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>MGAS23<span class="fn-bracket">]</span></span>
+<p>Mina Mortazavi, Morteza Gachpazan, Mahmood Amintoosi, and Soheil Salashour. Fractional derivative approach to sparse super resolution. <em>The Visual Computer</em>, 39(7):3011–3028, Jul 2023.</p>
+</div>
+<div class="citation" id="id14" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>Nem18<span class="fn-bracket">]</span></span>
+<p>Mehdi Nemati. A gradient based method for thespectral graph partitioning. Master's thesis, Hakim Sabzevari University, Faculty of Mathematics and Computer Science, September 2018. روشی مبتنی بر گرادیان برای افرازبندی طیفی گراف. URL: <a class="reference external" href="https://hcloud.hsu.ac.ir/index.php/s/tR53d9306yZSAc7">https://hcloud.hsu.ac.ir/index.php/s/tR53d9306yZSAc7</a>.</p>
+</div>
+<div class="citation" id="id26" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>NA24<span class="fn-bracket">]</span></span>
+<p>Mehdi Nemati and Mahmood Amintoosi. Enhancing text extraction from scanned medical documents using large language models. In <em>Third Seminar on Data Science and its Applications</em>, 58. Ferdowsi University of Mashhad, 2024.</p>
+</div>
+<div class="citation" id="id57" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>NAZ18<span class="fn-bracket">]</span></span>
+<p>Mehdi Nemati, Mahmood Amintoosi, and Mehdi Zaferanieh. Conjugate gradient initialization using genetic algorithm in spectral clustering. In <em>6th Seminar on Harmonic Analysis and Applications</em>. Hakim Sabzevari University, 2018. مقدار دهی اولیه گرادیان مزدوج در خوشه بندی طیفی با الگوریتم ژنتیک.</p>
+</div>
+<div class="citation" id="id21" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>Ras16<span class="fn-bracket">]</span></span>
+<p>Farzane Rashidabadi. Image matting. Master's thesis, Hakim Sabzevari University, Faculty of Mathematics and Computer Science, January 2016. برش هوشمند تصویر. URL: <a class="reference external" href="http://hcloud.hsu.ac.ir/index.php/s/OaHkkTSsO8mNrk0">http://hcloud.hsu.ac.ir/index.php/s/OaHkkTSsO8mNrk0</a>.</p>
+</div>
+<div class="citation" id="id6" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>SAK19<span class="fn-bracket">]</span></span>
+<p>A.K.M.E. Saleh, M. Arashi, and B.M.G. Kibria. <em>Theory of Ridge Regression Estimation with Applications</em>. Wiley Series in Probability and Statistics. Wiley, 2019. ISBN 9781118644614. URL: <a class="reference external" href="https://books.google.com/books?id=v0KCDwAAQBAJ">https://books.google.com/books?id=v0KCDwAAQBAJ</a>.</p>
+</div>
+<div class="citation" id="id5" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>SASN22<span class="fn-bracket">]</span></span>
+<p>A.K.M.E. Saleh, M. Arashi, R.A. Saleh, and M. Norouzirad. <em>Rank-Based Methods for Shrinkage and Selection: With Application to Machine Learning</em>. Wiley, 2022. ISBN 9781119625391. URL: <a class="reference external" href="https://books.google.com/books?id=f8p6EAAAQBAJ">https://books.google.com/books?id=f8p6EAAAQBAJ</a>.</p>
+</div>
+<div class="citation" id="id77" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>SEA12<span class="fn-bracket">]</span></span>
+<p>Mehdi Sheida, Hessam Ekhtiyar, and Mahmood Amintoosi. A unified algorithm for segmentation of various medical images. In <em>2nd National Conference on Soft Computing and Information Technology</em>. Mahshahr, 2012. الگوریتمی واحد برای ناحیه بندی انواع تصاویر پزشکی.</p>
+</div>
+<div class="citation" id="id4" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>The20<span class="fn-bracket">]</span></span>
+<p>S. Theodoridis. <em>Machine Learning: A Bayesian and Optimization Perspective</em>. Academic Press, 2020. ISBN 9780128188040. URL: <a class="reference external" href="https://books.google.com/books?id=l-nEDwAAQBAJ">https://books.google.com/books?id=l-nEDwAAQBAJ</a>.</p>
+</div>
+<div class="citation" id="id105" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>YAF06<span class="fn-bracket">]</span></span>
+<p>H. Sadoghi Yazdi, M. Amintoosi, and M. Fathy. Facial expression recognition in video using QIM and ITMI. In <em>4th Conference on Machine Vision and Image Processing</em>. Mashhad, Iran, February 2006. Ferdowsi University of Mashhad. شناسایی حالت چهره با استفاده از پایگاه دادهٔ مكانی- زمانی QIM و ITMI.</p>
+</div>
+<div class="citation" id="id7" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>ZMM20<span class="fn-bracket">]</span></span>
+<p>M.J. Zaki, W. Meira, and W. Meira. <em>Data Mining and Machine Learning: Fundamental Concepts and Algorithms</em>. Cambridge University Press, 2020. ISBN 9781108473989.</p>
+</div>
+<div class="citation" id="id24" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>ZNA25<span class="fn-bracket">]</span></span>
+<p>Ghasem Zolfaghari, Sara Nezamparvar, and Mahmood Amintoosi. Modeling dust particles from stack with artificial neural network and studying electrofilter performance: a case study of zaveh cement factory. <em>Journal of Natural Environment</em>, ():–, 2025. مدلسازی ذرات غبار خروجی از دود کش با شبکه عصبی مصنوعی و مطالعه عملکرد الکتروفیلتر: مطالعه موردی کارخانه سیمان زاوه. URL: <a class="reference external" href="https://jne.ut.ac.ir/article_100076.html">https://jne.ut.ac.ir/article_100076.html</a>, <a class="reference external" href="https://doi.org/10.22059/jne.2025.380898.2713">doi:10.22059/jne.2025.380898.2713</a>.</p>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="right-next"
+       href="01-What-Is-Machine-Learning.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">What Is Machine Learning?</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Welcome to Statistical Machine Learning Course</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#table-of-contents">Table of Contents</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#course-resources-for-statistical-machine-learning">Course Resources for Statistical Machine Learning</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#course-staff">Course Staff</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#instructors">Instructors</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#teaching-assistants">Teaching Assistants</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Mahmood Amintoosi
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026. CC0 Licensed - Computer Science Dept., Ferdowsi University of Mashhad.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

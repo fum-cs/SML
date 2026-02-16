@@ -1,0 +1,1454 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Understanding the Covariance Matrix &#8212; Statistical Machine Learning</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '02-Covariance-Matrix';</script>
+    <link rel="icon" href="_static/fum-logo.ico"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Maximum Likelihood Estimation" href="03-MLE-intro.html" />
+    <link rel="prev" title="What Is Machine Learning?" href="01-What-Is-Machine-Learning.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/fum-cs-logo.png" class="logo__image only-light" alt="Statistical Machine Learning - Home"/>
+    <script>document.write(`<img src="_static/fum-cs-logo.png" class="logo__image only-dark" alt="Statistical Machine Learning - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Welcome to Statistical Machine Learning Course
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01-What-Is-Machine-Learning.html">What Is Machine Learning?</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Understanding the Covariance Matrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03-MLE-intro.html">Maximum Likelihood Estimation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04-Mahalanobis-Distance.html">Mahalanobis Distance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05-Naive-Bayes.html">Naive Bayes Classification</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="06-Bayesian-Decision-Theory.html">Bayesian Decision Theory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07-Linear-Models.html">Linear models</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="09-Kernel-Trick.html">The Kernel Method (Kernel Trick)</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="10-Kernel-Regression.html">Kernel Regression: From Linear to Nonlinear Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11-Gaussian-Mixtures-part1.html">Gaussian Mixture Models, Part 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12-Gaussian-Mixtures-part2.html">Gaussian Mixture Model, Part 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14-Principal-Component-Analysis-part1.html">Principal Component Analysis, Part 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15-Principal-Component-Analysis-part2.html">Principal Component Analysis, Part 2</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="App-Mathematics-and-Machine-Learning.html">Appendix: Mathematics and Machine Learning</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="Appendix-BDT-Discrete-Features.html">Appendix: Bayes Decision Theory — Discrete Features</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/fum-cs/SML/blob/main/docs/02-Covariance-Matrix.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Colab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Colab logo" src="_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/fum-cs/SML" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/fum-cs/SML/issues/new?title=Issue%20on%20page%20%2F02-Covariance-Matrix.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/02-Covariance-Matrix.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Understanding the Covariance Matrix</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-covariance">1. What is Covariance?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-the-covariance-matrix">2. What is the Covariance Matrix?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#another-example-with-generated-data">3. Another example with generated data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calculating-the-covariance-matrix-using-numpy">4. Calculating the Covariance Matrix using NumPy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eigenvalues-and-eigenvectors-of-the-covariance-matrix">5. Eigenvalues and Eigenvectors of the Covariance Matrix</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizing-eigenvectors">6. Visualizing Eigenvectors</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#connection-to-principal-component-analysis-pca">7. Connection to Principal Component Analysis (PCA)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#manual-calculation-of-the-sample-covariance-matrix">8. Manual Calculation of the Sample Covariance Matrix</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matrix-based-calculation-of-the-covariance-matrix">Matrix-Based Calculation of the Covariance Matrix</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#connection-to-pca">Connection to PCA</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#correlation-matrix">9. Correlation Matrix</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-filtering-data-based-on-pearson-correlation">10. Example: Filtering Data Based on Pearson Correlation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="understanding-the-covariance-matrix">
+<h1>Understanding the Covariance Matrix<a class="headerlink" href="#understanding-the-covariance-matrix" title="Link to this heading">#</a></h1>
+<p>This notebook aims to explain the concept of the covariance matrix, how to calculate it using NumPy, and how to interpret its components, including eigenvalues and eigenvectors.</p>
+<section id="what-is-covariance">
+<h2>1. What is Covariance?<a class="headerlink" href="#what-is-covariance" title="Link to this heading">#</a></h2>
+<p>Covariance measures the degree to which two random variables change together. If the variables tend to show similar behavior (i.e., when one increases, the other tends to increase), the covariance is positive. If they tend to show opposite behavior (i.e., when one increases, the other tends to decrease), the covariance is negative. If the variables are independent, the covariance is zero (though zero covariance doesn’t necessarily imply independence).</p>
+<p>The formula for the sample covariance between two variables X and Y is:</p>
+<div class="math notranslate nohighlight">
+\[ \text{cov}(X, Y) = \frac{1}{n-1} \sum_{i=1}^{n} (x_i - \bar{x})(y_i - \bar{y}) \]</div>
+</section>
+<section id="what-is-the-covariance-matrix">
+<h2>2. What is the Covariance Matrix?<a class="headerlink" href="#what-is-the-covariance-matrix" title="Link to this heading">#</a></h2>
+<p>For a dataset with multiple variables (features), the covariance matrix organizes the covariances between all pairs of variables. For a dataset with <span class="math notranslate nohighlight">\(d\)</span> variables (<span class="math notranslate nohighlight">\(X_1, X_2, ..., X_d\)</span>), the covariance matrix <span class="math notranslate nohighlight">\(\Sigma\)</span> (or S for the sample covariance matrix) is a <span class="math notranslate nohighlight">\(d \times d\)</span> symmetric matrix where:</p>
+<ul class="simple">
+<li><p>The element at position <span class="math notranslate nohighlight">\((i, j)\)</span> is the covariance between variable <span class="math notranslate nohighlight">\(X_i\)</span> and variable <span class="math notranslate nohighlight">\(X_j\)</span>: <span class="math notranslate nohighlight">\(\Sigma_{ij} = \text{cov}(X_i, X_j)\)</span>.</p></li>
+<li><p>The diagonal elements <span class="math notranslate nohighlight">\((i, i)\)</span> are the variances of each variable: <span class="math notranslate nohighlight">\(\Sigma_{ii} = \text{cov}(X_i, X_i) = \text{var}(X_i)\)</span>.</p></li>
+</ul>
+<p>Example for 3 variables (X, Y, Z):</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} S = \begin{pmatrix}
+\text{var}(X) &amp; \text{cov}(X, Y) &amp; \text{cov}(X, Z) \\
+\text{cov}(Y, X) &amp; \text{var}(Y) &amp; \text{cov}(Y, Z) \\
+\text{cov}(Z, X) &amp; \text{cov}(Z, Y) &amp; \text{var}(Z)
+\end{pmatrix} \end{split}\]</div>
+<p>Since <span class="math notranslate nohighlight">\(\text{cov}(X, Y) = \text{cov}(Y, X)\)</span>, the matrix is always symmetric.</p>
+<section id="example">
+<h3>Example<a class="headerlink" href="#example" title="Link to this heading">#</a></h3>
+<p>To understand the covariance matrix in a practical context, let’s work with a simulated dataset. We will generate data representing a group of students, focusing on three key variables:</p>
+<ol class="arabic simple">
+<li><p><strong>Study Hours:</strong> The average number of hours spent studying per week.</p></li>
+<li><p><strong>Party Hours:</strong> The average number of hours spent partying or on leisure activities per week.</p></li>
+<li><p><strong>Math Grade:</strong> The final grade received in a math course.</p></li>
+</ol>
+<p>Our goal is to calculate the covariance matrix for these variables and interpret what it tells us about their relationships. For example, we’ll investigate whether students who study more tend to party less, or if higher study hours are associated with better math grades, based on our generated data.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># First, we&#39;ll generate the dataset, and then we will compute and analyze the covariance matrix.</span>
+<span class="c1"># Import libraries</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="c1"># --- Configuration ---</span>
+<span class="n">n_students</span> <span class="o">=</span> <span class="mi">150</span>
+<span class="n">random_seed</span> <span class="o">=</span> <span class="mi">42</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">random_seed</span><span class="p">)</span> <span class="c1"># Fix the random seed for reproducibility</span>
+
+<span class="c1"># --- Generate Base Data ---</span>
+<span class="c1"># Generate study hours (e.g., normally distributed around 12 hours/week)</span>
+<span class="c1"># We generate floats first, then clip and convert to int</span>
+<span class="n">study_hours_raw</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n_students</span><span class="p">)</span>
+
+<span class="c1"># Generate party hours - negatively correlated with study hours</span>
+<span class="c1"># More study -&gt; less party. Add noise.</span>
+<span class="c1"># Base party hours around 15, decrease by ~0.8 for each study hour</span>
+<span class="n">party_hours_raw</span> <span class="o">=</span> <span class="mi">15</span> <span class="o">-</span> <span class="mf">0.8</span> <span class="o">*</span> <span class="n">study_hours_raw</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">2.5</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n_students</span><span class="p">)</span>
+
+<span class="c1"># Generate math grade (scale 0-20)</span>
+<span class="c1"># Positively correlated with study hours, negatively with party hours. Add noise.</span>
+<span class="c1"># Base grade around 10. Increase by ~0.5 per study hour, decrease by ~0.2 per party hour.</span>
+<span class="n">math_grade_raw</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">+</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">study_hours_raw</span> <span class="o">-</span> <span class="mf">0.2</span> <span class="o">*</span> <span class="n">party_hours_raw</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n_students</span><span class="p">)</span>
+
+<span class="c1"># --- Apply Constraints ---</span>
+<span class="c1"># Clip hours to be non-negative and convert to integer</span>
+<span class="n">study_hours</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">study_hours_raw</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+<span class="n">party_hours</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">party_hours_raw</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+
+<span class="c1"># Clip grades to be between 0 and 20 (inclusive) and convert to integer</span>
+<span class="n">math_grade</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">math_grade_raw</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+
+<span class="c1"># --- Create DataFrame ---</span>
+<span class="n">df_students</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">&#39;Study_Hours&#39;</span><span class="p">:</span> <span class="n">study_hours</span><span class="p">,</span>
+    <span class="s1">&#39;Party_Hours&#39;</span><span class="p">:</span> <span class="n">party_hours</span><span class="p">,</span>
+    <span class="s1">&#39;Math_Grade&#39;</span><span class="p">:</span> <span class="n">math_grade</span>
+<span class="p">})</span>
+
+<span class="c1"># --- Display Sample Data (Optional) ---</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Student Data (First 5 Rows):&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df_students</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2"> We have </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">df_students</span><span class="p">)</span><span class="si">}</span><span class="s2"> students.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Student Data (First 5 Rows):
+   Study_Hours  Party_Hours  Math_Grade
+0           13            4          13
+1           11            6          12
+2           14            1          19
+3           18            1          20
+4           11            6          14
+
+ We have 150 students.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import necessary libraries for analysis and visualization</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+
+<span class="c1"># --- Covariance Calculation ---</span>
+<span class="c1"># Calculate the covariance matrix using pandas .cov() method</span>
+<span class="c1"># This uses the sample covariance formula (N-1 denominator) by default</span>
+<span class="n">covariance_matrix</span> <span class="o">=</span> <span class="n">df_students</span><span class="o">.</span><span class="n">cov</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">------------------------------------&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Calculated Covariance Matrix:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;------------------------------------&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">covariance_matrix</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;------------------------------------&quot;</span><span class="p">)</span>
+
+
+<span class="c1"># --- Visualization ---</span>
+
+<span class="c1"># 1. Pairplot to visualize relationships and distributions</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Visualizing Pairwise Relationships...&quot;</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">pairplot</span><span class="p">(</span><span class="n">df_students</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;reg&#39;</span><span class="p">,</span> <span class="n">diag_kind</span><span class="o">=</span><span class="s1">&#39;kde&#39;</span><span class="p">,</span>
+             <span class="n">plot_kws</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;line_kws&#39;</span><span class="p">:{</span><span class="s1">&#39;color&#39;</span><span class="p">:</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="s1">&#39;lw&#39;</span><span class="p">:</span><span class="mi">1</span><span class="p">},</span> <span class="s1">&#39;scatter_kws&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;alpha&#39;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span> <span class="s1">&#39;s&#39;</span><span class="p">:</span> <span class="mi">20</span><span class="p">}},</span>
+             <span class="n">diag_kws</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;fill&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">})</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;Pairwise Relationships and Distributions&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">1.02</span><span class="p">)</span> <span class="c1"># Adjust title position</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># 2. Heatmap of the covariance matrix</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Visualizing Covariance Matrix as Heatmap...&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">covariance_matrix</span><span class="p">,</span> <span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s2">&quot;.2f&quot;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;coolwarm&#39;</span><span class="p">,</span> <span class="n">linewidths</span><span class="o">=</span><span class="mf">.5</span><span class="p">,</span>
+            <span class="n">cbar_kws</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Covariance Magnitude&#39;</span><span class="p">})</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Covariance Matrix Heatmap&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+
+<span class="c1"># --- Explanation ---</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">--- Analysis of the Covariance Matrix ---&quot;</span><span class="p">)</span>
+
+<span class="c1"># Explain Diagonal Elements (Variances)</span>
+<span class="n">var_study</span> <span class="o">=</span> <span class="n">covariance_matrix</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;Study_Hours&#39;</span><span class="p">,</span> <span class="s1">&#39;Study_Hours&#39;</span><span class="p">]</span>
+<span class="n">var_party</span> <span class="o">=</span> <span class="n">covariance_matrix</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;Party_Hours&#39;</span><span class="p">,</span> <span class="s1">&#39;Party_Hours&#39;</span><span class="p">]</span>
+<span class="n">var_grade</span> <span class="o">=</span> <span class="n">covariance_matrix</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;Math_Grade&#39;</span><span class="p">,</span> <span class="s1">&#39;Math_Grade&#39;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">1. Variances (Diagonal Elements):&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;   - Var(Study_Hours): </span><span class="si">{</span><span class="n">var_study</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">. This measures the spread or variability in study hours among students.&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;   - Var(Party_Hours): </span><span class="si">{</span><span class="n">var_party</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">. This measures the spread in party hours.&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;   - Var(Math_Grade): </span><span class="si">{</span><span class="n">var_grade</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">. This measures the spread in math grades (on the 0-20 scale).&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;   -&gt; Larger values indicate greater variability in that specific variable.&quot;</span><span class="p">)</span>
+
+<span class="c1"># Explain Off-Diagonal Elements (Covariances)</span>
+<span class="n">cov_study_party</span> <span class="o">=</span> <span class="n">covariance_matrix</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;Study_Hours&#39;</span><span class="p">,</span> <span class="s1">&#39;Party_Hours&#39;</span><span class="p">]</span>
+<span class="n">cov_study_grade</span> <span class="o">=</span> <span class="n">covariance_matrix</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;Study_Hours&#39;</span><span class="p">,</span> <span class="s1">&#39;Math_Grade&#39;</span><span class="p">]</span>
+<span class="n">cov_party_grade</span> <span class="o">=</span> <span class="n">covariance_matrix</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;Party_Hours&#39;</span><span class="p">,</span> <span class="s1">&#39;Math_Grade&#39;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">2. Covariances (Off-Diagonal Elements):&quot;</span><span class="p">)</span>
+
+<span class="c1"># Study vs Party</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">   - Cov(Study_Hours, Party_Hours): </span><span class="si">{</span><span class="n">cov_study_party</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">cov_study_party</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;     Interpretation: Negative covariance suggests an inverse linear relationship. As study hours tend to increase, party hours tend to decrease, and vice-versa. This matches our expectation.&quot;</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">cov_study_party</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;     Interpretation: Positive covariance suggests a direct linear relationship. As study hours tend to increase, party hours also tend to increase. (This would be unexpected here).&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;     Interpretation: Covariance near zero suggests a weak or non-existent linear relationship between study and party hours.&quot;</span><span class="p">)</span>
+
+<span class="c1"># Study vs Grade</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">   - Cov(Study_Hours, Math_Grade): </span><span class="si">{</span><span class="n">cov_study_grade</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">cov_study_grade</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;     Interpretation: Positive covariance suggests a direct linear relationship. As study hours tend to increase, math grades also tend to increase. This aligns with expectations.&quot;</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">cov_study_grade</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;     Interpretation: Negative covariance suggests an inverse linear relationship. As study hours tend to increase, math grades tend to decrease. (Unexpected).&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;     Interpretation: Covariance near zero suggests a weak or non-existent linear relationship between study hours and math grade.&quot;</span><span class="p">)</span>
+
+<span class="c1"># Party vs Grade</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">   - Cov(Party_Hours, Math_Grade): </span><span class="si">{</span><span class="n">cov_party_grade</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">cov_party_grade</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;     Interpretation: Negative covariance suggests an inverse linear relationship. As party hours tend to increase, math grades tend to decrease. This is plausible (more partying might lead to less study time or focus).&quot;</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">cov_party_grade</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;     Interpretation: Positive covariance suggests a direct linear relationship. As party hours tend to increase, math grades also tend to increase. (Less likely).&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;     Interpretation: Covariance near zero suggests a weak or non-existent linear relationship between party hours and math grade.&quot;</span><span class="p">)</span>
+
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">--- Summary of Covariance ---&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot; - Positive Covariance: Indicates that two variables tend to move in the same direction (linearly).&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot; - Negative Covariance: Indicates that two variables tend to move in opposite directions (linearly).&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot; - Covariance Near Zero: Indicates a weak linear relationship.&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Important Note: The magnitude of covariance is affected by the units and scale of the variables. A large covariance value doesn&#39;t automatically mean a *stronger* relationship than a smaller one if the variables have different scales. For assessing the *strength* of the linear relationship independent of scale, the Correlation Coefficient is typically used (which is derived from the covariance).&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">The visualizations (Pairplot and Heatmap) provide a graphical confirmation of these calculated relationships.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>------------------------------------
+Calculated Covariance Matrix:
+------------------------------------
+             Study_Hours  Party_Hours  Math_Grade
+Study_Hours    14.239866   -10.106846    8.256913
+Party_Hours   -10.106846    12.487875   -6.677226
+Math_Grade      8.256913    -6.677226   12.359016
+------------------------------------
+
+Visualizing Pairwise Relationships...
+</pre></div>
+</div>
+<img alt="_images/6c26d3914ae167915100f43342b232509b5c7381c113359b84f4d5aea87f48d1.png" src="_images/6c26d3914ae167915100f43342b232509b5c7381c113359b84f4d5aea87f48d1.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Visualizing Covariance Matrix as Heatmap...
+</pre></div>
+</div>
+<img alt="_images/c887c546139393977aedc72b1010148fa356c916950251a4563a08c786a89e8d.png" src="_images/c887c546139393977aedc72b1010148fa356c916950251a4563a08c786a89e8d.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--- Analysis of the Covariance Matrix ---
+
+1. Variances (Diagonal Elements):
+   - Var(Study_Hours): 14.24. This measures the spread or variability in study hours among students.
+   - Var(Party_Hours): 12.49. This measures the spread in party hours.
+   - Var(Math_Grade): 12.36. This measures the spread in math grades (on the 0-20 scale).
+   -&gt; Larger values indicate greater variability in that specific variable.
+
+2. Covariances (Off-Diagonal Elements):
+
+   - Cov(Study_Hours, Party_Hours): -10.11
+     Interpretation: Negative covariance suggests an inverse linear relationship. As study hours tend to increase, party hours tend to decrease, and vice-versa. This matches our expectation.
+
+   - Cov(Study_Hours, Math_Grade): 8.26
+     Interpretation: Positive covariance suggests a direct linear relationship. As study hours tend to increase, math grades also tend to increase. This aligns with expectations.
+
+   - Cov(Party_Hours, Math_Grade): -6.68
+     Interpretation: Negative covariance suggests an inverse linear relationship. As party hours tend to increase, math grades tend to decrease. This is plausible (more partying might lead to less study time or focus).
+
+--- Summary of Covariance ---
+ - Positive Covariance: Indicates that two variables tend to move in the same direction (linearly).
+ - Negative Covariance: Indicates that two variables tend to move in opposite directions (linearly).
+ - Covariance Near Zero: Indicates a weak linear relationship.
+
+Important Note: The magnitude of covariance is affected by the units and scale of the variables. A large covariance value doesn&#39;t automatically mean a *stronger* relationship than a smaller one if the variables have different scales. For assessing the *strength* of the linear relationship independent of scale, the Correlation Coefficient is typically used (which is derived from the covariance).
+
+The visualizations (Pairplot and Heatmap) provide a graphical confirmation of these calculated relationships.
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="another-example-with-generated-data">
+<h2>3. Another example with generated data<a class="headerlink" href="#another-example-with-generated-data" title="Link to this heading">#</a></h2>
+<p>Let’s generate some 2-dimensional data using a specific mean vector and covariance matrix. This will allow us to see if the calculated covariance matrix matches the one we used to generate the data.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+
+<span class="c1"># Set style for plots</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set_theme</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s2">&quot;whitegrid&quot;</span><span class="p">)</span>
+
+<span class="c1"># Define the parameters for data generation</span>
+<span class="n">mean</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>  <span class="c1"># Mean vector</span>
+<span class="n">cov_matrix</span> <span class="o">=</span> <span class="p">[[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">],</span>  <span class="c1"># Var(X1)=1.0, Cov(X1,X2)=0.8</span>
+              <span class="p">[</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">]]</span>  <span class="c1"># Cov(X2,X1)=0.8, Var(X2)=1.5</span>
+<span class="n">n_samples</span> <span class="o">=</span> <span class="mi">500</span>      <span class="c1"># Number of data points</span>
+
+<span class="n">random_seed</span> <span class="o">=</span> <span class="mi">42</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">random_seed</span><span class="p">)</span> <span class="c1"># Fix the random seed for reproducibility</span>
+
+<span class="c1"># Generate multivariate normal data</span>
+<span class="c1"># The shape of X will be (n_samples, n_features)</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">multivariate_normal</span><span class="p">(</span><span class="n">mean</span><span class="p">,</span> <span class="n">cov_matrix</span><span class="p">,</span> <span class="n">n_samples</span><span class="p">)</span>
+
+<span class="c1"># Separate the variables for clarity</span>
+<span class="n">X1</span> <span class="o">=</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span>
+<span class="n">X2</span> <span class="o">=</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span>
+
+<span class="c1"># Plot the data</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X1</span><span class="p">,</span> <span class="n">X2</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">edgecolors</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Generated 2D Data with Positive Correlation&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Variable X1&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Variable X2&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;grey&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;grey&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span> <span class="c1"># Important for visualizing correlations correctly</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="_images/76e0bf25bb7e501d63ff9bc9c7a6a9375d010249a9dbbf279e0e5dd1aa7989d2.png" src="_images/76e0bf25bb7e501d63ff9bc9c7a6a9375d010249a9dbbf279e0e5dd1aa7989d2.png" />
+</div>
+</div>
+<p>As seen in the plot, there’s a general trend that as X1 increases, X2 also tends to increase, indicating a positive covariance, as defined in our <code class="docutils literal notranslate"><span class="pre">cov_matrix</span></code>.</p>
+</section>
+<section id="calculating-the-covariance-matrix-using-numpy">
+<h2>4. Calculating the Covariance Matrix using NumPy<a class="headerlink" href="#calculating-the-covariance-matrix-using-numpy" title="Link to this heading">#</a></h2>
+<p>NumPy provides the <code class="docutils literal notranslate"><span class="pre">np.cov()</span></code> function to easily calculate the covariance matrix.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate the sample covariance matrix using NumPy</span>
+<span class="c1"># We use rowvar=False because our data matrix X has observations as rows </span>
+<span class="c1"># and variables as columns (shape n_samples x n_features).</span>
+<span class="c1"># We use ddof=1 to divide by (n-1) for the unbiased sample covariance.</span>
+<span class="n">S</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cov</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">rowvar</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">ddof</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Calculated Sample Covariance Matrix:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">S</span><span class="p">)</span>
+
+<span class="c1"># Verify the diagonal elements (variances)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Variance of X1 (calculated): </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="n">X1</span><span class="p">,</span><span class="w"> </span><span class="n">ddof</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Variance of X2 (calculated): </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="n">X2</span><span class="p">,</span><span class="w"> </span><span class="n">ddof</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Verify the off-diagonal element (covariance)</span>
+<span class="c1"># Manual calculation for verification</span>
+<span class="n">mean_x1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">X1</span><span class="p">)</span>
+<span class="n">mean_x2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">X2</span><span class="p">)</span>
+<span class="n">cov_x1x2_manual</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">X1</span> <span class="o">-</span> <span class="n">mean_x1</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">X2</span> <span class="o">-</span> <span class="n">mean_x2</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="n">n_samples</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Covariance of X1, X2 (calculated): </span><span class="si">{</span><span class="n">cov_x1x2_manual</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Calculated Sample Covariance Matrix:
+[[0.92582352 0.73152795]
+ [0.73152795 1.43218134]]
+
+Variance of X1 (calculated): 0.9258
+Variance of X2 (calculated): 1.4322
+Covariance of X1, X2 (calculated): 0.7315
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Interpretation of the Calculated Matrix:</strong></p>
+<ul class="simple">
+<li><p>The element <code class="docutils literal notranslate"><span class="pre">S[0,</span> <span class="pre">0]</span></code> is the sample variance of variable X1.</p></li>
+<li><p>The element <code class="docutils literal notranslate"><span class="pre">S[1,</span> <span class="pre">1]</span></code> is the sample variance of variable X2.</p></li>
+<li><p>The elements <code class="docutils literal notranslate"><span class="pre">S[0,</span> <span class="pre">1]</span></code> and <code class="docutils literal notranslate"><span class="pre">S[1,</span> <span class="pre">0]</span></code> are the sample covariance between X1 and X2 (they should be equal).</p></li>
+</ul>
+<p>The calculated values should be close to the values in the covariance matrix we used to generate the data (<code class="docutils literal notranslate"><span class="pre">[[1.0,</span> <span class="pre">0.8,</span> <span class="pre">[0.8,</span> <span class="pre">1.5]]</span></code>). They won’t be exactly the same due to random sampling.</p>
+</section>
+<section id="eigenvalues-and-eigenvectors-of-the-covariance-matrix">
+<h2>5. Eigenvalues and Eigenvectors of the Covariance Matrix<a class="headerlink" href="#eigenvalues-and-eigenvectors-of-the-covariance-matrix" title="Link to this heading">#</a></h2>
+<p>Eigenvalues and eigenvectors provide important insights into the structure of the data:</p>
+<ul class="simple">
+<li><p><strong>Eigenvectors:</strong> Represent the directions of maximum variance in the data. These are the principal axes of the data distribution.</p></li>
+<li><p><strong>Eigenvalues:</strong> Indicate the amount of variance in the data along the directions defined by their corresponding eigenvectors. A larger eigenvalue means more variance along that eigenvector’s direction.</p></li>
+</ul>
+<p>These concepts are fundamental to Principal Component Analysis (PCA).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate eigenvalues and eigenvectors of the covariance matrix</span>
+<span class="n">eigenvalues</span><span class="p">,</span> <span class="n">eigenvectors</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eig</span><span class="p">(</span><span class="n">S</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Eigenvalues:&quot;</span><span class="p">,</span> <span class="n">eigenvalues</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Eigenvectors (each column is an eigenvector):&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">eigenvectors</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Eigenvalues: [0.40490121 1.95310365]
+
+Eigenvectors (each column is an eigenvector):
+[[-0.81457405 -0.58005958]
+ [ 0.58005958 -0.81457405]]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="visualizing-eigenvectors">
+<h2>6. Visualizing Eigenvectors<a class="headerlink" href="#visualizing-eigenvectors" title="Link to this heading">#</a></h2>
+<p>We can plot the eigenvectors on the scatter plot of the data to visualize the principal axes and the spread along these axes. The length of the plotted vectors is often scaled by the square root of the corresponding eigenvalue (representing standard deviation).</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">matplotlib.patches</span> <span class="kn">import</span> <span class="n">Ellipse</span>
+<span class="kn">import</span> <span class="nn">matplotlib.transforms</span> <span class="k">as</span> <span class="nn">transforms</span>
+<span class="kn">import</span> <span class="nn">math</span> <span class="c1"># Import math for radians conversion later if needed internally by libraries</span>
+
+<span class="c1"># # Assume X, S, X1, X2 are defined from the previous cells</span>
+<span class="c1"># # For demonstration, let&#39;s redefine mock data if running standalone</span>
+<span class="c1"># np.random.seed(42)</span>
+<span class="c1"># mean = [2, 3]</span>
+<span class="c1"># # Define a covariance matrix with positive covariance</span>
+<span class="c1"># cov = [[1.0, 0.8],  # Var(X1), Cov(X1, X2)</span>
+<span class="c1">#        [0.8, 1.5]]  # Cov(X2, X1), Var(X2)</span>
+<span class="c1"># n_samples = 300</span>
+<span class="c1"># X = np.random.multivariate_normal(mean, cov, n_samples)</span>
+<span class="c1"># X1 = X[:, 0]</span>
+<span class="c1"># X2 = X[:, 1]</span>
+<span class="c1"># # Calculate sample covariance matrix</span>
+<span class="c1"># S = np.cov(X, rowvar=False)</span>
+
+
+<span class="k">def</span> <span class="nf">plot_eigenvectors</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">cov_matrix</span><span class="p">,</span> <span class="n">ax</span><span class="p">,</span> <span class="n">n_std</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Plots eigenvectors and ellipses representing std deviations.&quot;&quot;&quot;</span>
+    <span class="n">mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">eigenvalues</span><span class="p">,</span> <span class="n">eigenvectors</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eig</span><span class="p">(</span><span class="n">cov_matrix</span><span class="p">)</span>
+
+    <span class="c1"># Sort eigenvalues and eigenvectors in descending order</span>
+    <span class="n">order</span> <span class="o">=</span> <span class="n">eigenvalues</span><span class="o">.</span><span class="n">argsort</span><span class="p">()[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">eigenvalues</span> <span class="o">=</span> <span class="n">eigenvalues</span><span class="p">[</span><span class="n">order</span><span class="p">]</span>
+    <span class="n">eigenvectors</span> <span class="o">=</span> <span class="n">eigenvectors</span><span class="p">[:,</span> <span class="n">order</span><span class="p">]</span>
+
+    <span class="c1"># --- Plot Arrows for Eigenvectors ---</span>
+    <span class="c1"># Plot eigenvectors scaled by sqrt(eigenvalue) * n_std</span>
+    <span class="c1"># which represents the extent of the data along that principal axis</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">eigenvalues</span><span class="p">)):</span>
+        <span class="n">eigvec</span> <span class="o">=</span> <span class="n">eigenvectors</span><span class="p">[:,</span> <span class="n">i</span><span class="p">]</span>
+        <span class="c1"># eigenvalue corresponds to variance, sqrt(eigenvalue) is std dev</span>
+        <span class="n">length</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">eigenvalues</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">*</span> <span class="n">n_std</span> <span class="c1"># Length of half-axis of ellipse</span>
+        <span class="n">start</span> <span class="o">=</span> <span class="n">mean</span>
+
+        <span class="c1"># Plot arrow from mean along eigenvector direction</span>
+        <span class="n">end_pos</span> <span class="o">=</span> <span class="n">mean</span> <span class="o">+</span> <span class="n">eigvec</span> <span class="o">*</span> <span class="n">length</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span>
+            <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">xy</span><span class="o">=</span><span class="n">end_pos</span><span class="p">,</span> <span class="n">xycoords</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">,</span>
+            <span class="n">xytext</span><span class="o">=</span><span class="n">start</span><span class="p">,</span> <span class="n">textcoords</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">,</span>
+            <span class="n">arrowprops</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">arrowstyle</span><span class="o">=</span><span class="s2">&quot;-&gt;&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">2.5</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="c1"># Plot arrow from mean along negative eigenvector direction</span>
+        <span class="n">end_neg</span> <span class="o">=</span> <span class="n">mean</span> <span class="o">-</span> <span class="n">eigvec</span> <span class="o">*</span> <span class="n">length</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span>
+            <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">xy</span><span class="o">=</span><span class="n">end_neg</span><span class="p">,</span> <span class="n">xycoords</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">,</span>
+            <span class="n">xytext</span><span class="o">=</span><span class="n">start</span><span class="p">,</span> <span class="n">textcoords</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">,</span>
+            <span class="n">arrowprops</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">arrowstyle</span><span class="o">=</span><span class="s2">&quot;-&gt;&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">2.5</span><span class="p">)</span>
+        <span class="p">)</span>
+
+    <span class="c1"># --- Plot Ellipse ---</span>
+    <span class="c1"># eigenvalue corresponds to variance, sqrt(eigenvalue) is std dev</span>
+    <span class="c1"># Width and height of the ellipse are 2 * n_std * std_dev along principal axes</span>
+    <span class="n">width</span><span class="p">,</span> <span class="n">height</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">n_std</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">eigenvalues</span><span class="p">)</span>
+
+    <span class="c1"># Calculate angle of the first principal axis (eigenvector)</span>
+    <span class="c1"># eigenvector[:, 0] is the first principal component (largest eigenvalue)</span>
+    <span class="c1"># We need atan2(y, x) for the angle</span>
+    <span class="n">first_eigenvector</span> <span class="o">=</span> <span class="n">eigenvectors</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span>
+    <span class="n">angle</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">degrees</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span><span class="n">first_eigenvector</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">first_eigenvector</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+
+    <span class="c1"># Draw the ellipse</span>
+    <span class="n">ellipse</span> <span class="o">=</span> <span class="n">Ellipse</span><span class="p">(</span><span class="n">xy</span><span class="o">=</span><span class="n">mean</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="n">height</span><span class="p">,</span> <span class="n">angle</span><span class="o">=</span><span class="n">angle</span><span class="p">,</span>
+                      <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">fc</span><span class="o">=</span><span class="s1">&#39;None&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">ellipse</span><span class="p">)</span>
+
+
+<span class="c1"># Plot the data again with eigenvectors and ellipse</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X1</span><span class="p">,</span> <span class="n">X2</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">edgecolors</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Data Points&#39;</span><span class="p">)</span>
+<span class="n">plot_eigenvectors</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">S</span><span class="p">,</span> <span class="n">ax</span><span class="p">,</span> <span class="n">n_std</span><span class="o">=</span><span class="mf">2.0</span><span class="p">)</span> <span class="c1"># Plot eigenvectors/ellipse for 2 std deviations</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Data with Eigenvectors and 2-Std Dev Ellipse&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Variable X1&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Variable X2&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">X2</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;grey&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;:&#39;</span><span class="p">)</span> <span class="c1"># Mean Y</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">X1</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;grey&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;:&#39;</span><span class="p">)</span> <span class="c1"># Mean X</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span> <span class="c1"># Ensure aspect ratio is equal for correct visualization</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="_images/960863afe5eb1ab84580838a15bfcff80b69f25b0406359cd53d66dcba02f412.png" src="_images/960863afe5eb1ab84580838a15bfcff80b69f25b0406359cd53d66dcba02f412.png" />
+</div>
+</div>
+<p><strong>Interpretation of the Visualization:</strong></p>
+<ul class="simple">
+<li><p>The red arrows represent the eigenvectors, pointing in the directions of the principal axes of variation in the data.</p></li>
+<li><p>The longer arrow corresponds to the eigenvector with the larger eigenvalue, indicating the direction of maximum variance.</p></li>
+<li><p>The dashed red ellipse encloses the region within approximately 2 standard deviations from the mean along the principal axes. Most of the data points fall within this ellipse.</p></li>
+</ul>
+</section>
+<section id="connection-to-principal-component-analysis-pca">
+<h2>7. Connection to Principal Component Analysis (PCA)<a class="headerlink" href="#connection-to-principal-component-analysis-pca" title="Link to this heading">#</a></h2>
+<p>The analysis we just performed is the core of PCA. PCA aims to find a new set of orthogonal (uncorrelated) variables, called principal components, which capture the maximum variance in the data.</p>
+<ol class="arabic simple">
+<li><p>The <strong>eigenvectors</strong> of the covariance matrix are the <strong>directions</strong> of the principal components.</p></li>
+<li><p>The <strong>eigenvalues</strong> represent the <strong>variance</strong> captured by each corresponding principal component.</p></li>
+</ol>
+<p>By projecting the original data onto the principal components (eigenvectors), PCA transforms the data into a new coordinate system where the axes represent the directions of maximum variance. This is often used for dimensionality reduction by keeping only the components with the highest eigenvalues (variance).</p>
+</section>
+<section id="manual-calculation-of-the-sample-covariance-matrix">
+<h2>8. Manual Calculation of the Sample Covariance Matrix<a class="headerlink" href="#manual-calculation-of-the-sample-covariance-matrix" title="Link to this heading">#</a></h2>
+<p>While using the <code class="docutils literal notranslate"><span class="pre">np.cov()</span></code> function is convenient for calculating the covariance matrix, understanding the underlying formula can provide deeper insights into the concept. The formula for the unbiased sample covariance between two variables <span class="math notranslate nohighlight">\(X_i\)</span> and <span class="math notranslate nohighlight">\(X_j\)</span> is:</p>
+<div class="math notranslate nohighlight">
+\[ S_{ij} = \frac{1}{n-1} \sum_{k=1}^{n} (x_{ki} - \bar{x}_i)(x_{kj} - \bar{x}_j) \]</div>
+<p>Where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(n\)</span> is the number of samples.</p></li>
+<li><p><span class="math notranslate nohighlight">\(x_{ki}\)</span> is the <span class="math notranslate nohighlight">\(k\)</span>-th observation of the <span class="math notranslate nohighlight">\(i\)</span>-th variable.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\bar{x}_i\)</span> is the sample mean of the <span class="math notranslate nohighlight">\(i\)</span>-th variable.</p></li>
+</ul>
+<p>For the variance (diagonal elements where <span class="math notranslate nohighlight">\(i=j\)</span>):</p>
+<div class="math notranslate nohighlight">
+\[ S_{ii} = \text{Var}(X_i) = \frac{1}{n-1} \sum_{k=1}^{n} (x_{ki} - \bar{x}_i)^2 \]</div>
+<section id="matrix-based-calculation-of-the-covariance-matrix">
+<h3>Matrix-Based Calculation of the Covariance Matrix<a class="headerlink" href="#matrix-based-calculation-of-the-covariance-matrix" title="Link to this heading">#</a></h3>
+<p>To calculate the covariance matrix using matrix operations, the following steps are performed:</p>
+<ol class="arabic">
+<li><p><strong>Center the Data:</strong> Subtract the mean of each column (variable) from the corresponding column values. This produces the centered data matrix <span class="math notranslate nohighlight">\(X_{\text{centered}}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[ X_{\text{centered}} = X - \mu \]</div>
+<p>Where <span class="math notranslate nohighlight">\(X\)</span> is the data matrix, and <span class="math notranslate nohighlight">\(\mu\)</span> is the vector of column means.</p>
+</li>
+<li><p><strong>Compute the Covariance Matrix:</strong> Using matrix multiplication, the covariance matrix can be calculated as:</p>
+<div class="math notranslate nohighlight">
+\[ S = \frac{1}{n-1} X_{\text{centered}}^T X_{\text{centered}} \]</div>
+</li>
+</ol>
+<p>Here:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(X_{\text{centered}}^T\)</span> is the transpose of the centered data matrix.</p></li>
+<li><p><span class="math notranslate nohighlight">\(n-1\)</span> is the denominator used to ensure an unbiased estimate of the sample covariance.</p></li>
+</ul>
+<p>This matrix-based approach is computationally efficient and is preferred for large datasets.</p>
+</section>
+<section id="connection-to-pca">
+<h3>Connection to PCA<a class="headerlink" href="#connection-to-pca" title="Link to this heading">#</a></h3>
+<p>The covariance matrix plays a critical role in Principal Component Analysis (PCA), where it is used to identify the directions of maximum variance in the data. The eigenvalues and eigenvectors of the covariance matrix form the foundation of PCA. This topic will be explored in detail in the PCA section.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 1. Calculate the mean of each variable (column means)</span>
+<span class="n">mean_vec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Mean vector: </span><span class="si">{</span><span class="n">mean_vec</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># 2. Center the data matrix by subtracting the mean vector from each observation</span>
+<span class="n">X_centered</span> <span class="o">=</span> <span class="n">X</span> <span class="o">-</span> <span class="n">mean_vec</span>
+
+<span class="c1"># Verify that the centered data has means close to zero</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Mean of centered data (close to zero): </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">X_centered</span><span class="p">,</span><span class="w"> </span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># 3. Calculate the covariance matrix</span>
+<span class="c1"># The formula is (X_centered^T @ X_centered) / (n - 1)</span>
+<span class="n">n_samples</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">S_manual</span> <span class="o">=</span> <span class="p">(</span><span class="n">X_centered</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">X_centered</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">n_samples</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Manually Calculated Sample Covariance Matrix:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">S_manual</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mean vector: [-0.0212119   0.00913587]
+Mean of centered data (close to zero): [ 4.38538095e-17 -2.70894418e-17]
+
+Manually Calculated Sample Covariance Matrix:
+[[0.92582352 0.73152795]
+ [0.73152795 1.43218134]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Comparing this <code class="docutils literal notranslate"><span class="pre">S_manual</span></code> matrix with the <code class="docutils literal notranslate"><span class="pre">S</span></code> matrix calculated using <code class="docutils literal notranslate"><span class="pre">np.cov()</span></code>, we should see they are identical.</p>
+</section>
+</section>
+<section id="correlation-matrix">
+<h2>9. Correlation Matrix<a class="headerlink" href="#correlation-matrix" title="Link to this heading">#</a></h2>
+<p>While the covariance matrix tells us about the direction of the linear relationship (positive or negative) and its magnitude, the magnitude depends on the scale of the variables.</p>
+<p>The <strong>correlation matrix</strong>, often denoted by <span class="math notranslate nohighlight">\(R\)</span>, standardizes the covariance. It measures the <em>strength</em> and direction of the <em>linear</em> relationship between pairs of variables, scaled between -1 and 1.</p>
+<p>The correlation between variables <span class="math notranslate nohighlight">\(X_i\)</span> and <span class="math notranslate nohighlight">\(X_j\)</span> is:</p>
+<div class="math notranslate nohighlight">
+\[ R_{ij} = \frac{\text{Cov}(X_i, X_j)}{\sqrt{\text{Var}(X_i) \text{Var}(X_j)}} = \frac{S_{ij}}{\sqrt{S_{ii} S_{jj}}} \]</div>
+<p>The diagonal elements of the correlation matrix are always 1 (correlation of a variable with itself).</p>
+<p>NumPy can also compute this:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate the correlation matrix using NumPy</span>
+<span class="c1"># rowvar=False because variables are columns</span>
+<span class="n">R</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">corrcoef</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">rowvar</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Sample Correlation Matrix:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">R</span><span class="p">)</span>
+
+<span class="c1"># Verify manually for X1 and X2</span>
+<span class="n">corr_x1x2_manual</span> <span class="o">=</span> <span class="n">S</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">S</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">S</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Manual calculation of Corr(X1, X2): </span><span class="si">{</span><span class="n">corr_x1x2_manual</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sample Correlation Matrix:
+[[1.         0.63528385]
+ [0.63528385 1.        ]]
+
+Manual calculation of Corr(X1, X2): 0.6353
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">R[1,</span> <span class="pre">0]</span></code>) shows the sample correlation coefficient between X <code class="docutils literal notranslate"><span class="pre">R[1,</span> <span class="pre">0]</span></code>) shows the sample correlation coefficient between X1 and X2. A value close to the 0.8 used in the covariance matrix (though not exactly 0.8, as correlation depends on variances too) indicates a strong positive linear relationship, as expected from our data generation and scatter plot.</p>
+</section>
+<section id="example-filtering-data-based-on-pearson-correlation">
+<h2>10. Example: Filtering Data Based on Pearson Correlation<a class="headerlink" href="#example-filtering-data-based-on-pearson-correlation" title="Link to this heading">#</a></h2>
+<p>As illustrated in chapter 2 of <a class="reference external" href="http://guidetodatamining.com/chapter2/">Guide2DataMining</a> (<a class="reference external" href="https://dl3.takbook.com/pdf3/ebook9446%5Bwww.takbook.com%5D.pdf">Persian Translated</a>) the <a class="reference external" href="https://en.wikipedia.org/wiki/Pearson_correlation_coefficient">Pearson correlation coefficient</a> (derived from the covariance matrix) can be used to filter data based on relationships between variables.  This example shows how to identify and potentially remove redundant or weakly correlated features.</p>
+<p><strong>Scenario:</strong></p>
+<p>Suppose we have a dataset of movie ratings.  Each column represents a movie, and each row represents a user’s rating (or a missing value if the user hasn’t rated the movie). We want to identify users that have a high degree of similarity in their ratings (i.e., high correlation).</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">users</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;Angelica&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;Blues Traveler&quot;</span><span class="p">:</span> <span class="mf">3.5</span><span class="p">,</span> <span class="s2">&quot;Broken Bells&quot;</span><span class="p">:</span> <span class="mf">2.0</span><span class="p">,</span> <span class="s2">&quot;Norah Jones&quot;</span><span class="p">:</span> <span class="mf">4.5</span><span class="p">,</span> <span class="s2">&quot;Phoenix&quot;</span><span class="p">:</span> <span class="mf">5.0</span><span class="p">,</span> <span class="s2">&quot;Slightly Stoopid&quot;</span><span class="p">:</span> <span class="mf">1.5</span><span class="p">,</span> <span class="s2">&quot;The Strokes&quot;</span><span class="p">:</span> <span class="mf">2.5</span><span class="p">,</span> <span class="s2">&quot;Vampire Weekend&quot;</span><span class="p">:</span> <span class="mf">2.0</span><span class="p">},</span>
+    <span class="s2">&quot;Bill&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;Blues Traveler&quot;</span><span class="p">:</span> <span class="mf">1.5</span><span class="p">,</span> <span class="s2">&quot;Broken Bells&quot;</span><span class="p">:</span> <span class="mf">3.5</span><span class="p">,</span> <span class="s2">&quot;Deadmau5&quot;</span><span class="p">:</span> <span class="mf">4.0</span><span class="p">,</span> <span class="s2">&quot;Phoenix&quot;</span><span class="p">:</span> <span class="mf">2.0</span><span class="p">,</span> <span class="s2">&quot;Slightly Stoopid&quot;</span><span class="p">:</span> <span class="mf">3.5</span><span class="p">,</span> <span class="s2">&quot;Vampire Weekend&quot;</span><span class="p">:</span> <span class="mf">3.0</span><span class="p">},</span>
+    <span class="s2">&quot;Chan&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;Blues Traveler&quot;</span><span class="p">:</span> <span class="mf">5.0</span><span class="p">,</span> <span class="s2">&quot;Broken Bells&quot;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span> <span class="s2">&quot;Deadmau5&quot;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span> <span class="s2">&quot;Norah Jones&quot;</span><span class="p">:</span> <span class="mf">3.0</span><span class="p">,</span> <span class="s2">&quot;Phoenix&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s2">&quot;Slightly Stoopid&quot;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">},</span>
+    <span class="s2">&quot;Dan&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;Blues Traveler&quot;</span><span class="p">:</span> <span class="mf">3.0</span><span class="p">,</span> <span class="s2">&quot;Broken Bells&quot;</span><span class="p">:</span> <span class="mf">4.0</span><span class="p">,</span> <span class="s2">&quot;Deadmau5&quot;</span><span class="p">:</span> <span class="mf">4.5</span><span class="p">,</span> <span class="s2">&quot;Phoenix&quot;</span><span class="p">:</span> <span class="mf">3.0</span><span class="p">,</span> <span class="s2">&quot;Slightly Stoopid&quot;</span><span class="p">:</span> <span class="mf">4.5</span><span class="p">,</span> <span class="s2">&quot;The Strokes&quot;</span><span class="p">:</span> <span class="mf">4.0</span><span class="p">,</span> <span class="s2">&quot;Vampire Weekend&quot;</span><span class="p">:</span> <span class="mf">2.0</span><span class="p">},</span>
+    <span class="s2">&quot;Hailey&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;Broken Bells&quot;</span><span class="p">:</span> <span class="mf">4.0</span><span class="p">,</span> <span class="s2">&quot;Deadmau5&quot;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span> <span class="s2">&quot;Norah Jones&quot;</span><span class="p">:</span> <span class="mf">4.0</span><span class="p">,</span> <span class="s2">&quot;The Strokes&quot;</span><span class="p">:</span> <span class="mf">4.0</span><span class="p">,</span> <span class="s2">&quot;Vampire Weekend&quot;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">},</span>
+    <span class="s2">&quot;Jordyn&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;Broken Bells&quot;</span><span class="p">:</span> <span class="mf">4.5</span><span class="p">,</span> <span class="s2">&quot;Deadmau5&quot;</span><span class="p">:</span> <span class="mf">4.0</span><span class="p">,</span> <span class="s2">&quot;Norah Jones&quot;</span><span class="p">:</span> <span class="mf">5.0</span><span class="p">,</span> <span class="s2">&quot;Phoenix&quot;</span><span class="p">:</span> <span class="mf">5.0</span><span class="p">,</span> <span class="s2">&quot;Slightly Stoopid&quot;</span><span class="p">:</span> <span class="mf">4.5</span><span class="p">,</span> <span class="s2">&quot;The Strokes&quot;</span><span class="p">:</span> <span class="mf">4.0</span><span class="p">,</span> <span class="s2">&quot;Vampire Weekend&quot;</span><span class="p">:</span> <span class="mf">4.0</span><span class="p">},</span>
+    <span class="c1"># &quot;Sam&quot;: {&quot;Blues Traveler&quot;: 5.0, &quot;Broken Bells&quot;: 2.0, &quot;Norah Jones&quot;: 3.0, &quot;Phoenix&quot;: 5.0, &quot;Slightly Stoopid&quot;: 4.0, &quot;The Strokes&quot;: 5.0},</span>
+    <span class="s2">&quot;Veronica&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;Blues Traveler&quot;</span><span class="p">:</span> <span class="mf">3.0</span><span class="p">,</span> <span class="s2">&quot;Norah Jones&quot;</span><span class="p">:</span> <span class="mf">5.0</span><span class="p">,</span> <span class="s2">&quot;Phoenix&quot;</span><span class="p">:</span> <span class="mf">4.0</span><span class="p">,</span> <span class="s2">&quot;Slightly Stoopid&quot;</span><span class="p">:</span> <span class="mf">2.5</span><span class="p">,</span> <span class="s2">&quot;The Strokes&quot;</span><span class="p">:</span> <span class="mf">3.0</span><span class="p">},</span>
+    <span class="s2">&quot;Robert&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;Blues Traveler&quot;</span><span class="p">:</span> <span class="mf">4.0</span><span class="p">,</span> <span class="s2">&quot;Norah Jones&quot;</span><span class="p">:</span> <span class="mf">3.0</span><span class="p">,</span> <span class="s2">&quot;Phoenix&quot;</span><span class="p">:</span> <span class="mf">5.0</span><span class="p">,</span> <span class="s2">&quot;Slightly Stoopid&quot;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span> <span class="s2">&quot;The Strokes&quot;</span><span class="p">:</span> <span class="mf">2.0</span><span class="p">},</span>
+    <span class="s2">&quot;Clara&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;Blues Traveler&quot;</span><span class="p">:</span> <span class="mf">4.75</span><span class="p">,</span> <span class="s2">&quot;Norah Jones&quot;</span><span class="p">:</span> <span class="mf">4.5</span><span class="p">,</span> <span class="s2">&quot;Phoenix&quot;</span><span class="p">:</span> <span class="mf">5.0</span><span class="p">,</span> <span class="s2">&quot;Slightly Stoopid&quot;</span><span class="p">:</span> <span class="mf">4.0</span><span class="p">,</span> <span class="s2">&quot;The Strokes&quot;</span><span class="p">:</span> <span class="mf">4.25</span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1"># Convert the nested dictionary to a DataFrame</span>
+<span class="n">df_users</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">users</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>  <span class="c1"># Transpose to make users as rows and items as columns</span>
+
+<span class="c1"># Display the DataFrame</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df_users</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>          Blues Traveler  Broken Bells  Norah Jones  Phoenix  \
+Angelica            3.50           2.0          4.5      5.0   
+Bill                1.50           3.5          NaN      2.0   
+Chan                5.00           1.0          3.0      5.0   
+Dan                 3.00           4.0          NaN      3.0   
+Hailey               NaN           4.0          4.0      NaN   
+Jordyn               NaN           4.5          5.0      5.0   
+Veronica            3.00           NaN          5.0      4.0   
+Robert              4.00           NaN          3.0      5.0   
+Clara               4.75           NaN          4.5      5.0   
+
+          Slightly Stoopid  The Strokes  Vampire Weekend  Deadmau5  
+Angelica               1.5         2.50              2.0       NaN  
+Bill                   3.5          NaN              3.0       4.0  
+Chan                   1.0          NaN              NaN       1.0  
+Dan                    4.5         4.00              2.0       4.5  
+Hailey                 NaN         4.00              1.0       1.0  
+Jordyn                 4.5         4.00              4.0       4.0  
+Veronica               2.5         3.00              NaN       NaN  
+Robert                 1.0         2.00              NaN       NaN  
+Clara                  4.0         4.25              NaN       NaN  
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Function to calculate Pearson correlation</span>
+<span class="k">def</span> <span class="nf">pearson_correlation</span><span class="p">(</span><span class="n">user1</span><span class="p">,</span> <span class="n">user2</span><span class="p">):</span>
+    <span class="n">common_items</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">user1</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span> <span class="o">&amp;</span> <span class="nb">set</span><span class="p">(</span><span class="n">user2</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">common_items</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">0</span>  <span class="c1"># No common items</span>
+    <span class="c1"># print(&#39;common_items:&#39;, common_items)</span>
+    <span class="n">ratings1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">user1</span><span class="p">[</span><span class="n">item</span><span class="p">]</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">common_items</span><span class="p">])</span>
+    <span class="n">ratings2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">user2</span><span class="p">[</span><span class="n">item</span><span class="p">]</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">common_items</span><span class="p">])</span>
+    <span class="c1"># print(ratings1, ratings2)</span>
+
+    <span class="c1"># Check for zero variance</span>
+    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">ratings1</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">ratings2</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">0</span>  <span class="c1"># Correlation is undefined if variance is zero</span>
+
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">corrcoef</span><span class="p">(</span><span class="n">ratings1</span><span class="p">,</span> <span class="n">ratings2</span><span class="p">)[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+
+<span class="c1"># Find users with the highest and lowest similarity</span>
+<span class="n">max_corr</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+<span class="n">min_corr</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">most_similar</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="n">least_similar</span> <span class="o">=</span> <span class="kc">None</span>
+
+<span class="n">user_names</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">users</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">user_names</span><span class="p">)):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">user_names</span><span class="p">)):</span>
+        <span class="n">user1</span> <span class="o">=</span> <span class="n">user_names</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">user2</span> <span class="o">=</span> <span class="n">user_names</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+        <span class="n">corr</span> <span class="o">=</span> <span class="n">pearson_correlation</span><span class="p">(</span><span class="n">users</span><span class="p">[</span><span class="n">user1</span><span class="p">],</span> <span class="n">users</span><span class="p">[</span><span class="n">user2</span><span class="p">])</span>
+        <span class="k">if</span> <span class="n">corr</span> <span class="o">&gt;</span> <span class="n">max_corr</span><span class="p">:</span>
+            <span class="n">max_corr</span> <span class="o">=</span> <span class="n">corr</span>
+            <span class="n">most_similar</span> <span class="o">=</span> <span class="p">(</span><span class="n">user1</span><span class="p">,</span> <span class="n">user2</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">corr</span> <span class="o">&lt;</span> <span class="n">min_corr</span><span class="p">:</span>
+            <span class="n">min_corr</span> <span class="o">=</span> <span class="n">corr</span>
+            <span class="n">least_similar</span> <span class="o">=</span> <span class="p">(</span><span class="n">user1</span><span class="p">,</span> <span class="n">user2</span><span class="p">)</span>
+
+<span class="c1"># Display results</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Most similar users: </span><span class="si">{</span><span class="n">most_similar</span><span class="si">}</span><span class="s2"> with correlation </span><span class="si">{</span><span class="n">max_corr</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="c1"># Display rows for most similar users</span>
+<span class="c1"># print(&quot;\nRatings of Most Similar Users:&quot;)</span>
+<span class="c1"># print(df_users.loc[list(most_similar)])</span>
+
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Least similar users: </span><span class="si">{</span><span class="n">least_similar</span><span class="si">}</span><span class="s2"> with correlation </span><span class="si">{</span><span class="n">min_corr</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="c1"># Display rows for least similar users</span>
+<span class="c1"># print(&quot;\nRatings of Least Similar Users:&quot;)</span>
+<span class="c1"># print(df_users.loc[list(least_similar)])</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Most similar users: (&#39;Robert&#39;, &#39;Clara&#39;) with correlation 1.00
+Least similar users: (&#39;Dan&#39;, &#39;Robert&#39;) with correlation -0.97
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot ratings of the most similar users with movie names</span>
+<span class="n">user1</span><span class="p">,</span> <span class="n">user2</span> <span class="o">=</span> <span class="n">most_similar</span>
+<span class="n">common_items</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">users</span><span class="p">[</span><span class="n">user1</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span> <span class="o">&amp;</span> <span class="nb">set</span><span class="p">(</span><span class="n">users</span><span class="p">[</span><span class="n">user2</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+<span class="n">ratings1</span> <span class="o">=</span> <span class="p">[</span><span class="n">users</span><span class="p">[</span><span class="n">user1</span><span class="p">][</span><span class="n">item</span><span class="p">]</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">common_items</span><span class="p">]</span>
+<span class="n">ratings2</span> <span class="o">=</span> <span class="p">[</span><span class="n">users</span><span class="p">[</span><span class="n">user2</span><span class="p">][</span><span class="n">item</span><span class="p">]</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">common_items</span><span class="p">]</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">ratings1</span><span class="p">,</span> <span class="n">ratings2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">user1</span><span class="si">}</span><span class="s2"> vs </span><span class="si">{</span><span class="n">user2</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Annotate each point with the movie name</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">item</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">common_items</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="p">(</span><span class="n">ratings1</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">ratings2</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span> <span class="n">textcoords</span><span class="o">=</span><span class="s2">&quot;offset points&quot;</span><span class="p">,</span> <span class="n">xytext</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ratings1</span><span class="p">,</span> <span class="n">ratings2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Perfect Agreement Line&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Ratings Comparison: </span><span class="si">{</span><span class="n">user1</span><span class="si">}</span><span class="s2"> vs </span><span class="si">{</span><span class="n">user2</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">user1</span><span class="si">}</span><span class="s2">&#39;s Ratings&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">user2</span><span class="si">}</span><span class="s2">&#39;s Ratings&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">common_items</span> <span class="p">,</span> <span class="n">ratings1</span><span class="p">,</span> <span class="n">ratings2</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="_images/6be8d91f602ab3398a4e424284200838e2015063d143f614a8f7b9bf615c02b9.png" src="_images/6be8d91f602ab3398a4e424284200838e2015063d143f614a8f7b9bf615c02b9.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>({&#39;Blues Traveler&#39;,
+  &#39;Norah Jones&#39;,
+  &#39;Phoenix&#39;,
+  &#39;Slightly Stoopid&#39;,
+  &#39;The Strokes&#39;},
+ [3.0, 5.0, 1.0, 4.0, 2.0],
+ [4.5, 5.0, 4.0, 4.75, 4.25])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot ratings of the least similar users</span>
+<span class="n">user1</span><span class="p">,</span> <span class="n">user2</span> <span class="o">=</span> <span class="n">least_similar</span>
+<span class="n">common_items</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">users</span><span class="p">[</span><span class="n">user1</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span> <span class="o">&amp;</span> <span class="nb">set</span><span class="p">(</span><span class="n">users</span><span class="p">[</span><span class="n">user2</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+<span class="n">ratings1</span> <span class="o">=</span> <span class="p">[</span><span class="n">users</span><span class="p">[</span><span class="n">user1</span><span class="p">][</span><span class="n">item</span><span class="p">]</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">common_items</span><span class="p">]</span>
+<span class="n">ratings2</span> <span class="o">=</span> <span class="p">[</span><span class="n">users</span><span class="p">[</span><span class="n">user2</span><span class="p">][</span><span class="n">item</span><span class="p">]</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">common_items</span><span class="p">]</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">ratings1</span><span class="p">,</span> <span class="n">ratings2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">user1</span><span class="si">}</span><span class="s2"> vs </span><span class="si">{</span><span class="n">user2</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="c1"># Annotate each point with the movie name</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">item</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">common_items</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="p">(</span><span class="n">ratings1</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">ratings2</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span> <span class="n">textcoords</span><span class="o">=</span><span class="s2">&quot;offset points&quot;</span><span class="p">,</span> <span class="n">xytext</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
+
+<span class="c1"># plt.plot(ratings1, ratings1, color=&#39;red&#39;, linestyle=&#39;--&#39;, label=&quot;Perfect Agreement Line&quot;)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Ratings Comparison: </span><span class="si">{</span><span class="n">user1</span><span class="si">}</span><span class="s2"> vs </span><span class="si">{</span><span class="n">user2</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">user1</span><span class="si">}</span><span class="s2">&#39;s Ratings&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">user2</span><span class="si">}</span><span class="s2">&#39;s Ratings&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">common_items</span> <span class="p">,</span> <span class="n">ratings1</span><span class="p">,</span> <span class="n">ratings2</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="_images/f1fe6a5af27b1a42c1e9bc5cb83286d9641d7bc1439fc5441fd63527cd01fc17.png" src="_images/f1fe6a5af27b1a42c1e9bc5cb83286d9641d7bc1439fc5441fd63527cd01fc17.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>({&#39;Blues Traveler&#39;, &#39;Phoenix&#39;, &#39;Slightly Stoopid&#39;, &#39;The Strokes&#39;},
+ [4.5, 3.0, 3.0, 4.0],
+ [1.0, 5.0, 4.0, 2.0])
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">#</a></h2>
+<p>The covariance matrix is a fundamental tool in multivariate statistics. It summarizes the variance within each variable and the linear relationship between pairs of variables.</p>
+<ul class="simple">
+<li><p>It’s a square, symmetric matrix.</p></li>
+<li><p>Diagonal elements represent variances.</p></li>
+<li><p>Off-diagonal elements represent covariances.</p></li>
+<li><p>Its eigenvectors and eigenvalues reveal the principal directions and magnitudes of variation in the data, forming the basis of PCA.</p></li>
+<li><p>It can be easily computed using libraries like NumPy (<code class="docutils literal notranslate"><span class="pre">np.cov</span></code>).</p></li>
+</ul>
+<p>Understanding the covariance matrix is crucial for various data analysis techniques, including dimensionality reduction, feature engineering, and understanding the structure of multivariate datasets.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="01-What-Is-Machine-Learning.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">What Is Machine Learning?</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="03-MLE-intro.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Maximum Likelihood Estimation</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-covariance">1. What is Covariance?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-the-covariance-matrix">2. What is the Covariance Matrix?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#another-example-with-generated-data">3. Another example with generated data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calculating-the-covariance-matrix-using-numpy">4. Calculating the Covariance Matrix using NumPy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eigenvalues-and-eigenvectors-of-the-covariance-matrix">5. Eigenvalues and Eigenvectors of the Covariance Matrix</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizing-eigenvectors">6. Visualizing Eigenvectors</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#connection-to-principal-component-analysis-pca">7. Connection to Principal Component Analysis (PCA)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#manual-calculation-of-the-sample-covariance-matrix">8. Manual Calculation of the Sample Covariance Matrix</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matrix-based-calculation-of-the-covariance-matrix">Matrix-Based Calculation of the Covariance Matrix</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#connection-to-pca">Connection to PCA</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#correlation-matrix">9. Correlation Matrix</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-filtering-data-based-on-pearson-correlation">10. Example: Filtering Data Based on Pearson Correlation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Mahmood Amintoosi
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026. CC0 Licensed - Computer Science Dept., Ferdowsi University of Mashhad.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
