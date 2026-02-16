@@ -1,0 +1,45 @@
+# Book settings
+# Learn more at https://jupyterbook.org/customize/config.html
+
+title: Statistical Machine Learning
+author: Mahmood Amintoosi
+logo: img/fum-cs-logo.png
+copyright: "2026. CC0 Licensed - Computer Science Dept., Ferdowsi University of Mashhad"  # Copyright year to be placed in the footer
+
+# Patterns to skip when building the book. Can be glob-style (e.g. "*skip.ipynb")
+exclude_patterns            : [_build, Thumbs.db, .DS_Store, "**.ipynb_checkpoints"]
+# Auto-exclude files not in the toc
+only_build_toc_files        : true
+
+# Force re-execution of notebooks on each build.
+# See https://jupyterbook.org/content/execute.html
+execute:
+  execute_notebooks: off
+  # execute_notebooks: force
+
+# Define the name of the latex output file for PDF builds
+latex:
+  latex_engine: xelatex
+  latex_documents:
+    targetname: SML.tex
+
+# Add a bibtex file so that we can create citations
+bibtex_bibfiles:
+  - references.bib
+
+# Information about where the book exists on the web
+repository:
+  url: https://github.com/fum-cs/SML # Online location of your book
+  path_to_book: docs  # Optional path to your book, relative to the repository root
+  branch: main  # Which branch of the repository should be used when creating links (optional)
+
+# Add GitHub buttons to your book
+# See https://jupyterbook.org/customize/config.html#add-a-link-to-your-repository
+html:
+  use_issues_button: true
+  use_repository_button: true
+  favicon: img/fum-logo.ico
+  extra_navbar: ""
+  
+launch_buttons:
+  colab_url: "https://colab.research.google.com"

@@ -1,0 +1,23 @@
+# Table of contents
+
+format: jb-book
+root: intro
+chapters:
+- file: 01-What-Is-Machine-Learning
+- file: 02-Covariance-Matrix
+- file: 03-MLE-intro.md
+- file: 04-Mahalanobis-Distance
+- file: 05-Naive-Bayes
+- file: 06-Bayesian-Decision-Theory
+- file: 07-Linear-Models
+- file: 08-Feature-Map
+- file: 09-Kernel-Trick
+- file: 10-Kernel-Regression
+- file: 11-Gaussian-Mixtures-part1
+- file: 12-Gaussian-Mixtures-part2      
+- file: 13-Hidden-Markov-Models
+- file: 14-Principal-Component-Analysis-part1
+- file: 15-Principal-Component-Analysis-part2
+- file: 13-Kernel-Density-Estimation
+- file: App-Mathematics-and-Machine-Learning
+- file: Appendix-BDT-Discrete-Features
