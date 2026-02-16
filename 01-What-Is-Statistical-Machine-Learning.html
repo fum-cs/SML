@@ -1,0 +1,694 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>What Is Statistical Machine Learning? &#8212; Statistical Machine Learning</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '01-What-Is-Statistical-Machine-Learning';</script>
+    <link rel="icon" href="_static/fum-logo.ico"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Understanding the Covariance Matrix" href="02-Covariance-Matrix.html" />
+    <link rel="prev" title="Welcome to Statistical Machine Learning Course" href="intro.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/fum-cs-logo.png" class="logo__image only-light" alt="Statistical Machine Learning - Home"/>
+    <script>document.write(`<img src="_static/fum-cs-logo.png" class="logo__image only-dark" alt="Statistical Machine Learning - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Welcome to Statistical Machine Learning Course
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">What Is Statistical Machine Learning?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02-Covariance-Matrix.html">Understanding the Covariance Matrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03-MLE-intro.html">Maximum Likelihood Estimation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04-Mahalanobis-Distance.html">Mahalanobis Distance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05-Naive-Bayes.html">Naive Bayes Classification</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="06-Bayesian-Decision-Theory.html">Bayesian Decision Theory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07-Linear-Models.html">Linear models</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="08-Feature-Map.html">Feature Maps: Bridging to Kernel Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09-Kernel-Trick.html">The Kernel Method (Kernel Trick)</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="10-Kernel-Regression.html">Kernel Regression: From Linear to Nonlinear Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11-Gaussian-Mixtures-part1.html">Gaussian Mixture Models, Part 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12-Gaussian-Mixtures-part2.html">Gaussian Mixture Model, Part 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13-Hidden-Markov-Models.html">Hidden Markov Models</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="14-Principal-Component-Analysis-part1.html">Principal Component Analysis, Part 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15-Principal-Component-Analysis-part2.html">Principal Component Analysis, Part 2</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="App-Mathematics-and-Machine-Learning.html">Appendix: Mathematics and Machine Learning</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="Appendix-BDT-Discrete-Features.html">Appendix: Bayes Decision Theory — Discrete Features</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/fum-cs/SML" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/fum-cs/SML/issues/new?title=Issue%20on%20page%20%2F01-What-Is-Statistical-Machine-Learning.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/01-What-Is-Statistical-Machine-Learning.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>What Is Statistical Machine Learning?</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#from-algorithms-to-models-a-probabilistic-perspective">From Algorithms to Models: A Probabilistic Perspective</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-core-pillars-of-statistical-machine-learning">The Core Pillars of Statistical Machine Learning</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#probabilistic-foundations-and-parameter-estimation">1. Probabilistic Foundations and Parameter Estimation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesian-learning-and-decision-theory">2. Bayesian Learning and Decision Theory</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-and-nonlinear-modeling">3. Linear and Nonlinear Modeling</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generative-models-for-unsupervised-learning">4. Generative Models for Unsupervised Learning</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-and-the-road-ahead">Summary and the Road Ahead</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#some-of-my-previous-machine-learning-papers">Some of my previous machine learning papers:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="what-is-statistical-machine-learning">
+<h1>What Is Statistical Machine Learning?<a class="headerlink" href="#what-is-statistical-machine-learning" title="Link to this heading">#</a></h1>
+<p>This course, “Statistical Machine Learning” (SML), builds directly upon the foundational knowledge you have gained in introductory machine learning courses such as <a class="reference external" href="https://fum-cs.github.io/fds/"><strong>FDS</strong></a> and <a class="reference external" href="https://fum-cs.github.io/a4ds/"><strong>A4DS</strong></a>. While those courses introduced you to the landscape of machine learning algorithms and their application, this course takes a deeper dive into the <em>probabilistic foundations and statistical principles</em> that underpin them.</p>
+<p>We will move beyond viewing machine learning as a mere set of tools for prediction and start treating it as a framework for <strong>statistical inference</strong> and <strong>data modeling</strong>. Our goal is to understand not just <em>how</em> algorithms work, but <em>why</em> they work, and under what assumptions they are optimal.</p>
+<section id="from-algorithms-to-models-a-probabilistic-perspective">
+<h2>From Algorithms to Models: A Probabilistic Perspective<a class="headerlink" href="#from-algorithms-to-models-a-probabilistic-perspective" title="Link to this heading">#</a></h2>
+<p>In your previous courses, you learned to categorize machine learning problems into supervised (classification, regression) and unsupervised (clustering, dimensionality reduction) learning. You learned that “learning” involves adjusting tunable parameters to fit observed data. In this course, we will formalize this process through the lens of probability theory and mathematical statistics.</p>
+<p>We will reframe these problems as exercises in statistical modeling. For instance:</p>
+<ul class="simple">
+<li><p><strong>Supervised Learning</strong> can be seen as modeling the conditional probability distribution of the labels given the features, <span class="math notranslate nohighlight">\(P(\text{label} | \text{features})\)</span>.</p></li>
+<li><p><strong>Unsupervised Learning</strong> can be seen as modeling the probability distribution of the features themselves, <span class="math notranslate nohighlight">\(P(\text{features})\)</span>.</p></li>
+</ul>
+<p>This probabilistic view provides a unified and principled way to approach model fitting, evaluation, and interpretation. It allows us to quantify uncertainty, make optimal decisions, and understand the fundamental limits of learning from data.</p>
+</section>
+<section id="the-core-pillars-of-statistical-machine-learning">
+<h2>The Core Pillars of Statistical Machine Learning<a class="headerlink" href="#the-core-pillars-of-statistical-machine-learning" title="Link to this heading">#</a></h2>
+<p>This course is structured around the core concepts that form the bedrock of statistical machine learning. We will explore these topics in depth, building a coherent mathematical framework.</p>
+<section id="probabilistic-foundations-and-parameter-estimation">
+<h3>1. Probabilistic Foundations and Parameter Estimation<a class="headerlink" href="#probabilistic-foundations-and-parameter-estimation" title="Link to this heading">#</a></h3>
+<p>Before we can build complex models, we must establish the fundamental tools for describing and understanding data from a statistical perspective.</p>
+<ul class="simple">
+<li><p><strong>Understanding the Covariance Matrix:</strong> We will move beyond a simple definition and explore the covariance matrix as a geometric transformation that describes the shape, scale, and orientation of data. This understanding is crucial for methods like Mahalanobis distance, Principal Component Analysis (PCA), and Gaussian Mixture Models (GMMs).</p></li>
+<li><p><strong>Maximum Likelihood Estimation (MLE):</strong> This is perhaps the most fundamental concept in statistical learning. We will formally introduce MLE as a general principle for estimating the parameters of a probability distribution given observed data. You will see how many familiar algorithms, from linear regression to Naive Bayes, can be derived from this single, powerful idea.</p></li>
+<li><p><strong>Mahalanobis Distance:</strong> Building on the covariance matrix, we will learn about the Mahalanobis distance, a distance metric that accounts for the correlations and scales of the data. It is a key component in many classification and clustering algorithms and provides a more meaningful measure of similarity than Euclidean distance in many real-world scenarios.</p></li>
+</ul>
+</section>
+<section id="bayesian-learning-and-decision-theory">
+<h3>2. Bayesian Learning and Decision Theory<a class="headerlink" href="#bayesian-learning-and-decision-theory" title="Link to this heading">#</a></h3>
+<p>The Bayesian paradigm offers a powerful alternative to the frequentist approach (like MLE) by incorporating prior beliefs and quantifying uncertainty in a principled way.</p>
+<ul class="simple">
+<li><p><strong>Bayesian Classification:</strong> We will move from the simple, often Gaussian-based Naive Bayes classifier to a full Bayesian treatment. This involves specifying prior distributions over model parameters and updating these beliefs with data to obtain posterior distributions.</p></li>
+<li><p><strong>Bayesian Decision Theory:</strong> This provides a formal framework for making optimal decisions in the presence of uncertainty. We will learn how to use probabilistic models (like posterior distributions) and a loss function to make decisions that minimize expected risk. This connects probabilistic modeling directly to practical action.</p></li>
+</ul>
+</section>
+<section id="linear-and-nonlinear-modeling">
+<h3>3. Linear and Nonlinear Modeling<a class="headerlink" href="#linear-and-nonlinear-modeling" title="Link to this heading">#</a></h3>
+<p>We will revisit linear models, not just as algorithms, but as interpretable statistical models with well-understood properties. From there, we will explore the elegant mechanism of the kernel trick to extend these linear models to handle complex, nonlinear relationships.</p>
+<ul class="simple">
+<li><p><strong>Linear Models for Regression and Classification:</strong> We will study models like Linear Regression and Logistic Regression in detail, examining their assumptions, derivations (often via MLE), and extensions.</p></li>
+<li><p><strong>Orthogonal Matching Pursuit (OMP):</strong> As a bridge to more advanced topics, we will explore OMP as a method for sparse recovery. This connects linear modeling to the growing field of sparse optimization, which is vital for high-dimensional data.</p></li>
+<li><p><strong>The Kernel Method (Kernel Trick):</strong> This is a cornerstone of modern machine learning. We will dissect the kernel trick, understanding how it allows us to implicitly map data into a high-dimensional feature space and apply linear models without ever computing the coordinates of the data in that space. This will provide the foundation for understanding kernelized versions of algorithms like Ridge Regression, PCA, and clustering.</p></li>
+<li><p><strong>Kernel K-means Clustering &amp; Kernel Regression:</strong> We will apply the kernel trick to concrete examples, demonstrating how it can transform linear algorithms into powerful nonlinear ones, such as Kernel Regression, which can model complex functions.</p></li>
+</ul>
+</section>
+<section id="generative-models-for-unsupervised-learning">
+<h3>4. Generative Models for Unsupervised Learning<a class="headerlink" href="#generative-models-for-unsupervised-learning" title="Link to this heading">#</a></h3>
+<p>We will delve into sophisticated models for uncovering hidden structure in unlabeled data.</p>
+<ul class="simple">
+<li><p><strong>Gaussian Mixture Models (GMMs):</strong> We will dedicate two parts to this important topic. GMMs are a powerful probabilistic clustering method that models data as a mixture of several Gaussian distributions. We will learn about the Expectation-Maximization (EM) algorithm, a general technique for parameter estimation in models with latent variables, and see how it is used to fit GMMs.</p></li>
+<li><p><strong>Principal Component Analysis (PCA):</strong> We will cover PCA in two parts, developing a deep understanding of it from multiple perspectives. We will derive PCA as:</p>
+<ol class="arabic simple">
+<li><p>Finding the directions of maximum variance in the data.</p></li>
+<li><p>Finding the low-dimensional projection that minimizes reconstruction error.
+We will explore its connection to the covariance matrix and the singular value decomposition (SVD), solidifying it as a fundamental tool for dimensionality reduction and feature extraction.</p></li>
+</ol>
+</li>
+</ul>
+</section>
+<section id="summary-and-the-road-ahead">
+<h3>Summary and the Road Ahead<a class="headerlink" href="#summary-and-the-road-ahead" title="Link to this heading">#</a></h3>
+<p>In summary, “Statistical Machine Learning” is not just a collection of new algorithms. It is a shift in perspective. It is about building a rigorous mathematical and probabilistic foundation that allows you to:</p>
+<ul class="simple">
+<li><p><strong>Understand</strong> the principles behind a wide array of machine learning methods.</p></li>
+<li><p><strong>Derive</strong> new algorithms from first principles.</p></li>
+<li><p><strong>Quantify</strong> the uncertainty in your model’s predictions.</p></li>
+<li><p><strong>Make optimal decisions</strong> based on data.</p></li>
+<li><p><strong>Critically evaluate</strong> the assumptions and limitations of your models.</p></li>
+</ul>
+<p>The concepts covered in this introductory chapter—the covariance matrix, MLE, Mahalanobis distance—are the very building blocks for everything that follows. Mastering them is the first step on the path to becoming a thoughtful and effective practitioner of statistical machine learning.</p>
+<section id="some-of-my-previous-machine-learning-papers">
+<h4>Some of my previous machine learning papers:<a class="headerlink" href="#some-of-my-previous-machine-learning-papers" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Classification:</p>
+<ul>
+<li><p>Click Rate Prediction <span id="id1">[<a class="reference internal" href="intro.html#id32" title="Mohammadreza Fatehinia, Mahmood Amintoosi, and Seyed Masih Sajadi. Click rate prediction in online advertising industry with real data and its challenges. In 3rd Specialized Seminar on Data Science and Its Applications, 26. Ferdowsi University of Mashhad, 2024. پیش‌بینی نرخ کلیک در صنعت تبلیغات آنلاین با داده‌های واقعی و چالش‌های آن.">FAS24</a>]</span></p></li>
+<li><p>Anti-Cancer Plant Recommendation <span id="id2">[<a class="reference internal" href="intro.html#id38" title="Mahmood Amintoosi and Eisa Kohan-Baghkheirati. Graph feature selection for anti-cancer plant recommendation. Control and Optimization in Applied Mathematics, 8(2):1-15, 2023.">AKB23</a>]</span></p></li>
+<li><p>Fully Connected to Fully Convolutional <span id="id3">[<a class="reference internal" href="intro.html#id41" title="Mahmood Amintoosi. Fully connected to fully convolutional: road to yesterday. Soft Computing and Information Technology, 11(1):60-72, 2022. تمام متصل به تمام پیچشی: پلی به گذشته.">Ami22a</a>]</span></p></li>
+<li><p>Eigenbackground <span id="id4">[<a class="reference internal" href="intro.html#id42" title="Mahmood Amintoosi and Farzam Farbiz. Eigenbackground revisited: can we model the background with eigenvectors? Journal of Mathematical Imaging and Vision, 64(5):463-477, 2022.">AF22</a>]</span></p></li>
+<li><p>Facial Recognition <span id="id5">[<a class="reference internal" href="intro.html#id110" title="H. Sadoghi Yazdi, M. Amintoosi, and M. Fathy. Facial expression recognition in video using QIM and ITMI. In 4th Conference on Machine Vision and Image Processing. Mashhad, Iran, February 2006. Ferdowsi University of Mashhad. شناسایی حالت چهره با استفاده از پایگاه دادهٔ مكانی- زمانی QIM و ITMI.">YAF06</a>]</span></p></li>
+<li><p>COVID 19 <span id="id6">[<a class="reference internal" href="intro.html#id46" title="Mahmood Amintoosi. Combining regularization and optimal brain damage methods for reducing a deep learning model size. Machine Vision and Image Processing, 9(1):31–45, 2021. ترکیب روش منظم‌سازی تُنُک و آسیب مغزی بهینه‌ در کوچک‌سازی یک مدل یادگیری عمیق.">Ami21a</a>]</span></p></li>
+<li><p>Social Networks <span id="id7">[<a class="reference internal" href="intro.html#id47" title="Mahmood Amintoosi. Overlapping clusters in cluster graph convolutional networks. Journal of Algorithms and Computation, 53(2):33–45, 2021.">Ami21b</a>]</span></p></li>
+<li><p>Classification of Paintings <span id="id8">[<a class="reference internal" href="intro.html#id48" title="Mahmood Amintoosi. The application of taylor expansion in reducing the size of convolutional neural networks for classifying impressionism and miniature style paintings. Mathematics and Society, 5(1):1–16, 2020. کاربرد بسط تیلور در کاهش حجم شبکه های عصبی پیچشی برای طبقه بندی نقاشی های سبک امپرسیونیسم و مینیاتور.">Ami20</a>]</span></p></li>
+</ul>
+</li>
+<li><p>Regression:</p>
+<ul>
+<li><p>Modeling dust particles <span id="id9">[<a class="reference internal" href="intro.html#id29" title="Ghasem Zolfaghari, Sara Nezamparvar, and Mahmood Amintoosi. Modeling dust particles from stack with artificial neural network and studying electrofilter performance: a case study of zaveh cement factory. Journal of Natural Environment, ():-, 2025. مدلسازی ذرات غبار خروجی از دود کش با شبکه عصبی مصنوعی و مطالعه عملکرد الکتروفیلتر: مطالعه موردی کارخانه سیمان زاوه. URL: https://jne.ut.ac.ir/article_100076.html, doi:10.22059/jne.2025.380898.2713.">ZNA25</a>]</span></p></li>
+<li><p>Housing Price Prediction <span id="id10">[<a class="reference internal" href="intro.html#id30" title="Mahmood Amintoosi. Improving housing price prediction with spatial information representation based on random walk. In 3rd Specialized Seminar on Data Science and Its Applications, 20. Ferdowsi University of Mashhad, 2024. بهبود پیش‌بینی قیمت مسکن با بازنمایی اطلاعات مکانی مبتنی بر قدم‌زنی تصادفی.">Ami24a</a>]</span></p></li>
+<li><p>Traffic prediction <span id="id11">[<a class="reference internal" href="intro.html#id36" title="Mahmood Amintoosi. Traffic prediction using graph convolutional networks based on learning. In 55th Annual Iranian Mathematics Conference, 145-148. Ferdowsi University of Mashhad, 2024. پیش‌بینی ترافیک با شبکه‌های پیچشی گراف مبتنی بر یادگیری.">Ami24b</a>, <a class="reference internal" href="intro.html#id33" title="Hoda Mehrabagherpour, Mahmood Amintoosi, and Mohammad Arashi. Urban traffic prediction using graph convolutional networks. In 3rd Specialized Seminar on Data Science and Its Applications, 25. Ferdowsi University of Mashhad, 2024. پیش‌بینی ترافیک شهری با بهره‌گیری از شبکه‌های پیچشی گراف.">MAA24</a>]</span></p></li>
+<li><p>Sparse Super Resolution <span id="id12">[<a class="reference internal" href="intro.html#id43" title="Mina Mortazavi, Morteza Gachpazan, Mahmood Amintoosi, and Soheil Salashour. Fractional derivative approach to sparse super resolution. The Visual Computer, 39(7):3011-3028, Jul 2023.">MGAS23</a>]</span></p></li>
+<li><p>Prediction of CO and PM10 <span id="id13">[<a class="reference internal" href="intro.html#id45" title="R. Farhadi, M. Hadavifar, M. Moeinaddini, and M. Amintoosi. Prediction of co and pm10 in cold and warm seasons and survey of the effect of instability indices on contaminants using artificial neural network: a case study in tehran city. Iranian (Iranica) Journal of Energy &amp; Environment, 13(1):71-78, 2022. doi:10.5829/ijee.2022.13.01.08.">FHMA22</a>]</span></p></li>
+<li><p>Prediction of the Air Quality <span id="id14">[<a class="reference internal" href="intro.html#id51" title="Razieh Farhadi, Mojtaba Hadavifar, Mazaher Moeinaddini, and Mahmood Amintoosi. Prediction of the air quality by artificial neural network using instability indices in the city of tehran-iran. AUT Journal of Civil Engineering, 4(4):-, 2020. doi:10.22060/ajce.2019.17018.5609.">FHMA20</a>]</span></p></li>
+</ul>
+</li>
+<li><p>Classification &amp; Regression:</p>
+<ul>
+<li><p>Fire detection <span id="id15">[<a class="reference internal" href="intro.html#id44" title="Mahmood Amintoosi. Style transfer for data augmentation in convolutional neural networks applied to fire detection. Computational Intelligence in Electrical Engineering, 13(4):97-114, 2022. انتقال سبک برای افزایش داده‌های آموزشی شبکه‌های کانولوشنی در شناسایی شعلۀ آتش. doi:10.22108/isee.2021.124044.1490.">Ami22b</a>]</span></p></li>
+<li><p>Predicting Molecular Properties <span id="id16">[<a class="reference internal" href="intro.html#id34" title="Amir Jologir Baghestan, Mahmood Amintoosi, and Mohammad Arashi. Graph neural networks for predicting molecular properties. In 3rd Specialized Seminar on Data Science and Its Applications, 37. Ferdowsi University of Mashhad, 2024. شبکه‌های عصبی گراف در پیش‌گویی خواص مولکولی.">BAA24</a>]</span></p></li>
+</ul>
+</li>
+<li><p>Semi-supervised learning:</p>
+<ul>
+<li><p>Text extraction <span id="id17">[<a class="reference internal" href="intro.html#id31" title="Mehdi Nemati and Mahmood Amintoosi. Enhancing text extraction from scanned medical documents using large language models. In Third Seminar on Data Science and its Applications, 58. Ferdowsi University of Mashhad, 2024.">NA24</a>]</span></p></li>
+<li><p>Vessel Segmentation <span id="id18">[<a class="reference internal" href="intro.html#id72" title="Mahmood Amintoosi and Farzaneh Rashidabadi. Enhancement of heart coronary vessel segmentation using semi-supervised learning. In 8th International Conference of the Iranian Operations Research Society. Ferdowsi University of Mashhad, 2015. آشکارسازی بهتر شریان‌های کرونری قلب با یاد‌گیری نیمه‌نظارتی‌خودکار.">AR15</a>]</span></p></li>
+</ul>
+</li>
+<li><p>Un-supervised learning:</p>
+<ul>
+<li><p>DeepWalk for Student Sectioning <span id="id19">[<a class="reference internal" href="intro.html#id28" title="Mahmood Amintoosi. Deepwalk for student sectioning. Data &amp; Knowledge Engineering, xx(yy):-, 202x.">Ami2x</a>]</span></p></li>
+<li><p>Overlapping Clusters <span id="id20">[<a class="reference internal" href="intro.html#id47" title="Mahmood Amintoosi. Overlapping clusters in cluster graph convolutional networks. Journal of Algorithms and Computation, 53(2):33–45, 2021.">Ami21b</a>]</span></p></li>
+<li><p>Min-Cut of Weighted Graphs <span id="id21">[<a class="reference internal" href="intro.html#id54" title="Fatemeh Sadat Hosseini and Mahmood Amintoosi. Inefficiency of the karger's algorithm in min-cut of weighted graphs. In 3rd Seminar on Control and Optimization, 21-24. Hakim Sabzevari University, 2019. بررسی نا کارآمدی الگوریتم کارگر در برش کمینه گرافهای وزن دار.">HA19</a>]</span></p></li>
+<li><p>Spectral Clustering <span id="id22">[<a class="reference internal" href="intro.html#id62" title="Mehdi Nemati, Mahmood Amintoosi, and Mehdi Zaferanieh. Conjugate gradient initialization using genetic algorithm in spectral clustering. In 6th Seminar on Harmonic Analysis and Applications. Hakim Sabzevari University, 2018. مقدار دهی اولیه گرادیان مزدوج در خوشه بندی طیفی با الگوریتم ژنتیک.">NAZ18</a>]</span></p></li>
+<li><p>Retina Vessel Segmentation <span id="id23">[<a class="reference internal" href="intro.html#id67" title="Mahmood Amintoosi. Retina vessel segmentation using knn matting. In 3rd International Conference on Pattern Recognition and Image Analysis of Iran. Shahrekord University, 2017. دقیق‌تر کردن استخراج رگ‌های خونی شبکیه چشم با روش درهم‌تنیدگی تصویر‌ مبتنی بر نزدیک‌ترین همسایگی. URL: https://www.dropbox.com/s/klkoagz3m3dc98t/1396-IPRIA2017-Matting.pdf?dl=0.">Ami17</a>]</span></p></li>
+<li><p>Extreme Learning Machine <span id="id24">[<a class="reference internal" href="intro.html#id69" title="Mahmood Amintoosi, Sakineh Khorsandi, and Mehdi Zaferanieh. Elm evaluation for image segmentation. In 3rd International Conference on Pattern Recognition and Image Analysis of Iran. Shahrekord University, 2017. ارزیابی عملکرد ماشین یادگیر نهایی در قطعه‌بندی تصاویر.">AKZ17</a>]</span></p></li>
+<li><p>MRI Images Segmentation <span id="id25">[<a class="reference internal" href="intro.html#id70" title="Mahmood Amintoosi and Tayyebe Fayyaz. Genetic algorithms for spectral clustering parameter estimation in mri images. In 8th International Conference of the Iranian Operations Research Society. Ferdowsi University of Mashhad, 2015. محاسبه پارامترهای خوشه‌بندی طیفی در تصاویر MRI با الگوریتم ژنتیک.">AF15</a>]</span></p></li>
+<li><p>Graph Minimum Cut Using SA &amp; TS <span id="id26">[<a class="reference internal" href="intro.html#id75" title="Fatemeh Sadat Hosseini and Mahmood Amintoosi. Graph minimum cut using simulated annealing. In 7th International Conference of the Iranian Operations Research Society. Semnan, 2014. برش کمینه‌ی گراف با شبیه‌سازی تبریدی.">HA14a</a>, <a class="reference internal" href="intro.html#id76" title="Fatemeh Sadat Hosseini and Mahmood Amintoosi. Graph minimum cut using tabu search. In 7th International Conference of the Iranian Operations Research Society. Semnan, 2014. برش کمینه‌ی گراف باجستجوی ممنوعه.">HA14b</a>]</span></p></li>
+<li><p>Pulse-Coupled Neural Networks <span id="id27">[<a class="reference internal" href="intro.html#id78" title="Mehdi Moghimi and Mahmood Amintoosi. Mri image segmentation using pulse-coupled neural networks. In 5th National Conference on Electrical and Electronics Engineering. Gonabad, 2013. تشخیص ناحیه چربی در تصاویر MRI با استفاده از شبكه عصبی با كوپلاژ پالسی.">MA13</a>]</span></p></li>
+<li><p>Segmentation of Medical Images <span id="id28">[<a class="reference internal" href="intro.html#id82" title="Mehdi Sheida, Hessam Ekhtiyar, and Mahmood Amintoosi. A unified algorithm for segmentation of various medical images. In 2nd National Conference on Soft Computing and Information Technology. Mahshahr, 2012. الگوریتمی واحد برای ناحیه بندی انواع تصاویر پزشکی.">SEA12</a>]</span></p></li>
+<li><p>Fish School Clustering <span id="id29">[<a class="reference internal" href="intro.html#id97" title="M. Amintoosi, M. Fathy, N. Mozayani, and A.T. Rahmani. A fish school clustering algorithm: applied to student sectioning problem. Dynamics of Continuous Discrete &amp; Impulse Systems, series B: Applications and Algorithms, 2:696-699, December 2007. Post Proceeding of LSMS2007, Life System Modeling and Simulation 2007, China.">AFMR07</a>]</span></p></li>
+<li><p>Fuzzy Student Sectioning <span id="id30">[<a class="reference internal" href="intro.html#id102" title="M. Amintoosi and J. Haddadnnia. Feature selection in a fuzzy student sectioning algorithm. Lecture Notes in Computer Science, 3616:147–160, 2005. Indexed by DBLP.">AH05</a>, <a class="reference internal" href="intro.html#id104" title="M. Amintoosi, H. Sadoghi Yazdi, and J. Haddadnnia. Fuzzy student sectioning. In PATAT04: Practice and Theory of Automated Timetabling, 421-424. USA, Aug 2004.">AYH04</a>]</span></p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="intro.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Welcome to Statistical Machine Learning Course</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="02-Covariance-Matrix.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Understanding the Covariance Matrix</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#from-algorithms-to-models-a-probabilistic-perspective">From Algorithms to Models: A Probabilistic Perspective</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-core-pillars-of-statistical-machine-learning">The Core Pillars of Statistical Machine Learning</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#probabilistic-foundations-and-parameter-estimation">1. Probabilistic Foundations and Parameter Estimation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesian-learning-and-decision-theory">2. Bayesian Learning and Decision Theory</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-and-nonlinear-modeling">3. Linear and Nonlinear Modeling</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generative-models-for-unsupervised-learning">4. Generative Models for Unsupervised Learning</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-and-the-road-ahead">Summary and the Road Ahead</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#some-of-my-previous-machine-learning-papers">Some of my previous machine learning papers:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Mahmood Amintoosi
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026. CC0 Licensed - Computer Science Dept., Ferdowsi University of Mashhad.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -63,7 +63,7 @@
     <link rel="icon" href="_static/fum-logo.ico"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Principal Component Analysis, Part 1" href="14-Principal-Component-Analysis-part1.html" />
+    <link rel="next" title="Hidden Markov Models" href="13-Hidden-Markov-Models.html" />
     <link rel="prev" title="Gaussian Mixture Models, Part 1" href="11-Gaussian-Mixtures-part1.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -183,7 +183,7 @@
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="01-What-Is-Machine-Learning.html">What Is Machine Learning?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01-What-Is-Statistical-Machine-Learning.html">What Is Statistical Machine Learning?</a></li>
 <li class="toctree-l1"><a class="reference internal" href="02-Covariance-Matrix.html">Understanding the Covariance Matrix</a></li>
 <li class="toctree-l1"><a class="reference internal" href="03-MLE-intro.html">Maximum Likelihood Estimation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="04-Mahalanobis-Distance.html">Mahalanobis Distance</a></li>
@@ -197,11 +197,15 @@
 
 
 
+<li class="toctree-l1"><a class="reference internal" href="08-Feature-Map.html">Feature Maps: Bridging to Kernel Methods</a></li>
 <li class="toctree-l1"><a class="reference internal" href="09-Kernel-Trick.html">The Kernel Method (Kernel Trick)</a></li>
 
 <li class="toctree-l1"><a class="reference internal" href="10-Kernel-Regression.html">Kernel Regression: From Linear to Nonlinear Modeling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="11-Gaussian-Mixtures-part1.html">Gaussian Mixture Models, Part 1</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Gaussian Mixture Model, Part 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13-Hidden-Markov-Models.html">Hidden Markov Models</a></li>
+
+
 <li class="toctree-l1"><a class="reference internal" href="14-Principal-Component-Analysis-part1.html">Principal Component Analysis, Part 1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="15-Principal-Component-Analysis-part2.html">Principal Component Analysis, Part 2</a></li>
 
@@ -479,7 +483,7 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="gaussian-mixture-model-part-2">
 <h1>Gaussian Mixture Model, Part 2<a class="headerlink" href="#gaussian-mixture-model-part-2" title="Link to this heading">#</a></h1>
-<p>The contents of this section are derived from Chapter 13 of <em>Data Mining and Machine Learning</em> by Mohammed J. Zaki and Wagner Meira Jr. (2020) <span id="id1">[<a class="reference internal" href="intro.html#id7" title="M.J. Zaki, W. Meira, and W. Meira. Data Mining and Machine Learning: Fundamental Concepts and Algorithms. Cambridge University Press, 2020. ISBN 9781108473989.">ZMM20</a>]</span>.</p>
+<p>The contents of this section are derived from Chapter 13 of <em>Data Mining and Machine Learning</em> by Mohammed J. Zaki and Wagner Meira Jr. (2020) <span id="id1">[<a class="reference internal" href="intro.html#id12" title="M.J. Zaki, W. Meira, and W. Meira. Data Mining and Machine Learning: Fundamental Concepts and Algorithms. Cambridge University Press, 2020. ISBN 9781108473989.">ZMM20</a>]</span>.</p>
 <section id="k-means-algorithm-review">
 <h2>K-means Algorithm: Review<a class="headerlink" href="#k-means-algorithm-review" title="Link to this heading">#</a></h2>
 <p>The <em>sum of squared errors</em> scoring function is defined as</p>
@@ -773,11 +777,11 @@ P(C_i | \mathbf{x}_{j}) =
       </div>
     </a>
     <a class="right-next"
-       href="14-Principal-Component-Analysis-part1.html"
+       href="13-Hidden-Markov-Models.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Principal Component Analysis, Part 1</p>
+        <p class="prev-next-title">Hidden Markov Models</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

@@ -21,13 +21,15 @@ You can listen to it here (In Persian):
 
 # Course Resources for Statistical Machine Learning
 
-- [Python Data Science Handbook by Jake VanderPlas](https://jakevdp.github.io/PythonDataScienceHandbook/): This website contains the full text of the Python Data Science Handbook by Jake VanderPlas; the content is available on GitHub in the form of Jupyter notebooks, which is the main source of this course materials.
+- [Pattern Classification](http://www.wiley.com/WileyCDA/WileyTitle/productCd-0471056693.html), by Richard O. Duda, Peter E. Hart, David G. Stork {cite}`Duda2000`
 
-- [Pattern Classification by Richard O. Duda, Peter E. Hart, David G. Stork](http://www.wiley.com/WileyCDA/WileyTitle/productCd-0471056693.html)
+- [The Elements of Statistical Learning: Data Mining, Inference, and Prediction ](https://hastie.su.domains/ElemStatLearn/), by Trevor Hastie, Robert Tibshirani, and Jerome Friedman {cite}`ESLII_print12`
 
-- [The Elements of Statistical Learning: Data Mining, Inference, and Prediction by Trevor Hastie, Robert Tibshirani, and Jerome Friedman](https://hastie.su.domains/ElemStatLearn/)
+- [Pattern Recognition and Machine Learning](https://www.rasa-ai.com/pattern-recognition-and-machine-learning-bishop/),  by Christopher M. Bishop {cite}`bishop2016pattern`
 
-- [Pattern Recognition and Machine Learning by Christopher M. Bishop](https://www.rasa-ai.com/pattern-recognition-and-machine-learning-bishop/)
+- [Machine Learning: A Bayesian and Optimization Perspective](https://www.google.com/books/edition/Machine_Learning/l-nEDwAAQBAJ?hl=en), by Sergios Theodoridis {cite}`theodoridis2020machine`
+
+- [Python Data Science Handbook by Jake VanderPlas](https://jakevdp.github.io/PythonDataScienceHandbook/): This website contains the full text of the Python Data Science Handbook by Jake VanderPlas; the content is available on GitHub in the form of Jupyter notebooks.
 
 <!-- - [FUM Drive for DM course](https://fumdrive.um.ac.ir/index.php/s/pkD6FsZ5nyJiHY7) -->
 

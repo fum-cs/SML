@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -183,7 +183,7 @@
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="01-What-Is-Machine-Learning.html">What Is Machine Learning?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01-What-Is-Statistical-Machine-Learning.html">What Is Statistical Machine Learning?</a></li>
 <li class="toctree-l1"><a class="reference internal" href="02-Covariance-Matrix.html">Understanding the Covariance Matrix</a></li>
 <li class="toctree-l1"><a class="reference internal" href="03-MLE-intro.html">Maximum Likelihood Estimation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="04-Mahalanobis-Distance.html">Mahalanobis Distance</a></li>
@@ -197,11 +197,15 @@
 
 
 
+<li class="toctree-l1"><a class="reference internal" href="08-Feature-Map.html">Feature Maps: Bridging to Kernel Methods</a></li>
 <li class="toctree-l1"><a class="reference internal" href="09-Kernel-Trick.html">The Kernel Method (Kernel Trick)</a></li>
 
 <li class="toctree-l1"><a class="reference internal" href="10-Kernel-Regression.html">Kernel Regression: From Linear to Nonlinear Modeling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="11-Gaussian-Mixtures-part1.html">Gaussian Mixture Models, Part 1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="12-Gaussian-Mixtures-part2.html">Gaussian Mixture Model, Part 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13-Hidden-Markov-Models.html">Hidden Markov Models</a></li>
+
+
 <li class="toctree-l1"><a class="reference internal" href="14-Principal-Component-Analysis-part1.html">Principal Component Analysis, Part 1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="15-Principal-Component-Analysis-part2.html">Principal Component Analysis, Part 2</a></li>
 
@@ -484,7 +488,7 @@ document.write(`
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="sparse-optimization-theory-and-applications">
 <h1>Sparse Optimization: Theory and Applications<a class="headerlink" href="#sparse-optimization-theory-and-applications" title="Link to this heading">#</a></h1>
-<p>Sparse optimization is a fundamental paradigm in mathematical modeling that seeks solutions with few non-zero elements, often formalized through ℓ₁-norm regularization or non-convex penalties. This framework is grounded in the <strong>Compressed Sensing (CS)</strong> theory <span id="id1">[<a class="reference internal" href="intro.html#id2" title="David L. Donoho. Compressed sensing. IEEE Transactions on Information Theory, 52(4):1289–1306, 2006. doi:10.1109/TIT.2006.871582.">Don06</a>]</span>, which guarantees exact signal recovery from sub-Nyquist measurements if the signal is sparse in some basis. Key applications include:</p>
+<p>Sparse optimization is a fundamental paradigm in mathematical modeling that seeks solutions with few non-zero elements, often formalized through ℓ₁-norm regularization or non-convex penalties. This framework is grounded in the <strong>Compressed Sensing (CS)</strong> theory <span id="id1">[<a class="reference internal" href="intro.html#id6" title="David L. Donoho. Compressed sensing. IEEE Transactions on Information Theory, 52(4):1289–1306, 2006. doi:10.1109/TIT.2006.871582.">Don06</a>]</span>, which guarantees exact signal recovery from sub-Nyquist measurements if the signal is sparse in some basis. Key applications include:</p>
 <ol class="arabic simple">
 <li><p><strong>Medical Imaging</strong>: CS enables faster MRI scans by reconstructing images from limited k-space samples (Lustig et al., 2007), as highlighted in the <a class="reference external" href="http://dsp.ee.cuhk.edu.hk/eleg5481/Lecture%20notes/13-%20compressive%20sensing/cs.pdf">CUHK lecture notes on CS</a> (p. 13).</p></li>
 <li><p><strong>Signal Processing</strong>: Sparse methods underpin denoising (e.g., wavelet shrinkage) and inpainting, where total variation minimization preserves edges while removing noise (Figueiredo, 2021, <a class="reference external" href="https://indico.math.cnrs.fr/event/6637/contributions/5334/attachments/3055/3951/Figueiredo_CIMI-ANITI_Toulouse_2021.pdf">slides p. 8</a>).</p></li>
@@ -622,18 +626,18 @@ document.write(`
 <li><p><strong>Electron Tomography</strong></p></li>
 <li><p><strong>Magnetic Resonance Imaging (MRI)</strong></p></li>
 </ul>
-<p>One of PySAP’s core contributions lies in <strong>sparse optimization</strong>, a powerful technique widely used for reconstructing images from incomplete or noisy data. The package implements advanced <strong>compressed sensing algorithms</strong><span id="id2">[<a class="reference internal" href="intro.html#id4" title="S. Theodoridis. Machine Learning: A Bayesian and Optimization Perspective. Academic Press, 2020. ISBN 9780128188040. URL: https://books.google.com/books?id=l-nEDwAAQBAJ.">The20</a>]</span>, allowing efficient image restoration while preserving essential features.</p>
+<p>One of PySAP’s core contributions lies in <strong>sparse optimization</strong>, a powerful technique widely used for reconstructing images from incomplete or noisy data. The package implements advanced <strong>compressed sensing algorithms</strong><span id="id2">[<a class="reference internal" href="intro.html#id9" title="S. Theodoridis. Machine Learning: A Bayesian and Optimization Perspective. Academic Press, 2020. ISBN 9780128188040. URL: https://books.google.com/books?id=l-nEDwAAQBAJ.">The20</a>]</span>, allowing efficient image restoration while preserving essential features.</p>
 <p>In medical imaging, PySAP plays a crucial role in MRI reconstruction by leveraging <strong>sparsity-based approaches</strong> to improve scan efficiency. It enables:</p>
 <ul class="simple">
 <li><p>Reduced scanning time while maintaining image quality</p></li>
 <li><p>Improved reconstruction of under-sampled k-space data</p></li>
 <li><p>Integration of machine learning techniques for further enhancement</p></li>
 </ul>
-<p>The first release of PySAP was presented in Farrens et al. <span id="id3">[<a class="reference internal" href="intro.html#id3" title="Loubna El Gueddari, Chaithya Giliyar Radhakrishna, Zaccharie Ramzi, Samuel Farrens, Sophie Starck, Antoine Grigis, Jean-Luc Starck, and Philippe Ciuciu. PySAP-MRI: a Python Package for MR Image Reconstruction. In ISMRM workshop on Data Sampling and Image Reconstruction. Sedona, AZ, United States, January 2020. URL: https://inria.hal.science/hal-02399267.">GGRR+20</a>]</span> and continues to evolve as a robust tool for sparse signal processing.</p>
+<p>The first release of PySAP was presented in Farrens et al. <span id="id3">[<a class="reference internal" href="intro.html#id8" title="Loubna El Gueddari, Chaithya Giliyar Radhakrishna, Zaccharie Ramzi, Samuel Farrens, Sophie Starck, Antoine Grigis, Jean-Luc Starck, and Philippe Ciuciu. PySAP-MRI: a Python Package for MR Image Reconstruction. In ISMRM workshop on Data Sampling and Image Reconstruction. Sedona, AZ, United States, January 2020. URL: https://inria.hal.science/hal-02399267.">GGRR+20</a>]</span> and continues to evolve as a robust tool for sparse signal processing.</p>
 <p>For further exploration, visit the <a class="reference external" href="https://github.com/CEA-COSMIC/pysap">PySAP GitHub repository</a>.</p>
 <p>In <a class="reference external" href="http://fum-cs.github.io/dl">deep learning course</a>, we will encounter additional examples of minimizing <span class="math notranslate nohighlight">\( ||Ax - b|| \)</span>, including applications like image deblurring and super-resolution.</p>
 <p><img alt="" src="_images/Rank-Based-Methods.jpg" /></p>
-<p>For valuable references on Ridge and Shrinkage methods, consider consulting Prof. Arashi’s books <span id="id4">[<a class="reference internal" href="intro.html#id6" title="A.K.M.E. Saleh, M. Arashi, and B.M.G. Kibria. Theory of Ridge Regression Estimation with Applications. Wiley Series in Probability and Statistics. Wiley, 2019. ISBN 9781118644614. URL: https://books.google.com/books?id=v0KCDwAAQBAJ.">SAK19</a>, <a class="reference internal" href="intro.html#id5" title="A.K.M.E. Saleh, M. Arashi, R.A. Saleh, and M. Norouzirad. Rank-Based Methods for Shrinkage and Selection: With Application to Machine Learning. Wiley, 2022. ISBN 9781119625391. URL: https://books.google.com/books?id=f8p6EAAAQBAJ.">SASN22</a>]</span>.</p>
+<p>For valuable references on Ridge and Shrinkage methods, consider consulting Prof. Arashi’s books <span id="id4">[<a class="reference internal" href="intro.html#id11" title="A.K.M.E. Saleh, M. Arashi, and B.M.G. Kibria. Theory of Ridge Regression Estimation with Applications. Wiley Series in Probability and Statistics. Wiley, 2019. ISBN 9781118644614. URL: https://books.google.com/books?id=v0KCDwAAQBAJ.">SAK19</a>, <a class="reference internal" href="intro.html#id10" title="A.K.M.E. Saleh, M. Arashi, R.A. Saleh, and M. Norouzirad. Rank-Based Methods for Shrinkage and Selection: With Application to Machine Learning. Wiley, 2022. ISBN 9781119625391. URL: https://books.google.com/books?id=f8p6EAAAQBAJ.">SASN22</a>]</span>.</p>
 </section>
 <hr class="docutils" />
 <section id="fourier-series-expansion-of-a-square-wave">

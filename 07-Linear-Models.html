@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -63,7 +63,7 @@
     <link rel="icon" href="_static/fum-logo.ico"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="The Kernel Method (Kernel Trick)" href="09-Kernel-Trick.html" />
+    <link rel="next" title="Feature Maps: Bridging to Kernel Methods" href="08-Feature-Map.html" />
     <link rel="prev" title="Bayesian Decision Theory" href="06-Bayesian-Decision-Theory.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -183,7 +183,7 @@
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="01-What-Is-Machine-Learning.html">What Is Machine Learning?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01-What-Is-Statistical-Machine-Learning.html">What Is Statistical Machine Learning?</a></li>
 <li class="toctree-l1"><a class="reference internal" href="02-Covariance-Matrix.html">Understanding the Covariance Matrix</a></li>
 <li class="toctree-l1"><a class="reference internal" href="03-MLE-intro.html">Maximum Likelihood Estimation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="04-Mahalanobis-Distance.html">Mahalanobis Distance</a></li>
@@ -197,11 +197,15 @@
 
 
 
+<li class="toctree-l1"><a class="reference internal" href="08-Feature-Map.html">Feature Maps: Bridging to Kernel Methods</a></li>
 <li class="toctree-l1"><a class="reference internal" href="09-Kernel-Trick.html">The Kernel Method (Kernel Trick)</a></li>
 
 <li class="toctree-l1"><a class="reference internal" href="10-Kernel-Regression.html">Kernel Regression: From Linear to Nonlinear Modeling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="11-Gaussian-Mixtures-part1.html">Gaussian Mixture Models, Part 1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="12-Gaussian-Mixtures-part2.html">Gaussian Mixture Model, Part 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13-Hidden-Markov-Models.html">Hidden Markov Models</a></li>
+
+
 <li class="toctree-l1"><a class="reference internal" href="14-Principal-Component-Analysis-part1.html">Principal Component Analysis, Part 1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="15-Principal-Component-Analysis-part2.html">Principal Component Analysis, Part 2</a></li>
 
@@ -981,7 +985,7 @@ document.write(`
 </ul>
 </li>
 </ol>
-<p>For further information please See <span id="id2">[<a class="reference internal" href="intro.html#id18" title="Mahboube Bakhshali. The subspace pursuit method in sparseoptimization. Master's thesis, Hakim Sabzevari University, Faculty of Mathematics and Computer Science, September 2018. روش جستجوی زیرفضا در بهینه سازی تنک. URL: http://hcloud.hsu.ac.ir/index.php/s/jacmnZiPfNFpYfk.">Bak18</a>]</span>.</p>
+<p>For further information please See <span id="id2">[<a class="reference internal" href="intro.html#id23" title="Mahboube Bakhshali. The subspace pursuit method in sparseoptimization. Master's thesis, Hakim Sabzevari University, Faculty of Mathematics and Computer Science, September 2018. روش جستجوی زیرفضا در بهینه سازی تنک. URL: http://hcloud.hsu.ac.ir/index.php/s/jacmnZiPfNFpYfk.">Bak18</a>]</span>.</p>
 <hr class="docutils" />
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
@@ -1913,7 +1917,7 @@ Test set score: 0.75
 </ul>
 </li>
 <li><p>Ridge solution: <span class="math notranslate nohighlight">\(w_i = \rho_i - \alpha \cdot \partial_{w_i} w_i^2 = \rho_i - 2\alpha \cdot w_i\)</span>, thus <span class="math notranslate nohighlight">\(w_i^* = \frac{\rho_i}{1 + 2\alpha}\)</span></p></li>
-<li><p>For mor information see <span id="id4">[<a class="reference internal" href="intro.html#id21" title="Farzane Rashidabadi. Image matting. Master's thesis, Hakim Sabzevari University, Faculty of Mathematics and Computer Science, January 2016. برش هوشمند تصویر. URL: http://hcloud.hsu.ac.ir/index.php/s/OaHkkTSsO8mNrk0.">Ras16</a>]</span></p></li>
+<li><p>For mor information see <span id="id4">[<a class="reference internal" href="intro.html#id26" title="Farzane Rashidabadi. Image matting. Master's thesis, Hakim Sabzevari University, Faculty of Mathematics and Computer Science, January 2016. برش هوشمند تصویر. URL: http://hcloud.hsu.ac.ir/index.php/s/OaHkkTSsO8mNrk0.">Ras16</a>]</span></p></li>
 </ul>
 <div class="cell tag_hide-input tag_hide-output tag_hide-cell docutils container">
 <details class="hide above-input">
@@ -2196,7 +2200,7 @@ LASSO selected 33 features from total 104 features.
 </section>
 <section id="sparse-optimization-theory-and-applications">
 <h3>Sparse Optimization: Theory and Applications<a class="headerlink" href="#sparse-optimization-theory-and-applications" title="Link to this heading">#</a></h3>
-<p>Sparse optimization is a fundamental paradigm in mathematical modeling that seeks solutions with few non-zero elements, often formalized through ℓ₁-norm regularization or non-convex penalties. This framework is grounded in the <strong>Compressed Sensing (CS)</strong> theory <span id="id5">[<a class="reference internal" href="intro.html#id2" title="David L. Donoho. Compressed sensing. IEEE Transactions on Information Theory, 52(4):1289–1306, 2006. doi:10.1109/TIT.2006.871582.">Don06</a>]</span>, which guarantees exact signal recovery from sub-Nyquist measurements if the signal is sparse in some basis. Key applications include:</p>
+<p>Sparse optimization is a fundamental paradigm in mathematical modeling that seeks solutions with few non-zero elements, often formalized through ℓ₁-norm regularization or non-convex penalties. This framework is grounded in the <strong>Compressed Sensing (CS)</strong> theory <span id="id5">[<a class="reference internal" href="intro.html#id6" title="David L. Donoho. Compressed sensing. IEEE Transactions on Information Theory, 52(4):1289–1306, 2006. doi:10.1109/TIT.2006.871582.">Don06</a>]</span>, which guarantees exact signal recovery from sub-Nyquist measurements if the signal is sparse in some basis. Key applications include:</p>
 <ol class="arabic simple">
 <li><p><strong>Medical Imaging</strong>: CS enables faster MRI scans by reconstructing images from limited k-space samples (Lustig et al., 2007), as highlighted in the <a class="reference external" href="http://dsp.ee.cuhk.edu.hk/eleg5481/Lecture%20notes/13-%20compressive%20sensing/cs.pdf">CUHK lecture notes on CS</a> (p. 13).</p></li>
 <li><p><strong>Signal Processing</strong>: Sparse methods underpin denoising (e.g., wavelet shrinkage) and inpainting, where total variation minimization preserves edges while removing noise (Figueiredo, 2021, <a class="reference external" href="https://indico.math.cnrs.fr/event/6637/contributions/5334/attachments/3055/3951/Figueiredo_CIMI-ANITI_Toulouse_2021.pdf">slides p. 8</a>).</p></li>
@@ -2409,12 +2413,12 @@ where <span class="math notranslate nohighlight">\(\mathbf{r}\)</span> is the cu
 </ol>
 <p>Termination: After <span class="math notranslate nohighlight">\(k\)</span> iterations or when <span class="math notranslate nohighlight">\(\|\mathbf{r}\|_2 &lt; \epsilon\)</span></p>
 <p><img alt="" src="_images/theodoridis-Figure-10.2.png" /></p>
-<p>Figure 10.2 of <span id="id6">[<a class="reference internal" href="intro.html#id4" title="S. Theodoridis. Machine Learning: A Bayesian and Optimization Perspective. Academic Press, 2020. ISBN 9780128188040. URL: https://books.google.com/books?id=l-nEDwAAQBAJ.">The20</a>]</span>:</p>
+<p>Figure 10.2 of <span id="id6">[<a class="reference internal" href="intro.html#id9" title="S. Theodoridis. Machine Learning: A Bayesian and Optimization Perspective. Academic Press, 2020. ISBN 9780128188040. URL: https://books.google.com/books?id=l-nEDwAAQBAJ.">The20</a>]</span>:</p>
 <p>(A) In the case of an orthogonal matrix, the observations vector y will be orthogonal to any inactive column, here,
 <span class="math notranslate nohighlight">\(x_3^c\)</span>. (B) In the more general case, it is expected to “lean” closer (form smaller angles) to the active than to the
 inactive columns.</p>
 <p><img alt="" src="_images/Bakhshali-Figure-2.3.png" /></p>
-<p>Figure 2.3 of <span id="id7">[<a class="reference internal" href="intro.html#id18" title="Mahboube Bakhshali. The subspace pursuit method in sparseoptimization. Master's thesis, Hakim Sabzevari University, Faculty of Mathematics and Computer Science, September 2018. روش جستجوی زیرفضا در بهینه سازی تنک. URL: http://hcloud.hsu.ac.ir/index.php/s/jacmnZiPfNFpYfk.">Bak18</a>]</span></p>
+<p>Figure 2.3 of <span id="id7">[<a class="reference internal" href="intro.html#id23" title="Mahboube Bakhshali. The subspace pursuit method in sparseoptimization. Master's thesis, Hakim Sabzevari University, Faculty of Mathematics and Computer Science, September 2018. روش جستجوی زیرفضا در بهینه سازی تنک. URL: http://hcloud.hsu.ac.ir/index.php/s/jacmnZiPfNFpYfk.">Bak18</a>]</span></p>
 </section>
 <section id="comparison-with-lasso">
 <h2>Comparison with LASSO<a class="headerlink" href="#comparison-with-lasso" title="Link to this heading">#</a></h2>
@@ -2445,7 +2449,7 @@ inactive columns.</p>
 </tbody>
 </table>
 </div>
-<p>For further information see <span id="id8">[<a class="reference internal" href="intro.html#id16" title="Alale Asaran. Super resolution via sparse representation. Master's thesis, Hakim Sabzevari University, Faculty of Mathematics and Computer Science, Winter 2016. فراتفکیک پذیری با نمایش تنک. URL: http://hcloud.hsu.ac.ir/index.php/s/W9ImIzeV6C1mqZo.">Asa16</a>]</span>.</p>
+<p>For further information see <span id="id8">[<a class="reference internal" href="intro.html#id21" title="Alale Asaran. Super resolution via sparse representation. Master's thesis, Hakim Sabzevari University, Faculty of Mathematics and Computer Science, Winter 2016. فراتفکیک پذیری با نمایش تنک. URL: http://hcloud.hsu.ac.ir/index.php/s/W9ImIzeV6C1mqZo.">Asa16</a>]</span>.</p>
 <section id="practice">
 <h3>Practice<a class="headerlink" href="#practice" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
@@ -2750,14 +2754,14 @@ LASSO      5.5046e-02    0               0.2214     [1.39, -0.68, 1.05]
 <li><p><strong>Electron Tomography</strong></p></li>
 <li><p><strong>Magnetic Resonance Imaging (MRI)</strong></p></li>
 </ul>
-<p>One of PySAP’s core contributions lies in <strong>sparse optimization</strong>, a powerful technique widely used for reconstructing images from incomplete or noisy data. The package implements advanced <strong>compressed sensing algorithms</strong><span id="id9">[<a class="reference internal" href="intro.html#id4" title="S. Theodoridis. Machine Learning: A Bayesian and Optimization Perspective. Academic Press, 2020. ISBN 9780128188040. URL: https://books.google.com/books?id=l-nEDwAAQBAJ.">The20</a>]</span>, allowing efficient image restoration while preserving essential features.</p>
+<p>One of PySAP’s core contributions lies in <strong>sparse optimization</strong>, a powerful technique widely used for reconstructing images from incomplete or noisy data. The package implements advanced <strong>compressed sensing algorithms</strong><span id="id9">[<a class="reference internal" href="intro.html#id9" title="S. Theodoridis. Machine Learning: A Bayesian and Optimization Perspective. Academic Press, 2020. ISBN 9780128188040. URL: https://books.google.com/books?id=l-nEDwAAQBAJ.">The20</a>]</span>, allowing efficient image restoration while preserving essential features.</p>
 <p>In medical imaging, PySAP plays a crucial role in MRI reconstruction by leveraging <strong>sparsity-based approaches</strong> to improve scan efficiency. It enables:</p>
 <ul class="simple">
 <li><p>Reduced scanning time while maintaining image quality</p></li>
 <li><p>Improved reconstruction of under-sampled k-space data</p></li>
 <li><p>Integration of machine learning techniques for further enhancement</p></li>
 </ul>
-<p>The first release of PySAP was presented in Farrens et al. <span id="id10">[<a class="reference internal" href="intro.html#id3" title="Loubna El Gueddari, Chaithya Giliyar Radhakrishna, Zaccharie Ramzi, Samuel Farrens, Sophie Starck, Antoine Grigis, Jean-Luc Starck, and Philippe Ciuciu. PySAP-MRI: a Python Package for MR Image Reconstruction. In ISMRM workshop on Data Sampling and Image Reconstruction. Sedona, AZ, United States, January 2020. URL: https://inria.hal.science/hal-02399267.">GGRR+20</a>]</span> and continues to evolve as a robust tool for sparse signal processing.</p>
+<p>The first release of PySAP was presented in Farrens et al. <span id="id10">[<a class="reference internal" href="intro.html#id8" title="Loubna El Gueddari, Chaithya Giliyar Radhakrishna, Zaccharie Ramzi, Samuel Farrens, Sophie Starck, Antoine Grigis, Jean-Luc Starck, and Philippe Ciuciu. PySAP-MRI: a Python Package for MR Image Reconstruction. In ISMRM workshop on Data Sampling and Image Reconstruction. Sedona, AZ, United States, January 2020. URL: https://inria.hal.science/hal-02399267.">GGRR+20</a>]</span> and continues to evolve as a robust tool for sparse signal processing.</p>
 <p>For further exploration, visit the <a class="reference external" href="https://github.com/CEA-COSMIC/pysap">PySAP GitHub repository</a>.</p>
 <p>In our <a class="reference external" href="http://fum-cs.github.io/dl">deep learning course</a>, we will encounter additional examples of minimizing <span class="math notranslate nohighlight">\( ||Ax - b|| \)</span>, including applications like image deblurring and super-resolution.</p>
 <!-- ### Other loss functions for regression
@@ -2771,7 +2775,7 @@ LASSO      5.5046e-02    0               0.2214     [1.39, -0.68, 1.05]
     * `SGDRegressor` in sklearn
 
 <img src="https://raw.githubusercontent.com/fum-cs/machine-learning/main/notebooks/img/huber.png" alt="ml" style="width: 500px;"/> --><p><img alt="" src="_images/Rank-Based-Methods.jpg" /></p>
-<p>For valuable references on Ridge and Shrinkage methods, consider consulting Prof. Arashi’s books <span id="id11">[<a class="reference internal" href="intro.html#id6" title="A.K.M.E. Saleh, M. Arashi, and B.M.G. Kibria. Theory of Ridge Regression Estimation with Applications. Wiley Series in Probability and Statistics. Wiley, 2019. ISBN 9781118644614. URL: https://books.google.com/books?id=v0KCDwAAQBAJ.">SAK19</a>, <a class="reference internal" href="intro.html#id5" title="A.K.M.E. Saleh, M. Arashi, R.A. Saleh, and M. Norouzirad. Rank-Based Methods for Shrinkage and Selection: With Application to Machine Learning. Wiley, 2022. ISBN 9781119625391. URL: https://books.google.com/books?id=f8p6EAAAQBAJ.">SASN22</a>]</span>.</p>
+<p>For valuable references on Ridge and Shrinkage methods, consider consulting Prof. Arashi’s books <span id="id11">[<a class="reference internal" href="intro.html#id11" title="A.K.M.E. Saleh, M. Arashi, and B.M.G. Kibria. Theory of Ridge Regression Estimation with Applications. Wiley Series in Probability and Statistics. Wiley, 2019. ISBN 9781118644614. URL: https://books.google.com/books?id=v0KCDwAAQBAJ.">SAK19</a>, <a class="reference internal" href="intro.html#id10" title="A.K.M.E. Saleh, M. Arashi, R.A. Saleh, and M. Norouzirad. Rank-Based Methods for Shrinkage and Selection: With Application to Machine Learning. Wiley, 2022. ISBN 9781119625391. URL: https://books.google.com/books?id=f8p6EAAAQBAJ.">SASN22</a>]</span>.</p>
 </section>
 </section>
 <hr class="docutils" />
@@ -3073,7 +3077,7 @@ For binary classification (2 classes), we aim to fit the following function:</p>
 </li>
 </ul>
 </li>
-<li><p>For further information about conjugate gradients, see <span id="id12">[<a class="reference internal" href="intro.html#id14" title="Mehdi Nemati. A gradient based method for thespectral graph partitioning. Master's thesis, Hakim Sabzevari University, Faculty of Mathematics and Computer Science, September 2018. روشی مبتنی بر گرادیان برای افرازبندی طیفی گراف. URL: https://hcloud.hsu.ac.ir/index.php/s/tR53d9306yZSAc7.">Nem18</a>]</span></p></li>
+<li><p>For further information about conjugate gradients, see <span id="id12">[<a class="reference internal" href="intro.html#id19" title="Mehdi Nemati. A gradient based method for thespectral graph partitioning. Master's thesis, Hakim Sabzevari University, Faculty of Mathematics and Computer Science, September 2018. روشی مبتنی بر گرادیان برای افرازبندی طیفی گراف. URL: https://hcloud.hsu.ac.ir/index.php/s/tR53d9306yZSAc7.">Nem18</a>]</span></p></li>
 <li><p>You will see many of these solvers in Optimization course taught by Dr. Ghanbari.</p></li>
 </ul>
 </section>
@@ -3656,11 +3660,11 @@ th {font-size: 16px}
       </div>
     </a>
     <a class="right-next"
-       href="09-Kernel-Trick.html"
+       href="08-Feature-Map.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">The Kernel Method (Kernel Trick)</p>
+        <p class="prev-next-title">Feature Maps: Bridging to Kernel Methods</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
