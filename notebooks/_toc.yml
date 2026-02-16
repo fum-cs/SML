@@ -3,7 +3,7 @@
 format: jb-book
 root: intro
 chapters:
-- file: 01-What-Is-Machine-Learning
+- file: 01-What-Is-Statistical-Machine-Learning
 - file: 02-Covariance-Matrix
 - file: 03-MLE-intro.md
 - file: 04-Mahalanobis-Distance
