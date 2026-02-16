@@ -65,7 +65,7 @@ In summary, "Statistical Machine Learning" is not just a collection of new algor
 
 The concepts covered in this introductory chapter—the covariance matrix, MLE, Mahalanobis distance—are the very building blocks for everything that follows. Mastering them is the first step on the path to becoming a thoughtful and effective practitioner of statistical machine learning.
 
-#### Some of my previous papers machine learning:
+#### Some of my previous machine learning papers:
 
 - Classification:    
     * Click Rate Prediction {cite}`Fatehinia1403dsas3`

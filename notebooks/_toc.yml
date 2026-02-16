@@ -18,6 +18,6 @@ chapters:
 - file: 13-Hidden-Markov-Models
 - file: 14-Principal-Component-Analysis-part1
 - file: 15-Principal-Component-Analysis-part2
-- file: 13-Kernel-Density-Estimation
+# - file: 16-Kernel-Density-Estimation
 - file: App-Mathematics-and-Machine-Learning
 - file: Appendix-BDT-Discrete-Features
