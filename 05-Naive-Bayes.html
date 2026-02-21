@@ -28,8 +28,8 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b76e3c8a" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
@@ -188,7 +188,6 @@
 <li class="toctree-l1"><a class="reference internal" href="03-MLE-intro.html">Maximum Likelihood Estimation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="04-Mahalanobis-Distance.html">Mahalanobis Distance</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Naive Bayes Classification</a></li>
-
 
 
 <li class="toctree-l1"><a class="reference internal" href="06-Bayesian-Decision-Theory.html">Bayesian Decision Theory</a></li>
@@ -441,8 +440,11 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Naive Bayes Classification</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#naive-bayes-classifier">Naive Bayes Classifier</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Naive Bayes Classification</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayes-theorem">Bayes’ Theorem</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-with-dice">Example with Dice</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#grasshoppers-vs-katydids">Grasshoppers vs. Katydids</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#antenna-length-vs-abdomen-length">Antenna Length vs. Abdomen Length</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#classifying-an-insect">Classifying an Insect</a></li>
@@ -450,7 +452,6 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayes-classifiers">Bayes Classifiers</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesian-classifiers">Bayesian Classifiers</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesian-classifiers-and-bayes-theorem">Bayesian Classifiers and Bayes’ Theorem</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simplified-formula-for-classification">Simplified Formula for Classification</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-classifying-by-name">Example: Classifying by Name</a></li>
@@ -493,9 +494,6 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gaussian-naive-bayes">Gaussian Naive Bayes</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multinomial-naive-bayes">Multinomial Naive Bayes</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-classifying-text">Example: Classifying Text</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#further-readning">Further Readning</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#when-to-use-naive-bayes">When to Use Naive Bayes</a></li>
 </ul>
 </li>
@@ -523,17 +521,46 @@ We start here with our first supervised method, naive Bayes classification.</p>
 <p>Naive Bayes models are a group of extremely fast and simple classification algorithms that are often suitable for very high-dimensional datasets.
 Because they are so fast and have so few tunable parameters, they end up being useful as a quick-and-dirty baseline for a classification problem.
 This chapter will provide an intuitive explanation of how naive Bayes classifiers work, followed by a few examples of them in action on some datasets.</p>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="naive-bayes-classifier">
-<h1>Naive Bayes Classifier<a class="headerlink" href="#naive-bayes-classifier" title="Link to this heading">#</a></h1>
-<p>by: <a class="reference external" href="https://www.cs.ucr.edu/~eamonn/">Eamonn Keogh</a>,
-<a class="reference external" href="https://www1.cs.ucr.edu/">CS, UCR</a>. <a class="reference external" href="https://www.cs.ucr.edu/~eamonn/CE/Bayesian%20Classification%20withInsect_examples.pdf">PDF</a></p>
+<section id="bayes-theorem">
+<h2>Bayes’ Theorem<a class="headerlink" href="#bayes-theorem" title="Link to this heading">#</a></h2>
+<p>Bayes’ Theorem is a fundamental principle in probability theory that describes how to update our beliefs about an event based on new evidence. It provides a mathematical framework for calculating conditional probabilities, specifically the probability of an event occurring given that another event has already occurred. The theorem is named after the Reverend Thomas Bayes, who first formulated this principle in the 18th century.</p>
 <p><img alt="" src="_images/BCW_page_01.jpg" /></p>
 <p><strong>Thomas Bayes 1702 - 1761</strong></p>
-<p>We will start off with a visual intuition before looking at the math…</p>
+<p>The mathematical formula for Bayes’ Theorem is expressed as:</p>
+<div class="math notranslate nohighlight">
+\[P(A|B) = \frac{P(B|A) \times P(A)}{P(B)}\]</div>
+<p>Where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(P(A|B)\)</span> is the <strong>posterior probability</strong>: the probability of event A occurring given that B is true</p></li>
+<li><p><span class="math notranslate nohighlight">\(P(B|A)\)</span> is the <strong>likelihood</strong>: the probability of event B occurring given that A is true</p></li>
+<li><p><span class="math notranslate nohighlight">\(P(A)\)</span> is the <strong>prior probability</strong>: the initial probability of event A</p></li>
+<li><p><span class="math notranslate nohighlight">\(P(B)\)</span> is the <strong>marginal probability</strong>: the total probability of event B occurring</p></li>
+</ul>
+<section id="example-with-dice">
+<h3>Example with Dice<a class="headerlink" href="#example-with-dice" title="Link to this heading">#</a></h3>
+<p>Suppose we have two dice: one fair die (with equal probability of rolling 1-6) and one loaded die that always shows 6. We randomly select one die and roll it, getting a 6. What is the probability that we selected the loaded die?</p>
+<p>Let’s define our events:</p>
+<ul class="simple">
+<li><p>Event A: Selecting the loaded die</p></li>
+<li><p>Event B: Rolling a 6</p></li>
+</ul>
+<p>Given:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(P(A) = \frac{1}{2}\)</span> (equal chance of selecting either die)</p></li>
+<li><p><span class="math notranslate nohighlight">\(P(B|A) = 1\)</span> (loaded die always shows 6)</p></li>
+<li><p><span class="math notranslate nohighlight">\(P(B|A^c) = \frac{1}{6}\)</span> (fair die shows 6 with probability 1/6)</p></li>
+<li><p><span class="math notranslate nohighlight">\(P(B) = P(B|A) \times P(A) + P(B|A^c) \times P(A^c) = 1 \times \frac{1}{2} + \frac{1}{6} \times \frac{1}{2} = \frac{1}{2} + \frac{1}{12} = \frac{7}{12}\)</span></p></li>
+</ul>
+<p>Applying Bayes’ Theorem:
+$<span class="math notranslate nohighlight">\(P(A|B) = \frac{P(B|A) \times P(A)}{P(B)} = \frac{1 \times \frac{1}{2}}{\frac{7}{12}} = \frac{\frac{1}{2}}{\frac{7}{12}} = \frac{1}{2} \times \frac{12}{7} = \frac{6}{7}\)</span>$</p>
+<p>So given that we rolled a 6, there is a <span class="math notranslate nohighlight">\(\frac{6}{7}\)</span> (approximately 85.7%) probability that we selected the loaded die.</p>
+</section>
+</section>
 <hr class="docutils" />
 <section id="grasshoppers-vs-katydids">
 <h2>Grasshoppers vs. Katydids<a class="headerlink" href="#grasshoppers-vs-katydids" title="Link to this heading">#</a></h2>
+<p>by: <a class="reference external" href="https://www.cs.ucr.edu/~eamonn/">Eamonn Keogh</a>,
+<a class="reference external" href="https://www1.cs.ucr.edu/">CS, UCR</a>. <a class="reference external" href="https://www.cs.ucr.edu/~eamonn/CE/Bayesian%20Classification%20withInsect_examples.pdf">PDF</a></p>
 <p><img alt="" src="_images/BCW_page_02.png" /></p>
 <section id="antenna-length-vs-abdomen-length">
 <h3>Antenna Length vs. Abdomen Length<a class="headerlink" href="#antenna-length-vs-abdomen-length" title="Link to this heading">#</a></h3>
@@ -603,11 +630,6 @@ $$ -->
 </ul>
 <p>We are about to see some of the mathematical formalisms, and more examples, but keep in mind the basic idea.</p>
 <p><em>Find out the probability of the previously unseen instance belonging to each class, then simply pick the most probable class.</em></p>
-<hr class="docutils" />
-<section id="bayesian-classifiers">
-<h3>Bayesian Classifiers<a class="headerlink" href="#bayesian-classifiers" title="Link to this heading">#</a></h3>
-<p>Here’s the modified version of your text, explicitly specifying <strong>prior probability</strong>, <strong>likelihood</strong>, and <strong>evidence</strong> in the context of Bayes’ Theorem:</p>
-</section>
 <hr class="docutils" />
 <section id="bayesian-classifiers-and-bayes-theorem">
 <h3>Bayesian Classifiers and Bayes’ Theorem<a class="headerlink" href="#bayesian-classifiers-and-bayes-theorem" title="Link to this heading">#</a></h3>
@@ -1054,6 +1076,7 @@ P(\text{Other Fruit} | \text{Long, Sweet, Yellow}) = 0.5 \times 0.75 \times 0.25
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="bayesian-classification">
 <h1>Bayesian Classification<a class="headerlink" href="#bayesian-classification" title="Link to this heading">#</a></h1>
+<p>By Jake VanderPlas <span id="id5">[<a class="reference internal" href="intro.html#id6" title="Jake VanderPlas. Python Data Science Handbook. O'Reilly Media, Inc., 2016. ISBN 9781491912058. URL: https://www.oreilly.com/library/view/python-data-science/9781491912126/.">Van16</a>]</span></p>
 <p>Naive Bayes classifiers are built on Bayesian classification methods.
 These rely on Bayes’s theorem, which is an equation describing the relationship of conditional probabilities of statistical quantities.
 In Bayesian classification, we’re interested in finding the probability of a label <span class="math notranslate nohighlight">\(L\)</span> given some observed features, which we can write as <span class="math notranslate nohighlight">\(P(L~|~{\rm features})\)</span>.
@@ -1179,7 +1202,7 @@ The multinomial distribution describes the probability of observing counts among
 <section id="example-classifying-text">
 <h3>Example: Classifying Text<a class="headerlink" href="#example-classifying-text" title="Link to this heading">#</a></h3>
 <p>One place where multinomial naive Bayes is often used is in text classification, where the features are related to word counts or frequencies within the documents to be classified.
-We discussed the extraction of such features from text in <a class="reference internal" href="#05.04-Feature-Engineering.ipynb"><span class="xref myst">Feature Engineering</span></a>; here we will use the sparse word count features from the 20 Newsgroups corpus made available through Scikit-Learn to show how we might classify these short documents into categories.</p>
+Here we will use the sparse word count features from the 20 Newsgroups corpus made available through Scikit-Learn to show how we might classify these short documents into categories.</p>
 <p>Let’s download the data and take a look at the target names:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1255,7 +1278,7 @@ then mail to Federal Communications Commission 1919 H Street Washington DC
 </div>
 </div>
 <p>In order to use this data for machine learning, we need to be able to convert the content of each string into a vector of numbers.
-For this we will use the TF-IDF vectorizer (introduced in <a class="reference internal" href="#05.04-Feature-Engineering.ipynb"><span class="xref myst">Feature Engineering</span></a>), and create a pipeline that attaches it to a multinomial naive Bayes classifier:</p>
+For this we will use the TF-IDF vectorizer, and create a pipeline that attaches it to a multinomial naive Bayes classifier:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">TfidfVectorizer</span>
@@ -1347,9 +1370,6 @@ Here’s a utility function that will return the prediction for a single string:
 <p>Remember that this is nothing more sophisticated than a simple probability model for the (weighted) frequency of each word in the string; nevertheless, the result is striking.
 Even a very naive algorithm, when used carefully and trained on a large set of high-dimensional data, can be surprisingly effective.</p>
 </section>
-</section>
-<section id="further-readning">
-<h2>Further Readning<a class="headerlink" href="#further-readning" title="Link to this heading">#</a></h2>
 <section id="when-to-use-naive-bayes">
 <h3>When to Use Naive Bayes<a class="headerlink" href="#when-to-use-naive-bayes" title="Link to this heading">#</a></h3>
 <p>Because naive Bayes classifiers make such stringent assumptions about data, they will generally not perform as well as more complicated models.
@@ -1360,9 +1380,10 @@ That said, they have several advantages:</p>
 <li><p>They are often easily interpretable.</p></li>
 <li><p>They have few (if any) tunable parameters.</p></li>
 </ul>
-<p>These advantages mean a naive Bayes classifier is often a good choice as an initial baseline classification.
+<p>These advantages mean a naive Bayes classifier is often a good choice as an initial baseline classification (See <span id="id6">[<a class="reference internal" href="intro.html#id28" title="Trevor Hastie, Robert Tibshirani, and Jerome Friedman. The elements of statistical learning: data mining, inference and prediction. Springer, 2 edition, 2009. Edition 2, print 12. URL: https://hastie.su.domains/ElemStatLearn/.">HTF09</a>]</span>).
 If it performs suitably, then congratulations: you have a very fast, very interpretable classifier for your problem.
 If it does not perform well, then you can begin exploring more sophisticated models, with some baseline knowledge of how well they should perform.</p>
+<p><img alt="" src="_images/Duda-Figure-2.2-2.5.png" /></p>
 <p>Naive Bayes classifiers tend to perform especially well in the following situations:</p>
 <ul class="simple">
 <li><p>When the naive assumptions actually match the data (very rare in practice)</p></li>
@@ -1440,8 +1461,11 @@ For this reason, simplistic classifiers like the ones discussed here tend to wor
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Naive Bayes Classification</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#naive-bayes-classifier">Naive Bayes Classifier</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Naive Bayes Classification</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayes-theorem">Bayes’ Theorem</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-with-dice">Example with Dice</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#grasshoppers-vs-katydids">Grasshoppers vs. Katydids</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#antenna-length-vs-abdomen-length">Antenna Length vs. Abdomen Length</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#classifying-an-insect">Classifying an Insect</a></li>
@@ -1449,7 +1473,6 @@ For this reason, simplistic classifiers like the ones discussed here tend to wor
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayes-classifiers">Bayes Classifiers</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesian-classifiers">Bayesian Classifiers</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesian-classifiers-and-bayes-theorem">Bayesian Classifiers and Bayes’ Theorem</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simplified-formula-for-classification">Simplified Formula for Classification</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-classifying-by-name">Example: Classifying by Name</a></li>
@@ -1492,9 +1515,6 @@ For this reason, simplistic classifiers like the ones discussed here tend to wor
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gaussian-naive-bayes">Gaussian Naive Bayes</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multinomial-naive-bayes">Multinomial Naive Bayes</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-classifying-text">Example: Classifying Text</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#further-readning">Further Readning</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#when-to-use-naive-bayes">When to Use Naive Bayes</a></li>
 </ul>
 </li>

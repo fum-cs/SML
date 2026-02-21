@@ -28,8 +28,8 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b76e3c8a" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
@@ -482,7 +482,7 @@ After a brief conceptual discussion of the PCA algorithm, we will explore a coup
 </div>
 <section id="introducing-principal-component-analysis">
 <h2>Introducing Principal Component Analysis<a class="headerlink" href="#introducing-principal-component-analysis" title="Link to this heading">#</a></h2>
-<p>Principal component analysis is a fast and flexible unsupervised method for dimensionality reduction in data, which we saw briefly in <a class="reference internal" href="#05.02-Introducing-Scikit-Learn.ipynb"><span class="xref myst">Introducing Scikit-Learn</span></a>.
+<p>Principal component analysis is a fast and flexible unsupervised method for dimensionality reduction in data.
 Its behavior is easiest to visualize by looking at a two-dimensional dataset.
 Consider these 200 points (see the following figure):</p>
 <div class="cell docutils container">
@@ -499,7 +499,7 @@ Consider these 200 points (see the following figure):</p>
 </div>
 </div>
 <p>By eye, it is clear that there is a nearly linear relationship between the <em>x</em> and <em>y</em> variables.
-This is reminiscent of the linear regression data we explored in <a class="reference internal" href="#05.06-Linear-Regression-part1.ipynb"><span class="xref myst">Linear Regression</span></a>, but the problem setting here is slightly different: rather than attempting to <em>predict</em> the <em>y</em> values from the <em>x</em> values, the unsupervised learning problem attempts to learn about the <em>relationship</em> between the <em>x</em> and <em>y</em> values.</p>
+This is reminiscent of the linear regression data we explored in <a class="reference internal" href="07-Linear-Models.html"><span class="std std-doc">Linear Regression</span></a>, but the problem setting here is slightly different: rather than attempting to <em>predict</em> the <em>y</em> values from the <em>x</em> values, the unsupervised learning problem attempts to learn about the <em>relationship</em> between the <em>x</em> and <em>y</em> values.</p>
 <p>In principal component analysis, this relationship is quantified by finding a list of the <em>principal axes</em> in the data, and using those axes to describe the dataset.
 Using Scikit-Learn’s <code class="docutils literal notranslate"><span class="pre">PCA</span></code> estimator, we can compute this as follows:</p>
 <div class="cell docutils container">
@@ -615,7 +615,7 @@ The fraction of variance that is cut out (proportional to the spread of points a
 <section id="pca-for-visualization-handwritten-digits">
 <h3>PCA for Visualization: Handwritten Digits<a class="headerlink" href="#pca-for-visualization-handwritten-digits" title="Link to this heading">#</a></h3>
 <p>The usefulness of dimensionality reduction may not be entirely apparent in only two dimensions, but it becomes clear when looking at high-dimensional data.
-To see this, let’s take a quick look at the application of PCA to the digits dataset we worked with in <a class="reference internal" href="#05.08-Random-Forests.ipynb"><span class="xref myst"> Decision Trees and Random Forests</span></a>.</p>
+To see this, let’s take a quick look at the application of PCA to the digits dataset.</p>
 <p>We’ll start by loading the data:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -810,9 +810,7 @@ Now we compute these components, and then use the inverse of the transform to re
 </section>
 <section id="example-eigenfaces">
 <h2>Example: Eigenfaces<a class="headerlink" href="#example-eigenfaces" title="Link to this heading">#</a></h2>
-<p>Earlier we explored an example of using a PCA projection as a feature selector for facial recognition with a support vector machine (see <a class="reference internal" href="#05.07-Support-Vector-Machines.ipynb"><span class="xref myst"> Support Vector Machines</span></a>).
-Here we will take a look back and explore a bit more of what went into that.
-Recall that we were using the Labeled Faces in the Wild (LFW) dataset made available through Scikit-Learn:</p>
+<p>Here we use PCA projection as a feature selector for facial recognition on ‘Labeled Faces in the Wild’ dataset (LFW), where the Labeled Faces in the dataset made available through Scikit-Learn:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">fetch_lfw_people</span>
@@ -909,7 +907,7 @@ To make this more concrete, we can compare the input images with the images reco
 </div>
 </div>
 <p>The top row here shows the input images, while the bottom row shows the reconstruction of the images from just 150 of the ~3,000 initial features.
-This visualization makes clear why the PCA feature selection used in <a class="reference internal" href="#05.07-Support-Vector-Machines.ipynb"><span class="xref myst"> Support Vector Machines</span></a> was so successful: although it reduces the dimensionality of the data by nearly a factor of 20, the projected images contain enough information that we might, by eye, recognize the individuals in each image. This means our classification algorithm only needs to be trained on 150-dimensional data rather than 3,000-dimensional data, which, depending on the particular algorithm we choose, can lead to much more efficient classification.</p>
+This visualization makes clear why the PCA feature selection was so successful: although it reduces the dimensionality of the data by nearly a factor of 20, the projected images contain enough information that we might, by eye, recognize the individuals in each image. This means our classification algorithm only needs to be trained on 150-dimensional data rather than 3,000-dimensional data, which, depending on the particular algorithm we choose, can lead to much more efficient classification.</p>
 </section>
 <section id="summary">
 <h2>Summary<a class="headerlink" href="#summary" title="Link to this heading">#</a></h2>
@@ -919,7 +917,7 @@ Given any high-dimensional dataset, I tend to start with PCA in order to visuali
 Certainly PCA is not useful for every high-dimensional dataset, but it offers a straightforward and efficient path to gaining insight into high-dimensional data.</p>
 <p>PCA’s main weakness is that it tends to be highly affected by outliers in the data.
 For this reason, several robust variants of PCA have been developed, many of which act to iteratively discard data points that are poorly described by the initial components.
-Scikit-Learn includes a number of interesting variants on PCA in the <code class="docutils literal notranslate"><span class="pre">sklearn.decomposition</span></code> submodule; one example is <code class="docutils literal notranslate"><span class="pre">SparsePCA</span></code>, which introduces a regularization term (see <a class="reference internal" href="#05.06-Linear-Regression-part1.ipynb"><span class="xref myst">Linear Regression</span></a>) that serves to enforce sparsity of the components.</p>
+Scikit-Learn includes a number of interesting variants on PCA in the <code class="docutils literal notranslate"><span class="pre">sklearn.decomposition</span></code> submodule; one example is <code class="docutils literal notranslate"><span class="pre">SparsePCA</span></code>, which introduces a regularization term (see <a class="reference internal" href="07-Linear-Models.html"><span class="std std-doc">Linear Regression</span></a>) that serves to enforce sparsity of the components.</p>
 <p>In the following chapters, we will look at other unsupervised learning methods that build on some of the ideas of PCA.</p>
 </section>
 </section>
