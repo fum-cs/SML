@@ -1,7 +1,7 @@
 # Table of contents
 
 format: jb-book
-root: intro
+root: index
 chapters:
 - file: 01-What-Is-Statistical-Machine-Learning
 - file: 02-Covariance-Matrix

@@ -1,0 +1,37 @@
+In latex:
+
+replace  \mathbf{\Sigma} and \boldsymbol{\Sigma} with  {\Sigma}
+
+
+### **Why $ X^T X $ is Singular When $ n < p $?**  
+
+For a design matrix $ X \in \mathbb{R}^{n \times p} $:  
+1. **Rank Constraint**:  
+   - $\text{rank}(X) \leq \min(n, p)$.  
+   - If $ n < p $, $\text{rank}(X) \leq n < p $, so $ X $ is **column-rank-deficient**.  
+
+2. **Gram Matrix $ X^T X $**:  
+   - $ X^T X \in \mathbb{R}^{p \times p} $ has the same rank as $ X $:  
+  
+     $$
+     \text{rank}(X^T X) = \text{rank}(X) < p.
+     $$  
+   - Thus, $ X^T X $ is **singular** (non-invertible).  
+
+3. **Null Space Argument**:  
+   - $\text{null}(X) = \text{null}(X^T X)$ (since $ X^T X \mathbf{v} = 0 \iff X \mathbf{v} = 0 $).  
+   - If $ n < p $, $\text{nullity}(X) = p - \text{rank}(X) \geq p - n > 0 $, meaning there exist non-zero $ \mathbf{v} $ such that $ X^T X \mathbf{v} = 0 $.  
+
+4. **Geometric Intuition**:  
+   - $ X $ maps $ \mathbb{R}^p \to \mathbb{R}^n $ with $ p > n $, implying **linear dependence** in its columns.  
+   - $ X^T X $’s singularity reflects this dependence, making OLS’s $ (X^T X)^{-1} $ undefined.  
+
+5. **Implications**:  
+   - **OLS fails**: $ \mathbf{w}^* = (X^T X)^{-1} X^T \mathbf{y} $ cannot be computed.  
+   - **Solutions**:  
+     - **Regularization**: Ridge Regression adds $ \lambda I $ to ensure invertibility.  
+     - **Dimensionality Reduction**: Use PCA or feature selection to reduce $ p $.  
+
+For further information please See {cite}`Bakhshali2018Sparse`.
+
+---
