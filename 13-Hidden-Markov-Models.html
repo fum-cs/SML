@@ -28,8 +28,8 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
@@ -145,7 +145,7 @@
     
   
 
-<a class="navbar-brand logo" href="intro.html">
+<a class="navbar-brand logo" href="index.html">
   
   
   
@@ -177,7 +177,7 @@
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
-                <a class="reference internal" href="intro.html">
+                <a class="reference internal" href="index.html">
                     Welcome to Statistical Machine Learning Course
                 </a>
             </li>
@@ -185,14 +185,14 @@
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="01-What-Is-Statistical-Machine-Learning.html">What Is Statistical Machine Learning?</a></li>
 <li class="toctree-l1"><a class="reference internal" href="02-Covariance-Matrix.html">Understanding the Covariance Matrix</a></li>
-<li class="toctree-l1"><a class="reference internal" href="03-MLE-intro.html">Maximum Likelihood Estimation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03-MLE-intro.html">Maximum Likelihood Estimation (MLE)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="04-Mahalanobis-Distance.html">Mahalanobis Distance</a></li>
 <li class="toctree-l1"><a class="reference internal" href="05-Naive-Bayes.html">Naive Bayes Classification</a></li>
 
 
+
 <li class="toctree-l1"><a class="reference internal" href="06-Bayesian-Decision-Theory.html">Bayesian Decision Theory</a></li>
 <li class="toctree-l1"><a class="reference internal" href="07-Linear-Models.html">Linear models</a></li>
-
 
 
 
@@ -525,7 +525,7 @@ A good source for HMM is <a class="reference external" href="https://web.stanfor
 <span class="math notranslate nohighlight">\(a_{ij}\)</span> is the probability to transition from state <span class="math notranslate nohighlight">\(S_i\)</span> to state <span class="math notranslate nohighlight">\(S_j\)</span>.
 <span class="math notranslate nohighlight">\(b_j(o_k)\)</span> is the probability to emit symbol <span class="math notranslate nohighlight">\(o_k\)</span> in state <span class="math notranslate nohighlight">\(S_j\)</span>.
 In this particular HMM, states can only reach themselves or the adjacent state.</p>
-<p><img alt="HMM Model" src="img/08_HMM_Model.png" /></p>
+<p><img alt="HMM Model" src="_images/08_HMM_Model.png" /></p>
 <p>The mathematical notation of HMM parameters are as follows:</p>
 <ol class="arabic">
 <li><p>Model parameters:</p>
@@ -609,9 +609,9 @@ The Viterbi algorithm aims to find the most likely sequence of hidden states <sp
 </ol>
 <p>The final result is the most likely sequence of hidden states <span class="math notranslate nohighlight">\(Q^* = q_1^* q_2^* ... q_T^*\)</span> and the maximum probability <span class="math notranslate nohighlight">\(P^*\)</span>.</p>
 <p>The trellis diagram is a visual representation of the Viterbi algorithm, which is used to find the most likely sequence of hidden states (also known as the Viterbi path) given an observed sequence of emissions in a Hidden Markov Model (HMM).</p>
-<p><img alt="HMM" src="img/08_HMM_Model.png" /></p>
+<p><img alt="HMM" src="_images/08_HMM_Model.png" /></p>
 <p>The <strong>trellis diagram</strong> depicts the evolution of the HMM over time, with each column representing a time step, and each row representing a possible state of the HMM. The nodes in the diagram represent the states, and the edges represent the transitions between states.</p>
-<p><img alt="Trellis Diagram" src="img/08_HMM_Trellis.png" />
+<p><img alt="Trellis Diagram" src="_images/08_HMM_Trellis.png" />
 Figure: Trellis of the observation sequence <span class="math notranslate nohighlight">\(o_1\)</span>,<span class="math notranslate nohighlight">\(o_2\)</span>,<span class="math notranslate nohighlight">\(o_2\)</span> for the above HMM. The thick arrows indicate the most probable transitions. As an example, the transition between state <span class="math notranslate nohighlight">\(s_1\)</span> at time t=2 and state <span class="math notranslate nohighlight">\(s_4\)</span> at time t=3 has probability <span class="math notranslate nohighlight">\(\alpha_2(1)a_{14}b_4(o_2)\)</span>, where <span class="math notranslate nohighlight">\(\alpha_t(i)\)</span> is the probability to be in state <span class="math notranslate nohighlight">\(s_i\)</span> at time t.</p>
 <p>The trellis diagram is constructed as follows:</p>
 <ol class="arabic simple">
@@ -649,7 +649,7 @@ Figure: Trellis of the observation sequence <span class="math notranslate nohigh
 <section id="example">
 <h3>Example<a class="headerlink" href="#example" title="Link to this heading">#</a></h3>
 <p>Consider the <a class="reference external" href="https://www.ulfdittmer.com/imagej/seam-carving.html">following image</a>; Seam carving identifies the lowest-energy seam, which typically runs through less interesting areas. By removing this seam, we resize the image without sacrificing essential details.</p>
-<p><img alt="Seam-Carving Image" src="img/seam-carving.jpg" /></p>
+<p><img alt="Seam-Carving Image" src="_images/seam-carving.jpg" /></p>
 </section>
 </section>
 <section id="id1">
@@ -987,13 +987,13 @@ Figure: Trellis of the observation sequence <span class="math notranslate nohigh
 </li>
 </ol>
 <p>The forward algorithm recursively computes the probabilities of being in different states at each time step, considering both transitions and emissions.</p>
-<p><img alt="HMM-Model-Viterbi-Example" src="img/HMM-Model-Viterbi-Example.png" /></p>
+<p><img alt="HMM-Model-Viterbi-Example" src="_images/HMM-Model-Viterbi-Example.png" /></p>
 <p>Let’s compute <span class="math notranslate nohighlight">\(\alpha_1(1)\)</span>, which represents the probability of starting in state 1 and observing <span class="math notranslate nohighlight">\(o_1\)</span>; using the given formula (<span class="math notranslate nohighlight">\(j=1, t=0, t+1=1\)</span>):</p>
 <div class="math notranslate nohighlight">
 \[ \alpha_{1}(1) = \left(\sum_{i=1}^2 \alpha_t(i) a_{i1}\right) b_1(o_{1}) \]</div>
 <p><span class="math notranslate nohighlight">\(\alpha_1(1) = \alpha_0(1) a_{11} b_1(o_1) + \alpha_0(2) a_{21} b_1(o_1) = \pi_1 a_{11} b_1(o_1) + \pi_2 a_{21} b_1(o_1)\)</span>,
 where <span class="math notranslate nohighlight">\(\pi_j\)</span> is the initial state probability for state j and <span class="math notranslate nohighlight">\(b_j(o_{t+1})\)</span> is the emission probability for observation <span class="math notranslate nohighlight">\(o_{t+1}\)</span> given that we are in state <span class="math notranslate nohighlight">\(j\)</span>.</p>
-<p><img alt="HMM-Model-Viterbi-Example-Solution" src="img/HMM-Model-Viterbi-Example-Sol.png" /></p>
+<p><img alt="HMM-Model-Viterbi-Example-Solution" src="_images/HMM-Model-Viterbi-Example-Sol.png" /></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">hidden_markov</span> <span class="kn">import</span> <span class="n">hmm</span>

@@ -28,8 +28,8 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
@@ -145,7 +145,7 @@
     
   
 
-<a class="navbar-brand logo" href="intro.html">
+<a class="navbar-brand logo" href="index.html">
   
   
   
@@ -177,7 +177,7 @@
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
-                <a class="reference internal" href="intro.html">
+                <a class="reference internal" href="index.html">
                     Welcome to Statistical Machine Learning Course
                 </a>
             </li>
@@ -185,7 +185,7 @@
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="01-What-Is-Statistical-Machine-Learning.html">What Is Statistical Machine Learning?</a></li>
 <li class="toctree-l1"><a class="reference internal" href="02-Covariance-Matrix.html">Understanding the Covariance Matrix</a></li>
-<li class="toctree-l1"><a class="reference internal" href="03-MLE-intro.html">Maximum Likelihood Estimation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03-MLE-intro.html">Maximum Likelihood Estimation (MLE)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="04-Mahalanobis-Distance.html">Mahalanobis Distance</a></li>
 <li class="toctree-l1"><a class="reference internal" href="05-Naive-Bayes.html">Naive Bayes Classification</a></li>
 
@@ -193,7 +193,6 @@
 
 <li class="toctree-l1"><a class="reference internal" href="06-Bayesian-Decision-Theory.html">Bayesian Decision Theory</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Linear models</a></li>
-
 
 
 
@@ -448,36 +447,37 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#distributions-and-probabilities">Distributions and Probabilities</a></li>
 </ul>
 </li>
-</ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Linear models</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-models-for-regression">Linear models for regression</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-regression-aka-ordinary-least-squares">Linear Regression (aka Ordinary Least Squares)</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#solving-ordinary-least-squares">Solving ordinary least squares</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#why-x-t-x-is-singular-when-n-p"><strong>Why <span class="math notranslate nohighlight">\( X^T X \)</span> is Singular When <span class="math notranslate nohighlight">\( n &lt; p \)</span>?</strong></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gradient-descent">Gradient Descent</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Linear models</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-models-for-regression">Linear models for regression</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-regression-aka-ordinary-least-squares">Linear Regression (aka Ordinary Least Squares)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solving-ordinary-least-squares">Solving ordinary least squares</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#some-notes-about-closed-form-solution">Some notes about Closed-Form Solution</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gradient-descent">Gradient Descent</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Gradient Descent</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#stochastic-gradient-descent-sgd">Stochastic Gradient Descent (SGD)</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#in-practice">In practice</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ridge-regression">Ridge regression</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ridge-regression">Ridge regression</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ridge-regression-derivation">Ridge Regression Derivation</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">In practice</a></li>
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#other-ways-to-reduce-overfitting">Other ways to reduce overfitting</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lasso-least-absolute-shrinkage-and-selection-operator">Lasso (Least Absolute Shrinkage and Selection Operator)</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#coordinate-descent">Coordinate descent</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#coordinate-descent-with-lasso-further-reading">Coordinate descent with Lasso (Further Reading)</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpreting-l1-and-l2-loss">Interpreting L1 and L2 loss</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparing-ridge-and-lasso-for-prediction-and-feature-selection">Comparing Ridge and LASSO for Prediction and Feature Selection</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#elastic-net">Elastic-Net</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sparse-optimization-theory-and-applications">Sparse Optimization: Theory and Applications</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lasso-least-absolute-shrinkage-and-selection-operator">Lasso (Least Absolute Shrinkage and Selection Operator)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#coordinate-descent">Coordinate descent</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#coordinate-descent-with-lasso-further-reading">Coordinate descent with Lasso (Further Reading)</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sparse-signal-denoising-via-weighted-lasso-in-dct-domain">Sparse Signal Denoising via Weighted Lasso in DCT Domain</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpreting-l1-and-l2-loss">Interpreting L1 and L2 loss</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparing-ridge-and-lasso-for-prediction-and-feature-selection">Comparing Ridge and LASSO for Prediction and Feature Selection</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#elastic-net">Elastic-Net</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sparse-optimization-theory-and-applications">Sparse Optimization: Theory and Applications</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sparse-signal-denoising-via-weighted-lasso-in-dct-domain">Sparse Signal Denoising via Weighted Lasso in DCT Domain</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#noise-sparsity-dichotomy">Noise-Sparsity Dichotomy</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#weighted-l1-magic">Weighted ℓ₁ Magic</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#performance-analysis">Performance Analysis</a><ul class="nav section-nav flex-column">
@@ -495,7 +495,18 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#practice">Practice</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#when-to-use-omp">When to Use OMP</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#when-to-use-omp">When to Use OMP</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#similarities-and-differences-in-solving-a-mathbf-x-mathbf-b-in-regression-and-sparse-representation">Similarities and Differences in Solving <span class="math notranslate nohighlight">\( A\mathbf{x} = \mathbf{b} \)</span> in Regression and Sparse Representation</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#similarities"><strong>Similarities</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#differences-in-specification-of-a-mathbf-x-mathbf-b"><strong>Differences in Specification of <span class="math notranslate nohighlight">\( A, \mathbf{x}, \mathbf{b} \)</span></strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#key-differences-explained"><strong>Key Differences Explained</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example-house-price-prediction-regression"><strong>Example: House Price Prediction (Regression)</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example-image-denoising-sparse-representation"><strong>Example: Image Denoising (Sparse Representation)</strong></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#connection-between-sparse-learning-and-functional-analysis">Connection Between Sparse Learning and Functional Analysis</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hilbert-spaces-and-orthogonal-projections">Hilbert Spaces and Orthogonal Projections</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#banach-spaces-and-ell-1-regularization">Banach Spaces and <span class="math notranslate nohighlight">\( \ell_1 \)</span>-Regularization</a></li>
@@ -531,7 +542,7 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-models-overview">Linear models overview</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">Summary</a></li>
 </ul>
 </li>
 </ul>
@@ -819,9 +830,8 @@ document.write(`
 <p><img alt="" src="_images/02_pdf.png" /></p>
 </section>
 </section>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="id1">
-<h1>Linear models<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<section id="id1">
+<h2>Linear models<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
 <p>Linear models make a prediction using a linear function of the input features <span class="math notranslate nohighlight">\(X\)</span></p>
 <div class="math notranslate nohighlight">
 \[f_{\mathbf{w}}(\mathbf{x}) = \sum_{i=1}^{p} w_i \cdot x_i + w_{0}\]</div>
@@ -839,6 +849,7 @@ document.write(`
 </ul>
 </li>
 </ul>
+</section>
 <section id="linear-models-for-regression">
 <h2>Linear models for regression<a class="headerlink" href="#linear-models-for-regression" title="Link to this heading">#</a></h2>
 <ul class="simple">
@@ -891,40 +902,137 @@ document.write(`
 <img alt="_images/1f82a69a2a737b8ac13a6ac06deac407a2898b2160a33177a145ea6de4cdf1c4.png" src="_images/1f82a69a2a737b8ac13a6ac06deac407a2898b2160a33177a145ea6de4cdf1c4.png" />
 </div>
 </div>
+</section>
 <section id="linear-regression-aka-ordinary-least-squares">
-<h3>Linear Regression (aka Ordinary Least Squares)<a class="headerlink" href="#linear-regression-aka-ordinary-least-squares" title="Link to this heading">#</a></h3>
+<h2>Linear Regression (aka Ordinary Least Squares)<a class="headerlink" href="#linear-regression-aka-ordinary-least-squares" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Loss function is the <em>sum of squared errors</em> (SSE) (or residuals) between predictions <span class="math notranslate nohighlight">\(\hat{y}_i\)</span> (red) and the true regression targets <span class="math notranslate nohighlight">\(y_i\)</span> (blue) on the training set.</p></li>
 </ul>
 <div class="math notranslate nohighlight">
-\[\mathcal{L}_{SSE} = \sum_{n=1}^{N} (y_n-\hat{y}_n)^2 = \sum_{n=1}^{N} (y_n-(\mathbf{w}\mathbf{x_n} + w_0))^2\]</div>
+\[
+\mathcal{L}_{SSE} = \sum_{n=1}^{N} (y_n-\hat{y}_n)^2 = \sum_{n=1}^{N} (y_n-(\mathbf{w}^T\mathbf{x_n} + w_0))^2
+\]</div>
 <p><img alt="" src="_images/02_least_squares.png" /></p>
 <section id="solving-ordinary-least-squares">
-<h4>Solving ordinary least squares<a class="headerlink" href="#solving-ordinary-least-squares" title="Link to this heading">#</a></h4>
+<h3>Solving ordinary least squares<a class="headerlink" href="#solving-ordinary-least-squares" title="Link to this heading">#</a></h3>
 <p><strong>Closed-Form Solution</strong></p>
 <ul>
 <li><p>Convex optimization problem with unique closed-form solution:</p>
 <div class="math notranslate nohighlight">
-\[w^{*} = (X^{T}X)^{-1} X^T \mathbf{y}\]</div>
-<ul class="simple">
-<li><p>Add a column of 1’s to the front of X to get <span class="math notranslate nohighlight">\(w_0\)</span></p></li>
-<li><p>Slow. Time complexity is quadratic in number of features: <span class="math notranslate nohighlight">\(\mathcal{O}(p^2n)\)</span></p>
-<ul>
-<li><p>X has <span class="math notranslate nohighlight">\(n\)</span> rows, <span class="math notranslate nohighlight">\(p\)</span> features, hence <span class="math notranslate nohighlight">\(X^{T}X\)</span> has dimensionality <span class="math notranslate nohighlight">\(p \cdot p\)</span></p></li>
-</ul>
-</li>
-<li><p>Only works if <span class="math notranslate nohighlight">\(n&gt;p\)</span></p></li>
-</ul>
+\[\mathbf{w}^{*} = (X^{T}X)^{-1} X^T \mathbf{y}\]</div>
 </li>
 </ul>
-<p><em>Overfitting Risks of Closed-Form Solution</em></p>
+<p>If we have:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\mathbf{x} = \begin{bmatrix} x_0\\x_1 \end{bmatrix},
+\mathbf{w} = \begin{bmatrix} w_0\\w_1 \end{bmatrix}
+\end{split}\]</div>
+<p>then <span class="math notranslate nohighlight">\(\hat{y}\)</span> can be considered as dot product of two vectors:</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{aligned}
+\hat{y} = w_0 x_0+ w_1 x_1 = \mathbf{w}^T\mathbf{x}
+\end{aligned}
+\]</div>
+<p>If <span class="math notranslate nohighlight">\(i^{th}\)</span> instance is shown by <span class="math notranslate nohighlight">\(\mathbf{x}_i\)</span></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\mathbf{x}_i = \begin{bmatrix} x_{i,0}\\x_{i,1} \end{bmatrix},
+\end{split}\]</div>
+<p>then:</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{aligned}
+\hat{y}_i = w_0 x_{i,0}+ w_1 x_{i,1}
+\end{aligned}
+\]</div>
+<p>Loss: Sum of Squared Error:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\mathcal{L}_{SSE} &amp;= \sum_{i=1}^n{error_i}^2
+\\
+&amp;= \sum_{i=1}^n{(\hat{y_i} - y_i)}^2
+\\
+&amp;= \sum_{i=1}^n{(w_0 x_{i,0} + w_1 x_{i,1} - y_i)}^2\\
+&amp;= \sum_{i=1}^n{(\mathbf{w}^T\mathbf{x}_{i} - y_i)}^2
+= \sum_{i=1}^n{(\mathbf{x}_{i}^T\mathbf{w} - y_i)}^2\\
+&amp;= ||X\mathbf{w} - \mathbf{y}||_2^2 = (X\mathbf{w} - \mathbf{y})^T(X\mathbf{w} - \mathbf{y})
+\end{aligned}
+\end{split}\]</div>
+<p>where:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+X = \begin{bmatrix}
+    \mathbf{x_1}^T       \\
+    \mathbf{x_2}^T   \\
+    \vdots \\
+    \mathbf{x_n}^T
+\end{bmatrix},
+\mathbf{y} = \begin{bmatrix}
+    y_1       \\
+    y_2   \\
+    \vdots \\
+    y_n
+\end{bmatrix}
+\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\mathcal{L}_{SSE}&amp;=||X\mathbf{w}-y||_2^2 = (X\mathbf{w}-y)^T(X\mathbf{w}-y)\\
+&amp;=((X\mathbf{w})^T-y^T)(X\mathbf{w}-y) =(\mathbf{w}^TX^T-y^T)(X\mathbf{w}-y) \\
+&amp;=\mathbf{w}^TX^T X\mathbf{w} - \mathbf{w}^T X^Ty -y^TX\mathbf{w} + y^Ty\\
+&amp;=\mathbf{w}^T M\mathbf{w} - (X\mathbf{w})^Ty -y^TX\mathbf{w} + y^Ty \qquad {(M=X^T X)}\\
+&amp;=\mathbf{w}^T M\mathbf{w} - 2y^TX\mathbf{w} + y^Ty \qquad\qquad{(A^TB=B^TA)}\\
+&amp;=\mathbf{w}^T M\mathbf{w} - 2z^T\mathbf{w} + y^Ty \qquad\qquad{(z^T=y^TX, z=X^Ty)}
+\end{aligned}
+\end{split}\]</div>
+<p>We Know that (See Matrix Calculus in <a class="reference external" href="https://en.wikipedia.org/wiki/Matrix_calculus">Wikipedia</a>):</p>
+<div class="math notranslate nohighlight">
+\[\frac{\partial y^Tx}{\partial x}=\frac{\partial x^Ty}{\partial x}=y\]</div>
+<div class="math notranslate nohighlight">
+\[\frac{\partial Mx}{\partial x}=M\]</div>
+<p>and if <span class="math notranslate nohighlight">\(M\)</span> be a symmetric matrix:</p>
+<div class="math notranslate nohighlight">
+\[\frac{\partial x^TMx}{\partial x}=2Mx\]</div>
+<p>Hence:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\frac{\partial \mathcal{L}_{SSE}}{\partial \mathbf{w}} &amp;= \frac{\partial (\mathbf{w}^T M\mathbf{w} - 2z^T\mathbf{w} + y^Ty)}{\partial \mathbf{w}} \\
+&amp;= 2M\mathbf{w}-2z = 2X^TX\mathbf{w}-2X^T y
+\end{aligned}
+\end{split}\]</div>
+<p>Set the derivative equal to zero:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+&amp;\frac{\partial \mathcal{L}_{SSE}}{\partial \mathbf{w}}=0 \\
+\Rightarrow &amp; 2 X^TX\mathbf{w} - 2X^T y = 0\\
+\Rightarrow &amp; X^TX\mathbf{w} = X^Ty \\
+\Rightarrow &amp; \mathbf{w} = (X^TX)^{-1}X^Ty \\
+\end{aligned}
+\end{split}\]</div>
+</section>
+<section id="some-notes-about-closed-form-solution">
+<h3>Some notes about Closed-Form Solution<a class="headerlink" href="#some-notes-about-closed-form-solution" title="Link to this heading">#</a></h3>
+<p>The unique closed-form solution:</p>
+<div class="math notranslate nohighlight">
+\[\mathbf{w}^{*} = (X^{T}X)^{-1} X^T \mathbf{y}\]</div>
+<p>Where  X has <span class="math notranslate nohighlight">\(n\)</span> rows, <span class="math notranslate nohighlight">\(p\)</span> features, hence <span class="math notranslate nohighlight">\(X^{T}X\)</span> has dimensionality <span class="math notranslate nohighlight">\(p \cdot p\)</span></p>
+<p>Notes:</p>
 <ul class="simple">
+<li><p><strong>Slow</strong>. Time complexity is quadratic in number of features: <span class="math notranslate nohighlight">\(\mathcal{O}(p^2n)\)</span></p></li>
+<li><p><strong>Only works if <span class="math notranslate nohighlight">\(n&gt;p\)</span></strong>,  <span class="math notranslate nohighlight">\( X^T X \)</span> is Singular When <span class="math notranslate nohighlight">\( n &lt; p \)</span>,  making OLS’s <span class="math notranslate nohighlight">\( (X^T X)^{-1} \)</span> undefined.</p></li>
 <li><p><strong>The closed-form solution of Ordinary Least Squares (OLS) is highly prone to overfitting</strong>, especially when applied to small or highly correlated datasets.</p></li>
 <li><p><strong>Large coefficients</strong>: In the absence of regularization, weights <span class="math notranslate nohighlight">\( w \)</span> can grow excessively, leading to unstable predictions.</p></li>
 <li><p><strong>Sensitive to input variations</strong>: Small changes in <span class="math notranslate nohighlight">\( x \)</span> may result in disproportionately large shifts in the output <span class="math notranslate nohighlight">\( y \)</span>, making the model unreliable.</p></li>
 <li><p><strong>No direct hyperparameter control</strong>: Unlike Gradient Descent, OLS lacks tuning mechanisms such as learning rate or regularization strength.</p></li>
 </ul>
-<p><strong>Gradient Descent</strong></p>
+</section>
+<section id="gradient-descent">
+<h3>Gradient Descent<a class="headerlink" href="#gradient-descent" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>More efficient for <strong>large-scale</strong> or <strong>high-dimensional</strong> datasets.</p></li>
 <li><p>Preferred when computing <span class="math notranslate nohighlight">\( X^{T}X \)</span> is infeasible or excessively time-consuming due to large <span class="math notranslate nohighlight">\( p \)</span> or <span class="math notranslate nohighlight">\( n \)</span>.</p></li>
@@ -938,54 +1046,6 @@ document.write(`
 </ul>
 </li>
 </ul>
-</section>
-<hr class="docutils" />
-<section id="why-x-t-x-is-singular-when-n-p">
-<h4><strong>Why <span class="math notranslate nohighlight">\( X^T X \)</span> is Singular When <span class="math notranslate nohighlight">\( n &lt; p \)</span>?</strong><a class="headerlink" href="#why-x-t-x-is-singular-when-n-p" title="Link to this heading">#</a></h4>
-<p>For a design matrix <span class="math notranslate nohighlight">\( X \in \mathbb{R}^{n \times p} \)</span>:</p>
-<ol class="arabic">
-<li><p><strong>Rank Constraint</strong>:</p>
-<ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(\text{rank}(X) \leq \min(n, p)\)</span>.</p></li>
-<li><p>If <span class="math notranslate nohighlight">\( n &lt; p \)</span>, <span class="math notranslate nohighlight">\(\text{rank}(X) \leq n &lt; p \)</span>, so <span class="math notranslate nohighlight">\( X \)</span> is <strong>column-rank-deficient</strong>.</p></li>
-</ul>
-</li>
-<li><p><strong>Gram Matrix <span class="math notranslate nohighlight">\( X^T X \)</span></strong>:</p>
-<ul>
-<li><p><span class="math notranslate nohighlight">\( X^T X \in \mathbb{R}^{p \times p} \)</span> has the same rank as <span class="math notranslate nohighlight">\( X \)</span>:</p>
-<div class="math notranslate nohighlight">
-\[
-     \text{rank}(X^T X) = \text{rank}(X) &lt; p.
-     \]</div>
-</li>
-<li><p>Thus, <span class="math notranslate nohighlight">\( X^T X \)</span> is <strong>singular</strong> (non-invertible).</p></li>
-</ul>
-</li>
-<li><p><strong>Null Space Argument</strong>:</p>
-<ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(\text{null}(X) = \text{null}(X^T X)\)</span> (since <span class="math notranslate nohighlight">\( X^T X \mathbf{v} = 0 \iff X \mathbf{v} = 0 \)</span>).</p></li>
-<li><p>If <span class="math notranslate nohighlight">\( n &lt; p \)</span>, <span class="math notranslate nohighlight">\(\text{nullity}(X) = p - \text{rank}(X) \geq p - n &gt; 0 \)</span>, meaning there exist non-zero <span class="math notranslate nohighlight">\( \mathbf{v} \)</span> such that <span class="math notranslate nohighlight">\( X^T X \mathbf{v} = 0 \)</span>.</p></li>
-</ul>
-</li>
-<li><p><strong>Geometric Intuition</strong>:</p>
-<ul class="simple">
-<li><p><span class="math notranslate nohighlight">\( X \)</span> maps <span class="math notranslate nohighlight">\( \mathbb{R}^p \to \mathbb{R}^n \)</span> with <span class="math notranslate nohighlight">\( p &gt; n \)</span>, implying <strong>linear dependence</strong> in its columns.</p></li>
-<li><p><span class="math notranslate nohighlight">\( X^T X \)</span>’s singularity reflects this dependence, making OLS’s <span class="math notranslate nohighlight">\( (X^T X)^{-1} \)</span> undefined.</p></li>
-</ul>
-</li>
-<li><p><strong>Implications</strong>:</p>
-<ul class="simple">
-<li><p><strong>OLS fails</strong>: <span class="math notranslate nohighlight">\( \mathbf{w}^* = (X^T X)^{-1} X^T \mathbf{y} \)</span> cannot be computed.</p></li>
-<li><p><strong>Solutions</strong>:</p>
-<ul>
-<li><p><strong>Regularization</strong>: Ridge Regression adds <span class="math notranslate nohighlight">\( \lambda I \)</span> to ensure invertibility.</p></li>
-<li><p><strong>Dimensionality Reduction</strong>: Use PCA or feature selection to reduce <span class="math notranslate nohighlight">\( p \)</span>.</p></li>
-</ul>
-</li>
-</ul>
-</li>
-</ol>
-<p>For further information please See <span id="id2">[<a class="reference internal" href="intro.html#id23" title="Mahboube Bakhshali. The subspace pursuit method in sparseoptimization. Master's thesis, Hakim Sabzevari University, Faculty of Mathematics and Computer Science, September 2018. روش جستجوی زیرفضا در بهینه سازی تنک. URL: http://hcloud.hsu.ac.ir/index.php/s/jacmnZiPfNFpYfk.">Bak18</a>]</span>.</p>
 <hr class="docutils" />
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
@@ -1046,8 +1106,8 @@ Error: X^T X is singular and cannot be inverted (as expected when n &lt; p).
 </div>
 </div>
 </section>
-<section id="gradient-descent">
-<h4>Gradient Descent<a class="headerlink" href="#gradient-descent" title="Link to this heading">#</a></h4>
+<section id="id2">
+<h3>Gradient Descent<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
 <ul>
 <li><p>Start with an initial, random set of weights: <span class="math notranslate nohighlight">\(\mathbf{w}^0\)</span></p></li>
 <li><p>Given a differentiable loss function <span class="math notranslate nohighlight">\(\mathcal{L}\)</span> (e.g. <span class="math notranslate nohighlight">\(\mathcal{L}_{SSE}\)</span>), compute <span class="math notranslate nohighlight">\(\nabla \mathcal{L}\)</span></p></li>
@@ -1374,11 +1434,6 @@ Error: X^T X is singular and cannot be inverted (as expected when n &lt; p).
 </div>
 </div>
 </details>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:From C:\Users\mamin\AppData\Local\Temp\ipykernel_17912\2027666145.py:10: The name tf.get_variable is deprecated. Please use tf.compat.v1.get_variable instead.
-</pre></div>
-</div>
-</div>
 </div>
 <p><strong>Effect of learning rate</strong></p>
 <div class="cell tag_hide-input docutils container">
@@ -1444,7 +1499,6 @@ Error: X^T X is singular and cannot be inverted (as expected when n &lt; p).
 </ul>
 <p><img alt="" src="_images/01_gradient_descent_hill.png" /></p>
 <p>(Image by A. Karpathy)</p>
-</section>
 <section id="stochastic-gradient-descent-sgd">
 <h4>Stochastic Gradient Descent (SGD)<a class="headerlink" href="#stochastic-gradient-descent-sgd" title="Link to this heading">#</a></h4>
 <ul class="simple">
@@ -1544,13 +1598,16 @@ Test set score (R^2): 0.61
 </div>
 </section>
 </section>
+</section>
 <section id="ridge-regression">
-<h3>Ridge regression<a class="headerlink" href="#ridge-regression" title="Link to this heading">#</a></h3>
+<h2>Ridge regression<a class="headerlink" href="#ridge-regression" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Adds a penalty term to the least squares loss function:</p></li>
 </ul>
 <div class="math notranslate nohighlight">
-\[\mathcal{L}_{Ridge} = \sum_{n=1}^{N} (y_n-(\mathbf{w}\mathbf{x_n} + w_0))^2 + \alpha \sum_{i=1}^{p} w_i^2\]</div>
+\[
+\mathcal{L}_{Ridge} = \sum_{n=1}^{N} (y_n-(\mathbf{w}\mathbf{x_n} + w_0))^2 + \alpha \sum_{i=1}^{p} w_i^2
+\]</div>
 <ul class="simple">
 <li><p>Model is penalized if it uses large coefficients (<span class="math notranslate nohighlight">\(w\)</span>)</p>
 <ul>
@@ -1580,7 +1637,6 @@ Test set score (R^2): 0.61
 </ul>
 </li>
 </ul>
-</section>
 <section id="ridge-regression-derivation">
 <h3>Ridge Regression Derivation<a class="headerlink" href="#ridge-regression-derivation" title="Link to this heading">#</a></h3>
 <p>We want to minimize the Ridge loss function with respect to <span class="math notranslate nohighlight">\(\mathbf{w}\)</span>:</p>
@@ -1782,8 +1838,9 @@ Test set score: 0.75
 </div>
 </div>
 </section>
+</section>
 <section id="lasso-least-absolute-shrinkage-and-selection-operator">
-<h3>Lasso (Least Absolute Shrinkage and Selection Operator)<a class="headerlink" href="#lasso-least-absolute-shrinkage-and-selection-operator" title="Link to this heading">#</a></h3>
+<h2>Lasso (Least Absolute Shrinkage and Selection Operator)<a class="headerlink" href="#lasso-least-absolute-shrinkage-and-selection-operator" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Adds a different penalty term to the least squares sum:</p></li>
 </ul>
@@ -1867,7 +1924,7 @@ Test set score: 0.75
 </div>
 </div>
 <section id="coordinate-descent">
-<h4>Coordinate descent<a class="headerlink" href="#coordinate-descent" title="Link to this heading">#</a></h4>
+<h3>Coordinate descent<a class="headerlink" href="#coordinate-descent" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Alternative for gradient descent, supports non-differentiable convex loss functions (e.g. <span class="math notranslate nohighlight">\(\mathcal{L}_{Lasso}\)</span>)</p></li>
 <li><p>In every iteration, optimize a single coordinate <span class="math notranslate nohighlight">\(w_i\)</span> (find minimum in direction of <span class="math notranslate nohighlight">\(x_i\)</span>)</p>
@@ -1878,10 +1935,11 @@ Test set score: 0.75
 <li><p>Faster iterations. No need to choose a step size (learning rate).</p></li>
 <li><p>May converge more slowly. Can’t be parallellized.</p></li>
 </ul>
-<img src="https://raw.githubusercontent.com/fum-cs/machine-learning/main/notebooks/img/02_cd.png" alt="ml" style="width: 700px;"/></section>
+<p><img alt="" src="_images/02_cd.png" /></p>
 <hr class="docutils" />
+</section>
 <section id="coordinate-descent-with-lasso-further-reading">
-<h4>Coordinate descent with Lasso (Further Reading)<a class="headerlink" href="#coordinate-descent-with-lasso-further-reading" title="Link to this heading">#</a></h4>
+<h3>Coordinate descent with Lasso (Further Reading)<a class="headerlink" href="#coordinate-descent-with-lasso-further-reading" title="Link to this heading">#</a></h3>
 <ul>
 <li><p>Remember that <span class="math notranslate nohighlight">\(\mathcal{L}_{Lasso} = \mathcal{L}_{SSE} + \alpha \sum_{i=1}^{p} |w_i|\)</span></p></li>
 <li><p>For one <span class="math notranslate nohighlight">\(w_i\)</span>: <span class="math notranslate nohighlight">\(\mathcal{L}_{Lasso}(w_i) = \mathcal{L}_{SSE}(w_i) + \alpha |w_i|\)</span></p></li>
@@ -1894,7 +1952,9 @@ Test set score: 0.75
 </li>
 <li><p>To find the optimum for Lasso <span class="math notranslate nohighlight">\(w_i^{*}\)</span>, solve</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}\begin{aligned} \partial_{w_i} \mathcal{L}_{Lasso}(w_i) &amp;= \partial_{w_i} \mathcal{L}_{SSE}(w_i) + \partial_{w_i} \alpha |w_i| \\ 0 &amp;= (w_i - \rho_i) + \alpha \cdot \partial_{w_i} |w_i| \\ w_i &amp;= \rho_i - \alpha \cdot \partial_{w_i} |w_i| \end{aligned}\end{split}\]</div>
+\[\begin{split}
+    \begin{aligned} \partial_{w_i} \mathcal{L}_{Lasso}(w_i) &amp;= \partial_{w_i} \mathcal{L}_{SSE}(w_i) + \partial_{w_i} \alpha |w_i| \\ 0 &amp;= (w_i - \rho_i) + \alpha \cdot \partial_{w_i} |w_i| \\ w_i &amp;= \rho_i - \alpha \cdot \partial_{w_i} |w_i| \end{aligned}
+    \end{split}\]</div>
 <ul class="simple">
 <li><p>In which <span class="math notranslate nohighlight">\(\rho_i\)</span> is the part of <span class="math notranslate nohighlight">\(\partial_{w_i} \mathcal{L}_{SSE}(w_i)\)</span> excluding <span class="math notranslate nohighlight">\(w_i\)</span> (assume <span class="math notranslate nohighlight">\(z_i=1\)</span> for now)</p>
 <ul>
@@ -1903,7 +1963,9 @@ Test set score: 0.75
 </li>
 </ul>
 <div class="math notranslate nohighlight">
-\[\partial_{w_i} \mathcal{L}_{SSE}(w_i) = \partial_{w_i} \sum_{n=1}^{N} (y_n-(\mathbf{w}\mathbf{x_n} + w_0))^2 = z_i w_i -\rho_i \]</div>
+\[
+  \partial_{w_i} \mathcal{L}_{SSE}(w_i) = \partial_{w_i} \sum_{n=1}^{N} (y_n-(\mathbf{w}\mathbf{x_n} + w_0))^2 = z_i w_i -\rho_i 
+  \]</div>
 </li>
 </ul>
 <ul>
@@ -1917,7 +1979,7 @@ Test set score: 0.75
 </ul>
 </li>
 <li><p>Ridge solution: <span class="math notranslate nohighlight">\(w_i = \rho_i - \alpha \cdot \partial_{w_i} w_i^2 = \rho_i - 2\alpha \cdot w_i\)</span>, thus <span class="math notranslate nohighlight">\(w_i^* = \frac{\rho_i}{1 + 2\alpha}\)</span></p></li>
-<li><p>For mor information see <span id="id4">[<a class="reference internal" href="intro.html#id26" title="Farzane Rashidabadi. Image matting. Master's thesis, Hakim Sabzevari University, Faculty of Mathematics and Computer Science, January 2016. برش هوشمند تصویر. URL: http://hcloud.hsu.ac.ir/index.php/s/OaHkkTSsO8mNrk0.">Ras16</a>]</span></p></li>
+<li><p>For mor information see <span id="id4">[<a class="reference internal" href="index.html#id27" title="Farzane Rashidabadi. Image matting. Master's thesis, Hakim Sabzevari University, Faculty of Mathematics and Computer Science, January 2016. برش هوشمند تصویر. URL: http://hcloud.hsu.ac.ir/index.php/s/OaHkkTSsO8mNrk0.">Ras16</a>]</span></p></li>
 </ul>
 <div class="cell tag_hide-input tag_hide-output tag_hide-cell docutils container">
 <details class="hide above-input">
@@ -1967,7 +2029,7 @@ Test set score: 0.75
 </section>
 </section>
 <section id="interpreting-l1-and-l2-loss">
-<h3>Interpreting L1 and L2 loss<a class="headerlink" href="#interpreting-l1-and-l2-loss" title="Link to this heading">#</a></h3>
+<h2>Interpreting L1 and L2 loss<a class="headerlink" href="#interpreting-l1-and-l2-loss" title="Link to this heading">#</a></h2>
 <!-- - L1 and L2 in function of the weights
 
 <img src="https://raw.githubusercontent.com/fum-cs/machine-learning/main/notebooks/img/L12_1.png" alt="ml" style="width: 900px;"/> --><!-- Least Squares Loss + L1 or L2
@@ -2115,7 +2177,7 @@ Test set score: 0.75
 </div>
 </section>
 <section id="comparing-ridge-and-lasso-for-prediction-and-feature-selection">
-<h3>Comparing Ridge and LASSO for Prediction and Feature Selection<a class="headerlink" href="#comparing-ridge-and-lasso-for-prediction-and-feature-selection" title="Link to this heading">#</a></h3>
+<h2>Comparing Ridge and LASSO for Prediction and Feature Selection<a class="headerlink" href="#comparing-ridge-and-lasso-for-prediction-and-feature-selection" title="Link to this heading">#</a></h2>
 <p>The following code trains and compares Linear Regression, Ridge (L2), and LASSO (L1) regression models. We’ll examine their predictive performance using Mean Squared Error (MSE) and observe how LASSO can be used for feature selection by shrinking some feature coefficients to zero.</p>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
@@ -2176,12 +2238,14 @@ LASSO selected 33 features from total 104 features.
 </div>
 </section>
 <section id="elastic-net">
-<h3>Elastic-Net<a class="headerlink" href="#elastic-net" title="Link to this heading">#</a></h3>
+<h2>Elastic-Net<a class="headerlink" href="#elastic-net" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Adds both L1 and L2 regularization:</p></li>
 </ul>
 <div class="math notranslate nohighlight">
-\[\mathcal{L}_{Elastic} = \sum_{n=1}^{N} (y_n-(\mathbf{w}\mathbf{x_n} + w_0))^2 + \alpha \rho \sum_{i=1}^{p} |w_i| + \alpha (1 -  \rho) \sum_{i=1}^{p} w_i^2\]</div>
+\[
+\mathcal{L}_{Elastic} = \sum_{n=1}^{N} (y_n-(\mathbf{w}\mathbf{x_n} + w_0))^2 + \alpha \rho \sum_{i=1}^{p} |w_i| + \alpha (1 -  \rho) \sum_{i=1}^{p} w_i^2
+\]</div>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(\rho\)</span> is the L1 ratio</p>
 <ul>
@@ -2199,8 +2263,8 @@ LASSO selected 33 features from total 104 features.
 </ul>
 </section>
 <section id="sparse-optimization-theory-and-applications">
-<h3>Sparse Optimization: Theory and Applications<a class="headerlink" href="#sparse-optimization-theory-and-applications" title="Link to this heading">#</a></h3>
-<p>Sparse optimization is a fundamental paradigm in mathematical modeling that seeks solutions with few non-zero elements, often formalized through ℓ₁-norm regularization or non-convex penalties. This framework is grounded in the <strong>Compressed Sensing (CS)</strong> theory <span id="id5">[<a class="reference internal" href="intro.html#id6" title="David L. Donoho. Compressed sensing. IEEE Transactions on Information Theory, 52(4):1289–1306, 2006. doi:10.1109/TIT.2006.871582.">Don06</a>]</span>, which guarantees exact signal recovery from sub-Nyquist measurements if the signal is sparse in some basis. Key applications include:</p>
+<h2>Sparse Optimization: Theory and Applications<a class="headerlink" href="#sparse-optimization-theory-and-applications" title="Link to this heading">#</a></h2>
+<p>Sparse optimization is a fundamental paradigm in mathematical modeling that seeks solutions with few non-zero elements, often formalized through ℓ₁-norm regularization or non-convex penalties. This framework is grounded in the <strong>Compressed Sensing (CS)</strong> theory <span id="id5">[<a class="reference internal" href="index.html#id7" title="David L. Donoho. Compressed sensing. IEEE Transactions on Information Theory, 52(4):1289–1306, 2006. doi:10.1109/TIT.2006.871582.">Don06</a>]</span>, which guarantees exact signal recovery from sub-Nyquist measurements if the signal is sparse in some basis. Key applications include:</p>
 <ol class="arabic simple">
 <li><p><strong>Medical Imaging</strong>: CS enables faster MRI scans by reconstructing images from limited k-space samples (Lustig et al., 2007), as highlighted in the <a class="reference external" href="http://dsp.ee.cuhk.edu.hk/eleg5481/Lecture%20notes/13-%20compressive%20sensing/cs.pdf">CUHK lecture notes on CS</a> (p. 13).</p></li>
 <li><p><strong>Signal Processing</strong>: Sparse methods underpin denoising (e.g., wavelet shrinkage) and inpainting, where total variation minimization preserves edges while removing noise (Figueiredo, 2021, <a class="reference external" href="https://indico.math.cnrs.fr/event/6637/contributions/5334/attachments/3055/3951/Figueiredo_CIMI-ANITI_Toulouse_2021.pdf">slides p. 8</a>).</p></li>
@@ -2208,11 +2272,9 @@ LASSO selected 33 features from total 104 features.
 <li><p><strong>Statistics</strong>: High-dimensional inference (e.g., genomics) benefits from sparsity-induced interpretability (Bühlmann &amp; Van de Geer, 2011).</p></li>
 </ol>
 <p>The field continues to evolve with <strong>non-convex penalties</strong> (e.g., SCAD) and <strong>greedy algorithms</strong> (OMP), balancing computational efficiency and statistical guarantees. For a unified perspective, see the cited references and tutorials.</p>
-</section>
-</section>
 <hr class="docutils" />
 <section id="sparse-signal-denoising-via-weighted-lasso-in-dct-domain">
-<h2>Sparse Signal Denoising via Weighted Lasso in DCT Domain<a class="headerlink" href="#sparse-signal-denoising-via-weighted-lasso-in-dct-domain" title="Link to this heading">#</a></h2>
+<h3>Sparse Signal Denoising via Weighted Lasso in DCT Domain<a class="headerlink" href="#sparse-signal-denoising-via-weighted-lasso-in-dct-domain" title="Link to this heading">#</a></h3>
 <p>Given a noisy 1D signal:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -2252,7 +2314,8 @@ penalty_weights[:n_freq] = 0  # Protect low frequencies
 |-----------|------|-------------------|
 | `alpha` | Sparsity strength | 0.01-0.3 |
 | `n_freq` | Protected coefficients | 10-50% of Nyquist |
-| `max_iter` | Convergence control | ≥5000 | --><section id="noise-sparsity-dichotomy">
+| `max_iter` | Convergence control | ≥5000 | --></section>
+<section id="noise-sparsity-dichotomy">
 <h3>Noise-Sparsity Dichotomy<a class="headerlink" href="#noise-sparsity-dichotomy" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p><strong>Signal</strong>: Sparse in DCT domain (few dominant coefficients)</p></li>
@@ -2413,12 +2476,12 @@ where <span class="math notranslate nohighlight">\(\mathbf{r}\)</span> is the cu
 </ol>
 <p>Termination: After <span class="math notranslate nohighlight">\(k\)</span> iterations or when <span class="math notranslate nohighlight">\(\|\mathbf{r}\|_2 &lt; \epsilon\)</span></p>
 <p><img alt="" src="_images/theodoridis-Figure-10.2.png" /></p>
-<p>Figure 10.2 of <span id="id6">[<a class="reference internal" href="intro.html#id9" title="S. Theodoridis. Machine Learning: A Bayesian and Optimization Perspective. Academic Press, 2020. ISBN 9780128188040. URL: https://books.google.com/books?id=l-nEDwAAQBAJ.">The20</a>]</span>:</p>
+<p>Figure 10.2 of <span id="id6">[<a class="reference internal" href="index.html#id10" title="S. Theodoridis. Machine Learning: A Bayesian and Optimization Perspective. Academic Press, 2020. ISBN 9780128188040. URL: https://books.google.com/books?id=l-nEDwAAQBAJ.">The20</a>]</span>:</p>
 <p>(A) In the case of an orthogonal matrix, the observations vector y will be orthogonal to any inactive column, here,
 <span class="math notranslate nohighlight">\(x_3^c\)</span>. (B) In the more general case, it is expected to “lean” closer (form smaller angles) to the active than to the
 inactive columns.</p>
 <p><img alt="" src="_images/Bakhshali-Figure-2.3.png" /></p>
-<p>Figure 2.3 of <span id="id7">[<a class="reference internal" href="intro.html#id23" title="Mahboube Bakhshali. The subspace pursuit method in sparseoptimization. Master's thesis, Hakim Sabzevari University, Faculty of Mathematics and Computer Science, September 2018. روش جستجوی زیرفضا در بهینه سازی تنک. URL: http://hcloud.hsu.ac.ir/index.php/s/jacmnZiPfNFpYfk.">Bak18</a>]</span></p>
+<p>Figure 2.3 of <span id="id7">[<a class="reference internal" href="index.html#id24" title="Mahboube Bakhshali. The subspace pursuit method in sparseoptimization. Master's thesis, Hakim Sabzevari University, Faculty of Mathematics and Computer Science, September 2018. روش جستجوی زیرفضا در بهینه سازی تنک. URL: http://hcloud.hsu.ac.ir/index.php/s/jacmnZiPfNFpYfk.">Bak18</a>]</span></p>
 </section>
 <section id="comparison-with-lasso">
 <h2>Comparison with LASSO<a class="headerlink" href="#comparison-with-lasso" title="Link to this heading">#</a></h2>
@@ -2449,7 +2512,7 @@ inactive columns.</p>
 </tbody>
 </table>
 </div>
-<p>For further information see <span id="id8">[<a class="reference internal" href="intro.html#id21" title="Alale Asaran. Super resolution via sparse representation. Master's thesis, Hakim Sabzevari University, Faculty of Mathematics and Computer Science, Winter 2016. فراتفکیک پذیری با نمایش تنک. URL: http://hcloud.hsu.ac.ir/index.php/s/W9ImIzeV6C1mqZo.">Asa16</a>]</span>.</p>
+<p>For further information see <span id="id8">[<a class="reference internal" href="index.html#id22" title="Alale Asaran. Super resolution via sparse representation. Master's thesis, Hakim Sabzevari University, Faculty of Mathematics and Computer Science, Winter 2016. فراتفکیک پذیری با نمایش تنک. URL: http://hcloud.hsu.ac.ir/index.php/s/W9ImIzeV6C1mqZo.">Asa16</a>]</span>.</p>
 <section id="practice">
 <h3>Practice<a class="headerlink" href="#practice" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
@@ -2614,6 +2677,152 @@ LASSO      5.5046e-02    0               0.2214     [1.39, -0.68, 1.05]
 </div>
 </details>
 </div>
+<p><strong>A Simple Example</strong></p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">numpy.linalg</span> <span class="kn">import</span> <span class="n">pinv</span>
+
+<span class="k">def</span> <span class="nf">omp_with_steps</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-6</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Orthogonal Matching Pursuit with step-by-step printing</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    X : ndarray, shape (n_samples, n_features)</span>
+<span class="sd">        Design matrix (should be shape (3, 5) for this example)</span>
+<span class="sd">    y : ndarray, shape (n_samples,)</span>
+<span class="sd">        Target vector (should be shape (3,) for this example)</span>
+<span class="sd">    k : int</span>
+<span class="sd">        Sparsity level (number of non-zero coefficients)</span>
+<span class="sd">    tol : float</span>
+<span class="sd">        Residual tolerance for early stopping</span>
+<span class="sd">        </span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    w : ndarray, shape (n_features,)</span>
+<span class="sd">        Sparse coefficient vector</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">n</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span>
+    <span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+    <span class="n">residual</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">active</span> <span class="o">=</span> <span class="p">[]</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=== Orthogonal Matching Pursuit ===&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Target vector y: </span><span class="si">{</span><span class="n">y</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Initial residual norm: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">residual</span><span class="p">)</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    
+    <span class="k">for</span> <span class="n">iteration</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>
+        <span class="c1"># Find most correlated feature</span>
+        <span class="n">correlations</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">residual</span><span class="p">)</span>
+        
+        <span class="c1"># Exclude already selected indices (avoid OverflowError)</span>
+        <span class="k">if</span> <span class="n">active</span><span class="p">:</span>
+            <span class="n">correlations</span><span class="p">[</span><span class="n">active</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span>
+        
+        <span class="n">new_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">correlations</span><span class="p">)</span>
+        <span class="n">active</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_idx</span><span class="p">)</span>
+        
+        <span class="c1"># Solve least squares on active set</span>
+        <span class="n">X_active</span> <span class="o">=</span> <span class="n">X</span><span class="p">[:,</span> <span class="n">active</span><span class="p">]</span>
+        <span class="n">w_active</span> <span class="o">=</span> <span class="n">pinv</span><span class="p">(</span><span class="n">X_active</span><span class="p">)</span> <span class="o">@</span> <span class="n">y</span>
+        
+        <span class="c1"># Update residual</span>
+        <span class="n">residual</span> <span class="o">=</span> <span class="n">y</span> <span class="o">-</span> <span class="n">X_active</span> <span class="o">@</span> <span class="n">w_active</span>
+        
+        <span class="c1"># Print step information</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Iteration </span><span class="si">{</span><span class="n">iteration</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2">:&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Selected index: </span><span class="si">{</span><span class="n">new_idx</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Active set: </span><span class="si">{</span><span class="n">active</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Coefficients: </span><span class="si">{</span><span class="n">w_active</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Residual norm: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">residual</span><span class="p">)</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+        
+        <span class="c1"># Early stopping if residual is small</span>
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">residual</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">tol</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Stopping early: residual norm </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">residual</span><span class="p">)</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2"> &lt; tolerance </span><span class="si">{</span><span class="n">tol</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">break</span>
+    
+    <span class="c1"># Convert to full coefficient vector</span>
+    <span class="n">w_sparse</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+    <span class="n">w_sparse</span><span class="p">[</span><span class="n">active</span><span class="p">]</span> <span class="o">=</span> <span class="n">w_active</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">=== Final Result ===&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Non-zero coefficients at indices: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">nonzero</span><span class="p">(</span><span class="n">w_sparse</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Coefficient values: </span><span class="si">{</span><span class="n">w_sparse</span><span class="p">[</span><span class="n">w_sparse</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">w_sparse</span>
+
+<span class="c1"># Example usage</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="c1"># Correct initialization: A should be (3, 5) for Ax=b where b is (3,)</span>
+    <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+        <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>  <span class="c1"># x-components of basis vectors</span>
+        <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="c1"># y-components of basis vectors</span>
+        <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>   <span class="c1"># z-components of basis vectors</span>
+    <span class="p">])</span>  <span class="c1"># Shape (3, 5)</span>
+    
+    <span class="c1"># Target vector in xy-plane</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Dictionary matrix A (shape </span><span class="si">{}</span><span class="s2">):&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">shape</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Target vector b:&quot;</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Running OMP with k=2...</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    
+    <span class="c1"># Run OMP with step printing</span>
+    <span class="n">w_sparse</span> <span class="o">=</span> <span class="n">omp_with_steps</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    
+    <span class="c1"># Verify reconstruction</span>
+    <span class="n">reconstruction</span> <span class="o">=</span> <span class="n">A</span> <span class="o">@</span> <span class="n">w_sparse</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Reconstruction:&quot;</span><span class="p">,</span> <span class="n">reconstruction</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Target:&quot;</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Reconstruction error:&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">reconstruction</span> <span class="o">-</span> <span class="n">b</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Dictionary matrix A (shape (3, 4)):
+[[1 0 0 1]
+ [0 1 0 1]
+ [0 0 1 0]]
+
+Target vector b: [2 3 0]
+
+Running OMP with k=2...
+
+=== Orthogonal Matching Pursuit ===
+Target vector y: [2 3 0]
+Initial residual norm: 3.6056
+
+Iteration 1:
+  Selected index: 3
+  Active set: [np.int64(3)]
+  Coefficients: [2.5]
+  Residual norm: 0.7071
+
+Iteration 2:
+  Selected index: 1
+  Active set: [np.int64(3), np.int64(1)]
+  Coefficients: [2. 1.]
+  Residual norm: 0.0000
+
+Stopping early: residual norm 0.0000 &lt; tolerance 1e-06
+
+=== Final Result ===
+Non-zero coefficients at indices: [1 3]
+Coefficient values: [1. 2.]
+
+Reconstruction: [2. 3. 0.]
+Target: [2 3 0]
+Reconstruction error: 6.280369834735101e-16
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 </section>
 <section id="when-to-use-omp">
@@ -2624,6 +2833,125 @@ LASSO      5.5046e-02    0               0.2214     [1.39, -0.68, 1.05]
 <li><p><strong>Interpretable solutions</strong> – Since OMP selects features iteratively, the stepwise approach makes it easier to analyze which features contribute to the model, often simpler than interpreting LASSO’s continuous shrinkage.</p></li>
 <li><p><strong>Dictionary learning</strong> – Frequently used in sparse coding applications, where signals are represented as a <strong>sparse combination of dictionary elements</strong>, making it valuable for feature selection in compressed sensing.</p></li>
 </ol>
+<section id="similarities-and-differences-in-solving-a-mathbf-x-mathbf-b-in-regression-and-sparse-representation">
+<h3>Similarities and Differences in Solving <span class="math notranslate nohighlight">\( A\mathbf{x} = \mathbf{b} \)</span> in Regression and Sparse Representation<a class="headerlink" href="#similarities-and-differences-in-solving-a-mathbf-x-mathbf-b-in-regression-and-sparse-representation" title="Link to this heading">#</a></h3>
+<section id="similarities">
+<h4><strong>Similarities</strong><a class="headerlink" href="#similarities" title="Link to this heading">#</a></h4>
+<ol class="arabic simple">
+<li><p><strong>Core Equation</strong>: Both domains solve the linear system <span class="math notranslate nohighlight">\( A\mathbf{x} = \mathbf{b} \)</span>.</p></li>
+<li><p><strong>Matrix-Vector Structure</strong>:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\( A \)</span> is a matrix, <span class="math notranslate nohighlight">\( \mathbf{x} \)</span> is a vector of unknowns, and <span class="math notranslate nohighlight">\( \mathbf{b} \)</span> is a vector of observations/targets.</p></li>
+</ul>
+</li>
+<li><p><strong>Optimization Goal</strong>: Both aim to find <span class="math notranslate nohighlight">\( \mathbf{x} \)</span> such that <span class="math notranslate nohighlight">\( A\mathbf{x} \)</span> approximates <span class="math notranslate nohighlight">\( \mathbf{b} \)</span>, often with a minimization objective (e.g., least squares or sparsity constraints).</p></li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="differences-in-specification-of-a-mathbf-x-mathbf-b">
+<h4><strong>Differences in Specification of <span class="math notranslate nohighlight">\( A, \mathbf{x}, \mathbf{b} \)</span></strong><a class="headerlink" href="#differences-in-specification-of-a-mathbf-x-mathbf-b" title="Link to this heading">#</a></h4>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Aspect</strong></p></th>
+<th class="head"><p><strong>Regression</strong></p></th>
+<th class="head"><p><strong>Sparse Representation</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Role of <span class="math notranslate nohighlight">\( A \)</span></strong></p></td>
+<td><p><strong>Design matrix</strong>: Rows = <strong>samples</strong>, columns = <strong>features</strong>. <br> - Each row is a data sample (e.g., patient measurements). <br> - Each column is a feature (e.g., age, blood pressure).</p></td>
+<td><p><strong>Dictionary matrix</strong>: Columns = <strong>atoms/basis vectors</strong>. <br> - Each column is a pre-defined basis (e.g., wavelets, image patches). <br> - Typically <strong>overcomplete</strong> (more columns than rows).</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Role of <span class="math notranslate nohighlight">\( \mathbf{x} \)</span></strong></p></td>
+<td><p><strong>Coefficient vector</strong>: Represents <strong>weights</strong> for features. <br> - <span class="math notranslate nohighlight">\( x_j \)</span> = weight for the <span class="math notranslate nohighlight">\( j \)</span>-th feature. <br> - Usually <strong>dense</strong> (all entries non-zero).</p></td>
+<td><p><strong>Sparse coefficient vector</strong>: Represents <strong>activations</strong> of atoms. <br> - <span class="math notranslate nohighlight">\( x_j \)</span> = activation of the <span class="math notranslate nohighlight">\( j \)</span>-th atom. <br> - Must be <strong>sparse</strong> (most entries zero).</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Role of <span class="math notranslate nohighlight">\( \mathbf{b} \)</span></strong></p></td>
+<td><p><strong>Target vector</strong>: Observed responses for samples. <br> - <span class="math notranslate nohighlight">\( b_i \)</span> = target value for the <span class="math notranslate nohighlight">\( i \)</span>-th sample (e.g., house price).</p></td>
+<td><p><strong>Signal vector</strong>: Input signal to be represented. <br> - <span class="math notranslate nohighlight">\( b_i \)</span> = value at the <span class="math notranslate nohighlight">\( i \)</span>-th dimension (e.g., pixel intensity).</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Problem Goal</strong></p></td>
+<td><p>Model relationships: Predict <span class="math notranslate nohighlight">\( \mathbf{b} \)</span> from features in <span class="math notranslate nohighlight">\( A \)</span>.</p></td>
+<td><p>Compress/denoise signals: Represent <span class="math notranslate nohighlight">\( \mathbf{b} \)</span> as a sparse combination of atoms in <span class="math notranslate nohighlight">\( A \)</span>.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Solution Method</strong></p></td>
+<td><p>Least squares: Minimize <span class="math notranslate nohighlight">\( |A\mathbf{x} - \mathbf{b}|_2^2 \)</span>. <br> - Closed-form: <span class="math notranslate nohighlight">\( \mathbf{x} = (A^T A)^{-1} A^T \mathbf{b} \)</span>.</p></td>
+<td><p>Sparsity-constrained optimization: Minimize <span class="math notranslate nohighlight">\( |A\mathbf{x} - \mathbf{b}|_2^2 + \lambda |\mathbf{x}|_1 \)</span> (LASSO) or <span class="math notranslate nohighlight">\( |\mathbf{x}|_0 \)</span> (non-convex).</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Key Assumption</strong></p></td>
+<td><p>Features are independent/linearly related.</p></td>
+<td><p>Signal can be represented by few atoms from <span class="math notranslate nohighlight">\( A \)</span>.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Example Use Case</strong></p></td>
+<td><p>Predicting house prices from features (size, location).</p></td>
+<td><p>Denoising an image using a dictionary of edges/textures.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<hr class="docutils" />
+<section id="key-differences-explained">
+<h4><strong>Key Differences Explained</strong><a class="headerlink" href="#key-differences-explained" title="Link to this heading">#</a></h4>
+<ol class="arabic simple">
+<li><p><strong>Structure of <span class="math notranslate nohighlight">\( A \)</span></strong>:</p>
+<ul class="simple">
+<li><p><strong>Regression</strong>: <span class="math notranslate nohighlight">\( A \)</span> is <strong>tall/square</strong> (rows ≥ columns). Rows = samples, columns = features.<br />
+<em>Example</em>: 100 patients (rows) × 5 features (columns).</p></li>
+<li><p><strong>Sparse Representation</strong>: <span class="math notranslate nohighlight">\( A \)</span> is <strong>fat</strong> (columns &gt; rows). Columns = atoms, rows = signal dimensions.<br />
+<em>Example</em>: 1000 pixels (rows) × 5000 atoms (columns).</p></li>
+</ul>
+</li>
+<li><p><strong>Sparsity of <span class="math notranslate nohighlight">\( \mathbf{x} \)</span></strong>:</p>
+<ul class="simple">
+<li><p><strong>Regression</strong>: <span class="math notranslate nohighlight">\( \mathbf{x} \)</span> is <strong>dense</strong> (all entries non-zero). Every feature contributes to predictions.</p></li>
+<li><p><strong>Sparse Representation</strong>: <span class="math notranslate nohighlight">\( \mathbf{x} \)</span> must be <strong>sparse</strong> (most entries zero). Only a few atoms are activated.</p></li>
+</ul>
+</li>
+<li><p><strong>Interpretation</strong>:</p>
+<ul class="simple">
+<li><p><strong>Regression</strong>: <span class="math notranslate nohighlight">\( \mathbf{x} \)</span> quantifies <strong>feature importance</strong> (e.g., “size” has weight 0.8).</p></li>
+<li><p><strong>Sparse Representation</strong>: <span class="math notranslate nohighlight">\( \mathbf{x} \)</span> identifies <strong>active atoms</strong> (e.g., “edge #42” is activated for a line in an image).</p></li>
+</ul>
+</li>
+<li><p><strong>Optimization</strong>:</p>
+<ul class="simple">
+<li><p><strong>Regression</strong>: Unconstrained least squares (closed-form or iterative solvers).</p></li>
+<li><p><strong>Sparse Representation</strong>: Constrained optimization (L1/L0 regularization) to enforce sparsity (e.g., LASSO, OMP).</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="example-house-price-prediction-regression">
+<h4><strong>Example: House Price Prediction (Regression)</strong><a class="headerlink" href="#example-house-price-prediction-regression" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\( A \)</span>: 100 houses (rows) × 3 features: [size, bedrooms, age].</p></li>
+<li><p><span class="math notranslate nohighlight">\( \mathbf{b} \)</span>: House prices (e.g., [300k, 450k, …]).</p></li>
+<li><p><span class="math notranslate nohighlight">\( \mathbf{x} \)</span>: Weights (e.g., [size: 0.2, bedrooms: 0.1, age: -0.05]).</p></li>
+<li><p><strong>Solution</strong>: <span class="math notranslate nohighlight">\( \mathbf{x} = (A^T A)^{-1} A^T \mathbf{b} \)</span> (dense).</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="example-image-denoising-sparse-representation">
+<h4><strong>Example: Image Denoising (Sparse Representation)</strong><a class="headerlink" href="#example-image-denoising-sparse-representation" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\( A \)</span>: Dictionary of 10,000 image patches (atoms).</p></li>
+<li><p><span class="math notranslate nohighlight">\( \mathbf{b} \)</span>: Noisy 50×50 image vectorized (2500 rows).</p></li>
+<li><p><span class="math notranslate nohighlight">\( \mathbf{x} \)</span>: Sparse vector activating 20 atoms (e.g., only 20 non-zero entries).</p></li>
+<li><p><strong>Solution</strong>: Minimize <span class="math notranslate nohighlight">\( \|A\mathbf{x} - \mathbf{b}\|_2^2 + \lambda \|\mathbf{x}\|_1 \)</span> (sparse).</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="summary">
+<h3>Summary<a class="headerlink" href="#summary" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Regression</strong>: <span class="math notranslate nohighlight">\( A \)</span> = samples × features, <span class="math notranslate nohighlight">\( \mathbf{x} \)</span> = dense weights, <span class="math notranslate nohighlight">\( \mathbf{b} \)</span> = targets. Focus on <strong>prediction</strong>.</p></li>
+<li><p><strong>Sparse Representation</strong>: <span class="math notranslate nohighlight">\( A \)</span> = signal × atoms, <span class="math notranslate nohighlight">\( \mathbf{x} \)</span> = sparse activations, <span class="math notranslate nohighlight">\( \mathbf{b} \)</span> = signal. Focus on <strong>compression/denoising</strong>.</p></li>
+<li><p><strong>Shared Core</strong>: Both solve <span class="math notranslate nohighlight">\( A\mathbf{x} \approx \mathbf{b} \)</span>, but with different constraints on <span class="math notranslate nohighlight">\( \mathbf{x} \)</span> and interpretations of <span class="math notranslate nohighlight">\( A \)</span>.</p></li>
+</ul>
+</section>
 </section>
 <section id="connection-between-sparse-learning-and-functional-analysis">
 <h2>Connection Between Sparse Learning and Functional Analysis<a class="headerlink" href="#connection-between-sparse-learning-and-functional-analysis" title="Link to this heading">#</a></h2>
@@ -2724,6 +3052,8 @@ LASSO      5.5046e-02    0               0.2214     [1.39, -0.68, 1.05]
 <li><p><span class="math notranslate nohighlight">\( \lambda \)</span> controls the balance between data fidelity and sparsity enforcement.</p></li>
 </ul>
 <p>By leveraging sparsity, MRI reconstruction enables faster scans with fewer measurements while preserving essential anatomical details.</p>
+<p><img alt="" src="_images/Iterative-reconstruction.png" /></p>
+<p>Source: <a class="reference external" href="https://link.springer.com/article/10.1007/s00247-014-3102-1#citeas">Iterative reconstruction: how it works, how to apply it</a></p>
 <section id="pytomography">
 <h2>PyTomography<a class="headerlink" href="#pytomography" title="Link to this heading">#</a></h2>
 <p><strong>PyTomography</strong> is an open-source Python library designed for <strong>medical image reconstruction</strong>, particularly in <strong>SPECT (Single-Photon Emission Computed Tomography)</strong> and <strong>PET (Positron Emission Tomography)</strong> imaging. Developed to address the challenges of <strong>quantitative tomographic reconstruction</strong>, PyTomography provides a <strong>flexible, modular framework</strong> for implementing advanced reconstruction algorithms, including <strong>attenuation correction, scatter correction, and resolution modeling</strong>.</p>
@@ -2754,14 +3084,14 @@ LASSO      5.5046e-02    0               0.2214     [1.39, -0.68, 1.05]
 <li><p><strong>Electron Tomography</strong></p></li>
 <li><p><strong>Magnetic Resonance Imaging (MRI)</strong></p></li>
 </ul>
-<p>One of PySAP’s core contributions lies in <strong>sparse optimization</strong>, a powerful technique widely used for reconstructing images from incomplete or noisy data. The package implements advanced <strong>compressed sensing algorithms</strong><span id="id9">[<a class="reference internal" href="intro.html#id9" title="S. Theodoridis. Machine Learning: A Bayesian and Optimization Perspective. Academic Press, 2020. ISBN 9780128188040. URL: https://books.google.com/books?id=l-nEDwAAQBAJ.">The20</a>]</span>, allowing efficient image restoration while preserving essential features.</p>
+<p>One of PySAP’s core contributions lies in <strong>sparse optimization</strong>, a powerful technique widely used for reconstructing images from incomplete or noisy data. The package implements advanced <strong>compressed sensing algorithms</strong><span id="id9">[<a class="reference internal" href="index.html#id10" title="S. Theodoridis. Machine Learning: A Bayesian and Optimization Perspective. Academic Press, 2020. ISBN 9780128188040. URL: https://books.google.com/books?id=l-nEDwAAQBAJ.">The20</a>]</span>, allowing efficient image restoration while preserving essential features.</p>
 <p>In medical imaging, PySAP plays a crucial role in MRI reconstruction by leveraging <strong>sparsity-based approaches</strong> to improve scan efficiency. It enables:</p>
 <ul class="simple">
 <li><p>Reduced scanning time while maintaining image quality</p></li>
 <li><p>Improved reconstruction of under-sampled k-space data</p></li>
 <li><p>Integration of machine learning techniques for further enhancement</p></li>
 </ul>
-<p>The first release of PySAP was presented in Farrens et al. <span id="id10">[<a class="reference internal" href="intro.html#id8" title="Loubna El Gueddari, Chaithya Giliyar Radhakrishna, Zaccharie Ramzi, Samuel Farrens, Sophie Starck, Antoine Grigis, Jean-Luc Starck, and Philippe Ciuciu. PySAP-MRI: a Python Package for MR Image Reconstruction. In ISMRM workshop on Data Sampling and Image Reconstruction. Sedona, AZ, United States, January 2020. URL: https://inria.hal.science/hal-02399267.">GGRR+20</a>]</span> and continues to evolve as a robust tool for sparse signal processing.</p>
+<p>The first release of PySAP was presented in Farrens et al. <span id="id10">[<a class="reference internal" href="index.html#id9" title="Loubna El Gueddari, Chaithya Giliyar Radhakrishna, Zaccharie Ramzi, Samuel Farrens, Sophie Starck, Antoine Grigis, Jean-Luc Starck, and Philippe Ciuciu. PySAP-MRI: a Python Package for MR Image Reconstruction. In ISMRM workshop on Data Sampling and Image Reconstruction. Sedona, AZ, United States, January 2020. URL: https://inria.hal.science/hal-02399267.">GGRR+20</a>]</span> and continues to evolve as a robust tool for sparse signal processing.</p>
 <p>For further exploration, visit the <a class="reference external" href="https://github.com/CEA-COSMIC/pysap">PySAP GitHub repository</a>.</p>
 <p>In our <a class="reference external" href="http://fum-cs.github.io/dl">deep learning course</a>, we will encounter additional examples of minimizing <span class="math notranslate nohighlight">\( ||Ax - b|| \)</span>, including applications like image deblurring and super-resolution.</p>
 <!-- ### Other loss functions for regression
@@ -2775,7 +3105,7 @@ LASSO      5.5046e-02    0               0.2214     [1.39, -0.68, 1.05]
     * `SGDRegressor` in sklearn
 
 <img src="https://raw.githubusercontent.com/fum-cs/machine-learning/main/notebooks/img/huber.png" alt="ml" style="width: 500px;"/> --><p><img alt="" src="_images/Rank-Based-Methods.jpg" /></p>
-<p>For valuable references on Ridge and Shrinkage methods, consider consulting Prof. Arashi’s books <span id="id11">[<a class="reference internal" href="intro.html#id11" title="A.K.M.E. Saleh, M. Arashi, and B.M.G. Kibria. Theory of Ridge Regression Estimation with Applications. Wiley Series in Probability and Statistics. Wiley, 2019. ISBN 9781118644614. URL: https://books.google.com/books?id=v0KCDwAAQBAJ.">SAK19</a>, <a class="reference internal" href="intro.html#id10" title="A.K.M.E. Saleh, M. Arashi, R.A. Saleh, and M. Norouzirad. Rank-Based Methods for Shrinkage and Selection: With Application to Machine Learning. Wiley, 2022. ISBN 9781119625391. URL: https://books.google.com/books?id=f8p6EAAAQBAJ.">SASN22</a>]</span>.</p>
+<p>For valuable references on Ridge and Shrinkage methods, consider consulting Prof. Arashi’s books <span id="id11">[<a class="reference internal" href="index.html#id12" title="A.K.M.E. Saleh, M. Arashi, and B.M.G. Kibria. Theory of Ridge Regression Estimation with Applications. Wiley Series in Probability and Statistics. Wiley, 2019. ISBN 9781118644614. URL: https://books.google.com/books?id=v0KCDwAAQBAJ.">SAK19</a>, <a class="reference internal" href="index.html#id11" title="A.K.M.E. Saleh, M. Arashi, R.A. Saleh, and M. Norouzirad. Rank-Based Methods for Shrinkage and Selection: With Application to Machine Learning. Wiley, 2022. ISBN 9781119625391. URL: https://books.google.com/books?id=f8p6EAAAQBAJ.">SASN22</a>]</span>.</p>
 </section>
 </section>
 <hr class="docutils" />
@@ -3077,7 +3407,7 @@ For binary classification (2 classes), we aim to fit the following function:</p>
 </li>
 </ul>
 </li>
-<li><p>For further information about conjugate gradients, see <span id="id12">[<a class="reference internal" href="intro.html#id19" title="Mehdi Nemati. A gradient based method for thespectral graph partitioning. Master's thesis, Hakim Sabzevari University, Faculty of Mathematics and Computer Science, September 2018. روشی مبتنی بر گرادیان برای افرازبندی طیفی گراف. URL: https://hcloud.hsu.ac.ir/index.php/s/tR53d9306yZSAc7.">Nem18</a>]</span></p></li>
+<li><p>For further information about conjugate gradients, see <span id="id12">[<a class="reference internal" href="index.html#id20" title="Mehdi Nemati. A gradient based method for thespectral graph partitioning. Master's thesis, Hakim Sabzevari University, Faculty of Mathematics and Computer Science, September 2018. روشی مبتنی بر گرادیان برای افرازبندی طیفی گراف. URL: https://hcloud.hsu.ac.ir/index.php/s/tR53d9306yZSAc7.">Nem18</a>]</span></p></li>
 <li><p>You will see many of these solvers in Optimization course taught by Dr. Ghanbari.</p></li>
 </ul>
 </section>
@@ -3584,8 +3914,8 @@ th {font-size: 16px}
 <li><p>(R)egression, (C)lassification</p></li>
 </ul>
 </section>
-<section id="summary">
-<h2>Summary<a class="headerlink" href="#summary" title="Link to this heading">#</a></h2>
+<section id="id14">
+<h2>Summary<a class="headerlink" href="#id14" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Linear models</p>
 <ul>
@@ -3688,36 +4018,37 @@ th {font-size: 16px}
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#distributions-and-probabilities">Distributions and Probabilities</a></li>
 </ul>
 </li>
-</ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Linear models</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-models-for-regression">Linear models for regression</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-regression-aka-ordinary-least-squares">Linear Regression (aka Ordinary Least Squares)</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#solving-ordinary-least-squares">Solving ordinary least squares</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#why-x-t-x-is-singular-when-n-p"><strong>Why <span class="math notranslate nohighlight">\( X^T X \)</span> is Singular When <span class="math notranslate nohighlight">\( n &lt; p \)</span>?</strong></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gradient-descent">Gradient Descent</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Linear models</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-models-for-regression">Linear models for regression</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-regression-aka-ordinary-least-squares">Linear Regression (aka Ordinary Least Squares)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solving-ordinary-least-squares">Solving ordinary least squares</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#some-notes-about-closed-form-solution">Some notes about Closed-Form Solution</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gradient-descent">Gradient Descent</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Gradient Descent</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#stochastic-gradient-descent-sgd">Stochastic Gradient Descent (SGD)</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#in-practice">In practice</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ridge-regression">Ridge regression</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ridge-regression">Ridge regression</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ridge-regression-derivation">Ridge Regression Derivation</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">In practice</a></li>
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#other-ways-to-reduce-overfitting">Other ways to reduce overfitting</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lasso-least-absolute-shrinkage-and-selection-operator">Lasso (Least Absolute Shrinkage and Selection Operator)</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#coordinate-descent">Coordinate descent</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#coordinate-descent-with-lasso-further-reading">Coordinate descent with Lasso (Further Reading)</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpreting-l1-and-l2-loss">Interpreting L1 and L2 loss</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparing-ridge-and-lasso-for-prediction-and-feature-selection">Comparing Ridge and LASSO for Prediction and Feature Selection</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#elastic-net">Elastic-Net</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sparse-optimization-theory-and-applications">Sparse Optimization: Theory and Applications</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lasso-least-absolute-shrinkage-and-selection-operator">Lasso (Least Absolute Shrinkage and Selection Operator)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#coordinate-descent">Coordinate descent</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#coordinate-descent-with-lasso-further-reading">Coordinate descent with Lasso (Further Reading)</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sparse-signal-denoising-via-weighted-lasso-in-dct-domain">Sparse Signal Denoising via Weighted Lasso in DCT Domain</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpreting-l1-and-l2-loss">Interpreting L1 and L2 loss</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparing-ridge-and-lasso-for-prediction-and-feature-selection">Comparing Ridge and LASSO for Prediction and Feature Selection</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#elastic-net">Elastic-Net</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sparse-optimization-theory-and-applications">Sparse Optimization: Theory and Applications</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sparse-signal-denoising-via-weighted-lasso-in-dct-domain">Sparse Signal Denoising via Weighted Lasso in DCT Domain</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#noise-sparsity-dichotomy">Noise-Sparsity Dichotomy</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#weighted-l1-magic">Weighted ℓ₁ Magic</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#performance-analysis">Performance Analysis</a><ul class="nav section-nav flex-column">
@@ -3735,7 +4066,18 @@ th {font-size: 16px}
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#practice">Practice</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#when-to-use-omp">When to Use OMP</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#when-to-use-omp">When to Use OMP</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#similarities-and-differences-in-solving-a-mathbf-x-mathbf-b-in-regression-and-sparse-representation">Similarities and Differences in Solving <span class="math notranslate nohighlight">\( A\mathbf{x} = \mathbf{b} \)</span> in Regression and Sparse Representation</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#similarities"><strong>Similarities</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#differences-in-specification-of-a-mathbf-x-mathbf-b"><strong>Differences in Specification of <span class="math notranslate nohighlight">\( A, \mathbf{x}, \mathbf{b} \)</span></strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#key-differences-explained"><strong>Key Differences Explained</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example-house-price-prediction-regression"><strong>Example: House Price Prediction (Regression)</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example-image-denoising-sparse-representation"><strong>Example: Image Denoising (Sparse Representation)</strong></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#connection-between-sparse-learning-and-functional-analysis">Connection Between Sparse Learning and Functional Analysis</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hilbert-spaces-and-orthogonal-projections">Hilbert Spaces and Orthogonal Projections</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#banach-spaces-and-ell-1-regularization">Banach Spaces and <span class="math notranslate nohighlight">\( \ell_1 \)</span>-Regularization</a></li>
@@ -3771,7 +4113,7 @@ th {font-size: 16px}
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-models-overview">Linear models overview</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">Summary</a></li>
 </ul>
 </li>
 </ul>

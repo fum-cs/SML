@@ -28,8 +28,8 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
@@ -145,7 +145,7 @@
     
   
 
-<a class="navbar-brand logo" href="intro.html">
+<a class="navbar-brand logo" href="index.html">
   
   
   
@@ -177,7 +177,7 @@
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
-                <a class="reference internal" href="intro.html">
+                <a class="reference internal" href="index.html">
                     Welcome to Statistical Machine Learning Course
                 </a>
             </li>
@@ -185,14 +185,14 @@
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="01-What-Is-Statistical-Machine-Learning.html">What Is Statistical Machine Learning?</a></li>
 <li class="toctree-l1"><a class="reference internal" href="02-Covariance-Matrix.html">Understanding the Covariance Matrix</a></li>
-<li class="toctree-l1"><a class="reference internal" href="03-MLE-intro.html">Maximum Likelihood Estimation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03-MLE-intro.html">Maximum Likelihood Estimation (MLE)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="04-Mahalanobis-Distance.html">Mahalanobis Distance</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Naive Bayes Classification</a></li>
 
 
+
 <li class="toctree-l1"><a class="reference internal" href="06-Bayesian-Decision-Theory.html">Bayesian Decision Theory</a></li>
 <li class="toctree-l1"><a class="reference internal" href="07-Linear-Models.html">Linear models</a></li>
-
 
 
 
@@ -451,16 +451,20 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-antennae-length-is-3">Example: Antennae Length is 3</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayes-classifiers">Bayes Classifiers</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesian-classifiers-and-bayes-theorem">Bayesian Classifiers and Bayes’ Theorem</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simplified-formula-for-classification">Simplified Formula for Classification</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-classifying-by-name">Example: Classifying by Name</a></li>
 </ul>
 </li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#bayes-classifiers">Bayes Classifiers</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesian-classifiers-and-bayes-theorem">Bayesian Classifiers and Bayes’ Theorem</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simplified-formula-for-classification">Simplified Formula for Classification</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-classifying-by-name">Example: Classifying by Name</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1"></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#officer-drew-example">Officer Drew Example</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calculating-probabilities-for-officer-drew">Calculating Probabilities for Officer Drew</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#naive-bayes-with-multiple-features">Naive Bayes with Multiple Features</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#naive-bayes-with-multiple-features">Naive Bayes with Multiple Features</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-officer-drew-with-multiple-features">Example: Officer Drew with Multiple Features</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calculating-probabilities-for-officer-drew-with-multiple-features">Calculating Probabilities for Officer Drew with Multiple Features</a></li>
 </ul>
@@ -619,9 +623,10 @@ $$ -->
 <p><img alt="" src="_images/BCW_page_08.png" /></p>
 </section>
 </section>
+</section>
 <hr class="docutils" />
-<section id="bayes-classifiers">
-<h2>Bayes Classifiers<a class="headerlink" href="#bayes-classifiers" title="Link to this heading">#</a></h2>
+<section class="tex2jax_ignore mathjax_ignore" id="bayes-classifiers">
+<h1>Bayes Classifiers<a class="headerlink" href="#bayes-classifiers" title="Link to this heading">#</a></h1>
 <p>That was a visual intuition for a simple case of the Bayes classifier, also called:</p>
 <ul class="simple">
 <li><p>Idiot Bayes</p></li>
@@ -632,7 +637,7 @@ $$ -->
 <p><em>Find out the probability of the previously unseen instance belonging to each class, then simply pick the most probable class.</em></p>
 <hr class="docutils" />
 <section id="bayesian-classifiers-and-bayes-theorem">
-<h3>Bayesian Classifiers and Bayes’ Theorem<a class="headerlink" href="#bayesian-classifiers-and-bayes-theorem" title="Link to this heading">#</a></h3>
+<h2>Bayesian Classifiers and Bayes’ Theorem<a class="headerlink" href="#bayesian-classifiers-and-bayes-theorem" title="Link to this heading">#</a></h2>
 <p>Bayesian classifiers use <strong>Bayes’ Theorem</strong>, which is stated as:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -650,7 +655,6 @@ The probability of class <span class="math notranslate nohighlight">\( c_j \)</s
 <li><p><strong>Evidence</strong> (<span class="math notranslate nohighlight">\( p(d) \)</span>):<br />
 The probability of observing instance <span class="math notranslate nohighlight">\( d \)</span> across all classes. Acts as a scaling factor to ensure the posterior probabilities sum to 1 and can often be ignored in classification tasks because it is the same for all classes.</p></li>
 </ul>
-</section>
 <section id="simplified-formula-for-classification">
 <h3>Simplified Formula for Classification<a class="headerlink" href="#simplified-formula-for-classification" title="Link to this heading">#</a></h3>
 <p>In practice, we often ignore the evidence term (<span class="math notranslate nohighlight">\( p(d) \)</span>) because it is the same for all classes. Thus, the formula simplifies to:</p>
@@ -667,9 +671,10 @@ p(c_j | d) \propto p(d | c_j) \, p(c_j)
 <li><p><strong>Posterior Probability</strong>: Final probability of the class given the evidence.</p></li>
 </ul>
 </section>
+</section>
 <hr class="docutils" />
 <section id="example-classifying-by-name">
-<h3>Example: Classifying by Name<a class="headerlink" href="#example-classifying-by-name" title="Link to this heading">#</a></h3>
+<h2>Example: Classifying by Name<a class="headerlink" href="#example-classifying-by-name" title="Link to this heading">#</a></h2>
 <p>Assume that we have two classes:<br />
 <span class="math notranslate nohighlight">\( c_1 = \text{male}, \, \text{and} \, c_2 = \text{female}. \)</span></p>
 <p>We have a person whose sex we do not know, say “Drew” or <span class="math notranslate nohighlight">\( d \)</span>.<br />
@@ -683,7 +688,6 @@ p(\text{male} \, | \, \text{Drew}) = \frac{p(\text{Drew} \, | \, \text{male}) \,
 \[
 p(\text{female} \, | \, \text{Drew}) = \frac{p(\text{Drew} \, | \, \text{female}) \, p(\text{female})}{p(\text{Drew})}
 \]</div>
-</section>
 </section>
 <section id="id1">
 <h2><img alt="" src="_images/BCW_page_11.png" /><a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
@@ -743,9 +747,10 @@ p(\text{female} | \text{Drew}) = \frac{2/5 \times 5/8}{3/8} = \frac{0.250}{3/8}
 <p>Officer Drew is more likely to be a Female!</p>
 <p><img alt="" src="_images/BCW_page_14.png" /></p>
 </section>
+</section>
 <hr class="docutils" />
 <section id="naive-bayes-with-multiple-features">
-<h3>Naive Bayes with Multiple Features<a class="headerlink" href="#naive-bayes-with-multiple-features" title="Link to this heading">#</a></h3>
+<h2>Naive Bayes with Multiple Features<a class="headerlink" href="#naive-bayes-with-multiple-features" title="Link to this heading">#</a></h2>
 <p>So far, we have only considered Bayes Classification when we have one attribute (e.g., “antennae length” or “name”). But we may have many features. How do we use all the features?</p>
 <div class="math notranslate nohighlight">
 \[
@@ -756,7 +761,6 @@ p(c_j | d) = \frac{p(d | c_j) p(c_j)}{p(d)}
 \[
 p(d | c_j) = p(d_1 | c_j) \times p(d_2 | c_j) \times \ldots \times p(d_n | c_j)
 \]</div>
-</section>
 <hr class="docutils" />
 <section id="example-officer-drew-with-multiple-features">
 <h3>Example: Officer Drew with Multiple Features<a class="headerlink" href="#example-officer-drew-with-multiple-features" title="Link to this heading">#</a></h3>
@@ -1076,7 +1080,7 @@ P(\text{Other Fruit} | \text{Long, Sweet, Yellow}) = 0.5 \times 0.75 \times 0.25
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="bayesian-classification">
 <h1>Bayesian Classification<a class="headerlink" href="#bayesian-classification" title="Link to this heading">#</a></h1>
-<p>By Jake VanderPlas <span id="id5">[<a class="reference internal" href="intro.html#id6" title="Jake VanderPlas. Python Data Science Handbook. O'Reilly Media, Inc., 2016. ISBN 9781491912058. URL: https://www.oreilly.com/library/view/python-data-science/9781491912126/.">Van16</a>]</span></p>
+<p>By Jake VanderPlas <span id="id5">[<a class="reference internal" href="index.html#id6" title="Jake VanderPlas. Python Data Science Handbook. O'Reilly Media, Inc., 2016. ISBN 9781491912058. URL: https://www.oreilly.com/library/view/python-data-science/9781491912126/.">Van16</a>]</span></p>
 <p>Naive Bayes classifiers are built on Bayesian classification methods.
 These rely on Bayes’s theorem, which is an equation describing the relationship of conditional probabilities of statistical quantities.
 In Bayesian classification, we’re interested in finding the probability of a label <span class="math notranslate nohighlight">\(L\)</span> given some observed features, which we can write as <span class="math notranslate nohighlight">\(P(L~|~{\rm features})\)</span>.
@@ -1380,7 +1384,7 @@ That said, they have several advantages:</p>
 <li><p>They are often easily interpretable.</p></li>
 <li><p>They have few (if any) tunable parameters.</p></li>
 </ul>
-<p>These advantages mean a naive Bayes classifier is often a good choice as an initial baseline classification (See <span id="id6">[<a class="reference internal" href="intro.html#id28" title="Trevor Hastie, Robert Tibshirani, and Jerome Friedman. The elements of statistical learning: data mining, inference and prediction. Springer, 2 edition, 2009. Edition 2, print 12. URL: https://hastie.su.domains/ElemStatLearn/.">HTF09</a>]</span>).
+<p>These advantages mean a naive Bayes classifier is often a good choice as an initial baseline classification (See <span id="id6">[<a class="reference internal" href="index.html#id28" title="Trevor Hastie, Robert Tibshirani, and Jerome Friedman. The elements of statistical learning: data mining, inference and prediction. Springer, 2 edition, 2009. Edition 2, print 12. URL: https://hastie.su.domains/ElemStatLearn/.">HTF09</a>]</span>).
 If it performs suitably, then congratulations: you have a very fast, very interpretable classifier for your problem.
 If it does not perform well, then you can begin exploring more sophisticated models, with some baseline knowledge of how well they should perform.</p>
 <p><img alt="" src="_images/Duda-Figure-2.2-2.5.png" /></p>
@@ -1472,16 +1476,20 @@ For this reason, simplistic classifiers like the ones discussed here tend to wor
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-antennae-length-is-3">Example: Antennae Length is 3</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayes-classifiers">Bayes Classifiers</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesian-classifiers-and-bayes-theorem">Bayesian Classifiers and Bayes’ Theorem</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simplified-formula-for-classification">Simplified Formula for Classification</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-classifying-by-name">Example: Classifying by Name</a></li>
 </ul>
 </li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#bayes-classifiers">Bayes Classifiers</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesian-classifiers-and-bayes-theorem">Bayesian Classifiers and Bayes’ Theorem</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simplified-formula-for-classification">Simplified Formula for Classification</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-classifying-by-name">Example: Classifying by Name</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1"></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#officer-drew-example">Officer Drew Example</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calculating-probabilities-for-officer-drew">Calculating Probabilities for Officer Drew</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#naive-bayes-with-multiple-features">Naive Bayes with Multiple Features</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#naive-bayes-with-multiple-features">Naive Bayes with Multiple Features</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-officer-drew-with-multiple-features">Example: Officer Drew with Multiple Features</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calculating-probabilities-for-officer-drew-with-multiple-features">Calculating Probabilities for Officer Drew with Multiple Features</a></li>
 </ul>

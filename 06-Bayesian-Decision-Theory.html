@@ -28,8 +28,8 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
@@ -145,7 +145,7 @@
     
   
 
-<a class="navbar-brand logo" href="intro.html">
+<a class="navbar-brand logo" href="index.html">
   
   
   
@@ -177,7 +177,7 @@
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
-                <a class="reference internal" href="intro.html">
+                <a class="reference internal" href="index.html">
                     Welcome to Statistical Machine Learning Course
                 </a>
             </li>
@@ -185,7 +185,7 @@
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="01-What-Is-Statistical-Machine-Learning.html">What Is Statistical Machine Learning?</a></li>
 <li class="toctree-l1"><a class="reference internal" href="02-Covariance-Matrix.html">Understanding the Covariance Matrix</a></li>
-<li class="toctree-l1"><a class="reference internal" href="03-MLE-intro.html">Maximum Likelihood Estimation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03-MLE-intro.html">Maximum Likelihood Estimation (MLE)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="04-Mahalanobis-Distance.html">Mahalanobis Distance</a></li>
 <li class="toctree-l1"><a class="reference internal" href="05-Naive-Bayes.html">Naive Bayes Classification</a></li>
 
@@ -193,7 +193,6 @@
 
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Bayesian Decision Theory</a></li>
 <li class="toctree-l1"><a class="reference internal" href="07-Linear-Models.html">Linear models</a></li>
-
 
 
 
@@ -459,9 +458,6 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#apply-bayes-rule-for-posterior-probability">Apply Bayes’ Rule for Posterior Probability</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#take-the-logarithm-of-the-pdf">Take the Logarithm of the PDF</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#combine-with-prior-and-ignore-constants">Combine with Prior and Ignore Constants</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#further-reading">Further Reading</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#case-2-equal-but-arbitrary-covariance-matrices-boldsymbol-sigma-i-boldsymbol-sigma">Case 2: Equal but Arbitrary Covariance Matrices (<span class="math notranslate nohighlight">\( \boldsymbol{\Sigma}_i = \boldsymbol{\Sigma} \)</span>):</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#case-3-arbitrary-covariance-matrices-boldsymbol-sigma-i">Case 3: Arbitrary Covariance Matrices (<span class="math notranslate nohighlight">\( \boldsymbol{\Sigma}_i \)</span>):</a></li>
 </ul>
@@ -480,7 +476,7 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="bayesian-decision-theory">
 <h1>Bayesian Decision Theory<a class="headerlink" href="#bayesian-decision-theory" title="Link to this heading">#</a></h1>
-<p>Chapter 2 of Pattern Classification <span id="id1">[<a class="reference internal" href="intro.html#id14" title="Richard O. Duda, Peter E. Hart, and David G. Stork. Pattern Classification (2nd Edition). Wiley-Interscience, 2 edition, November 2000. ISBN 0471056693. URL: https://file.fouladi.ir/courses/pr/books/%5BDuda%5D_PatternClassification.pdf.">DHS00</a>]</span></p>
+<p>Chapter 2 of Pattern Classification <span id="id1">[<a class="reference internal" href="index.html#id15" title="Richard O. Duda, Peter E. Hart, and David G. Stork. Pattern Classification (2nd Edition). Wiley-Interscience, 2 edition, November 2000. ISBN 0471056693. URL: https://file.fouladi.ir/courses/pr/books/%5BDuda%5D_PatternClassification.pdf.">DHS00</a>]</span></p>
 <p><img alt="" src="_images/Duda-front.png" /></p>
 <section id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
@@ -949,15 +945,12 @@ Simplify:
 </ul>
 </li>
 <li><p>Such a classifier is called a <strong>minimum distance classifier</strong>.</p></li>
-<li><p>If each mean vector is considered an <strong>ideal prototype</strong> or <strong>template</strong> for patterns in its class, this is essentially a <strong>template-matching procedure</strong> (see <strong>Figure 2.10</strong>). This technique is similar to <strong>nearest-neighbor algorithm</strong> visited in the previous chapter.</p></li>
+<li><p>If each mean vector is considered an <strong>ideal prototype</strong> or <strong>template</strong> for patterns in its class, this is essentially a <strong>template-matching procedure</strong> (see <strong>Figure 2.10</strong>). This technique is similar to <strong>nearest-neighbor algorithm</strong>.</p></li>
 </ul>
 <p><img alt="Figure 2.11" src="_images/Duda-Figure-2.11.png" /></p>
 <p>Figure 2.11: As the priors are changed, the decision boundary shifts; for sufficiently disparate priors the boundary will not lie between the means of these 1-, 2- and 3-dimensional spherical Gaussian distributions</p>
 </section>
-</section>
 <hr class="docutils" />
-<section id="further-reading">
-<h2>Further Reading<a class="headerlink" href="#further-reading" title="Link to this heading">#</a></h2>
 <section id="case-2-equal-but-arbitrary-covariance-matrices-boldsymbol-sigma-i-boldsymbol-sigma">
 <h3>Case 2: Equal but Arbitrary Covariance Matrices (<span class="math notranslate nohighlight">\( \boldsymbol{\Sigma}_i = \boldsymbol{\Sigma} \)</span>):<a class="headerlink" href="#case-2-equal-but-arbitrary-covariance-matrices-boldsymbol-sigma-i-boldsymbol-sigma" title="Link to this heading">#</a></h3>
 <ul>
@@ -980,7 +973,7 @@ In this exercise, you will:</p>
 </ol>
 <hr class="docutils" />
 <p><strong>Steps to Follow</strong></p>
-<ol class="arabic simple">
+<ol class="arabic">
 <li><p><strong>Generate Data</strong>:</p>
 <ul class="simple">
 <li><p>Create two classes of data points, each following a <strong>multivariate Gaussian distribution</strong> with the same covariance matrix but different mean vectors.</p></li>
@@ -994,11 +987,13 @@ In this exercise, you will:</p>
 </ul>
 </li>
 <li><p><strong>Compute the Decision Boundary (Theoretical Approach)</strong>:</p>
-<ul class="simple">
-<li><p>Use the <strong>linear discriminant function</strong> for Case 2:
-$<span class="math notranslate nohighlight">\(
-g_i(\mathbf{x}) = -\frac{1}{2} (\mathbf{x} - \boldsymbol{\mu}_i)^T \boldsymbol{\Sigma}^{-1} (\mathbf{x} - \boldsymbol{\mu}_i) + \ln P(\omega_i).
-\)</span>$</p></li>
+<ul>
+<li><p>Use the <strong>linear discriminant function</strong> for Case 2:</p>
+<div class="math notranslate nohighlight">
+\[
+     g_i(\mathbf{x}) = -\frac{1}{2} (\mathbf{x} - \boldsymbol{\mu}_i)^T \boldsymbol{\Sigma}^{-1} (\mathbf{x} - \boldsymbol{\mu}_i) + \ln P(\omega_i).
+     \]</div>
+</li>
 <li><p>Assume equal prior probabilities (<span class="math notranslate nohighlight">\(P(\omega_1) = P(\omega_2) = 0.5\)</span>).</p></li>
 <li><p>The decision boundary is the set of points where <span class="math notranslate nohighlight">\(g_1(\mathbf{x}) = g_2(\mathbf{x})\)</span>.</p></li>
 </ul>
@@ -1190,9 +1185,6 @@ g_i(\mathbf{x}) = -\frac{1}{2} (\mathbf{x} - \boldsymbol{\mu}_i)^T \boldsymbol{\
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#apply-bayes-rule-for-posterior-probability">Apply Bayes’ Rule for Posterior Probability</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#take-the-logarithm-of-the-pdf">Take the Logarithm of the PDF</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#combine-with-prior-and-ignore-constants">Combine with Prior and Ignore Constants</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#further-reading">Further Reading</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#case-2-equal-but-arbitrary-covariance-matrices-boldsymbol-sigma-i-boldsymbol-sigma">Case 2: Equal but Arbitrary Covariance Matrices (<span class="math notranslate nohighlight">\( \boldsymbol{\Sigma}_i = \boldsymbol{\Sigma} \)</span>):</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#case-3-arbitrary-covariance-matrices-boldsymbol-sigma-i">Case 3: Arbitrary Covariance Matrices (<span class="math notranslate nohighlight">\( \boldsymbol{\Sigma}_i \)</span>):</a></li>
 </ul>

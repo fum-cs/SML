@@ -1,0 +1,764 @@
+Folder PATH listing
+Volume serial number is 823F-D2B7
+C:.
+ÃÄÄÄconfig
+³   ÀÄÄÄlocal
+ÃÄÄÄextensions
+³   ÃÄÄÄa11y
+³   ³   ÀÄÄÄmathmaps
+³   ³       ÃÄÄÄen
+³   ³       ³   ÃÄÄÄfunctions
+³   ³       ³   ÃÄÄÄsymbols
+³   ³       ³   ÀÄÄÄunits
+³   ³       ÀÄÄÄes
+³   ³           ÃÄÄÄfunctions
+³   ³           ÃÄÄÄsymbols
+³   ³           ÀÄÄÄunits
+³   ÃÄÄÄHTML-CSS
+³   ÃÄÄÄMathML
+³   ÀÄÄÄTeX
+³       ÀÄÄÄmhchem3
+ÃÄÄÄimages
+ÀÄÄÄjax
+    ÃÄÄÄelement
+    ³   ÀÄÄÄmml
+    ³       ÀÄÄÄoptable
+    ÃÄÄÄinput
+    ³   ÃÄÄÄAsciiMath
+    ³   ÃÄÄÄMathML
+    ³   ³   ÀÄÄÄentities
+    ³   ÀÄÄÄTeX
+    ÀÄÄÄoutput
+        ÃÄÄÄCommonHTML
+        ³   ÃÄÄÄautoload
+        ³   ÀÄÄÄfonts
+        ³       ÀÄÄÄTeX
+        ÃÄÄÄHTML-CSS
+        ³   ÃÄÄÄautoload
+        ³   ÀÄÄÄfonts
+        ³       ÃÄÄÄAsana-Math
+        ³       ³   ÃÄÄÄAlphabets
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄArrows
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄDoubleStruck
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄFraktur
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄLatin
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄMain
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄMarks
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄMisc
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄMonospace
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄNonUnicode
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄNormal
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄOperators
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄSansSerif
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄScript
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄShapes
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄSize1
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄSize2
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄSize3
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄSize4
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄSize5
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄSize6
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄSymbols
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÀÄÄÄVariants
+        ³       ³       ÀÄÄÄRegular
+        ³       ÃÄÄÄGyre-Pagella
+        ³       ³   ÃÄÄÄAlphabets
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄArrows
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄDoubleStruck
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄFraktur
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄLatin
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄMain
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄMarks
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄMisc
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄMonospace
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄNonUnicode
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄNormal
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄOperators
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄSansSerif
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄScript
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄShapes
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄSize1
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄSize2
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄSize3
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄSize4
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄSize5
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄSize6
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄSymbols
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÀÄÄÄVariants
+        ³       ³       ÀÄÄÄRegular
+        ³       ÃÄÄÄGyre-Termes
+        ³       ³   ÃÄÄÄAlphabets
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄArrows
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄDoubleStruck
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄFraktur
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄLatin
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄMain
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄMarks
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄMisc
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄMonospace
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄNonUnicode
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄNormal
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄOperators
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄSansSerif
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄScript
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄShapes
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄSize1
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄSize2
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄSize3
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄSize4
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄSize5
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄSize6
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄSymbols
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÀÄÄÄVariants
+        ³       ³       ÀÄÄÄRegular
+        ³       ÃÄÄÄLatin-Modern
+        ³       ³   ÃÄÄÄAlphabets
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄArrows
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄDoubleStruck
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄFraktur
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄLatin
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄMain
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄMarks
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄMisc
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄMonospace
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄNonUnicode
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄNormal
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄOperators
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄSansSerif
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄScript
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄShapes
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄSize1
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄSize2
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄSize3
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄSize4
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄSize5
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄSize6
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄSize7
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄSymbols
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÀÄÄÄVariants
+        ³       ³       ÀÄÄÄRegular
+        ³       ÃÄÄÄNeo-Euler
+        ³       ³   ÃÄÄÄAlphabets
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄArrows
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄFraktur
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄMain
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄMarks
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄNonUnicode
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄNormal
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄOperators
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄScript
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄShapes
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄSize1
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄSize2
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄSize3
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄSize4
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄSize5
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄSymbols
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÀÄÄÄVariants
+        ³       ³       ÀÄÄÄRegular
+        ³       ÃÄÄÄSTIX
+        ³       ³   ÃÄÄÄGeneral
+        ³       ³   ³   ÃÄÄÄBold
+        ³       ³   ³   ÃÄÄÄBoldItalic
+        ³       ³   ³   ÃÄÄÄItalic
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄIntegralsD
+        ³       ³   ³   ÃÄÄÄBold
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄIntegralsSm
+        ³       ³   ³   ÃÄÄÄBold
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄIntegralsUp
+        ³       ³   ³   ÃÄÄÄBold
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄIntegralsUpD
+        ³       ³   ³   ÃÄÄÄBold
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄIntegralsUpSm
+        ³       ³   ³   ÃÄÄÄBold
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄNonUnicode
+        ³       ³   ³   ÃÄÄÄBold
+        ³       ³   ³   ÃÄÄÄBoldItalic
+        ³       ³   ³   ÃÄÄÄItalic
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄSizeFiveSym
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄSizeFourSym
+        ³       ³   ³   ÃÄÄÄBold
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄSizeOneSym
+        ³       ³   ³   ÃÄÄÄBold
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄSizeThreeSym
+        ³       ³   ³   ÃÄÄÄBold
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄSizeTwoSym
+        ³       ³   ³   ÃÄÄÄBold
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÀÄÄÄVariants
+        ³       ³       ÃÄÄÄBold
+        ³       ³       ÀÄÄÄRegular
+        ³       ÃÄÄÄSTIX-Web
+        ³       ³   ÃÄÄÄAlphabets
+        ³       ³   ³   ÃÄÄÄBold
+        ³       ³   ³   ÃÄÄÄBoldItalic
+        ³       ³   ³   ÃÄÄÄItalic
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄArrows
+        ³       ³   ³   ÃÄÄÄBold
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄDoubleStruck
+        ³       ³   ³   ÃÄÄÄBold
+        ³       ³   ³   ÃÄÄÄBoldItalic
+        ³       ³   ³   ÃÄÄÄItalic
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄFraktur
+        ³       ³   ³   ÃÄÄÄBold
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄLatin
+        ³       ³   ³   ÃÄÄÄBold
+        ³       ³   ³   ÃÄÄÄBoldItalic
+        ³       ³   ³   ÃÄÄÄItalic
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄMain
+        ³       ³   ³   ÃÄÄÄBold
+        ³       ³   ³   ÃÄÄÄBoldItalic
+        ³       ³   ³   ÃÄÄÄItalic
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄMarks
+        ³       ³   ³   ÃÄÄÄBold
+        ³       ³   ³   ÃÄÄÄBoldItalic
+        ³       ³   ³   ÃÄÄÄItalic
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄMisc
+        ³       ³   ³   ÃÄÄÄBold
+        ³       ³   ³   ÃÄÄÄBoldItalic
+        ³       ³   ³   ÃÄÄÄItalic
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄMonospace
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄNormal
+        ³       ³   ³   ÃÄÄÄBold
+        ³       ³   ³   ÃÄÄÄBoldItalic
+        ³       ³   ³   ÀÄÄÄItalic
+        ³       ³   ÃÄÄÄOperators
+        ³       ³   ³   ÃÄÄÄBold
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄSansSerif
+        ³       ³   ³   ÃÄÄÄBold
+        ³       ³   ³   ÃÄÄÄBoldItalic
+        ³       ³   ³   ÃÄÄÄItalic
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄScript
+        ³       ³   ³   ÃÄÄÄBoldItalic
+        ³       ³   ³   ÃÄÄÄItalic
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄShapes
+        ³       ³   ³   ÃÄÄÄBold
+        ³       ³   ³   ÃÄÄÄBoldItalic
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄSize1
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄSize2
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄSize3
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄSize4
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄSize5
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÃÄÄÄSymbols
+        ³       ³   ³   ÃÄÄÄBold
+        ³       ³   ³   ÀÄÄÄRegular
+        ³       ³   ÀÄÄÄVariants
+        ³       ³       ÃÄÄÄBold
+        ³       ³       ÃÄÄÄBoldItalic
+        ³       ³       ÃÄÄÄItalic
+        ³       ³       ÀÄÄÄRegular
+        ³       ÀÄÄÄTeX
+        ³           ÃÄÄÄAMS
+        ³           ³   ÀÄÄÄRegular
+        ³           ÃÄÄÄCaligraphic
+        ³           ³   ÃÄÄÄBold
+        ³           ³   ÀÄÄÄRegular
+        ³           ÃÄÄÄFraktur
+        ³           ³   ÃÄÄÄBold
+        ³           ³   ÀÄÄÄRegular
+        ³           ÃÄÄÄGreek
+        ³           ³   ÃÄÄÄBold
+        ³           ³   ÃÄÄÄBoldItalic
+        ³           ³   ÃÄÄÄItalic
+        ³           ³   ÀÄÄÄRegular
+        ³           ÃÄÄÄMain
+        ³           ³   ÃÄÄÄBold
+        ³           ³   ÃÄÄÄItalic
+        ³           ³   ÀÄÄÄRegular
+        ³           ÃÄÄÄMath
+        ³           ³   ÃÄÄÄBoldItalic
+        ³           ³   ÀÄÄÄItalic
+        ³           ÃÄÄÄSansSerif
+        ³           ³   ÃÄÄÄBold
+        ³           ³   ÃÄÄÄItalic
+        ³           ³   ÀÄÄÄRegular
+        ³           ÃÄÄÄScript
+        ³           ³   ÀÄÄÄRegular
+        ³           ÃÄÄÄSize1
+        ³           ³   ÀÄÄÄRegular
+        ³           ÃÄÄÄSize2
+        ³           ³   ÀÄÄÄRegular
+        ³           ÃÄÄÄSize3
+        ³           ³   ÀÄÄÄRegular
+        ³           ÃÄÄÄSize4
+        ³           ³   ÀÄÄÄRegular
+        ³           ÃÄÄÄTypewriter
+        ³           ³   ÀÄÄÄRegular
+        ³           ÃÄÄÄWinChrome
+        ³           ³   ÀÄÄÄRegular
+        ³           ÀÄÄÄWinIE6
+        ³               ÀÄÄÄRegular
+        ÃÄÄÄNativeMML
+        ÃÄÄÄPlainSource
+        ÃÄÄÄPreviewHTML
+        ÀÄÄÄSVG
+            ÃÄÄÄautoload
+            ÀÄÄÄfonts
+                ÃÄÄÄAsana-Math
+                ³   ÃÄÄÄAlphabets
+                ³   ³   ÀÄÄÄRegular
+                ³   ÃÄÄÄArrows
+                ³   ³   ÀÄÄÄRegular
+                ³   ÃÄÄÄDoubleStruck
+                ³   ³   ÀÄÄÄRegular
+                ³   ÃÄÄÄFraktur
+                ³   ³   ÀÄÄÄRegular
+                ³   ÃÄÄÄLatin
+                ³   ³   ÀÄÄÄRegular
+                ³   ÃÄÄÄMain
+                ³   ³   ÀÄÄÄRegular
+                ³   ÃÄÄÄMarks
+                ³   ³   ÀÄÄÄRegular
+                ³   ÃÄÄÄMisc
+                ³   ³   ÀÄÄÄRegular
+                ³   ÃÄÄÄMonospace
+                ³   ³   ÀÄÄÄRegular
+                ³   ÃÄÄÄNonUnicode
+                ³   ³   ÀÄÄÄRegular
+                ³   ÃÄÄÄNormal
+                ³   ³   ÀÄÄÄRegular
+                ³   ÃÄÄÄOperators
+                ³   ³   ÀÄÄÄRegular
+                ³   ÃÄÄÄSansSerif
+                ³   ³   ÀÄÄÄRegular
+                ³   ÃÄÄÄScript
+                ³   ³   ÀÄÄÄRegular
+                ³   ÃÄÄÄShapes
+                ³   ³   ÀÄÄÄRegular
+                ³   ÃÄÄÄSize1
+                ³   ³   ÀÄÄÄRegular
+                ³   ÃÄÄÄSize2
+                ³   ³   ÀÄÄÄRegular
+                ³   ÃÄÄÄSize3
+                ³   ³   ÀÄÄÄRegular
+                ³   ÃÄÄÄSize4
+                ³   ³   ÀÄÄÄRegular
+                ³   ÃÄÄÄSize5
+                ³   ³   ÀÄÄÄRegular
+                ³   ÃÄÄÄSize6
+                ³   ³   ÀÄÄÄRegular
+                ³   ÃÄÄÄSymbols
+                ³   ³   ÀÄÄÄRegular
+                ³   ÀÄÄÄVariants
+                ³       ÀÄÄÄRegular
+                ÃÄÄÄGyre-Pagella
+                ³   ÃÄÄÄAlphabets
+                ³   ³   ÀÄÄÄRegular
+                ³   ÃÄÄÄArrows
+                ³   ³   ÀÄÄÄRegular
+                ³   ÃÄÄÄDoubleStruck
+                ³   ³   ÀÄÄÄRegular
+                ³   ÃÄÄÄFraktur
+                ³   ³   ÀÄÄÄRegular
+                ³   ÃÄÄÄLatin
+                ³   ³   ÀÄÄÄRegular
+                ³   ÃÄÄÄMain
+                ³   ³   ÀÄÄÄRegular
+                ³   ÃÄÄÄMarks
+                ³   ³   ÀÄÄÄRegular
+                ³   ÃÄÄÄMisc
+                ³   ³   ÀÄÄÄRegular
+                ³   ÃÄÄÄMonospace
+                ³   ³   ÀÄÄÄRegular
+                ³   ÃÄÄÄNonUnicode
+                ³   ³   ÀÄÄÄRegular
+                ³   ÃÄÄÄNormal
+                ³   ³   ÀÄÄÄRegular
+                ³   ÃÄÄÄOperators
+                ³   ³   ÀÄÄÄRegular
+                ³   ÃÄÄÄSansSerif
+                ³   ³   ÀÄÄÄRegular
+                ³   ÃÄÄÄScript
+                ³   ³   ÀÄÄÄRegular
+                ³   ÃÄÄÄShapes
+                ³   ³   ÀÄÄÄRegular
+                ³   ÃÄÄÄSize1
+                ³   ³   ÀÄÄÄRegular
+                ³   ÃÄÄÄSize2
+                ³   ³   ÀÄÄÄRegular
+                ³   ÃÄÄÄSize3
+                ³   ³   ÀÄÄÄRegular
+                ³   ÃÄÄÄSize4
+                ³   ³   ÀÄÄÄRegular
+                ³   ÃÄÄÄSize5
+                ³   ³   ÀÄÄÄRegular
+                ³   ÃÄÄÄSize6
+                ³   ³   ÀÄÄÄRegular
+                ³   ÃÄÄÄSymbols
+                ³   ³   ÀÄÄÄRegular
+                ³   ÀÄÄÄVariants
+                ³       ÀÄÄÄRegular
+                ÃÄÄÄGyre-Termes
+                ³   ÃÄÄÄAlphabets
+                ³   ³   ÀÄÄÄRegular
+                ³   ÃÄÄÄArrows
+                ³   ³   ÀÄÄÄRegular
+                ³   ÃÄÄÄDoubleStruck
+                ³   ³   ÀÄÄÄRegular
+                ³   ÃÄÄÄFraktur
+                ³   ³   ÀÄÄÄRegular
+                ³   ÃÄÄÄLatin
+                ³   ³   ÀÄÄÄRegular
+                ³   ÃÄÄÄMain
+                ³   ³   ÀÄÄÄRegular
+                ³   ÃÄÄÄMarks
+                ³   ³   ÀÄÄÄRegular
+                ³   ÃÄÄÄMisc
+                ³   ³   ÀÄÄÄRegular
+                ³   ÃÄÄÄMonospace
+                ³   ³   ÀÄÄÄRegular
+                ³   ÃÄÄÄNonUnicode
+                ³   ³   ÀÄÄÄRegular
+                ³   ÃÄÄÄNormal
+                ³   ³   ÀÄÄÄRegular
+                ³   ÃÄÄÄOperators
+                ³   ³   ÀÄÄÄRegular
+                ³   ÃÄÄÄSansSerif
+                ³   ³   ÀÄÄÄRegular
+                ³   ÃÄÄÄScript
+                ³   ³   ÀÄÄÄRegular
+                ³   ÃÄÄÄShapes
+                ³   ³   ÀÄÄÄRegular
+                ³   ÃÄÄÄSize1
+                ³   ³   ÀÄÄÄRegular
+                ³   ÃÄÄÄSize2
+                ³   ³   ÀÄÄÄRegular
+                ³   ÃÄÄÄSize3
+                ³   ³   ÀÄÄÄRegular
+                ³   ÃÄÄÄSize4
+                ³   ³   ÀÄÄÄRegular
+                ³   ÃÄÄÄSize5
+                ³   ³   ÀÄÄÄRegular
+                ³   ÃÄÄÄSize6
+                ³   ³   ÀÄÄÄRegular
+                ³   ÃÄÄÄSymbols
+                ³   ³   ÀÄÄÄRegular
+                ³   ÀÄÄÄVariants
+                ³       ÀÄÄÄRegular
+                ÃÄÄÄLatin-Modern
+                ³   ÃÄÄÄAlphabets
+                ³   ³   ÀÄÄÄRegular
+                ³   ÃÄÄÄArrows
+                ³   ³   ÀÄÄÄRegular
+                ³   ÃÄÄÄDoubleStruck
+                ³   ³   ÀÄÄÄRegular
+                ³   ÃÄÄÄFraktur
+                ³   ³   ÀÄÄÄRegular
+                ³   ÃÄÄÄLatin
+                ³   ³   ÀÄÄÄRegular
+                ³   ÃÄÄÄMain
+                ³   ³   ÀÄÄÄRegular
+                ³   ÃÄÄÄMarks
+                ³   ³   ÀÄÄÄRegular
+                ³   ÃÄÄÄMisc
+                ³   ³   ÀÄÄÄRegular
+                ³   ÃÄÄÄMonospace
+                ³   ³   ÀÄÄÄRegular
+                ³   ÃÄÄÄNonUnicode
+                ³   ³   ÀÄÄÄRegular
+                ³   ÃÄÄÄNormal
+                ³   ³   ÀÄÄÄRegular
+                ³   ÃÄÄÄOperators
+                ³   ³   ÀÄÄÄRegular
+                ³   ÃÄÄÄSansSerif
+                ³   ³   ÀÄÄÄRegular
+                ³   ÃÄÄÄScript
+                ³   ³   ÀÄÄÄRegular
+                ³   ÃÄÄÄShapes
+                ³   ³   ÀÄÄÄRegular
+                ³   ÃÄÄÄSize1
+                ³   ³   ÀÄÄÄRegular
+                ³   ÃÄÄÄSize2
+                ³   ³   ÀÄÄÄRegular
+                ³   ÃÄÄÄSize3
+                ³   ³   ÀÄÄÄRegular
+                ³   ÃÄÄÄSize4
+                ³   ³   ÀÄÄÄRegular
+                ³   ÃÄÄÄSize5
+                ³   ³   ÀÄÄÄRegular
+                ³   ÃÄÄÄSize6
+                ³   ³   ÀÄÄÄRegular
+                ³   ÃÄÄÄSize7
+                ³   ³   ÀÄÄÄRegular
+                ³   ÃÄÄÄSymbols
+                ³   ³   ÀÄÄÄRegular
+                ³   ÀÄÄÄVariants
+                ³       ÀÄÄÄRegular
+                ÃÄÄÄNeo-Euler
+                ³   ÃÄÄÄAlphabets
+                ³   ³   ÀÄÄÄRegular
+                ³   ÃÄÄÄArrows
+                ³   ³   ÀÄÄÄRegular
+                ³   ÃÄÄÄFraktur
+                ³   ³   ÀÄÄÄRegular
+                ³   ÃÄÄÄMain
+                ³   ³   ÀÄÄÄRegular
+                ³   ÃÄÄÄMarks
+                ³   ³   ÀÄÄÄRegular
+                ³   ÃÄÄÄNonUnicode
+                ³   ³   ÀÄÄÄRegular
+                ³   ÃÄÄÄNormal
+                ³   ³   ÀÄÄÄRegular
+                ³   ÃÄÄÄOperators
+                ³   ³   ÀÄÄÄRegular
+                ³   ÃÄÄÄScript
+                ³   ³   ÀÄÄÄRegular
+                ³   ÃÄÄÄShapes
+                ³   ³   ÀÄÄÄRegular
+                ³   ÃÄÄÄSize1
+                ³   ³   ÀÄÄÄRegular
+                ³   ÃÄÄÄSize2
+                ³   ³   ÀÄÄÄRegular
+                ³   ÃÄÄÄSize3
+                ³   ³   ÀÄÄÄRegular
+                ³   ÃÄÄÄSize4
+                ³   ³   ÀÄÄÄRegular
+                ³   ÃÄÄÄSize5
+                ³   ³   ÀÄÄÄRegular
+                ³   ÃÄÄÄSymbols
+                ³   ³   ÀÄÄÄRegular
+                ³   ÀÄÄÄVariants
+                ³       ÀÄÄÄRegular
+                ÃÄÄÄSTIX-Web
+                ³   ÃÄÄÄAlphabets
+                ³   ³   ÃÄÄÄBold
+                ³   ³   ÃÄÄÄBoldItalic
+                ³   ³   ÃÄÄÄItalic
+                ³   ³   ÀÄÄÄRegular
+                ³   ÃÄÄÄArrows
+                ³   ³   ÃÄÄÄBold
+                ³   ³   ÀÄÄÄRegular
+                ³   ÃÄÄÄDoubleStruck
+                ³   ³   ÃÄÄÄBold
+                ³   ³   ÃÄÄÄBoldItalic
+                ³   ³   ÃÄÄÄItalic
+                ³   ³   ÀÄÄÄRegular
+                ³   ÃÄÄÄFraktur
+                ³   ³   ÃÄÄÄBold
+                ³   ³   ÀÄÄÄRegular
+                ³   ÃÄÄÄLatin
+                ³   ³   ÃÄÄÄBold
+                ³   ³   ÃÄÄÄBoldItalic
+                ³   ³   ÃÄÄÄItalic
+                ³   ³   ÀÄÄÄRegular
+                ³   ÃÄÄÄMain
+                ³   ³   ÃÄÄÄBold
+                ³   ³   ÃÄÄÄBoldItalic
+                ³   ³   ÃÄÄÄItalic
+                ³   ³   ÀÄÄÄRegular
+                ³   ÃÄÄÄMarks
+                ³   ³   ÃÄÄÄBold
+                ³   ³   ÃÄÄÄBoldItalic
+                ³   ³   ÃÄÄÄItalic
+                ³   ³   ÀÄÄÄRegular
+                ³   ÃÄÄÄMisc
+                ³   ³   ÃÄÄÄBold
+                ³   ³   ÃÄÄÄBoldItalic
+                ³   ³   ÃÄÄÄItalic
+                ³   ³   ÀÄÄÄRegular
+                ³   ÃÄÄÄMonospace
+                ³   ³   ÀÄÄÄRegular
+                ³   ÃÄÄÄNormal
+                ³   ³   ÃÄÄÄBold
+                ³   ³   ÃÄÄÄBoldItalic
+                ³   ³   ÀÄÄÄItalic
+                ³   ÃÄÄÄOperators
+                ³   ³   ÃÄÄÄBold
+                ³   ³   ÀÄÄÄRegular
+                ³   ÃÄÄÄSansSerif
+                ³   ³   ÃÄÄÄBold
+                ³   ³   ÃÄÄÄBoldItalic
+                ³   ³   ÃÄÄÄItalic
+                ³   ³   ÀÄÄÄRegular
+                ³   ÃÄÄÄScript
+                ³   ³   ÃÄÄÄBoldItalic
+                ³   ³   ÃÄÄÄItalic
+                ³   ³   ÀÄÄÄRegular
+                ³   ÃÄÄÄShapes
+                ³   ³   ÃÄÄÄBold
+                ³   ³   ÃÄÄÄBoldItalic
+                ³   ³   ÀÄÄÄRegular
+                ³   ÃÄÄÄSize1
+                ³   ³   ÀÄÄÄRegular
+                ³   ÃÄÄÄSize2
+                ³   ³   ÀÄÄÄRegular
+                ³   ÃÄÄÄSize3
+                ³   ³   ÀÄÄÄRegular
+                ³   ÃÄÄÄSize4
+                ³   ³   ÀÄÄÄRegular
+                ³   ÃÄÄÄSize5
+                ³   ³   ÀÄÄÄRegular
+                ³   ÃÄÄÄSymbols
+                ³   ³   ÃÄÄÄBold
+                ³   ³   ÀÄÄÄRegular
+                ³   ÀÄÄÄVariants
+                ³       ÃÄÄÄBold
+                ³       ÃÄÄÄBoldItalic
+                ³       ÃÄÄÄItalic
+                ³       ÀÄÄÄRegular
+                ÀÄÄÄTeX
+                    ÃÄÄÄAMS
+                    ³   ÀÄÄÄRegular
+                    ÃÄÄÄCaligraphic
+                    ³   ÃÄÄÄBold
+                    ³   ÀÄÄÄRegular
+                    ÃÄÄÄFraktur
+                    ³   ÃÄÄÄBold
+                    ³   ÀÄÄÄRegular
+                    ÃÄÄÄMain
+                    ³   ÃÄÄÄBold
+                    ³   ÃÄÄÄItalic
+                    ³   ÀÄÄÄRegular
+                    ÃÄÄÄMath
+                    ³   ÃÄÄÄBoldItalic
+                    ³   ÀÄÄÄItalic
+                    ÃÄÄÄSansSerif
+                    ³   ÃÄÄÄBold
+                    ³   ÃÄÄÄItalic
+                    ³   ÀÄÄÄRegular
+                    ÃÄÄÄScript
+                    ³   ÀÄÄÄRegular
+                    ÃÄÄÄSize1
+                    ³   ÀÄÄÄRegular
+                    ÃÄÄÄSize2
+                    ³   ÀÄÄÄRegular
+                    ÃÄÄÄSize3
+                    ³   ÀÄÄÄRegular
+                    ÃÄÄÄSize4
+                    ³   ÀÄÄÄRegular
+                    ÀÄÄÄTypewriter
+                        ÀÄÄÄRegular

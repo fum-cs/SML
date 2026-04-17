@@ -28,8 +28,8 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
@@ -63,7 +63,7 @@
     <link rel="icon" href="_static/fum-logo.ico"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Maximum Likelihood Estimation" href="03-MLE-intro.html" />
+    <link rel="next" title="Maximum Likelihood Estimation (MLE)" href="03-MLE-intro.html" />
     <link rel="prev" title="What Is Statistical Machine Learning?" href="01-What-Is-Statistical-Machine-Learning.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -145,7 +145,7 @@
     
   
 
-<a class="navbar-brand logo" href="intro.html">
+<a class="navbar-brand logo" href="index.html">
   
   
   
@@ -177,7 +177,7 @@
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
-                <a class="reference internal" href="intro.html">
+                <a class="reference internal" href="index.html">
                     Welcome to Statistical Machine Learning Course
                 </a>
             </li>
@@ -185,7 +185,7 @@
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="01-What-Is-Statistical-Machine-Learning.html">What Is Statistical Machine Learning?</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Understanding the Covariance Matrix</a></li>
-<li class="toctree-l1"><a class="reference internal" href="03-MLE-intro.html">Maximum Likelihood Estimation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03-MLE-intro.html">Maximum Likelihood Estimation (MLE)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="04-Mahalanobis-Distance.html">Mahalanobis Distance</a></li>
 <li class="toctree-l1"><a class="reference internal" href="05-Naive-Bayes.html">Naive Bayes Classification</a></li>
 
@@ -193,7 +193,6 @@
 
 <li class="toctree-l1"><a class="reference internal" href="06-Bayesian-Decision-Theory.html">Bayesian Decision Theory</a></li>
 <li class="toctree-l1"><a class="reference internal" href="07-Linear-Models.html">Linear models</a></li>
-
 
 
 
@@ -830,7 +829,7 @@ Covariance of X1, X2 (calculated): 0.7315
 <li><p>The element <code class="docutils literal notranslate"><span class="pre">S[1,</span> <span class="pre">1]</span></code> is the sample variance of variable X2.</p></li>
 <li><p>The elements <code class="docutils literal notranslate"><span class="pre">S[0,</span> <span class="pre">1]</span></code> and <code class="docutils literal notranslate"><span class="pre">S[1,</span> <span class="pre">0]</span></code> are the sample covariance between X1 and X2 (they should be equal).</p></li>
 </ul>
-<p>The calculated values should be close to the values in the covariance matrix we used to generate the data (<code class="docutils literal notranslate"><span class="pre">[[1.0,</span> <span class="pre">0.8,</span> <span class="pre">[0.8,</span> <span class="pre">1.5]]</span></code>). They won’t be exactly the same due to random sampling.</p>
+<p>The calculated values is close to the values in the covariance matrix we used to generate the data (<code class="docutils literal notranslate"><span class="pre">[[1.0,</span> <span class="pre">0.8,</span> <span class="pre">[0.8,</span> <span class="pre">1.5]]</span></code>). They won’t be exactly the same due to random sampling.</p>
 </section>
 <section id="eigenvalues-and-eigenvectors-of-the-covariance-matrix">
 <h2>5. Eigenvalues and Eigenvectors of the Covariance Matrix<a class="headerlink" href="#eigenvalues-and-eigenvectors-of-the-covariance-matrix" title="Link to this heading">#</a></h2>
@@ -1089,7 +1088,7 @@ Manual calculation of Corr(X1, X2): 0.6353
 </div>
 </div>
 </div>
-<p><code class="docutils literal notranslate"><span class="pre">R[1,</span> <span class="pre">0]</span></code>) shows the sample correlation coefficient between X <code class="docutils literal notranslate"><span class="pre">R[1,</span> <span class="pre">0]</span></code>) shows the sample correlation coefficient between X1 and X2. A value close to the 0.8 used in the covariance matrix (though not exactly 0.8, as correlation depends on variances too) indicates a strong positive linear relationship, as expected from our data generation and scatter plot.</p>
+<p><code class="docutils literal notranslate"><span class="pre">R[1,</span> <span class="pre">0]</span></code> shows the sample correlation coefficient between X1 and X2.</p>
 </section>
 <section id="example-filtering-data-based-on-pearson-correlation">
 <h2>10. Example: Filtering Data Based on Pearson Correlation<a class="headerlink" href="#example-filtering-data-based-on-pearson-correlation" title="Link to this heading">#</a></h2>
@@ -1363,7 +1362,7 @@ Least similar users: (&#39;Dan&#39;, &#39;Robert&#39;) with correlation -0.97
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Maximum Likelihood Estimation</p>
+        <p class="prev-next-title">Maximum Likelihood Estimation (MLE)</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
