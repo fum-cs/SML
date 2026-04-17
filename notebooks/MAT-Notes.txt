@@ -35,3 +35,129 @@ For a design matrix $ X \in \mathbb{R}^{n \times p} $:
 For further information please See {cite}`Bakhshali2018Sparse`.
 
 ---
+
+### From Regression to Sparse Representation: A Unified View
+
+In this section, we explore how different approaches solve the linear system $ A\mathbf{x} \approx \mathbf{b} $, emphasizing their similarities, differences, and practical implications. We begin with classical regression methods and extend to sparse representation techniques like Orthogonal Matching Pursuit (OMP).
+
+---
+
+#### 1. Regression (Ordinary Least Squares, OLS)
+Problem:  
+Given $ A \in \mathbb{R}^{n \times p} $ (design matrix) and $ \mathbf{b} \in \mathbb{R}^n $ (target vector), find $ \mathbf{x} $ that minimizes:  
+
+$$
+\min_{\mathbf{x}} \|A\mathbf{x} - \mathbf{b}\|_2^2
+$$
+
+Interpretation:  
+- $ A $: Rows = samples, columns = features.  
+- $ \mathbf{x} $: Dense coefficient vector (all entries non-zero).  
+- $ \mathbf{b} $: Target vector (e.g., house prices).  
+
+Solution:  
+
+$$
+\mathbf{x} = (A^T A)^{-1} A^T \mathbf{b}
+$$
+
+Limitation:  
+- Fails when $ p > n $ (underdetermined system) or when features are correlated (ill-conditioned $ A^T A $).
+
+---
+
+#### 2. Ridge Regression (ℓ₂ Regularization)
+Problem:  
+Add ℓ₂ regularization to OLS to handle multicollinearity and overfitting:  
+
+$$
+\min_{\mathbf{x}} \|A\mathbf{x} - \mathbf{b}\|_2^2 + \lambda \|\mathbf{x}\|_2^2
+$$
+
+Interpretation:  
+- Shrinks coefficients but does not enforce sparsity.  
+- Solution exists even if $ A^T A $ is singular.  
+
+Solution:  
+
+$$
+\mathbf{x} = (A^T A + \lambda I)^{-1} A^T \mathbf{b}
+$$
+
+Use Case:  
+- High-dimensional data with correlated features (e.g., genomics).
+
+---
+
+#### 3. LASSO (ℓ₁ Regularization)
+Problem:  
+Replace ℓ₂ with ℓ₁ regularization to promote sparsity:  
+
+$$
+\min_{\mathbf{x}} \|A\mathbf{x} - \mathbf{b}\|_2^2 + \lambda \|\mathbf{x}\|_1
+$$
+
+Interpretation:  
+- $ \mathbf{x} $ becomes sparse (many entries exactly zero).  
+- Performs feature selection implicitly.  
+
+Solution:  
+- No closed form; solved via coordinate descent or proximal gradient methods.  
+
+Use Case:  
+- High-dimensional regression with few relevant features (e.g., gene selection).
+
+---
+
+#### 4. Sparse Representation (OMP)
+Problem:  
+Find the sparsest $ \mathbf{x} $ such that $ A\mathbf{x} \approx \mathbf{b} $:  
+
+$$
+\min_{\mathbf{x}} \|\mathbf{x}\|_0 \quad \text{s.t.} \quad \|A\mathbf{x} - \mathbf{b}\|_2 \leq \epsilon
+$$
+
+Interpretation:  
+- $ A $: Dictionary matrix (columns = atoms/basis vectors).  
+- $ \mathbf{x} $: Sparse activation vector (few non-zero entries).  
+- $ \mathbf{b} $: Signal to be represented (e.g., image patch).  
+
+Solution:  
+- Greedy algorithm (OMP) that iteratively selects atoms maximizing correlation with residual.  
+
+Use Case:  
+- Compressed sensing, denoising, feature selection (e.g., MRI reconstruction).
+
+---
+
+### Key Differences Summary
+
+| Aspect               | Regression (OLS)       | Ridge Regression      | LASSO                 | Sparse Representation (OMP) |
+|--------------------------|---------------------------|---------------------------|---------------------------|--------------------------------|
+| Objective            | Minimize $ \|A\mathbf{x} - \mathbf{b}\|_2^2 $ | Minimize $ \|A\mathbf{x} - \mathbf{b}\|_2^2 + \lambda \|\mathbf{x}\|_2^2 $ | Minimize $ \|A\mathbf{x} - \mathbf{b}\|_2^2 + \lambda \|\mathbf{x}\|_1 $ | Minimize $ \|\mathbf{x}\|_0 $ s.t. $ \|A\mathbf{x} - \mathbf{b}\|_2 \leq \epsilon $ |
+| Solution Type        | Dense                     | Dense                     | Sparse                    | Sparse                         |
+| Handles $ p > n $? | No                        | Yes                       | Yes                       | Yes                            |
+| Feature Selection    | No                        | No                        | Yes                       | Yes                            |
+| Computational Cost   | Low (closed-form)         | Low (closed-form)         | Medium (iterative)        | Medium (greedy)                |
+| Typical Use Case     | Low-dimensional prediction | High-dimensional correlated data | High-dimensional sparse data | Signal representation/denoising |
+
+---
+
+### From Regression to Sparse Representation: A Unified View
+All methods solve $ A\mathbf{x} \approx \mathbf{b} $, but differ in:  
+1. Regularization: None (OLS), ℓ₂ (Ridge), ℓ₁ (LASSO), or ℓ₀ (OMP).  
+2. Sparsity: OLS/Ridge yield dense solutions; LASSO/OMP yield sparse solutions.  
+3. Interpretability: OLS/Ridge use all features; LASSO/OMP select a subset.  
+
+Transition to OMP:  
+While LASSO approximates sparsity via ℓ₁ regularization, OMP enforces exact sparsity via ℓ₀ minimization, making it ideal for compressed sensing and signal processing applications where interpretability and exact recovery are critical.
+
+---
+
+### Example: Signal Denoising via OMP
+- $ A $: DCT dictionary (columns = frequency basis vectors).  
+- $ \mathbf{b} $: Noisy 1D signal (e.g., audio waveform).  
+- $ \mathbf{x} $: Sparse activation in frequency domain (few non-zero DCT coefficients).  
+- OMP: Iteratively selects frequencies most correlated with the residual, yielding a clean signal reconstruction.
+
+---
