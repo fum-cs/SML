@@ -196,6 +196,7 @@
 
 
 
+
 <li class="toctree-l1"><a class="reference internal" href="08-Feature-Map.html">Feature Maps: Bridging to Kernel Methods</a></li>
 <li class="toctree-l1"><a class="reference internal" href="09-Kernel-Trick.html">The Kernel Method (Kernel Trick)</a></li>
 
@@ -214,6 +215,7 @@
 <li class="toctree-l1"><a class="reference internal" href="App-Mathematics-and-Machine-Learning.html">Appendix: Mathematics and Machine Learning</a></li>
 
 <li class="toctree-l1"><a class="reference internal" href="Appendix-BDT-Discrete-Features.html">Appendix: Bayes Decision Theory — Discrete Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Appendix-Moore-Penrose-Pseudoinverse-1.html">Appendix: The Moore-Penrose Pseudoinverse</a></li>
 </ul>
 
     </div>
@@ -507,12 +509,12 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#connection-between-sparse-learning-and-functional-analysis">Connection Between Sparse Learning and Functional Analysis</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hilbert-spaces-and-orthogonal-projections">Hilbert Spaces and Orthogonal Projections</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#banach-spaces-and-ell-1-regularization">Banach Spaces and <span class="math notranslate nohighlight">\( \ell_1 \)</span>-Regularization</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fourier-wavelet-and-other-representations">Fourier, Wavelet, and Other Representations</a></li>
 </ul>
 </li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#connection-between-sparse-learning-and-functional-analysis-further-reading">Connection Between Sparse Learning and Functional Analysis (Further Reading)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hilbert-spaces-and-orthogonal-projections">Hilbert Spaces and Orthogonal Projections</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#banach-spaces-and-ell-1-regularization">Banach Spaces and <span class="math notranslate nohighlight">\( \ell_1 \)</span>-Regularization</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fourier-wavelet-and-other-representations">Fourier, Wavelet, and Other Representations</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#from-fixed-bases-to-learned-representations">From Fixed Bases to Learned Representations</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-evolving-role-of-sparse-methods">The Evolving Role of Sparse Methods</a></li>
 </ul>
@@ -2741,6 +2743,7 @@ LASSO      5.5046e-02    0               0.2214     [1.39, -0.68, 1.05]
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Active set: </span><span class="si">{</span><span class="n">active</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Coefficients: </span><span class="si">{</span><span class="n">w_active</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Residual norm: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">residual</span><span class="p">)</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  </span><span class="si">{</span><span class="n">X_active</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">pinv</span><span class="p">(</span><span class="n">X_active</span><span class="p">)</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">w_active</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
         
         <span class="c1"># Early stopping if residual is small</span>
         <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">residual</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">tol</span><span class="p">:</span>
@@ -2804,11 +2807,15 @@ Iteration 1:
   Coefficients: [2.5]
   Residual norm: 0.7071
 
+  (3, 1), (1, 3), (1,)
+
 Iteration 2:
   Selected index: 1
   Active set: [np.int64(3), np.int64(1)]
   Coefficients: [2. 1.]
   Residual norm: 0.0000
+
+  (3, 2), (2, 3), (2,)
 
 Stopping early: residual norm 0.0000 &lt; tolerance 1e-06
 
@@ -2953,11 +2960,12 @@ Reconstruction error: 6.280369834735101e-16
 </ul>
 </section>
 </section>
-<section id="connection-between-sparse-learning-and-functional-analysis">
-<h2>Connection Between Sparse Learning and Functional Analysis<a class="headerlink" href="#connection-between-sparse-learning-and-functional-analysis" title="Link to this heading">#</a></h2>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="connection-between-sparse-learning-and-functional-analysis-further-reading">
+<h1>Connection Between Sparse Learning and Functional Analysis (Further Reading)<a class="headerlink" href="#connection-between-sparse-learning-and-functional-analysis-further-reading" title="Link to this heading">#</a></h1>
 <p>Sparse recovery techniques like <strong>OMP</strong> and <strong>LASSO</strong> are deeply rooted in <strong>functional analysis</strong>, which explains why terms like <strong>Hilbert spaces</strong> and <strong>Banach spaces</strong> frequently appear in machine learning research. These mathematical frameworks provide the theoretical foundation for understanding sparsity-inducing methods.</p>
 <section id="hilbert-spaces-and-orthogonal-projections">
-<h3>Hilbert Spaces and Orthogonal Projections<a class="headerlink" href="#hilbert-spaces-and-orthogonal-projections" title="Link to this heading">#</a></h3>
+<h2>Hilbert Spaces and Orthogonal Projections<a class="headerlink" href="#hilbert-spaces-and-orthogonal-projections" title="Link to this heading">#</a></h2>
 <p>Hilbert spaces (complete inner product spaces) are essential for analyzing <strong>orthogonal projections</strong> and <strong>basis expansions</strong>. For example:</p>
 <ul class="simple">
 <li><p><strong>OMP</strong> iteratively projects the residual onto the span of selected basis vectors, leveraging the <strong>orthogonality principle</strong> to minimize error at each step.</p></li>
@@ -2965,7 +2973,7 @@ Reconstruction error: 6.280369834735101e-16
 </ul>
 </section>
 <section id="banach-spaces-and-ell-1-regularization">
-<h3>Banach Spaces and <span class="math notranslate nohighlight">\( \ell_1 \)</span>-Regularization<a class="headerlink" href="#banach-spaces-and-ell-1-regularization" title="Link to this heading">#</a></h3>
+<h2>Banach Spaces and <span class="math notranslate nohighlight">\( \ell_1 \)</span>-Regularization<a class="headerlink" href="#banach-spaces-and-ell-1-regularization" title="Link to this heading">#</a></h2>
 <p><strong>LASSO</strong> operates in the context of Banach spaces (complete normed vector spaces) due to its reliance on the <span class="math notranslate nohighlight">\( \ell_1 \)</span>-norm:</p>
 <ul class="simple">
 <li><p>The <span class="math notranslate nohighlight">\( \ell_1 \)</span>-norm’s <strong>non-smoothness</strong> at the origin induces sparsity, a property studied in Banach space geometry.</p></li>
@@ -2973,9 +2981,8 @@ Reconstruction error: 6.280369834735101e-16
 </ul>
 </section>
 <section id="fourier-wavelet-and-other-representations">
-<h3>Fourier, Wavelet, and Other Representations<a class="headerlink" href="#fourier-wavelet-and-other-representations" title="Link to this heading">#</a></h3>
+<h2>Fourier, Wavelet, and Other Representations<a class="headerlink" href="#fourier-wavelet-and-other-representations" title="Link to this heading">#</a></h2>
 <p>Sparse learning often exploits <strong>transform domains</strong> (e.g., Fourier, wavelet, or learned dictionaries) where signals admit <strong>concise representations</strong>: - These domains provide <strong>structured bases</strong> where only a few coefficients are significant. - The <strong>connection to functional analysis</strong> arises because such bases typically form <strong>frames</strong> or <strong>Riesz bases</strong> in Hilbert spaces, ensuring stable sparse approximations.</p>
-</section>
 </section>
 <section id="from-fixed-bases-to-learned-representations">
 <h2>From Fixed Bases to Learned Representations<a class="headerlink" href="#from-fixed-bases-to-learned-representations" title="Link to this heading">#</a></h2>
@@ -4078,12 +4085,12 @@ th {font-size: 16px}
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#connection-between-sparse-learning-and-functional-analysis">Connection Between Sparse Learning and Functional Analysis</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hilbert-spaces-and-orthogonal-projections">Hilbert Spaces and Orthogonal Projections</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#banach-spaces-and-ell-1-regularization">Banach Spaces and <span class="math notranslate nohighlight">\( \ell_1 \)</span>-Regularization</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fourier-wavelet-and-other-representations">Fourier, Wavelet, and Other Representations</a></li>
 </ul>
 </li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#connection-between-sparse-learning-and-functional-analysis-further-reading">Connection Between Sparse Learning and Functional Analysis (Further Reading)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hilbert-spaces-and-orthogonal-projections">Hilbert Spaces and Orthogonal Projections</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#banach-spaces-and-ell-1-regularization">Banach Spaces and <span class="math notranslate nohighlight">\( \ell_1 \)</span>-Regularization</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fourier-wavelet-and-other-representations">Fourier, Wavelet, and Other Representations</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#from-fixed-bases-to-learned-representations">From Fixed Bases to Learned Representations</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-evolving-role-of-sparse-methods">The Evolving Role of Sparse Methods</a></li>
 </ul>
