@@ -21,3 +21,4 @@ chapters:
 # - file: 16-Kernel-Density-Estimation
 - file: App-Mathematics-and-Machine-Learning
 - file: Appendix-BDT-Discrete-Features
+- file: Appendix-Moore-Penrose-Pseudoinverse-1
