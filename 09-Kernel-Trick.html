@@ -196,6 +196,7 @@
 
 
 
+
 <li class="toctree-l1"><a class="reference internal" href="08-Feature-Map.html">Feature Maps: Bridging to Kernel Methods</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">The Kernel Method (Kernel Trick)</a></li>
 
@@ -417,7 +418,10 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-kernel-trick">4. The Kernel Trick</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algorithms-using-kernels">5. Algorithms Using Kernels</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#common-kernel-functions">6. Common Kernel Functions</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mercer-s-theorem-when-is-k-a-valid-kernel">7. Mercer’s Theorem: When is K a Valid Kernel?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mercer-s-theorem-when-is-k-a-valid-kernel">7. Mercer’s Theorem: When is K a Valid Kernel?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#relationship-to-the-kernel-function">Relationship to the Kernel Function</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#further-interpretations-and-operations-in-feature-space-via-kernels">8. Further Interpretations and Operations in Feature Space (via Kernels)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#advantages-and-disadvantages-of-the-kernel-trick">9. Advantages and Disadvantages of the Kernel Trick</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
@@ -537,10 +541,27 @@ document.write(`
 <section id="mercer-s-theorem-when-is-k-a-valid-kernel">
 <h2>7. Mercer’s Theorem: When is K a Valid Kernel?<a class="headerlink" href="#mercer-s-theorem-when-is-k-a-valid-kernel" title="Link to this heading">#</a></h2>
 <p>Not every function <span class="math notranslate nohighlight">\(K(\mathbf{x}, \mathbf{z})\)</span> can be interpreted as a dot product <span class="math notranslate nohighlight">\(\phi(\mathbf{x})^T \phi(\mathbf{z})\)</span> in some feature space (specifically, a Hilbert space). <strong>Mercer’s Theorem</strong> provides the condition for a function to be a valid kernel.</p>
-<p><strong>Definition: Gram Matrix</strong>
-Given a dataset <span class="math notranslate nohighlight">\(\{\mathbf{x}_1, \dots, \mathbf{x}_n\}\)</span> and a function <span class="math notranslate nohighlight">\(K\)</span>, the <strong>Gram matrix</strong> <span class="math notranslate nohighlight">\(\mathbf{K}\)</span> is an <span class="math notranslate nohighlight">\(n \times n\)</span> matrix where the entry <span class="math notranslate nohighlight">\((i, j)\)</span> is <span class="math notranslate nohighlight">\(K(\mathbf{x}_i, \mathbf{x}_j)\)</span>:</p>
+<p><strong>Definition: Gram Matrix</strong></p>
+<!-- Given a dataset $\{\mathbf{x}_1, \dots, \mathbf{x}_n\}$ and a function $K$, the **Gram matrix** $\mathbf{K}$ is an $n \times n$ matrix where the entry $(i, j)$ is $K(\mathbf{x}_i, \mathbf{x}_j)$:
+
+$$ \mathbf{K}_{ij} = K(\mathbf{x}_i, \mathbf{x}_j) $$ -->
+<p>Given a dataset <span class="math notranslate nohighlight">\(\{\mathbf{x}_1, \dots, \mathbf{x}_n\}\)</span> and a <strong>feature map</strong> <span class="math notranslate nohighlight">\(\phi\)</span> that maps each data point to a (possibly infinite-dimensional) inner product space, the Gram matrix <span class="math notranslate nohighlight">\(\mathbf{K}\)</span> is an <span class="math notranslate nohighlight">\(n \times n\)</span> matrix where the entry <span class="math notranslate nohighlight">\((i, j)\)</span> is the inner product of the feature representations:</p>
 <div class="math notranslate nohighlight">
-\[ \mathbf{K}_{ij} = K(\mathbf{x}_i, \mathbf{x}_j) \]</div>
+\[
+\mathbf{K}_{ij} = \langle \phi(\mathbf{x}_i), \phi(\mathbf{x}_j) \rangle
+\]</div>
+<section id="relationship-to-the-kernel-function">
+<h3>Relationship to the Kernel Function<a class="headerlink" href="#relationship-to-the-kernel-function" title="Link to this heading">#</a></h3>
+<p>The kernel function <span class="math notranslate nohighlight">\(K\)</span> is defined precisely as this inner product:</p>
+<div class="math notranslate nohighlight">
+\[
+K(\mathbf{x}_i, \mathbf{x}_j) = \langle \phi(\mathbf{x}_i), \phi(\mathbf{x}_j) \rangle
+\]</div>
+<p>Therefore, the Gram matrix entries can be written equivalently as:</p>
+<div class="math notranslate nohighlight">
+\[
+\mathbf{K}_{ij} = \langle \phi(\mathbf{x}_i), \phi(\mathbf{x}_j) \rangle = K(\mathbf{x}_i, \mathbf{x}_j)
+\]</div>
 <p><strong>Definition: Positive Semidefinite (PSD) Matrix</strong>
 A symmetric matrix <span class="math notranslate nohighlight">\(\mathbf{K}\)</span> is positive semidefinite if for any non-zero vector <span class="math notranslate nohighlight">\(\mathbf{c} \in \mathbb{R}^n\)</span>:</p>
 <div class="math notranslate nohighlight">
@@ -570,6 +591,7 @@ For any vector <span class="math notranslate nohighlight">\(\mathbf{c} = (c_1, \
 <p>The other direction of Mercer’s theorem (that any function <span class="math notranslate nohighlight">\(K\)</span> generating PSD Gram matrices corresponds to <em>some</em> feature map <span class="math notranslate nohighlight">\(\phi\)</span>) is more involved to prove but guarantees that functions like the Gaussian or polynomial kernels are valid.</p>
 <p><strong>Implications:</strong>
 Mercer’s theorem is fundamental because it tells us which functions <span class="math notranslate nohighlight">\(K\)</span> we can legally use as kernels in our algorithms. We don’t need to explicitly find <span class="math notranslate nohighlight">\(\phi\)</span>; we just need to verify the positive semidefinite condition on <span class="math notranslate nohighlight">\(K\)</span>. In practice, we often use well-known kernels (like linear, polynomial, RBF) that are known to satisfy Mercer’s condition. It also allows us to construct new valid kernels from existing ones (e.g., the sum or product of valid kernels is also a valid kernel).</p>
+</section>
 </section>
 <section id="further-interpretations-and-operations-in-feature-space-via-kernels">
 <h2>8. Further Interpretations and Operations in Feature Space (via Kernels)<a class="headerlink" href="#further-interpretations-and-operations-in-feature-space-via-kernels" title="Link to this heading">#</a></h2>
@@ -837,7 +859,10 @@ Kernel K-means can separate concentric or otherwise nonlinearly separable cluste
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-kernel-trick">4. The Kernel Trick</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algorithms-using-kernels">5. Algorithms Using Kernels</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#common-kernel-functions">6. Common Kernel Functions</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mercer-s-theorem-when-is-k-a-valid-kernel">7. Mercer’s Theorem: When is K a Valid Kernel?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mercer-s-theorem-when-is-k-a-valid-kernel">7. Mercer’s Theorem: When is K a Valid Kernel?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#relationship-to-the-kernel-function">Relationship to the Kernel Function</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#further-interpretations-and-operations-in-feature-space-via-kernels">8. Further Interpretations and Operations in Feature Space (via Kernels)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#advantages-and-disadvantages-of-the-kernel-trick">9. Advantages and Disadvantages of the Kernel Trick</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>

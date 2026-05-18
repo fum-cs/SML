@@ -207,7 +207,7 @@ print(f"Fat matrix solution: {w_fat.ravel()} = {w_fat_pinv.ravel()}")
 
 ---
 
-### Part 7: Key Takeaway for Your Course
+### Part 7: Key Takeaway
 
 The OLS closed-form solution $\mathbf{w} = (X^T X)^{-1} X^T \mathbf{y}$:
 - **Assumes $n \ge p$** and $X$ has full column rank
