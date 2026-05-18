@@ -103,9 +103,30 @@ Several standard kernel functions exist, each corresponding to a different featu
 Not every function $K(\mathbf{x}, \mathbf{z})$ can be interpreted as a dot product $\phi(\mathbf{x})^T \phi(\mathbf{z})$ in some feature space (specifically, a Hilbert space). **Mercer's Theorem** provides the condition for a function to be a valid kernel.
 
 **Definition: Gram Matrix**
-Given a dataset $\{\mathbf{x}_1, \dots, \mathbf{x}_n\}$ and a function $K$, the **Gram matrix** $\mathbf{K}$ is an $n \times n$ matrix where the entry $(i, j)$ is $K(\mathbf{x}_i, \mathbf{x}_j)$:
+<!-- Given a dataset $\{\mathbf{x}_1, \dots, \mathbf{x}_n\}$ and a function $K$, the **Gram matrix** $\mathbf{K}$ is an $n \times n$ matrix where the entry $(i, j)$ is $K(\mathbf{x}_i, \mathbf{x}_j)$:
 
-$$ \mathbf{K}_{ij} = K(\mathbf{x}_i, \mathbf{x}_j) $$
+$$ \mathbf{K}_{ij} = K(\mathbf{x}_i, \mathbf{x}_j) $$ -->
+
+Given a dataset $\{\mathbf{x}_1, \dots, \mathbf{x}_n\}$ and a **feature map** $\phi$ that maps each data point to a (possibly infinite-dimensional) inner product space, the Gram matrix $\mathbf{K}$ is an $n \times n$ matrix where the entry $(i, j)$ is the inner product of the feature representations:
+
+$$
+\mathbf{K}_{ij} = \langle \phi(\mathbf{x}_i), \phi(\mathbf{x}_j) \rangle
+$$
+
+### Relationship to the Kernel Function
+
+The kernel function $K$ is defined precisely as this inner product:
+
+$$
+K(\mathbf{x}_i, \mathbf{x}_j) = \langle \phi(\mathbf{x}_i), \phi(\mathbf{x}_j) \rangle
+$$
+
+Therefore, the Gram matrix entries can be written equivalently as:
+
+$$
+\mathbf{K}_{ij} = \langle \phi(\mathbf{x}_i), \phi(\mathbf{x}_j) \rangle = K(\mathbf{x}_i, \mathbf{x}_j)
+$$
+
 
 **Definition: Positive Semidefinite (PSD) Matrix**
 A symmetric matrix $\mathbf{K}$ is positive semidefinite if for any non-zero vector $\mathbf{c} \in \mathbb{R}^n$:

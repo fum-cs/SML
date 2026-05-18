@@ -16,4 +16,4 @@ In notebooks folder:
 - copy *.jpg _build/html/_images
 - ghp-import -n -p -f ./_build/html
 - jupyter-book build --builder pdflatex ./
-- python patch_html.py
+- python fix_jupyterbook.py
