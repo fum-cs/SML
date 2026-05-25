@@ -469,11 +469,13 @@ document.write(`
 <h2>Part 2: Two Forms of Pseudoinverse for OLS<a class="headerlink" href="#part-2-two-forms-of-pseudoinverse-for-ols" title="Link to this heading">#</a></h2>
 <section id="the-ols-problem">
 <h3>The OLS Problem<a class="headerlink" href="#the-ols-problem" title="Link to this heading">#</a></h3>
-<p>We want to solve:
-$<span class="math notranslate nohighlight">\(X \mathbf{w} = \mathbf{y}\)</span>$</p>
+<p>We want to solve:</p>
+<div class="math notranslate nohighlight">
+\[X \mathbf{w} = \mathbf{y}\]</div>
 <p>where <span class="math notranslate nohighlight">\(X\)</span> is <span class="math notranslate nohighlight">\(n \times p\)</span> (<span class="math notranslate nohighlight">\(n\)</span> samples, <span class="math notranslate nohighlight">\(p\)</span> features).</p>
-<p>The pseudoinverse solution is:
-$<span class="math notranslate nohighlight">\(\mathbf{w}^* = X^+ \mathbf{y}\)</span>$</p>
+<p>The pseudoinverse solution is:</p>
+<div class="math notranslate nohighlight">
+\[\mathbf{w}^* = X^+ \mathbf{y}\]</div>
 <p>Depending on the shape of <span class="math notranslate nohighlight">\(X\)</span>, <span class="math notranslate nohighlight">\(X^+\)</span> takes different forms.</p>
 </section>
 <hr class="docutils" />
@@ -488,8 +490,9 @@ $<span class="math notranslate nohighlight">\(\mathbf{w}^* = X^+ \mathbf{y}\)</s
 <p>Since <span class="math notranslate nohighlight">\(n &gt; p\)</span> and <span class="math notranslate nohighlight">\(X\)</span> has full column rank, <span class="math notranslate nohighlight">\(X^T X\)</span> is <span class="math notranslate nohighlight">\(p \times p\)</span> and invertible:</p>
 <div class="math notranslate nohighlight">
 \[\mathbf{w} = (X^T X)^{-1} X^T \mathbf{y}\]</div>
-<p>Therefore:
-$<span class="math notranslate nohighlight">\(X^+ = (X^T X)^{-1} X^T\)</span>$</p>
+<p>Therefore:</p>
+<div class="math notranslate nohighlight">
+\[X^+ = (X^T X)^{-1} X^T\]</div>
 </section>
 <hr class="docutils" />
 <section id="form-2-fat-matrix-p-n-full-row-rank">
@@ -509,8 +512,9 @@ $<span class="math notranslate nohighlight">\(X^+ = (X^T X)^{-1} X^T\)</span>$</
 <p><strong>Therefore:</strong></p>
 <div class="math notranslate nohighlight">
 \[\mathbf{w} = X^T \boldsymbol{\alpha} = X^T (X X^T)^{-1} \mathbf{y}\]</div>
-<p><strong>Thus:</strong>
-$<span class="math notranslate nohighlight">\(X^+ = X^T (X X^T)^{-1}\)</span>$</p>
+<p><strong>Thus:</strong></p>
+<div class="math notranslate nohighlight">
+\[X^+ = X^T (X X^T)^{-1}\]</div>
 </section>
 <hr class="docutils" />
 <section id="alternative-derivation-using-optimization-constraint">
@@ -522,18 +526,24 @@ $<span class="math notranslate nohighlight">\(X^+ = X^T (X X^T)^{-1}\)</span>$</
 <p>Using Lagrange multipliers:</p>
 <div class="math notranslate nohighlight">
 \[L(\mathbf{w}, \boldsymbol{\lambda}) = \frac{1}{2}\mathbf{w}^T \mathbf{w} + \boldsymbol{\lambda}^T (\mathbf{y} - X\mathbf{w})\]</div>
-<p>Gradient with respect to <span class="math notranslate nohighlight">\(\mathbf{w}\)</span>:
-$<span class="math notranslate nohighlight">\(\frac{\partial L}{\partial \mathbf{w}} = \mathbf{w} - X^T \boldsymbol{\lambda} = 0\)</span>$</p>
-<p>So:
-$<span class="math notranslate nohighlight">\(\mathbf{w} = X^T \boldsymbol{\lambda}\)</span>$</p>
-<p>Multiply by <span class="math notranslate nohighlight">\(X\)</span>:
-$<span class="math notranslate nohighlight">\(X\mathbf{w} = X X^T \boldsymbol{\lambda} = \mathbf{y}\)</span>$</p>
-<p>Since <span class="math notranslate nohighlight">\(X X^T\)</span> is invertible:
-$<span class="math notranslate nohighlight">\(\boldsymbol{\lambda} = (X X^T)^{-1} \mathbf{y}\)</span>$</p>
-<p>Therefore:
-$<span class="math notranslate nohighlight">\(\mathbf{w} = X^T (X X^T)^{-1} \mathbf{y}\)</span>$</p>
-<p>Again we get:
-$<span class="math notranslate nohighlight">\(X^+ = X^T (X X^T)^{-1}\)</span>$</p>
+<p>Gradient with respect to <span class="math notranslate nohighlight">\(\mathbf{w}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\frac{\partial L}{\partial \mathbf{w}} = \mathbf{w} - X^T \boldsymbol{\lambda} = 0\]</div>
+<p>So:</p>
+<div class="math notranslate nohighlight">
+\[\mathbf{w} = X^T \boldsymbol{\lambda}\]</div>
+<p>Multiply by <span class="math notranslate nohighlight">\(X\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[X\mathbf{w} = X X^T \boldsymbol{\lambda} = \mathbf{y}\]</div>
+<p>Since <span class="math notranslate nohighlight">\(X X^T\)</span> is invertible:</p>
+<div class="math notranslate nohighlight">
+\[\boldsymbol{\lambda} = (X X^T)^{-1} \mathbf{y}\]</div>
+<p>Therefore:</p>
+<div class="math notranslate nohighlight">
+\[\mathbf{w} = X^T (X X^T)^{-1} \mathbf{y}\]</div>
+<p>Again we get:</p>
+<div class="math notranslate nohighlight">
+\[X^+ = X^T (X X^T)^{-1}\]</div>
 </section>
 </section>
 <hr class="docutils" />
@@ -618,31 +628,158 @@ $<span class="math notranslate nohighlight">\(X^+ = V \Sigma^+ U^T\)</span>$</p>
 <h2>Part 6: Numerical Example<a class="headerlink" href="#part-6-numerical-example" title="Link to this heading">#</a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
-<span class="c1"># Case 1: Tall matrix (n &gt; p)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="o">*</span><span class="mi">60</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;PSEUDOINVERSE DEMONSTRATION&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="o">*</span><span class="mi">60</span><span class="p">)</span>
+
+<span class="c1"># Case 1: Tall matrix (more samples than features)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">📊 CASE 1: Tall Matrix (n &gt; p)&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span><span class="o">*</span><span class="mi">40</span><span class="p">)</span>
 <span class="n">X_tall</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> 
                    <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> 
-                   <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]])</span>  <span class="c1"># 3x2</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">]])</span>
+                   <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]])</span>  <span class="c1"># Shape: (3, 2) - 3 samples, 2 features</span>
+<span class="n">y_tall</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>  <span class="c1"># Shape: (3,) - 3 targets</span>
 
-<span class="c1"># Form 1</span>
-<span class="n">w1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">X_tall</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">X_tall</span><span class="p">)</span> <span class="o">@</span> <span class="n">X_tall</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">y</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;X shape: </span><span class="si">{</span><span class="n">X_tall</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;y shape: </span><span class="si">{</span><span class="n">y_tall</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Problem: </span><span class="si">{</span><span class="n">X_tall</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2"> equations, </span><span class="si">{</span><span class="n">X_tall</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2"> unknowns&quot;</span><span class="p">)</span>
 
-<span class="c1"># Form 2 (using pseudoinverse)</span>
-<span class="n">w2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">pinv</span><span class="p">(</span><span class="n">X_tall</span><span class="p">)</span> <span class="o">@</span> <span class="n">y</span>
+<span class="c1"># Solution using normal equations (tall matrix formula)</span>
+<span class="n">w_tall</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">X_tall</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">X_tall</span><span class="p">)</span> <span class="o">@</span> <span class="n">X_tall</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">y_tall</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Solution (minimizes ||Xw - y||²): </span><span class="si">{</span><span class="n">w_tall</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Tall matrix solution: </span><span class="si">{</span><span class="n">w1</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span><span class="si">}</span><span class="s2"> = </span><span class="si">{</span><span class="n">w2</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="c1"># Using numpy&#39;s pinv</span>
+<span class="n">w_tall_pinv</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">pinv</span><span class="p">(</span><span class="n">X_tall</span><span class="p">)</span> <span class="o">@</span> <span class="n">y_tall</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Using np.linalg.pinv: </span><span class="si">{</span><span class="n">w_tall_pinv</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
-<span class="c1"># Case 2: Fat matrix (p &gt; n)</span>
+<span class="c1"># Verify</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Prediction: Xw = </span><span class="si">{</span><span class="n">X_tall</span><span class="w"> </span><span class="o">@</span><span class="w"> </span><span class="n">w_tall</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Target y:    </span><span class="si">{</span><span class="n">y_tall</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;MSE: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">((</span><span class="n">X_tall</span><span class="w"> </span><span class="o">@</span><span class="w"> </span><span class="n">w_tall</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">y_tall</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Case 2: Fat matrix (more features than samples)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="s2">&quot;=&quot;</span><span class="o">*</span><span class="mi">60</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;📊 CASE 2: Fat Matrix (p &gt; n)&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span><span class="o">*</span><span class="mi">40</span><span class="p">)</span>
 <span class="n">X_fat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
-                  <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]])</span>  <span class="c1"># 2x3</span>
+                  <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]])</span>  <span class="c1"># Shape: (2, 3) - 2 samples, 3 features</span>
+<span class="n">y_fat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>  <span class="c1"># Shape: (2,) - 2 targets</span>
 
-<span class="c1"># Form 2 (the only one that works)</span>
-<span class="n">w_fat</span> <span class="o">=</span> <span class="n">X_fat</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">X_fat</span> <span class="o">@</span> <span class="n">X_fat</span><span class="o">.</span><span class="n">T</span><span class="p">)</span> <span class="o">@</span> <span class="n">y</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;X shape: </span><span class="si">{</span><span class="n">X_fat</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;y shape: </span><span class="si">{</span><span class="n">y_fat</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Problem: </span><span class="si">{</span><span class="n">X_fat</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2"> equations, </span><span class="si">{</span><span class="n">X_fat</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2"> unknowns&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;→ Infinite solutions exist. We want the minimum norm solution.&quot;</span><span class="p">)</span>
 
-<span class="c1"># Using general pseudoinverse</span>
-<span class="n">w_fat_pinv</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">pinv</span><span class="p">(</span><span class="n">X_fat</span><span class="p">)</span> <span class="o">@</span> <span class="n">y</span>
+<span class="c1"># Solution using fat matrix formula (minimum norm)</span>
+<span class="n">XXT</span> <span class="o">=</span> <span class="n">X_fat</span> <span class="o">@</span> <span class="n">X_fat</span><span class="o">.</span><span class="n">T</span>  <span class="c1"># Shape: (2, 2)</span>
+<span class="n">inv_XXT</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">XXT</span><span class="p">)</span>
+<span class="n">w_fat</span> <span class="o">=</span> <span class="n">X_fat</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">inv_XXT</span> <span class="o">@</span> <span class="n">y_fat</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Fat matrix solution: </span><span class="si">{</span><span class="n">w_fat</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span><span class="si">}</span><span class="s2"> = </span><span class="si">{</span><span class="n">w_fat_pinv</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Minimum norm solution: </span><span class="si">{</span><span class="n">w_fat</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Norm of w: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">w_fat</span><span class="p">)</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Using numpy&#39;s pinv</span>
+<span class="n">w_fat_pinv</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">pinv</span><span class="p">(</span><span class="n">X_fat</span><span class="p">)</span> <span class="o">@</span> <span class="n">y_fat</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Using np.linalg.pinv: </span><span class="si">{</span><span class="n">w_fat_pinv</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Verify solution satisfies Xw = y</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Verification:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Xw = </span><span class="si">{</span><span class="n">X_fat</span><span class="w"> </span><span class="o">@</span><span class="w"> </span><span class="n">w_fat</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;y  = </span><span class="si">{</span><span class="n">y_fat</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Show that other solutions exist with larger norm</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">📐 Other possible solutions:&quot;</span><span class="p">)</span>
+<span class="c1"># One particular solution (not minimum norm)</span>
+<span class="n">w_other</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>  <span class="c1"># This also satisfies Xw = y?</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Alternative w = </span><span class="si">{</span><span class="n">w_other</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Norm = </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">w_other</span><span class="p">)</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2"> (larger than </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">w_fat</span><span class="p">)</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Xw = </span><span class="si">{</span><span class="n">X_fat</span><span class="w"> </span><span class="o">@</span><span class="w"> </span><span class="n">w_other</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Case 3: Square invertible matrix</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="s2">&quot;=&quot;</span><span class="o">*</span><span class="mi">60</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;📊 CASE 3: Square Invertible Matrix (n = p)&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span><span class="o">*</span><span class="mi">40</span><span class="p">)</span>
+<span class="n">X_square</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+                     <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]])</span>  <span class="c1"># Shape: (2, 2)</span>
+<span class="n">y_square</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;X shape: </span><span class="si">{</span><span class="n">X_square</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;X is square and invertible (det = </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">det</span><span class="p">(</span><span class="n">X_square</span><span class="p">)</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+
+<span class="c1"># Standard inverse</span>
+<span class="n">w_inv</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">X_square</span><span class="p">)</span> <span class="o">@</span> <span class="n">y_square</span>
+
+<span class="c1"># Pseudoinverse (should give same result)</span>
+<span class="n">w_pinv</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">pinv</span><span class="p">(</span><span class="n">X_square</span><span class="p">)</span> <span class="o">@</span> <span class="n">y_square</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Using inverse: </span><span class="si">{</span><span class="n">w_inv</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Using pinv:    </span><span class="si">{</span><span class="n">w_pinv</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Are they equal? </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">w_inv</span><span class="p">,</span><span class="w"> </span><span class="n">w_pinv</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="s2">&quot;=&quot;</span><span class="o">*</span><span class="mi">60</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;💡 KEY INSIGHTS:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="o">*</span><span class="mi">60</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;1. Tall matrix (n &gt; p): Unique solution minimizing MSE&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;2. Fat matrix (p &gt; n): Infinite solutions → choose minimum norm&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;3. Square matrix: Pseudoinverse = inverse&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;4. np.linalg.pinv() handles all cases automatically using SVD&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>============================================================
+PSEUDOINVERSE DEMONSTRATION
+============================================================
+
+📊 CASE 1: Tall Matrix (n &gt; p)
+----------------------------------------
+X shape: (3, 2)
+y shape: (3,)
+Problem: 3 equations, 2 unknowns
+
+Solution (minimizes ||Xw - y||²): [4.4408921e-16 5.0000000e-01]
+Using np.linalg.pinv: [0.  0.5]
+
+Prediction: Xw = [1. 2. 3.]
+Target y:    [1 2 3]
+MSE: 0.000000
+
+============================================================
+📊 CASE 2: Fat Matrix (p &gt; n)
+----------------------------------------
+X shape: (2, 3)
+y shape: (2,)
+Problem: 2 equations, 3 unknowns
+→ Infinite solutions exist. We want the minimum norm solution.
+
+Minimum norm solution: [-0.05555556  0.11111111  0.27777778]
+Norm of w: 0.3043
+Using np.linalg.pinv: [-0.05555556  0.11111111  0.27777778]
+
+Verification:
+Xw = [1. 2.]
+y  = [1 2]
+
+📐 Other possible solutions:
+Alternative w = [0.  0.5 0. ]
+Norm = 0.5000 (larger than 0.3043)
+Xw = [1.  2.5]
+
+============================================================
+📊 CASE 3: Square Invertible Matrix (n = p)
+----------------------------------------
+X shape: (2, 2)
+X is square and invertible (det = -2.0)
+
+Using inverse: [0.  0.5]
+Using pinv:    [-4.4408921e-16  5.0000000e-01]
+Are they equal? True
+
+============================================================
+💡 KEY INSIGHTS:
+============================================================
+1. Tall matrix (n &gt; p): Unique solution minimizing MSE
+2. Fat matrix (p &gt; n): Infinite solutions → choose minimum norm
+3. Square matrix: Pseudoinverse = inverse
+4. np.linalg.pinv() handles all cases automatically using SVD
 </pre></div>
 </div>
 </section>
