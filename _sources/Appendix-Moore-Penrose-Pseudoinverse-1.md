@@ -359,6 +359,7 @@ The alternative form $\mathbf{w} = X^T (X X^T)^{-1} \mathbf{y}$:
 **Both are special cases of the pseudoinverse $X^+$, which always exists and can be computed via SVD.**
 
 This is why, in practice, we often write:
+
 $$\mathbf{w}^* = X^+ \mathbf{y}$$
 
 without worrying about the shape of $X$!

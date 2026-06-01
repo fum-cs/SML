@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -63,7 +63,7 @@
     <link rel="icon" href="_static/fum-logo.ico"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Hidden Markov Models" href="13-Hidden-Markov-Models.html" />
+    <link rel="next" title="Principal Component Analysis, Part 1" href="13-Principal-Component-Analysis-part1.html" />
     <link rel="prev" title="Gaussian Mixture Models, Part 1" href="11-Gaussian-Mixtures-part1.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -203,19 +203,20 @@
 <li class="toctree-l1"><a class="reference internal" href="10-Kernel-Regression.html">Kernel Regression: From Linear to Nonlinear Modeling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="11-Gaussian-Mixtures-part1.html">Gaussian Mixture Models, Part 1</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Gaussian Mixture Model, Part 2</a></li>
-<li class="toctree-l1"><a class="reference internal" href="13-Hidden-Markov-Models.html">Hidden Markov Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13-Principal-Component-Analysis-part1.html">Principal Component Analysis, Part 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14-Principal-Component-Analysis-part2.html">Principal Component Analysis, Part 2</a></li>
 
 
-<li class="toctree-l1"><a class="reference internal" href="14-Principal-Component-Analysis-part1.html">Principal Component Analysis, Part 1</a></li>
-<li class="toctree-l1"><a class="reference internal" href="15-Principal-Component-Analysis-part2.html">Principal Component Analysis, Part 2</a></li>
 
 
+<li class="toctree-l1"><a class="reference internal" href="15-Hidden-Markov-Models.html">Hidden Markov Models</a></li>
 
 
 <li class="toctree-l1"><a class="reference internal" href="App-Mathematics-and-Machine-Learning.html">Appendix: Mathematics and Machine Learning</a></li>
 
 <li class="toctree-l1"><a class="reference internal" href="Appendix-BDT-Discrete-Features.html">Appendix: Bayes Decision Theory — Discrete Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Appendix-Moore-Penrose-Pseudoinverse-1.html">Appendix: The Moore-Penrose Pseudoinverse</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Appendix-Direct-Maximization-of-GMM-Log-Likelihood.html">Appendix: Direct Maximization of the GMM Log-Likelihood</a></li>
 </ul>
 
     </div>
@@ -576,7 +577,7 @@ P(\mathbf{D} | \mathbf{\theta}) = \prod_{j=1}^n f(\mathbf{x}_{j})
 \[
 \ln P(\mathbf{D} | \mathbf{\theta}) = \sum_{j=1}^n \ln \left( \sum_{i=1}^k f(\mathbf{x}_{j} | \mathbf{\mu}_i, \mathbf{\Sigma}_i) P(C_i) \right)
 \]</div>
-<p>If the likelihood function involved only a <strong>single Gaussian</strong>, direct differentiation would be straightforward. However, in a Gaussian mixture model, the presence of multiple Gaussians inside the summation complicates differentiation. Since each data point <span class="math notranslate nohighlight">\(\mathbf{x}_j\)</span> does not belong to one cluster deterministically but instead has a probability of belonging to multiple clusters, it is difficult to solve for the parameters analytically.</p>
+<p>If the likelihood function involved only a <strong>single Gaussian</strong>, direct differentiation would be straightforward. However, in a Gaussian mixture model, the presence of multiple Gaussians inside the summation complicates differentiation. Since each data point <span class="math notranslate nohighlight">\(\mathbf{x}_j\)</span> does not belong to one cluster deterministically but instead has a probability of belonging to multiple clusters, it is difficult to solve for the parameters analytically (See <a class="reference internal" href="Appendix-Direct-Maximization-of-GMM-Log-Likelihood.html"><span class="std std-doc">Appendix</span></a>).</p>
 <section id="how-does-em-help">
 <h4><strong>How does EM help?</strong><a class="headerlink" href="#how-does-em-help" title="Link to this heading">#</a></h4>
 <p>Expectation-Maximization provides a structured approach to <strong>indirectly</strong> maximize the likelihood by introducing latent variables—the cluster assignments <span class="math notranslate nohighlight">\(w_{ij} = P(C_i | \mathbf{x}_j)\)</span>. The <strong>Expectation step</strong> computes these probabilities, effectively estimating the hidden memberships, while the <strong>Maximization step</strong> updates the parameters using these weights.</p>
@@ -778,11 +779,11 @@ P(C_i | \mathbf{x}_{j}) =
       </div>
     </a>
     <a class="right-next"
-       href="13-Hidden-Markov-Models.html"
+       href="13-Principal-Component-Analysis-part1.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Hidden Markov Models</p>
+        <p class="prev-next-title">Principal Component Analysis, Part 1</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

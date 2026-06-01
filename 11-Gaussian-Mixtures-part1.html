@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -201,19 +201,20 @@
 <li class="toctree-l1"><a class="reference internal" href="10-Kernel-Regression.html">Kernel Regression: From Linear to Nonlinear Modeling</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Gaussian Mixture Models, Part 1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="12-Gaussian-Mixtures-part2.html">Gaussian Mixture Model, Part 2</a></li>
-<li class="toctree-l1"><a class="reference internal" href="13-Hidden-Markov-Models.html">Hidden Markov Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13-Principal-Component-Analysis-part1.html">Principal Component Analysis, Part 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14-Principal-Component-Analysis-part2.html">Principal Component Analysis, Part 2</a></li>
 
 
-<li class="toctree-l1"><a class="reference internal" href="14-Principal-Component-Analysis-part1.html">Principal Component Analysis, Part 1</a></li>
-<li class="toctree-l1"><a class="reference internal" href="15-Principal-Component-Analysis-part2.html">Principal Component Analysis, Part 2</a></li>
 
 
+<li class="toctree-l1"><a class="reference internal" href="15-Hidden-Markov-Models.html">Hidden Markov Models</a></li>
 
 
 <li class="toctree-l1"><a class="reference internal" href="App-Mathematics-and-Machine-Learning.html">Appendix: Mathematics and Machine Learning</a></li>
 
 <li class="toctree-l1"><a class="reference internal" href="Appendix-BDT-Discrete-Features.html">Appendix: Bayes Decision Theory — Discrete Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Appendix-Moore-Penrose-Pseudoinverse-1.html">Appendix: The Moore-Penrose Pseudoinverse</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Appendix-Direct-Maximization-of-GMM-Log-Likelihood.html">Appendix: Direct Maximization of the GMM Log-Likelihood</a></li>
 </ul>
 
     </div>
@@ -565,7 +566,7 @@ So, for example, if we take the same data and transform it, the cluster assignme
 <p>By eye, we recognize that these transformed clusters are noncircular, and thus circular clusters would be a poor fit.
 Nevertheless, <em>k</em>-means is not flexible enough to account for this, and tries to force-fit the data into four circular clusters.
 This results in a mixing of cluster assignments where the resulting circles overlap: see especially the bottom-right of this plot.
-One might imagine addressing this particular situation by preprocessing the data with PCA (see <a class="reference internal" href="14-Principal-Component-Analysis-part1.html"><span class="std std-doc">Principal Component Analysis</span></a>), but in practice there is no guarantee that such a global operation will circularize the individual groups.</p>
+One might imagine addressing this particular situation by preprocessing the data with PCA (see <span class="xref myst">Principal Component Analysis</span>), but in practice there is no guarantee that such a global operation will circularize the individual groups.</p>
 <p>These two disadvantages of <em>k</em>-means—its lack of flexibility in cluster shape and lack of probabilistic cluster assignment—mean that for many datasets (especially low-dimensional datasets) it may not perform as well as you might hope.</p>
 <p>You might imagine addressing these weaknesses by generalizing the <em>k</em>-means model: for example, you could measure uncertainty in cluster assignment by comparing the distances of each point to <em>all</em> cluster centers, rather than focusing on just the closest.
 You might also imagine allowing the cluster boundaries to be ellipses rather than circles, so as to account for noncircular clusters.

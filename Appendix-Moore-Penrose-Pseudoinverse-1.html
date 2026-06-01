@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -63,6 +63,7 @@
     <link rel="icon" href="_static/fum-logo.ico"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Appendix: Direct Maximization of the GMM Log-Likelihood" href="Appendix-Direct-Maximization-of-GMM-Log-Likelihood.html" />
     <link rel="prev" title="Appendix: Bayes Decision Theory — Discrete Features" href="Appendix-BDT-Discrete-Features.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -202,19 +203,20 @@
 <li class="toctree-l1"><a class="reference internal" href="10-Kernel-Regression.html">Kernel Regression: From Linear to Nonlinear Modeling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="11-Gaussian-Mixtures-part1.html">Gaussian Mixture Models, Part 1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="12-Gaussian-Mixtures-part2.html">Gaussian Mixture Model, Part 2</a></li>
-<li class="toctree-l1"><a class="reference internal" href="13-Hidden-Markov-Models.html">Hidden Markov Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13-Principal-Component-Analysis-part1.html">Principal Component Analysis, Part 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14-Principal-Component-Analysis-part2.html">Principal Component Analysis, Part 2</a></li>
 
 
-<li class="toctree-l1"><a class="reference internal" href="14-Principal-Component-Analysis-part1.html">Principal Component Analysis, Part 1</a></li>
-<li class="toctree-l1"><a class="reference internal" href="15-Principal-Component-Analysis-part2.html">Principal Component Analysis, Part 2</a></li>
 
 
+<li class="toctree-l1"><a class="reference internal" href="15-Hidden-Markov-Models.html">Hidden Markov Models</a></li>
 
 
 <li class="toctree-l1"><a class="reference internal" href="App-Mathematics-and-Machine-Learning.html">Appendix: Mathematics and Machine Learning</a></li>
 
 <li class="toctree-l1"><a class="reference internal" href="Appendix-BDT-Discrete-Features.html">Appendix: Bayes Decision Theory — Discrete Features</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Appendix: The Moore-Penrose Pseudoinverse</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Appendix-Direct-Maximization-of-GMM-Log-Likelihood.html">Appendix: Direct Maximization of the GMM Log-Likelihood</a></li>
 </ul>
 
     </div>
@@ -797,8 +799,9 @@ Are they equal? True
 <li><p><strong>Derivation:</strong> Substitute <span class="math notranslate nohighlight">\(\mathbf{w} = X^T \mathbf{u}\)</span> or use Lagrange multipliers for minimum norm</p></li>
 </ul>
 <p><strong>Both are special cases of the pseudoinverse <span class="math notranslate nohighlight">\(X^+\)</span>, which always exists and can be computed via SVD.</strong></p>
-<p>This is why, in practice, we often write:
-$<span class="math notranslate nohighlight">\(\mathbf{w}^* = X^+ \mathbf{y}\)</span>$</p>
+<p>This is why, in practice, we often write:</p>
+<div class="math notranslate nohighlight">
+\[\mathbf{w}^* = X^+ \mathbf{y}\]</div>
 <p>without worrying about the shape of <span class="math notranslate nohighlight">\(X\)</span>!</p>
 <hr class="docutils" />
 </section>
@@ -842,6 +845,15 @@ $<span class="math notranslate nohighlight">\(\mathbf{w}^* = X^+ \mathbf{y}\)</s
         <p class="prev-next-subtitle">previous</p>
         <p class="prev-next-title">Appendix: Bayes Decision Theory — Discrete Features</p>
       </div>
+    </a>
+    <a class="right-next"
+       href="Appendix-Direct-Maximization-of-GMM-Log-Likelihood.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Appendix: Direct Maximization of the GMM Log-Likelihood</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>
