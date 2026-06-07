@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -546,9 +546,9 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="principal-component-analysis-part-2">
 <h1>Principal Component Analysis, Part 2<a class="headerlink" href="#principal-component-analysis-part-2" title="Link to this heading">#</a></h1>
-<p><strong>A comprehensive guide to understanding PCA from mathematical foundations to practical implementation</strong></p>
+<p><strong>From mathematical foundations to practical implementation</strong></p>
 <hr class="docutils" />
-<p><strong>Principal Component Analysis (PCA)</strong> is a fundamental dimensionality reduction technique that identifies an optimal <span class="math notranslate nohighlight">\(r\)</span>-dimensional basis capturing maximum variance in the data. Its mathematical foundation derives from finding orthogonal directions (principal components) that sequentially maximize the projected variance.</p>
+<p><strong>Principal Component Analysis (PCA)</strong> is a fundamental dimensionality reduction technique that identifies an optimal <span class="math notranslate nohighlight">\(r\)</span>-dimensional subspace capturing the maximum variance in the data. Its mathematical foundation rests on finding orthogonal directions — called <em>principal components</em> — that sequentially maximize the projected variance.</p>
 <p>Given a centered data matrix <span class="math notranslate nohighlight">\(\mathbf{X}\)</span>, we seek unit vectors <span class="math notranslate nohighlight">\(\mathbf{u}\)</span> that maximize the variance of projected data <span class="math notranslate nohighlight">\(\mathbf{X}\mathbf{u}\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[\max_{\|\mathbf{u}\|=1} \text{Var}(\mathbf{X}\mathbf{u}) \]</div>
@@ -1056,7 +1056,7 @@ In standard basis: 0.5i + 1.0j + 2.0k
 </section>
 <section id="id1">
 <h4>Basis Transformation<a class="headerlink" href="#id1" title="Link to this heading">#</a></h4>
-<p>In your code, this rotation matrix defines new basis vectors:</p>
+<p>In the previous code, this rotation matrix defines new basis vectors:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">u1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="mi">1</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="mi">0</span><span class="p">])</span>  <span class="c1"># Rotated x-axis</span>
 <span class="n">u2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="mi">1</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="mi">0</span><span class="p">])</span> <span class="c1"># Rotated y-axis </span>
 <span class="n">u3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>                        <span class="c1"># Unchanged z-axis</span>
@@ -1097,7 +1097,7 @@ In standard basis: 0.5i + 1.0j + 2.0k
 z
 \end{bmatrix}
 \end{split}\]</div>
-<p>This matches your basis transformation approach where:</p>
+<p>This matches our basis transformation approach where:</p>
 <div class="math notranslate nohighlight">
 \[
 \mathbf{x}' = x\mathbf{u}_1 + y\mathbf{u}_2 + z\mathbf{u}_3
@@ -1148,7 +1148,7 @@ Reconstruction error: 0.0000000000
 Find unit vector <span class="math notranslate nohighlight">\(\mathbf{u}_1\)</span> maximizing projected variance:</p>
 <div class="math notranslate nohighlight">
 \[
-   \max_{\|\mathbf{u}_1\|=1} \text{Var}(\mathbf{X}\mathbf{u}_1) = \max_{\|\mathbf{u}_1\|=1} \frac{1}{n}\|\mathbf{X}\mathbf{u}_1\|^2
+   \max_{\|\mathbf{u}_1\|=1} \text{Var}(\mathbf{X}\mathbf{u}_1) 
    \]</div>
 </li>
 <li><p><strong>Subsequent Components</strong>:<br />
@@ -1364,13 +1364,14 @@ Each <span class="math notranslate nohighlight">\(\mathbf{u}_k\)</span> is found
 </section>
 <section id="pca-algorithm">
 <h2>PCA Algorithm<a class="headerlink" href="#pca-algorithm" title="Link to this heading">#</a></h2>
+<p>Given a data matrix <span class="math notranslate nohighlight">\(\mathbf{X} \in \mathbb{R}^{n \times d}\)</span>:</p>
 <ol class="arabic simple">
 <li><p><strong>Center the data</strong>: <span class="math notranslate nohighlight">\(\mathbf{Z} = \mathbf{X} - \mathbf{1}\cdot\mathbf{\mu}^T\)</span></p></li>
-<li><p><strong>Compute covariance matrix</strong>: <span class="math notranslate nohighlight">\(\mathbf{C} = \frac{1}{n}\mathbf{Z}^T\mathbf{Z}\)</span></p></li>
-<li><p><strong>Find eigenvalues and eigenvectors</strong> of <span class="math notranslate nohighlight">\(\mathbf{C}\)</span></p></li>
+<li><p><strong>Compute the covariance matrix</strong>: <span class="math notranslate nohighlight">\(\mathbf{C} = \frac{1}{n}\mathbf{Z}^T\mathbf{Z}\)</span></p></li>
+<li><p><strong>Compute eigenvalues and eigenvectors</strong> of <span class="math notranslate nohighlight">\(\mathbf{C}\)</span></p></li>
 <li><p><strong>Sort eigenvalues</strong> in descending order</p></li>
-<li><p><strong>Select top <span class="math notranslate nohighlight">\(r\)</span> eigenvectors</strong> as principal components</p></li>
-<li><p><strong>Project data</strong>: <span class="math notranslate nohighlight">\(\mathbf{Z}' = \mathbf{Z}\mathbf{U}_r\)</span></p></li>
+<li><p><strong>Select the top <span class="math notranslate nohighlight">\(r\)</span> eigenvectors</strong> as the principal components</p></li>
+<li><p><strong>Project the data</strong>: <span class="math notranslate nohighlight">\(\mathbf{Z}' = \mathbf{Z}\mathbf{U}_r\)</span></p></li>
 </ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
