@@ -568,11 +568,12 @@ Using Scikit-Learn’s <code class="docutils literal notranslate"><span class="p
 </div>
 <p>These vectors represent the principal axes of the data, and the length of each vector is an indication of how “important” that axis is in describing the distribution of the data—more precisely, it is a measure of the variance of the data when projected onto that axis.
 The projection of each data point onto the principal axes are the principal components of the data.</p>
-<p>If we plot these principal components beside the original data, we see the plots shown in the following figure:</p>
-<p><img alt="" src="_images/05.09-PCA-rotation.png" />
-<a class="reference external" href="https://github.com/jakevdp/PythonDataScienceHandbook/blob/master/notebooks/06.00-Figure-Code.ipynb#Principal-Components-Rotation">figure source in Appendix</a></p>
-<p>This transformation from data axes to principal axes is an <em>affine transformation</em>, which means it is composed of a translation, rotation, and uniform scaling.</p>
-<p>While this algorithm to find principal components may seem like just a mathematical curiosity, it turns out to have very far-reaching applications in the world of machine learning and data exploration.</p>
+<!-- If we plot these principal components beside the original data, we see the plots shown in the following figure:
+
+![](img/05.09-PCA-rotation.png)
+[figure source in Appendix](https://github.com/jakevdp/PythonDataScienceHandbook/blob/master/notebooks/06.00-Figure-Code.ipynb#Principal-Components-Rotation)
+
+This transformation from data axes to principal axes is an *affine transformation*, which means it is composed of a translation, rotation, and uniform scaling. --><p>While this algorithm to find principal components may seem like just a mathematical curiosity, it turns out to have very far-reaching applications in the world of machine learning and data exploration.</p>
 <section id="pca-as-dimensionality-reduction">
 <h3>PCA as Dimensionality Reduction<a class="headerlink" href="#pca-as-dimensionality-reduction" title="Link to this heading">#</a></h3>
 <p>Using PCA for dimensionality reduction involves zeroing out one or more of the smallest principal components, resulting in a lower-dimensional projection of the data that preserves the maximal data variance.</p>
