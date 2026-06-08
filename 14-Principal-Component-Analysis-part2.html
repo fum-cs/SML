@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -476,9 +476,9 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pca-mathematical-foundation">PCA Mathematical Foundation</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variance-maximization-problem">Variance Maximization Problem</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#finding-the-first-principal-component">Finding the first principal component</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#optimization-problem">Optimization Problem</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#deriving-the-solution">Deriving the Solution</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#maximizing-the-variance">Maximizing the Variance</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#constrained-optimization-via-lagrange-multipliers">Constrained Optimization via Lagrange Multipliers</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#solution">Solution</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#choosing-the-right-eigenvalue">Choosing the Right Eigenvalue</a></li>
 </ul>
 </li>
 </ul>
@@ -811,13 +811,11 @@ When <span class="math notranslate nohighlight">\(\|\mathbf{a}\|=1\)</span>:</p>
 <li><p><strong>Step 3:</strong> Projection <span class="math notranslate nohighlight">\(\mathbf{b}_{\parallel} = 3\begin{bmatrix} 1 \\ 0 \end{bmatrix} = \begin{bmatrix} 3 \\ 0 \end{bmatrix}\)</span>.</p></li>
 <li><p><strong>Perpendicular Component:</strong> <span class="math notranslate nohighlight">\(\mathbf{b}_{\perp} = \begin{bmatrix} 3 \\ 2 \end{bmatrix} - \begin{bmatrix} 3 \\ 0 \end{bmatrix} = \begin{bmatrix} 0 \\ 2 \end{bmatrix}\)</span>.</p></li>
 </ul>
-<p><strong>Visualization:</strong></p>
-<ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(\mathbf{b}_{\parallel}\)</span> retains the <strong>x-component</strong> of <span class="math notranslate nohighlight">\(\mathbf{b}\)</span> (since <span class="math notranslate nohighlight">\(\mathbf{a}\)</span> is along the x-axis).</p></li>
-<li><p><span class="math notranslate nohighlight">\(\mathbf{b}_{\perp}\)</span> captures the remaining <strong>y-component</strong>, which is orthogonal to <span class="math notranslate nohighlight">\(\mathbf{a}\)</span>.</p></li>
-</ul>
-<p><strong>Next Steps:</strong><br />
-We will now see how this projection concept extends to <strong>multiple dimensions</strong> and leads to the PCA solution via eigenvalue decomposition.</p>
+<p><strong>Interpretation:</strong><br />
+Since <span class="math notranslate nohighlight">\(\mathbf{a}\)</span> points along the x-axis, <span class="math notranslate nohighlight">\(\mathbf{b}_{\parallel}\)</span> retains only the x-component of <span class="math notranslate nohighlight">\(\mathbf{b}\)</span>, and <span class="math notranslate nohighlight">\(\mathbf{b}_{\perp}\)</span> captures the remaining y-component, which is orthogonal to <span class="math notranslate nohighlight">\(\mathbf{a}\)</span>.</p>
+<hr class="docutils" />
+<p><strong>Connection to PCA:</strong><br />
+This projection concept is the geometric heart of PCA. In the next section we extend it to multiple dimensions, leading to the PCA solution via eigenvalue decomposition.</p>
 <hr class="docutils" />
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -914,9 +912,10 @@ b_perpendicular: [0. 2.], magnitude: 2.00
 <p>Any vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> can be expressed in terms of a new orthonormal basis <span class="math notranslate nohighlight">\(\{\mathbf{u}_1, \mathbf{u}_2, \ldots, \mathbf{u}_d\}\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[\mathbf{x} = a_1\mathbf{u}_1 + a_2\mathbf{u}_2 + \cdots + a_d\mathbf{u}_d = \mathbf{U}\mathbf{a}\]</div>
-<p>where <span class="math notranslate nohighlight">\(\mathbf{U}\)</span> is the matrix with columns <span class="math notranslate nohighlight">\(\mathbf{u}_i\)</span> and <span class="math notranslate nohighlight">\(\mathbf{a}\)</span> contains the coordinates in the new basis:</p>
+<p>where <span class="math notranslate nohighlight">\(\mathbf{U} = [\mathbf{u}_1 \mid \mathbf{u}_2 \mid \cdots \mid \mathbf{u}_d]\)</span> has the new basis vectors as its columns, and <span class="math notranslate nohighlight">\(\mathbf{a}\)</span> holds the coordinates of <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> in the new basis:</p>
 <div class="math notranslate nohighlight">
 \[\mathbf{a} = \mathbf{U}^T\mathbf{x}\]</div>
+<p>This works because orthonormality gives <span class="math notranslate nohighlight">\(\mathbf{U}^T\mathbf{U} = \mathbf{I}\)</span>, so the coordinate in direction <span class="math notranslate nohighlight">\(\mathbf{u}_i\)</span> is simply the dot product <span class="math notranslate nohighlight">\(a_i = \mathbf{u}_i^T \mathbf{x}\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example: Basis transformation</span>
@@ -1105,13 +1104,14 @@ z
 </section>
 <section id="why-this-works">
 <h4>Why This Works<a class="headerlink" href="#why-this-works" title="Link to this heading">#</a></h4>
-<p>The matrix columns are the transformed standard basis vectors. When we multiply:</p>
+<p>The columns of <span class="math notranslate nohighlight">\(\mathbf{R}\)</span> are exactly the images of the standard basis vectors under the rotation. When we multiply:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \mathbf{R}\begin{bmatrix}1\\0\\0\end{bmatrix} = \mathbf{u}_1, \quad
 \mathbf{R}\begin{bmatrix}0\\1\\0\end{bmatrix} = \mathbf{u}_2, \quad
 \mathbf{R}\begin{bmatrix}0\\0\\1\end{bmatrix} = \mathbf{u}_3
 \end{split}\]</div>
+<p>So <span class="math notranslate nohighlight">\(\mathbf{R}\)</span> tells us precisely where each axis goes — which is why its columns form the new basis.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Transform to new basis</span>
@@ -1142,7 +1142,7 @@ Reconstruction error: 0.0000000000
 <h2>PCA Mathematical Foundation<a class="headerlink" href="#pca-mathematical-foundation" title="Link to this heading">#</a></h2>
 <section id="variance-maximization-problem">
 <h3>Variance Maximization Problem<a class="headerlink" href="#variance-maximization-problem" title="Link to this heading">#</a></h3>
-<p>Principal Component Analysis (PCA) seeks an orthonormal basis <span class="math notranslate nohighlight">\(\{\mathbf{u}_1, \dots, \mathbf{u}_r\}\)</span> that captures maximal variance in the data through <strong>sequential optimization</strong>:</p>
+<p>PCA seeks an orthonormal basis <span class="math notranslate nohighlight">\(\{\mathbf{u}_1, \dots, \mathbf{u}_r\}\)</span> that captures maximal variance in the data through <strong>sequential optimization</strong>:</p>
 <ol class="arabic">
 <li><p><strong>First Principal Component</strong>:<br />
 Find unit vector <span class="math notranslate nohighlight">\(\mathbf{u}_1\)</span> maximizing projected variance:</p>
@@ -1159,22 +1159,19 @@ Each <span class="math notranslate nohighlight">\(\mathbf{u}_k\)</span> is found
    \]</div>
 </li>
 </ol>
-<p>Simply put, <strong>the first principal component represents the most significant direction in the data</strong>, retaining the maximum variability. Subsequent principal components can be extracted, but each must be <strong>orthogonal</strong> to the previous components to ensure they capture new and independent information.</p>
+<p>In short, <strong>the first principal component is the direction of greatest spread in the data</strong>. Each subsequent component must be orthogonal to all previous ones, ensuring it captures genuinely new, independent information.</p>
 </section>
 <section id="finding-the-first-principal-component">
 <h3>Finding the first principal component<a class="headerlink" href="#finding-the-first-principal-component" title="Link to this heading">#</a></h3>
-<p>We seek a unit vector <strong>u</strong> that maximizes the variance of the projected data:</p>
+<p>We seek a unit vector <span class="math notranslate nohighlight">\(\mathbf{u}\)</span> that maximizes the variance of the projected data:</p>
 <div class="math notranslate nohighlight">
 \[
 \max_{\|\mathbf{u}\|=1} \text{Var}(\mathbf{X}\mathbf{u}) = \max_{\|\mathbf{u}\|=1} \frac{1}{n} \sum_{i=1}^n \left( \mathbf{u}^T \mathbf{x}_i - \mu_{\mathbf{u}} \right)^2
 \]</div>
-<p>where:</p>
-<ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(\mu_{\mathbf{u}} = \frac{1}{n} \sum_{i=1}^n \mathbf{u}^T \mathbf{x}_i = \mathbf{u}^T \left( \frac{1}{n} \sum_{i=1}^n \mathbf{x}_i \right) = \mathbf{u}^T \bar{\mathbf{x}}\)</span> is the mean of projected data</p></li>
-</ul>
-<p>Expanding the variance expression:</p>
+<p>where <span class="math notranslate nohighlight">\(\mu_{\mathbf{u}} = \frac{1}{n} \sum_{i=1}^n \mathbf{u}^T \mathbf{x}_i = \mathbf{u}^T \bar{\mathbf{x}}\)</span> is the mean of the projected values (using linearity of the dot product).</p>
+<p>Expanding the variance:</p>
 <ol class="arabic">
-<li><p>Let <span class="math notranslate nohighlight">\(a_i = \mathbf{u}^T \mathbf{x}_i\)</span> be the projected value</p></li>
+<li><p>Let <span class="math notranslate nohighlight">\(a_i = \mathbf{u}^T \mathbf{x}_i\)</span> denote the scalar projection of the <span class="math notranslate nohighlight">\(i\)</span>-th sample.</p></li>
 <li><p>The variance becomes:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1184,9 +1181,9 @@ Each <span class="math notranslate nohighlight">\(\mathbf{u}_k\)</span> is found
    \]</div>
 </li>
 </ol>
-<p>Let <span class="math notranslate nohighlight">\(\mathbf{z}_i = \mathbf{x}_i - \bar{\mathbf{x}}\)</span> be the centered data points. Then:</p>
+<p>Let <span class="math notranslate nohighlight">\(\mathbf{z}_i = \mathbf{x}_i - \bar{\mathbf{x}}\)</span> denote the centered data points. Expanding step by step:</p>
 <ol class="arabic simple">
-<li><p>Expand using <span class="math notranslate nohighlight">\(\|A\|^2 = A^TA\)</span>:</p></li>
+<li><p>Use the identity <span class="math notranslate nohighlight">\((A^TB)^T = B^TA\)</span>, noting that <span class="math notranslate nohighlight">\((\mathbf{u}^T \mathbf{z}_i)^2 = (\mathbf{u}^T \mathbf{z}_i)(\mathbf{z}_i^T \mathbf{u})\)</span>:</p></li>
 </ol>
 <div class="math notranslate nohighlight">
 \[
@@ -1194,28 +1191,28 @@ Each <span class="math notranslate nohighlight">\(\mathbf{u}_k\)</span> is found
 = \frac{1}{n} \sum_{i=1}^n (\mathbf{u}^T \mathbf{z}_i)(\mathbf{z}_i^T \mathbf{u})
 \]</div>
 <ol class="arabic simple" start="2">
-<li><p>Apply the identity <span class="math notranslate nohighlight">\(A^TB = B^TA\)</span> to the second term:</p></li>
+<li><p>Rearrange, grouping <span class="math notranslate nohighlight">\(\mathbf{z}_i\mathbf{z}_i^T\)</span> between <span class="math notranslate nohighlight">\(\mathbf{u}^T\)</span> and <span class="math notranslate nohighlight">\(\mathbf{u}\)</span>:</p></li>
 </ol>
 <div class="math notranslate nohighlight">
 \[
 = \frac{1}{n} \sum_{i=1}^n \mathbf{u}^T \mathbf{z}_i \mathbf{z}_i^T \mathbf{u}
 \]</div>
 <ol class="arabic simple" start="3">
-<li><p>Factor out <span class="math notranslate nohighlight">\(\mathbf{u}^T\)</span> and <span class="math notranslate nohighlight">\(\mathbf{u}\)</span>:</p></li>
+<li><p>Pull <span class="math notranslate nohighlight">\(\mathbf{u}^T\)</span> and <span class="math notranslate nohighlight">\(\mathbf{u}\)</span> outside the sum:</p></li>
 </ol>
 <div class="math notranslate nohighlight">
 \[
 = \mathbf{u}^T \left( \frac{1}{n} \sum_{i=1}^n \mathbf{z}_i \mathbf{z}_i^T \right) \mathbf{u}
 \]</div>
 <ol class="arabic simple" start="4">
-<li><p>Recognize the covariance matrix <span class="math notranslate nohighlight">\(\mathbf{C} = \frac{1}{n} \sum_{i=1}^n \mathbf{z}_i \mathbf{z}_i^T\)</span>:</p></li>
+<li><p>Recognize the <strong>sample covariance matrix</strong> <span class="math notranslate nohighlight">\(\mathbf{C} = \frac{1}{n} \sum_{i=1}^n \mathbf{z}_i \mathbf{z}_i^T\)</span>:</p></li>
 </ol>
 <div class="math notranslate nohighlight">
 \[
 = \mathbf{u}^T \mathbf{C} \mathbf{u}
 \]</div>
 <ol class="arabic simple" start="5">
-<li><p>Express in terms of the centered data matrix <span class="math notranslate nohighlight">\(\mathbf{Z} = [\mathbf{z}_1 \cdots \mathbf{z}_n]^T\)</span>:</p></li>
+<li><p>Equivalently, using the centered data matrix <span class="math notranslate nohighlight">\(\mathbf{Z} = [\mathbf{z}_1 \cdots \mathbf{z}_n]^T \in \mathbb{R}^{n \times d}\)</span>:</p></li>
 </ol>
 <div class="math notranslate nohighlight">
 \[
@@ -1227,17 +1224,17 @@ Each <span class="math notranslate nohighlight">\(\mathbf{u}_k\)</span> is found
 \[
 \boxed{\sigma^2_{\mathbf{u}} = \mathbf{u}^T \mathbf{C} \mathbf{u}}
 \]</div>
-<section id="optimization-problem">
-<h4>Optimization Problem<a class="headerlink" href="#optimization-problem" title="Link to this heading">#</a></h4>
-<p>We should maximize the projected variance <span class="math notranslate nohighlight">\(\sigma^2_\mathbf{u} = \mathbf{u}^T \mathbf{C} \mathbf{u}\)</span> subject to the constraint <span class="math notranslate nohighlight">\(\mathbf{u}^T\mathbf{u}=1\)</span>. This constrained optimization problem can be solved using Lagrange multipliers:</p>
+<section id="constrained-optimization-via-lagrange-multipliers">
+<h4>Constrained Optimization via Lagrange Multipliers<a class="headerlink" href="#constrained-optimization-via-lagrange-multipliers" title="Link to this heading">#</a></h4>
+<p>We maximize the projected variance <span class="math notranslate nohighlight">\(\sigma^2_\mathbf{u} = \mathbf{u}^T \mathbf{C} \mathbf{u}\)</span> subject to <span class="math notranslate nohighlight">\(\|\mathbf{u}\|=1\)</span>. Introducing Lagrange multiplier <span class="math notranslate nohighlight">\(\lambda\)</span>, the Lagrangian is:</p>
 <div class="math notranslate nohighlight">
 \[
 \max_\mathbf{u} J(\mathbf{u}) = \mathbf{u}^T \mathbf{C} \mathbf{u} - \lambda (\mathbf{u}^T\mathbf{u}-1)
 \]</div>
 </section>
-<section id="deriving-the-solution">
-<h4>Deriving the Solution<a class="headerlink" href="#deriving-the-solution" title="Link to this heading">#</a></h4>
-<p>Taking the derivative with respect to <span class="math notranslate nohighlight">\(\mathbf{u}\)</span> and setting it to zero:</p>
+<section id="solution">
+<h4>Solution<a class="headerlink" href="#solution" title="Link to this heading">#</a></h4>
+<p>Setting the gradient with respect to <span class="math notranslate nohighlight">\(\mathbf{u}\)</span> to zero:</p>
 <div class="math notranslate nohighlight">
 \[
 \frac{\partial}{\partial \mathbf{u}} \left(\mathbf{u}^T \mathbf{C} \mathbf{u} - \lambda (\mathbf{u}^T\mathbf{u}-1)\right) = \mathbf{0}
@@ -1250,16 +1247,16 @@ Each <span class="math notranslate nohighlight">\(\mathbf{u}_k\)</span> is found
 \[
 \mathbf{C} \mathbf{u} = \lambda \mathbf{u}
 \]</div>
-<p>This shows that <span class="math notranslate nohighlight">\(\lambda\)</span> must be an eigenvalue of the covariance matrix <span class="math notranslate nohighlight">\(\mathbf{C}\)</span> with <span class="math notranslate nohighlight">\(\mathbf{u}\)</span> as the corresponding eigenvector.</p>
+<p>This is precisely the eigenvalue equation: <span class="math notranslate nohighlight">\(\mathbf{u}\)</span> must be an eigenvector of the covariance matrix <span class="math notranslate nohighlight">\(\mathbf{C}\)</span>, with <span class="math notranslate nohighlight">\(\lambda\)</span> the corresponding eigenvalue.</p>
 </section>
-<section id="maximizing-the-variance">
-<h4>Maximizing the Variance<a class="headerlink" href="#maximizing-the-variance" title="Link to this heading">#</a></h4>
-<p>The projected variance can be expressed as:</p>
+<section id="choosing-the-right-eigenvalue">
+<h4>Choosing the Right Eigenvalue<a class="headerlink" href="#choosing-the-right-eigenvalue" title="Link to this heading">#</a></h4>
+<p>Substituting <span class="math notranslate nohighlight">\(\mathbf{C}\mathbf{u} = \lambda\mathbf{u}\)</span> back into the variance expression:</p>
 <div class="math notranslate nohighlight">
 \[
 \sigma^2_\mathbf{u} = \mathbf{u}^T\mathbf{C}\mathbf{u} = \mathbf{u}^T \lambda \mathbf{u} = \lambda \mathbf{u}^T\mathbf{u} = \lambda
 \]</div>
-<p>Therefore, to maximize the projected variance, we must choose the largest eigenvalue <span class="math notranslate nohighlight">\(\lambda_1\)</span> of <span class="math notranslate nohighlight">\(\mathbf{C}\)</span>. The corresponding eigenvector <span class="math notranslate nohighlight">\(\mathbf{u}_1\)</span> gives the direction of maximum variance, known as the first principal component.</p>
+<p>The projected variance equals the eigenvalue <span class="math notranslate nohighlight">\(\lambda\)</span>. To maximize variance we therefore pick <span class="math notranslate nohighlight">\(\lambda_1\)</span>, the <strong>largest</strong> eigenvalue of <span class="math notranslate nohighlight">\(\mathbf{C}\)</span>. The corresponding eigenvector <span class="math notranslate nohighlight">\(\mathbf{u}_1\)</span> defines the direction of maximum variance — the <strong>first principal component</strong>.</p>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -2142,9 +2139,9 @@ Mean absolute difference in transformed data: 0.0000000000
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pca-mathematical-foundation">PCA Mathematical Foundation</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variance-maximization-problem">Variance Maximization Problem</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#finding-the-first-principal-component">Finding the first principal component</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#optimization-problem">Optimization Problem</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#deriving-the-solution">Deriving the Solution</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#maximizing-the-variance">Maximizing the Variance</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#constrained-optimization-via-lagrange-multipliers">Constrained Optimization via Lagrange Multipliers</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#solution">Solution</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#choosing-the-right-eigenvalue">Choosing the Right Eigenvalue</a></li>
 </ul>
 </li>
 </ul>
