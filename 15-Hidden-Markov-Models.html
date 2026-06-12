@@ -456,13 +456,11 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Problem 1 — Likelihood</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-naive-approach-and-why-it-fails">The Naïve Approach and Why It Fails</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-forward-algorithm">The Forward Algorithm</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#complexity-and-connection-to-previous-ideas">Complexity and Connection to Previous Ideas</a></li>
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Problem 2 — Decoding</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-not-use-the-forward-algorithm">Why Not Use the Forward Algorithm?</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-viterbi-algorithm">The Viterbi Algorithm</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dynamic-programming">Dynamic Programming</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#content-aware-image-resizing">Content-Aware Image Resizing</a><ul class="nav section-nav flex-column">
@@ -473,7 +471,14 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizing-the-dynamic-programming-steps">Visualizing the Dynamic Programming Steps</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seam-carving-algorithm">Seam Carving Algorithm</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seam-carving-algorithm">Seam Carving Algorithm</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Seam Carving Algorithm</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#phase-1-energy-calculation-calc-energy">Phase 1 — Energy Calculation  (<code class="docutils literal notranslate"><span class="pre">calc_energy</span></code>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#phase-2-forward-pass-minimum-vertical-seam">Phase 2 — Forward Pass  (<code class="docutils literal notranslate"><span class="pre">minimum_vertical_seam</span></code>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#phase-3-backtracking-find-optimal-vertical-seam">Phase 3 — Backtracking  (<code class="docutils literal notranslate"><span class="pre">find_optimal_vertical_seam</span></code>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#phase-4-seam-removal-carve-column">Phase 4 — Seam Removal  (<code class="docutils literal notranslate"><span class="pre">carve_column</span></code>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#horizontal-carving-crop-r">Horizontal Carving  (<code class="docutils literal notranslate"><span class="pre">crop_r</span></code>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#full-pipeline-summary">Full Pipeline Summary</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#seam-carving-implementation">Seam-Carving Implementation</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#executing-vertical-seam-carving-on-real-images">Executing Vertical Seam Carving on Real Images</a></li>
 </ul>
@@ -652,8 +657,6 @@ the objective is non-convex, multiple random restarts are advisable in practice.
 <h1>Problem 1 — Likelihood<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
 <p>Given an HMM <span class="math notranslate nohighlight">\(\lambda = (A, B, \pi)\)</span> and an observation sequence
 <span class="math notranslate nohighlight">\(O = o_1\, o_2\, \cdots\, o_T\)</span>, we want to compute <span class="math notranslate nohighlight">\(P(O \mid \lambda)\)</span>.</p>
-<section id="the-naive-approach-and-why-it-fails">
-<h2>The Naïve Approach and Why It Fails<a class="headerlink" href="#the-naive-approach-and-why-it-fails" title="Link to this heading">#</a></h2>
 <p>The most straightforward approach is to sum over all possible hidden state sequences:</p>
 <div class="math notranslate nohighlight">
 \[P(O \mid \lambda) = \sum_{Q} P(O \mid Q, \lambda)\, P(Q \mid \lambda)\]</div>
@@ -666,7 +669,6 @@ independence of observations:</p>
 <p>The problem is computational: even for modest values such as <span class="math notranslate nohighlight">\(N = 6\)</span> states and
 <span class="math notranslate nohighlight">\(T = 100\)</span> time steps, the number of sequences is <span class="math notranslate nohighlight">\(6^{100} \approx 10^{77}\)</span> — far
 beyond any enumeration.</p>
-</section>
 <section id="the-forward-algorithm">
 <h2>The Forward Algorithm<a class="headerlink" href="#the-forward-algorithm" title="Link to this heading">#</a></h2>
 <p>The key observation is that the naïve sum recomputes the same sub-sequences
@@ -710,8 +712,6 @@ sequentially across time.</p>
 <span class="math notranslate nohighlight">\(\lambda = (A, B, \pi)\)</span>, we want to find the most probable hidden state sequence:</p>
 <div class="math notranslate nohighlight">
 \[Q^* = \underset{Q}{\arg\max}\ P(Q \mid O, \lambda)\]</div>
-<section id="why-not-use-the-forward-algorithm">
-<h2>Why Not Use the Forward Algorithm?<a class="headerlink" href="#why-not-use-the-forward-algorithm" title="Link to this heading">#</a></h2>
 <p>We already know how to compute <span class="math notranslate nohighlight">\(P(O \mid \lambda)\)</span> using the Forward Algorithm.
 One might think we could simply pick, at each time step <span class="math notranslate nohighlight">\(t\)</span>, the state <span class="math notranslate nohighlight">\(j\)</span> that
 maximises <span class="math notranslate nohighlight">\(\alpha_t(j)\)</span> — choosing the locally most probable state at every step.
@@ -719,7 +719,6 @@ However, this greedy approach does not guarantee a <em>globally</em> consistent 
 the state chosen at time <span class="math notranslate nohighlight">\(t\)</span> may be unreachable from the state chosen at time <span class="math notranslate nohighlight">\(t-1\)</span>,
 or may make the states at <span class="math notranslate nohighlight">\(t+1\)</span> very unlikely. We need an algorithm that considers
 the full sequence jointly.</p>
-</section>
 <section id="the-viterbi-algorithm">
 <h2>The Viterbi Algorithm<a class="headerlink" href="#the-viterbi-algorithm" title="Link to this heading">#</a></h2>
 <p>The solution is the <strong>Viterbi Algorithm</strong>, a dynamic programming method closely
@@ -807,7 +806,7 @@ Figure: Trellis of the observation sequence <span class="math notranslate nohigh
 <h3>Example<a class="headerlink" href="#example" title="Link to this heading">#</a></h3>
 <p>Consider the <a class="reference external" href="https://www.ulfdittmer.com/imagej/seam-carving.html">following image</a>; Seam carving identifies the lowest-energy seam, which typically runs through less interesting areas. By removing this seam, we resize the image without sacrificing essential details.</p>
 <p><img alt="Seam-Carving Image" src="_images/seam-carving.jpg" /></p>
-<p>Aslo see these pages:</p>
+<p>See these pages:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://karthikkaranth.me/blog/implementing-seam-carving-with-python/">Implementing Seam Carving with Python</a>, by Karthik Karanth</p></li>
 <li><p><a class="reference external" href="https://ben-tanen.com/projects/2020/10/08/seam-carving-pt1.html">Intro to the Seam Carving Algorithm</a>, by Ben Tanen</p></li>
@@ -852,7 +851,7 @@ Figure: Trellis of the observation sequence <span class="math notranslate nohigh
 </section>
 <section id="visualizing-the-dynamic-programming-steps">
 <h2>Visualizing the Dynamic Programming Steps<a class="headerlink" href="#visualizing-the-dynamic-programming-steps" title="Link to this heading">#</a></h2>
-<p>To bridge the gap between static code and algorithmic intuition, we can run the calculation over a tiny 5×5 toy matrix. The following loop compiles into a high-utility HTML5 animation wrapper for your JupyterBook pages, walking students through the forward trellis updates and final backtracking path selection.</p>
+<p>To bridge the gap between static code and algorithmic intuition, we can run the calculation over a tiny 5×5 toy matrix.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">matplotlib.animation</span> <span class="kn">import</span> <span class="n">FuncAnimation</span>
@@ -8954,6 +8953,137 @@ AAAYEYQAAAAAAAAwEggagmwBBVtsAAAAAElFTkSuQmCC\
 <li><p>Trace backward sequentially to decode the globally optimal hidden path</p></li>
 <li><p>Drop the selected path coordinates to collapse the grid dimensions smoothly</p></li>
 </ul>
+</section>
+<section id="id3">
+<h2>Seam Carving Algorithm<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+<p>The algorithm consists of three phases, each mapping directly onto a component of
+the Viterbi algorithm.</p>
+<hr class="docutils" />
+<section id="phase-1-energy-calculation-calc-energy">
+<h3>Phase 1 — Energy Calculation  (<code class="docutils literal notranslate"><span class="pre">calc_energy</span></code>)<a class="headerlink" href="#phase-1-energy-calculation-calc-energy" title="Link to this heading">#</a></h3>
+<p><em>HMM analogue: computing emission costs <span class="math notranslate nohighlight">\(-\log P(o_t \mid S_i)\)</span> for every cell</em></p>
+<div class="math notranslate nohighlight">
+\[E(i,j) = \left|\frac{\partial I}{\partial x}\right| + \left|\frac{\partial I}{\partial y}\right|\]</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">INPUT</span><span class="p">:</span>  <span class="n">RGB</span> <span class="n">image</span> <span class="n">of</span> <span class="n">shape</span> <span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">OUTPUT</span><span class="p">:</span> <span class="n">energy</span> <span class="nb">map</span> <span class="n">of</span> <span class="n">shape</span> <span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
+
+<span class="mf">1.</span> <span class="n">Convert</span> <span class="n">image</span> <span class="n">to</span> <span class="n">grayscale</span>
+<span class="mf">2.</span> <span class="n">Compute</span> <span class="n">horizontal</span> <span class="n">gradient</span> <span class="n">Ix</span> <span class="ow">and</span> <span class="n">vertical</span> <span class="n">gradient</span> <span class="n">Iy</span>
+   <span class="n">using</span> <span class="n">numpy</span><span class="o">.</span><span class="n">gradient</span> <span class="n">on</span> <span class="n">the</span> <span class="n">grayscale</span> <span class="n">image</span>
+<span class="mf">3.</span> <span class="n">Return</span> <span class="o">|</span><span class="n">Ix</span><span class="o">|</span> <span class="o">+</span> <span class="o">|</span><span class="n">Iy</span><span class="o">|</span>
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="phase-2-forward-pass-minimum-vertical-seam">
+<h3>Phase 2 — Forward Pass  (<code class="docutils literal notranslate"><span class="pre">minimum_vertical_seam</span></code>)<a class="headerlink" href="#phase-2-forward-pass-minimum-vertical-seam" title="Link to this heading">#</a></h3>
+<p><em>HMM analogue: the Viterbi recursion — filling the trellis column by column</em></p>
+<p><strong>Initialisation</strong> (row <span class="math notranslate nohighlight">\(i = 0\)</span>):
+$<span class="math notranslate nohighlight">\(M(0,\, j) = E(0,\, j), \qquad 0 \le j &lt; c\)</span>$</p>
+<p><strong>Recursion</strong> (rows <span class="math notranslate nohighlight">\(i = 1, \dots, r-1\)</span>):
+$<span class="math notranslate nohighlight">\(M(i,\, j) = E(i,\, j) +
+  \min_{k \,\in\, \mathcal{N}(j)}\, M(i-1,\, k)\)</span>$</p>
+<div class="math notranslate nohighlight">
+\[bt(i,\, j) = \arg\min_{k \,\in\, \mathcal{N}(j)}\, M(i-1,\, k)\]</div>
+<p>where <span class="math notranslate nohighlight">\(\mathcal{N}(j) = \{\max(0,\, j-1),\ j,\ \min(c-1,\, j+1)\}\)</span>
+is the set of allowed predecessors (at most three neighbours).</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">INPUT</span><span class="p">:</span>  <span class="n">RGB</span> <span class="n">image</span> <span class="n">of</span> <span class="n">shape</span> <span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">OUTPUT</span><span class="p">:</span> <span class="n">cumulative</span> <span class="n">energy</span> <span class="n">matrix</span> <span class="n">M</span>  <span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
+        <span class="n">back</span><span class="o">-</span><span class="n">pointer</span> <span class="n">matrix</span> <span class="n">bt</span>       <span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>  <span class="p">[</span><span class="n">stores</span> <span class="n">column</span> <span class="n">index</span> <span class="n">of</span> <span class="n">chosen</span> <span class="n">predecessor</span><span class="p">]</span>
+
+<span class="mf">1.</span> <span class="n">Compute</span> <span class="n">energy</span> <span class="nb">map</span> <span class="n">E</span> <span class="o">=</span> <span class="n">calc_energy</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+<span class="mf">2.</span> <span class="n">Initialise</span> <span class="n">M</span> <span class="o">=</span> <span class="n">copy</span> <span class="n">of</span> <span class="n">E</span>  <span class="p">(</span><span class="n">first</span> <span class="n">row</span> <span class="n">already</span> <span class="n">correct</span><span class="p">)</span>
+<span class="mf">3.</span> <span class="n">Initialise</span> <span class="n">bt</span> <span class="o">=</span> <span class="n">zeros</span> <span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
+
+<span class="mf">4.</span> <span class="n">FOR</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">TO</span> <span class="n">r</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+     <span class="n">FOR</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span> <span class="n">TO</span> <span class="n">c</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+         <span class="n">left</span>  <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>            <span class="o">//</span> <span class="n">left</span> <span class="n">boundary</span> <span class="n">guard</span>
+         <span class="n">right</span> <span class="o">=</span> <span class="n">j</span><span class="o">+</span><span class="mi">2</span>                    <span class="o">//</span> <span class="nb">slice</span> <span class="n">end</span> <span class="p">(</span><span class="n">exclusive</span><span class="p">),</span> <span class="n">at</span> <span class="n">most</span> <span class="n">j</span><span class="o">+</span><span class="mi">1</span>
+         
+         <span class="n">idx</span>        <span class="o">=</span> <span class="n">argmin</span><span class="p">(</span> <span class="n">M</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">left</span> <span class="p">:</span> <span class="n">right</span><span class="p">]</span> <span class="p">)</span>   <span class="o">//</span> <span class="n">index</span> <span class="n">within</span> <span class="n">the</span> <span class="nb">slice</span>
+         <span class="n">best_col</span>   <span class="o">=</span> <span class="n">left</span> <span class="o">+</span> <span class="n">idx</span>                        <span class="o">//</span> <span class="n">absolute</span> <span class="n">column</span> <span class="n">index</span>
+         
+         <span class="n">M</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span>   <span class="o">+=</span> <span class="n">M</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">best_col</span><span class="p">]</span>
+         <span class="n">bt</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span>   <span class="o">=</span> <span class="n">best_col</span>
+
+<span class="mf">5.</span> <span class="n">RETURN</span> <span class="n">M</span><span class="p">,</span> <span class="n">bt</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p><strong>Viterbi parallel:</strong> <code class="docutils literal notranslate"><span class="pre">M[i,</span> <span class="pre">j]</span></code> plays the role of <span class="math notranslate nohighlight">\(v_t(j)\)</span> (accumulated best score),
+and <code class="docutils literal notranslate"><span class="pre">bt[i,</span> <span class="pre">j]</span></code> plays the role of <span class="math notranslate nohighlight">\(bt_t(j)\)</span> (back-pointer to the best predecessor).
+Rows correspond to time steps; columns correspond to hidden states.</p>
+</div></blockquote>
+</section>
+<hr class="docutils" />
+<section id="phase-3-backtracking-find-optimal-vertical-seam">
+<h3>Phase 3 — Backtracking  (<code class="docutils literal notranslate"><span class="pre">find_optimal_vertical_seam</span></code>)<a class="headerlink" href="#phase-3-backtracking-find-optimal-vertical-seam" title="Link to this heading">#</a></h3>
+<p><em>HMM analogue: recovering <span class="math notranslate nohighlight">\(Q^*\)</span> by following back-pointers from <span class="math notranslate nohighlight">\(q_T^*\)</span> to <span class="math notranslate nohighlight">\(q_1^*\)</span></em></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>INPUT:  cumulative matrix M  (r, c)
+        back-pointer matrix bt (r, c)
+OUTPUT: seam — list of (row, col) pairs of length r
+
+1. j = argmin( M[r-1, :] )      // Termination: best final state
+2. seam = []
+
+3. FOR i = r-1 DOWNTO 0:
+       seam.append( (i, j) )
+       j = bt[i, j]             // Follow back-pointer to predecessor column
+
+4. REVERSE seam
+5. RETURN seam
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="phase-4-seam-removal-carve-column">
+<h3>Phase 4 — Seam Removal  (<code class="docutils literal notranslate"><span class="pre">carve_column</span></code>)<a class="headerlink" href="#phase-4-seam-removal-carve-column" title="Link to this heading">#</a></h3>
+<p><em>No HMM analogue — this is the image-specific step that applies the decoded path</em></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">INPUT</span><span class="p">:</span>  <span class="n">RGB</span> <span class="n">image</span> <span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">OUTPUT</span><span class="p">:</span> <span class="n">RGB</span> <span class="n">image</span> <span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">c</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>  <span class="p">[</span><span class="n">one</span> <span class="n">column</span> <span class="n">narrower</span><span class="p">]</span>
+
+<span class="mf">1.</span> <span class="n">Compute</span> <span class="n">M</span><span class="p">,</span> <span class="n">bt</span> <span class="o">=</span> <span class="n">minimum_vertical_seam</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+<span class="mf">2.</span> <span class="n">seam</span> <span class="o">=</span> <span class="n">find_optimal_vertical_seam</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">bt</span><span class="p">)</span>
+<span class="mf">3.</span> <span class="n">Build</span> <span class="n">boolean</span> <span class="n">mask</span> <span class="n">of</span> <span class="n">shape</span> <span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">c</span><span class="p">),</span> <span class="n">initialised</span> <span class="n">to</span> <span class="kc">True</span>
+<span class="mf">4.</span> <span class="n">FOR</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span> <span class="n">IN</span> <span class="n">seam</span><span class="p">:</span>
+       <span class="n">mask</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="mf">5.</span> <span class="n">Expand</span> <span class="n">mask</span> <span class="n">to</span> <span class="mi">3</span> <span class="n">channels</span>
+<span class="mf">6.</span> <span class="n">Return</span> <span class="n">img</span> <span class="n">filtered</span> <span class="n">by</span> <span class="n">mask</span><span class="p">,</span> <span class="n">reshaped</span> <span class="n">to</span> <span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">c</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="horizontal-carving-crop-r">
+<h3>Horizontal Carving  (<code class="docutils literal notranslate"><span class="pre">crop_r</span></code>)<a class="headerlink" href="#horizontal-carving-crop-r" title="Link to this heading">#</a></h3>
+<p><em>HMM parallel: time flows left-to-right; transposing maps image rows → hidden states</em></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">INPUT</span><span class="p">:</span>  <span class="n">RGB</span> <span class="n">image</span> <span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span>  <span class="n">num_seams</span>
+<span class="n">OUTPUT</span><span class="p">:</span> <span class="n">RGB</span> <span class="n">image</span> <span class="p">(</span><span class="n">r</span> <span class="o">-</span> <span class="n">num_seams</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+
+<span class="mf">1.</span> <span class="n">Transpose</span> <span class="n">image</span><span class="p">:</span>  <span class="n">img_t</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>   <span class="o">//</span> <span class="n">shape</span> <span class="n">becomes</span> <span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="mf">2.</span> <span class="n">img_t</span> <span class="o">=</span> <span class="n">crop_c</span><span class="p">(</span><span class="n">img_t</span><span class="p">,</span> <span class="n">num_seams</span><span class="p">)</span>                   <span class="o">//</span> <span class="n">carve</span> <span class="n">vertical</span> <span class="n">seams</span> <span class="n">on</span> <span class="n">the</span> <span class="n">transposed</span> <span class="n">image</span>
+<span class="mf">3.</span> <span class="n">Return</span> <span class="n">img_t</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>                    <span class="o">//</span> <span class="n">restore</span> <span class="n">original</span> <span class="n">axis</span> <span class="n">order</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p>After transposition, image <strong>columns become rows</strong> and image <strong>rows become columns</strong>.
+Carving a vertical seam on the transposed image is therefore equivalent to carving
+a horizontal seam on the original — exactly as the Viterbi trellis reads left to
+right through time.</p>
+</div></blockquote>
+</section>
+<hr class="docutils" />
+<section id="full-pipeline-summary">
+<h3>Full Pipeline Summary<a class="headerlink" href="#full-pipeline-summary" title="Link to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>crop_c(img, n):                      
+  REPEAT n times:                    
+    E  ← calc_energy(img)            
+    M, bt ← forward_pass(E)          
+    seam ← backtrack(M, bt)
+    img  ← remove_seam(img, seam)
+  RETURN img
+</pre></div>
+</div>
+</section>
 <section id="seam-carving-implementation">
 <h3>Seam-Carving Implementation<a class="headerlink" href="#seam-carving-implementation" title="Link to this heading">#</a></h3>
 <p>The core algorithm functions below natively execute vertical seam carving. To perform horizontal seam carving (which mirrors the standard left-to-right temporal progression of a Viterbi trellis), we simply pass an axis-transposed matrix configuration using <code class="docutils literal notranslate"><span class="pre">.transpose(1,</span> <span class="pre">0,</span> <span class="pre">2)</span></code>.</p>
@@ -9505,13 +9635,11 @@ of Baum–Welch.</p>
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Problem 1 — Likelihood</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-naive-approach-and-why-it-fails">The Naïve Approach and Why It Fails</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-forward-algorithm">The Forward Algorithm</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#complexity-and-connection-to-previous-ideas">Complexity and Connection to Previous Ideas</a></li>
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Problem 2 — Decoding</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-not-use-the-forward-algorithm">Why Not Use the Forward Algorithm?</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-viterbi-algorithm">The Viterbi Algorithm</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dynamic-programming">Dynamic Programming</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#content-aware-image-resizing">Content-Aware Image Resizing</a><ul class="nav section-nav flex-column">
@@ -9522,7 +9650,14 @@ of Baum–Welch.</p>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizing-the-dynamic-programming-steps">Visualizing the Dynamic Programming Steps</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seam-carving-algorithm">Seam Carving Algorithm</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seam-carving-algorithm">Seam Carving Algorithm</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Seam Carving Algorithm</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#phase-1-energy-calculation-calc-energy">Phase 1 — Energy Calculation  (<code class="docutils literal notranslate"><span class="pre">calc_energy</span></code>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#phase-2-forward-pass-minimum-vertical-seam">Phase 2 — Forward Pass  (<code class="docutils literal notranslate"><span class="pre">minimum_vertical_seam</span></code>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#phase-3-backtracking-find-optimal-vertical-seam">Phase 3 — Backtracking  (<code class="docutils literal notranslate"><span class="pre">find_optimal_vertical_seam</span></code>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#phase-4-seam-removal-carve-column">Phase 4 — Seam Removal  (<code class="docutils literal notranslate"><span class="pre">carve_column</span></code>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#horizontal-carving-crop-r">Horizontal Carving  (<code class="docutils literal notranslate"><span class="pre">crop_r</span></code>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#full-pipeline-summary">Full Pipeline Summary</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#seam-carving-implementation">Seam-Carving Implementation</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#executing-vertical-seam-carving-on-real-images">Executing Vertical Seam Carving on Real Images</a></li>
 </ul>
