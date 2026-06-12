@@ -212,6 +212,7 @@
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Hidden Markov Models</a></li>
 
 
+
 <li class="toctree-l1"><a class="reference internal" href="App-Mathematics-and-Machine-Learning.html">Appendix: Mathematics and Machine Learning</a></li>
 
 <li class="toctree-l1"><a class="reference internal" href="Appendix-BDT-Discrete-Features.html">Appendix: Bayes Decision Theory — Discrete Features</a></li>
@@ -454,22 +455,33 @@ document.write(`
 </li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#viterbi-algorithm">Viterbi Algorithm</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#dynamic-programming">Dynamic Programming</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Problem 1 — Likelihood</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-naive-approach-and-why-it-fails">The Naïve Approach and Why It Fails</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-forward-algorithm">The Forward Algorithm</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#complexity-and-connection-to-previous-ideas">Complexity and Connection to Previous Ideas</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Problem 2 — Decoding</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-not-use-the-forward-algorithm">Why Not Use the Forward Algorithm?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-viterbi-algorithm">The Viterbi Algorithm</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dynamic-programming">Dynamic Programming</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#content-aware-image-resizing">Content-Aware Image Resizing</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-are-seams">What Are Seams?</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#seam-carving-process">Seam Carving Process</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-comparison">Feature Comparison</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-comparison">Feature Comparison</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizing-the-dynamic-programming-steps">Visualizing the Dynamic Programming Steps</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seam-carving-algorithm">Seam Carving Algorithm</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seam-carving-implementation">Seam-Carving Implementation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#executing-vertical-seam-carving-on-real-images">Executing Vertical Seam Carving on Real Images</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Viterbi Algorithm</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seam-carving-algorithm">Seam Carving Algorithm</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#seam-carving-implementation">Seam-Carving Implementation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#executing-vertical-seam-carving-on-real-images">Executing Vertical Seam Carving on Real Images</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#viterbi-algorithm-continue">Viterbi Algorithm: Continue</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#problem-3-learning-a-brief-note">Problem 3 — Learning (A Brief Note)</a></li>
 </ul>
 
             </nav>
@@ -636,10 +648,91 @@ the objective is non-convex, multiple random restarts are advisable in practice.
 </section>
 </section>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="viterbi-algorithm">
-<h1>Viterbi Algorithm<a class="headerlink" href="#viterbi-algorithm" title="Link to this heading">#</a></h1>
-<p>The Viterbi algorithm is a dynamic programming algorithm used for finding the most likely sequence of hidden states (also known as the Viterbi path) in a hidden Markov model (HMM) given a sequence of observations (<strong>problem 2</strong>).
-The Viterbi algorithm aims to find the most likely sequence of hidden states <span class="math notranslate nohighlight">\(Q = q_1 q_2 ... q_T\)</span> that maximizes the probability <span class="math notranslate nohighlight">\(P(O,Q|\lambda)\)</span>.</p>
+<section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>Problem 1 — Likelihood<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<p>Given an HMM <span class="math notranslate nohighlight">\(\lambda = (A, B, \pi)\)</span> and an observation sequence
+<span class="math notranslate nohighlight">\(O = o_1\, o_2\, \cdots\, o_T\)</span>, we want to compute <span class="math notranslate nohighlight">\(P(O \mid \lambda)\)</span>.</p>
+<section id="the-naive-approach-and-why-it-fails">
+<h2>The Naïve Approach and Why It Fails<a class="headerlink" href="#the-naive-approach-and-why-it-fails" title="Link to this heading">#</a></h2>
+<p>The most straightforward approach is to sum over all possible hidden state sequences:</p>
+<div class="math notranslate nohighlight">
+\[P(O \mid \lambda) = \sum_{Q} P(O \mid Q, \lambda)\, P(Q \mid \lambda)\]</div>
+<p>where the sum runs over all <span class="math notranslate nohighlight">\(N^T\)</span> possible sequences <span class="math notranslate nohighlight">\(Q = q_1 q_2 \cdots q_T\)</span>.
+Each term factorises cleanly thanks to the Markov assumption and the conditional
+independence of observations:</p>
+<div class="math notranslate nohighlight">
+\[P(O \mid Q, \lambda)\, P(Q \mid \lambda)
+= \pi_{q_1} \prod_{t=1}^{T} b_{q_t}(o_t) \prod_{t=2}^{T} a_{q_{t-1} q_t}\]</div>
+<p>The problem is computational: even for modest values such as <span class="math notranslate nohighlight">\(N = 6\)</span> states and
+<span class="math notranslate nohighlight">\(T = 100\)</span> time steps, the number of sequences is <span class="math notranslate nohighlight">\(6^{100} \approx 10^{77}\)</span> — far
+beyond any enumeration.</p>
+</section>
+<section id="the-forward-algorithm">
+<h2>The Forward Algorithm<a class="headerlink" href="#the-forward-algorithm" title="Link to this heading">#</a></h2>
+<p>The key observation is that the naïve sum recomputes the same sub-sequences
+exponentially many times. This is the same situation we encounter in many dynamic
+programming problems: overlapping subproblems that can be solved once and reused.</p>
+<p>We define the <strong>forward variable</strong>:</p>
+<div class="math notranslate nohighlight">
+\[\alpha_t(j) = P(o_1, o_2, \dots, o_t,\; q_t = j \mid \lambda)\]</div>
+<p>which is the joint probability of having seen the first <span class="math notranslate nohighlight">\(t\)</span> observations <em>and</em> being
+in state <span class="math notranslate nohighlight">\(j\)</span> at time <span class="math notranslate nohighlight">\(t\)</span>. This can be computed recursively:</p>
+<p><strong>Initialisation</strong> <span class="math notranslate nohighlight">\((t=1)\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\alpha_1(j) = \pi_j\, b_j(o_1), \qquad 1 \le j \le N\]</div>
+<p><strong>Recursion</strong> <span class="math notranslate nohighlight">\((t = 2, \dots, T)\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\alpha_t(j) = \left[\sum_{i=1}^{N} \alpha_{t-1}(i)\, a_{ij}\right] b_j(o_t)\]</div>
+<p><strong>Termination</strong>:</p>
+<div class="math notranslate nohighlight">
+\[P(O \mid \lambda) = \sum_{j=1}^{N} \alpha_T(j)\]</div>
+<p>The recursion step has a natural reading: to be in state <span class="math notranslate nohighlight">\(j\)</span> at time <span class="math notranslate nohighlight">\(t\)</span> and have
+produced <span class="math notranslate nohighlight">\(o_t\)</span>, the system must have been in <em>some</em> state <span class="math notranslate nohighlight">\(i\)</span> at time <span class="math notranslate nohighlight">\(t-1\)</span>
+(with probability <span class="math notranslate nohighlight">\(\alpha_{t-1}(i)\)</span>), transitioned to <span class="math notranslate nohighlight">\(j\)</span> (with probability <span class="math notranslate nohighlight">\(a_{ij}\)</span>),
+and emitted <span class="math notranslate nohighlight">\(o_t\)</span> (with probability <span class="math notranslate nohighlight">\(b_j(o_t)\)</span>).</p>
+</section>
+<section id="complexity-and-connection-to-previous-ideas">
+<h2>Complexity and Connection to Previous Ideas<a class="headerlink" href="#complexity-and-connection-to-previous-ideas" title="Link to this heading">#</a></h2>
+<p>The Forward Algorithm reduces the cost from <span class="math notranslate nohighlight">\(O(N^T)\)</span> to <span class="math notranslate nohighlight">\(O(N^2 T)\)</span> — an enormous
+gain. The structure is identical in spirit to what you have seen before: instead of
+summing over all combinations explicitly, we propagate a compact <em>summary</em> (the vector
+<span class="math notranslate nohighlight">\(\alpha_t\)</span>) forward in time, updating it step by step.</p>
+<p>Notice also the connection to the <strong>Naïve Bayes</strong> and <strong>Bayesian Decision Theory</strong>
+frameworks from earlier in the course. At each step we are essentially computing a
+conditional probability by combining a prior (the transition) with a likelihood (the
+emission) — the same Bayesian product that appeared throughout the course, now applied
+sequentially across time.</p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="id2">
+<h1>Problem 2 — Decoding<a class="headerlink" href="#id2" title="Link to this heading">#</a></h1>
+<p>Given an observation sequence <span class="math notranslate nohighlight">\(O = o_1\, o_2\, \cdots\, o_T\)</span> and an HMM
+<span class="math notranslate nohighlight">\(\lambda = (A, B, \pi)\)</span>, we want to find the most probable hidden state sequence:</p>
+<div class="math notranslate nohighlight">
+\[Q^* = \underset{Q}{\arg\max}\ P(Q \mid O, \lambda)\]</div>
+<section id="why-not-use-the-forward-algorithm">
+<h2>Why Not Use the Forward Algorithm?<a class="headerlink" href="#why-not-use-the-forward-algorithm" title="Link to this heading">#</a></h2>
+<p>We already know how to compute <span class="math notranslate nohighlight">\(P(O \mid \lambda)\)</span> using the Forward Algorithm.
+One might think we could simply pick, at each time step <span class="math notranslate nohighlight">\(t\)</span>, the state <span class="math notranslate nohighlight">\(j\)</span> that
+maximises <span class="math notranslate nohighlight">\(\alpha_t(j)\)</span> — choosing the locally most probable state at every step.
+However, this greedy approach does not guarantee a <em>globally</em> consistent sequence:
+the state chosen at time <span class="math notranslate nohighlight">\(t\)</span> may be unreachable from the state chosen at time <span class="math notranslate nohighlight">\(t-1\)</span>,
+or may make the states at <span class="math notranslate nohighlight">\(t+1\)</span> very unlikely. We need an algorithm that considers
+the full sequence jointly.</p>
+</section>
+<section id="the-viterbi-algorithm">
+<h2>The Viterbi Algorithm<a class="headerlink" href="#the-viterbi-algorithm" title="Link to this heading">#</a></h2>
+<p>The solution is the <strong>Viterbi Algorithm</strong>, a dynamic programming method closely
+related to the Forward Algorithm. Instead of <em>summing</em> over all paths leading to
+state <span class="math notranslate nohighlight">\(j\)</span> at time <span class="math notranslate nohighlight">\(t\)</span>, it takes the <em>maximum</em>:</p>
+<div class="math notranslate nohighlight">
+\[v_t(j) = \max_{q_1, \dots, q_{t-1}}\ P(q_1, \dots, q_{t-1},\, q_t = j,\,
+o_1, \dots, o_t \mid \lambda)\]</div>
+<p>This single change — replacing <span class="math notranslate nohighlight">\(\sum\)</span> with <span class="math notranslate nohighlight">\(\max\)</span> — is the entire difference
+between the Forward Algorithm and Viterbi. The rest of the structure,
+initialisation, recursion, and termination, follows the same dynamic programming
+template, with an added back-pointer matrix to recover the optimal path at the end.</p>
+<p>The Viterbi algorithm aims to find the most likely sequence of hidden states <span class="math notranslate nohighlight">\(Q = q_1 q_2 ... q_T\)</span> that maximizes the probability <span class="math notranslate nohighlight">\(P(O,Q|\lambda)\)</span>.</p>
 <p>The algorithm uses the following recurrence relation:</p>
 <div class="math notranslate nohighlight">
 \[v_t(j) = \max_{1 \leq j \leq N} v_{t-1}(i) a_{ij} b_i(o_t)\]</div>
@@ -691,9 +784,10 @@ Figure: Trellis of the observation sequence <span class="math notranslate nohigh
 </ul>
 <p>The trellis diagram is a valuable tool for visualizing the Viterbi algorithm and understanding the most likely sequence of hidden states that could have generated the observed sequence in an HMM.</p>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="dynamic-programming">
-<h1>Dynamic Programming<a class="headerlink" href="#dynamic-programming" title="Link to this heading">#</a></h1>
+<section id="dynamic-programming">
+<h2>Dynamic Programming<a class="headerlink" href="#dynamic-programming" title="Link to this heading">#</a></h2>
 <p>Dynamic programming is a powerful technique for solving problems by breaking them down into smaller, overlapping subproblems. It’s widely used in various fields, including computer science, optimization, and image processing. One intriguing application of dynamic programming is <strong>seam carving</strong>. Seam carving is used in content-aware image resizing, in which, its algorithm is very similar to Viterbi algorithm.</p>
+</section>
 <section id="content-aware-image-resizing">
 <h2>Content-Aware Image Resizing<a class="headerlink" href="#content-aware-image-resizing" title="Link to this heading">#</a></h2>
 <p>Content-aware image resizing aims to change the width or height of an image while preserving its essential features. Traditional methods like cropping and scaling have limitations, often resulting in loss of important content or visible artifacts. Seam carving offers an elegant solution by identifying and removing low-energy seams from the image.</p>
@@ -721,9 +815,8 @@ Figure: Trellis of the observation sequence <span class="math notranslate nohigh
 <p><strong>Dynamic programming</strong> plays a crucial role in both seam carving and the Viterbi algorithm. While seam carving focuses on content-aware image resizing, the Viterbi algorithm is used for decoding Hidden Markov Models (HMMs).</p>
 <p>By looking at seam carving through the lens of a horizontal state lattice, we can uncover a direct structural dual between image processing and probabilistic sequence estimation.</p>
 </section>
-</section>
 <section id="feature-comparison">
-<h2>Feature Comparison<a class="headerlink" href="#feature-comparison" title="Link to this heading">#</a></h2>
+<h3>Feature Comparison<a class="headerlink" href="#feature-comparison" title="Link to this heading">#</a></h3>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Feature / Concept</p></th>
@@ -755,6 +848,7 @@ Figure: Trellis of the observation sequence <span class="math notranslate nohigh
 </tbody>
 </table>
 </div>
+</section>
 </section>
 <section id="visualizing-the-dynamic-programming-steps">
 <h2>Visualizing the Dynamic Programming Steps<a class="headerlink" href="#visualizing-the-dynamic-programming-steps" title="Link to this heading">#</a></h2>
@@ -1012,42 +1106,42 @@ input[type=range].anim-slider {
 </style>
 
 <div class="animation">
-  <img id="_anim_imgd4cce1a9920747139d6dcae5d9093b44">
+  <img id="_anim_img9b20ae739c6c4e059d9e4761c235f4e9">
   <div class="anim-controls">
-    <input id="_anim_sliderd4cce1a9920747139d6dcae5d9093b44" type="range" class="anim-slider"
+    <input id="_anim_slider9b20ae739c6c4e059d9e4761c235f4e9" type="range" class="anim-slider"
            name="points" min="0" max="1" step="1" value="0"
-           oninput="animd4cce1a9920747139d6dcae5d9093b44.set_frame(parseInt(this.value));">
+           oninput="anim9b20ae739c6c4e059d9e4761c235f4e9.set_frame(parseInt(this.value));">
     <div class="anim-buttons">
-      <button title="Decrease speed" aria-label="Decrease speed" onclick="animd4cce1a9920747139d6dcae5d9093b44.slower()">
+      <button title="Decrease speed" aria-label="Decrease speed" onclick="anim9b20ae739c6c4e059d9e4761c235f4e9.slower()">
           <i class="fa fa-minus"></i></button>
-      <button title="First frame" aria-label="First frame" onclick="animd4cce1a9920747139d6dcae5d9093b44.first_frame()">
+      <button title="First frame" aria-label="First frame" onclick="anim9b20ae739c6c4e059d9e4761c235f4e9.first_frame()">
         <i class="fa fa-fast-backward"></i></button>
-      <button title="Previous frame" aria-label="Previous frame" onclick="animd4cce1a9920747139d6dcae5d9093b44.previous_frame()">
+      <button title="Previous frame" aria-label="Previous frame" onclick="anim9b20ae739c6c4e059d9e4761c235f4e9.previous_frame()">
           <i class="fa fa-step-backward"></i></button>
-      <button title="Play backwards" aria-label="Play backwards" onclick="animd4cce1a9920747139d6dcae5d9093b44.reverse_animation()">
+      <button title="Play backwards" aria-label="Play backwards" onclick="anim9b20ae739c6c4e059d9e4761c235f4e9.reverse_animation()">
           <i class="fa fa-play fa-flip-horizontal"></i></button>
-      <button title="Pause" aria-label="Pause" onclick="animd4cce1a9920747139d6dcae5d9093b44.pause_animation()">
+      <button title="Pause" aria-label="Pause" onclick="anim9b20ae739c6c4e059d9e4761c235f4e9.pause_animation()">
           <i class="fa fa-pause"></i></button>
-      <button title="Play" aria-label="Play" onclick="animd4cce1a9920747139d6dcae5d9093b44.play_animation()">
+      <button title="Play" aria-label="Play" onclick="anim9b20ae739c6c4e059d9e4761c235f4e9.play_animation()">
           <i class="fa fa-play"></i></button>
-      <button title="Next frame" aria-label="Next frame" onclick="animd4cce1a9920747139d6dcae5d9093b44.next_frame()">
+      <button title="Next frame" aria-label="Next frame" onclick="anim9b20ae739c6c4e059d9e4761c235f4e9.next_frame()">
           <i class="fa fa-step-forward"></i></button>
-      <button title="Last frame" aria-label="Last frame" onclick="animd4cce1a9920747139d6dcae5d9093b44.last_frame()">
+      <button title="Last frame" aria-label="Last frame" onclick="anim9b20ae739c6c4e059d9e4761c235f4e9.last_frame()">
           <i class="fa fa-fast-forward"></i></button>
-      <button title="Increase speed" aria-label="Increase speed" onclick="animd4cce1a9920747139d6dcae5d9093b44.faster()">
+      <button title="Increase speed" aria-label="Increase speed" onclick="anim9b20ae739c6c4e059d9e4761c235f4e9.faster()">
           <i class="fa fa-plus"></i></button>
     </div>
-    <form title="Repetition mode" aria-label="Repetition mode" action="#n" name="_anim_loop_selectd4cce1a9920747139d6dcae5d9093b44"
+    <form title="Repetition mode" aria-label="Repetition mode" action="#n" name="_anim_loop_select9b20ae739c6c4e059d9e4761c235f4e9"
           class="anim-state">
-      <input type="radio" name="state" value="once" id="_anim_radio1_d4cce1a9920747139d6dcae5d9093b44"
+      <input type="radio" name="state" value="once" id="_anim_radio1_9b20ae739c6c4e059d9e4761c235f4e9"
              >
-      <label for="_anim_radio1_d4cce1a9920747139d6dcae5d9093b44">Once</label>
-      <input type="radio" name="state" value="loop" id="_anim_radio2_d4cce1a9920747139d6dcae5d9093b44"
+      <label for="_anim_radio1_9b20ae739c6c4e059d9e4761c235f4e9">Once</label>
+      <input type="radio" name="state" value="loop" id="_anim_radio2_9b20ae739c6c4e059d9e4761c235f4e9"
              checked>
-      <label for="_anim_radio2_d4cce1a9920747139d6dcae5d9093b44">Loop</label>
-      <input type="radio" name="state" value="reflect" id="_anim_radio3_d4cce1a9920747139d6dcae5d9093b44"
+      <label for="_anim_radio2_9b20ae739c6c4e059d9e4761c235f4e9">Loop</label>
+      <input type="radio" name="state" value="reflect" id="_anim_radio3_9b20ae739c6c4e059d9e4761c235f4e9"
              >
-      <label for="_anim_radio3_d4cce1a9920747139d6dcae5d9093b44">Reflect</label>
+      <label for="_anim_radio3_9b20ae739c6c4e059d9e4761c235f4e9">Reflect</label>
     </form>
   </div>
 </div>
@@ -1057,9 +1151,9 @@ input[type=range].anim-slider {
   /* Instantiate the Animation class. */
   /* The IDs given should match those used in the template above. */
   (function() {
-    var img_id = "_anim_imgd4cce1a9920747139d6dcae5d9093b44";
-    var slider_id = "_anim_sliderd4cce1a9920747139d6dcae5d9093b44";
-    var loop_select_id = "_anim_loop_selectd4cce1a9920747139d6dcae5d9093b44";
+    var img_id = "_anim_img9b20ae739c6c4e059d9e4761c235f4e9";
+    var slider_id = "_anim_slider9b20ae739c6c4e059d9e4761c235f4e9";
+    var loop_select_id = "_anim_loop_select9b20ae739c6c4e059d9e4761c235f4e9";
     var frames = new Array(6);
     
   frames[0] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABwgAAAVGCAYAAACKXu+zAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
@@ -8827,7 +8921,7 @@ AAAYEYQAAAAAAAAwEggagmwBBVtsAAAAAElFTkSuQmCC\
     /* set a timeout to make sure all the above elements are created before
        the object is initialized. */
     setTimeout(function() {
-        animd4cce1a9920747139d6dcae5d9093b44 = new Animation(frames, img_id, slider_id, 1500.0,
+        anim9b20ae739c6c4e059d9e4761c235f4e9 = new Animation(frames, img_id, slider_id, 1500.0,
                                  loop_select_id);
     }, 0);
   })()
@@ -8860,9 +8954,8 @@ AAAYEYQAAAAAAAAwEggagmwBBVtsAAAAAElFTkSuQmCC\
 <li><p>Trace backward sequentially to decode the globally optimal hidden path</p></li>
 <li><p>Drop the selected path coordinates to collapse the grid dimensions smoothly</p></li>
 </ul>
-</section>
 <section id="seam-carving-implementation">
-<h2>Seam-Carving Implementation<a class="headerlink" href="#seam-carving-implementation" title="Link to this heading">#</a></h2>
+<h3>Seam-Carving Implementation<a class="headerlink" href="#seam-carving-implementation" title="Link to this heading">#</a></h3>
 <p>The core algorithm functions below natively execute vertical seam carving. To perform horizontal seam carving (which mirrors the standard left-to-right temporal progression of a Viterbi trellis), we simply pass an axis-transposed matrix configuration using <code class="docutils literal notranslate"><span class="pre">.transpose(1,</span> <span class="pre">0,</span> <span class="pre">2)</span></code>.</p>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
@@ -8974,7 +9067,7 @@ AAAYEYQAAAAAAAAwEggagmwBBVtsAAAAAElFTkSuQmCC\
 </div>
 </section>
 <section id="executing-vertical-seam-carving-on-real-images">
-<h2>Executing Vertical Seam Carving on Real Images<a class="headerlink" href="#executing-vertical-seam-carving-on-real-images" title="Link to this heading">#</a></h2>
+<h3>Executing Vertical Seam Carving on Real Images<a class="headerlink" href="#executing-vertical-seam-carving-on-real-images" title="Link to this heading">#</a></h3>
 <p><strong>Horizontal Seam Carving</strong></p>
 <p><em>Path Overlay:</em> Highlighting the Optimal Trellis Sequence (optimum seam) in Red</p>
 <div class="cell tag_hide-input docutils container">
@@ -9086,19 +9179,20 @@ AAAYEYQAAAAAAAAwEggagmwBBVtsAAAAAElFTkSuQmCC\
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: total: 2min 31s
-Wall time: 2min 44s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: total: 2min 17s
+Wall time: 2min 46s
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x274d4ea6b60&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x20b43b81930&gt;
 </pre></div>
 </div>
 <img alt="_images/a6e48fa98e21990f7156b81eed8478763885aef2df07723796dfbaf7867a6604.png" src="_images/a6e48fa98e21990f7156b81eed8478763885aef2df07723796dfbaf7867a6604.png" />
 </div>
 </div>
 </section>
-<section id="id1">
-<h2>Viterbi Algorithm<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+</section>
+<section id="viterbi-algorithm-continue">
+<h2>Viterbi Algorithm: Continue<a class="headerlink" href="#viterbi-algorithm-continue" title="Link to this heading">#</a></h2>
 <p>Let’s visit the forward formula in the context of the Viterbi algorithm for Hidden Markov Models (HMMs).</p>
 <ol class="arabic">
 <li><p><strong>Background</strong>:</p>
@@ -9295,6 +9389,29 @@ where <span class="math notranslate nohighlight">\(\pi_j\)</span> is the initial
 </div>
 </div>
 </div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="problem-3-learning-a-brief-note">
+<h1>Problem 3 — Learning (A Brief Note)<a class="headerlink" href="#problem-3-learning-a-brief-note" title="Link to this heading">#</a></h1>
+<p>We will not cover Problem 3 in full, but it is worth understanding what it asks
+and why it is hard.</p>
+<p>Recall that in GMM we faced exactly the same situation: we had a model with hidden
+structure (which Gaussian generated each point?) and needed to estimate its parameters
+from data alone. Direct maximisation of the log-likelihood was intractable, so we
+turned to the <strong>EM algorithm</strong> — iterating between a soft assignment of observations
+to components (E-step) and a parameter update that maximises the expected
+log-likelihood (M-step).</p>
+<p>Problem 3 for HMMs is precisely the same idea, but now the hidden structure is a
+<em>sequence</em> of states rather than a single latent label. The corresponding algorithm is
+<strong>Baum–Welch</strong>, which is EM applied to HMMs. The E-step uses the Forward and Backward
+variables (from Problem 1) to compute, for each time step, the soft probability that
+the system was in each state — analogous to the responsibilities <span class="math notranslate nohighlight">\(r_{nk}\)</span> in GMM. The
+M-step then re-estimates <span class="math notranslate nohighlight">\(A\)</span>, <span class="math notranslate nohighlight">\(B\)</span>, and <span class="math notranslate nohighlight">\(\pi\)</span> from those soft counts, exactly as GMM
+re-estimated its means, covariances, and mixing weights. Like EM for GMMs,
+Baum–Welch converges to a <em>local</em> maximum of the likelihood, so multiple random
+initialisations are advisable in practice.</p>
+<p>In short: if you understood why EM works for GMMs, you already understand the spirit
+of Baum–Welch.</p>
 <hr class="docutils" />
 <p><strong>References:</strong></p>
 <ol class="arabic simple">
@@ -9310,7 +9427,6 @@ where <span class="math notranslate nohighlight">\(\pi_j\)</span> is the initial
 <li><p><a class="reference external" href="https://ben-tanen.com/projects/2020/10/08/seam-carving-pt1.html">Intro to the Seam Carving Algorithm</a>, by Ben Tanen</p></li>
 <li><p><a class="reference external" href="https://frazierbutler.medium.com/intro-to-the-viterbi-algorithm-8f41c3f43cf3">Intro to the Viterbi Algorithm</a>, by Paul Butler</p></li>
 </ol>
-</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -9388,22 +9504,33 @@ where <span class="math notranslate nohighlight">\(\pi_j\)</span> is the initial
 </li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#viterbi-algorithm">Viterbi Algorithm</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#dynamic-programming">Dynamic Programming</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Problem 1 — Likelihood</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-naive-approach-and-why-it-fails">The Naïve Approach and Why It Fails</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-forward-algorithm">The Forward Algorithm</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#complexity-and-connection-to-previous-ideas">Complexity and Connection to Previous Ideas</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Problem 2 — Decoding</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-not-use-the-forward-algorithm">Why Not Use the Forward Algorithm?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-viterbi-algorithm">The Viterbi Algorithm</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dynamic-programming">Dynamic Programming</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#content-aware-image-resizing">Content-Aware Image Resizing</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-are-seams">What Are Seams?</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#seam-carving-process">Seam Carving Process</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-comparison">Feature Comparison</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-comparison">Feature Comparison</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizing-the-dynamic-programming-steps">Visualizing the Dynamic Programming Steps</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seam-carving-algorithm">Seam Carving Algorithm</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seam-carving-implementation">Seam-Carving Implementation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#executing-vertical-seam-carving-on-real-images">Executing Vertical Seam Carving on Real Images</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Viterbi Algorithm</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seam-carving-algorithm">Seam Carving Algorithm</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#seam-carving-implementation">Seam-Carving Implementation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#executing-vertical-seam-carving-on-real-images">Executing Vertical Seam Carving on Real Images</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#viterbi-algorithm-continue">Viterbi Algorithm: Continue</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#problem-3-learning-a-brief-note">Problem 3 — Learning (A Brief Note)</a></li>
 </ul>
 
   </nav></div>
