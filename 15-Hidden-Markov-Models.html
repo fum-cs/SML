@@ -8978,11 +8978,13 @@ the Viterbi algorithm.</p>
 <section id="phase-2-forward-pass-minimum-vertical-seam">
 <h3>Phase 2 — Forward Pass  (<code class="docutils literal notranslate"><span class="pre">minimum_vertical_seam</span></code>)<a class="headerlink" href="#phase-2-forward-pass-minimum-vertical-seam" title="Link to this heading">#</a></h3>
 <p><em>HMM analogue: the Viterbi recursion — filling the trellis column by column</em></p>
-<p><strong>Initialisation</strong> (row <span class="math notranslate nohighlight">\(i = 0\)</span>):
-$<span class="math notranslate nohighlight">\(M(0,\, j) = E(0,\, j), \qquad 0 \le j &lt; c\)</span>$</p>
-<p><strong>Recursion</strong> (rows <span class="math notranslate nohighlight">\(i = 1, \dots, r-1\)</span>):
-$<span class="math notranslate nohighlight">\(M(i,\, j) = E(i,\, j) +
-  \min_{k \,\in\, \mathcal{N}(j)}\, M(i-1,\, k)\)</span>$</p>
+<p><strong>Initialisation</strong> (row <span class="math notranslate nohighlight">\(i = 0\)</span>):</p>
+<div class="math notranslate nohighlight">
+\[M(0,\, j) = E(0,\, j), \qquad 0 \le j &lt; c\]</div>
+<p><strong>Recursion</strong> (rows <span class="math notranslate nohighlight">\(i = 1, \dots, r-1\)</span>):</p>
+<div class="math notranslate nohighlight">
+\[M(i,\, j) = E(i,\, j) +
+  \min_{k \,\in\, \mathcal{N}(j)}\, M(i-1,\, k)\]</div>
 <div class="math notranslate nohighlight">
 \[bt(i,\, j) = \arg\min_{k \,\in\, \mathcal{N}(j)}\, M(i-1,\, k)\]</div>
 <p>where <span class="math notranslate nohighlight">\(\mathcal{N}(j) = \{\max(0,\, j-1),\ j,\ \min(c-1,\, j+1)\}\)</span>
@@ -9382,7 +9384,7 @@ where <span class="math notranslate nohighlight">\(\pi_j\)</span> is the initial
 </div>
 </div>
 </div>
-<p>Defining the HMM model of page 37 of <a class="reference external" href="https://www.dropbox.com/scl/fi/9ez77b75eyw1al55k086s/StatNLP-Lecture6-HMM.pdf?rlkey=2vd1mfqwsrbu3ru4il6hta4m7&amp;amp;dl=0">Dr. Veisi’s slides</a></p>
+<p>Defining the HMM model of page 37 of <a class="reference external" href="https://www.dropbox.com/scl/fi/9ez77b75eyw1al55k086s/StatNLP-Lecture6-HMM.pdf?rlkey=2vd1mfqwsrbu3ru4il6hta4m7&amp;amp;st=z2j7x6i4&amp;amp;dl=0">Dr. Veisi’s slides</a></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the Model</span>
