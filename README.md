@@ -13,7 +13,7 @@
 In notebooks folder:
 - jupyter-book build ./
 - copy ..\require.js _build\html\
-- copy *.jpg _build/html/_images
+- copy *.jpg _build/html/_images (notebooks folder and img folder)
 - ghp-import -n -p -f ./_build/html
 - jupyter-book build --builder pdflatex ./
 - python fix_jupyterbook.py
